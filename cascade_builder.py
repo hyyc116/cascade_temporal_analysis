@@ -131,7 +131,7 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
     logging.info("build cascade from {:} .".format(pid_cits_path))
 
     pid_citations = defaultdict(list)
-    for line in open(pid_citations):
+    for line in open(pid_cits_path):
         ## line format: pid \t citing_id
         line = line.strip()
         pid,citing_id = line.split("\t")
@@ -172,7 +172,7 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
                 citation_cascade[pid].append([inter_pid,cit])
 
     saved_path = 'data/citation_cascade.json'
-    open(saved_path,'w').write(json.dumps(saved_path))
+    open(saved_path,'w').write(json.dumps(citation_cascade))
     logging.info("{:} citation cascade has been build, and saved to {:}".format(len(citation_cascade.keys()),saved_path))
 
 
