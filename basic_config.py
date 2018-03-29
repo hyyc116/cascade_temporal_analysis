@@ -34,7 +34,7 @@ from networkx.algorithms.core import core_number
 from networkx.algorithms.core import k_core
 import psycopg2
 
-from gini import gini
+# from gini import gini
 
 
 mpl.rcParams['agg.path.chunksize'] = 10000
