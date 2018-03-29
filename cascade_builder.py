@@ -178,15 +178,15 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
 
 if __name__ == '__main__':
     ## task 1
-    filter_out_ids_of_field('physics')
+    # filter_out_ids_of_field('physics')
 
     ## task 2 and task 3
     selected_IDs_path = 'data/selected_IDs_from_physics.txt'
-    fetch_ids_of_citing_papers(selected_IDs_path)
+    # fetch_ids_of_citing_papers(selected_IDs_path)
 
     ## task 4
     com_IDs_path = 'data/com_IDs.txt'
-    fetch_citing_papers_of_com_IDs(com_IDs_path)
+    # fetch_citing_papers_of_com_IDs(com_IDs_path)
 
     ## task 5
     pid_cits_path = 'data/pid_cits.txt'
