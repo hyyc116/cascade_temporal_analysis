@@ -8,6 +8,7 @@
         3. combine these two IDs as com_IDs
         4. get all citing papers of these com_IDs
         5. build citation cascade for every paper in selected_IDs
+        6. fetch published year of combined ids
 
 '''
 ## task 1
@@ -176,6 +177,29 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
     logging.info("{:} citation cascade has been build, and saved to {:}".format(len(citation_cascade.keys()),saved_path))
 
 
+def fecth_pubyear_of_com_ids(com_IDs_path):
+    com_IDs = set([line.strip() for line in open(com_IDs_path)])
+    logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
+    com_ids_year = {}
+
+    ## query database wos_summary
+    query_op = dbop()
+    sql = 'select id,pubyear from wos_summary'
+    progress=0
+    for pid,pubyear in query_op.query_database(sql):
+        progress+=1
+        if progress%1000000==0:
+            logging.info('progress {:} ...'.format(progress))
+        if pid in com_IDs:
+            com_ids_year[pid] = pubyear
+
+    query_op.close_db()
+    logging.info('{:} cited ids have citations'.format(len(com_ids_year.keys())))
+    open('data/com_ids_year.json','w').write(json.dumps(com_ids_year))
+    return com_ids_year
+
+
+
 if __name__ == '__main__':
     ## task 1
     # filter_out_ids_of_field('physics')
@@ -190,7 +214,10 @@ if __name__ == '__main__':
 
     ## task 5
     pid_cits_path = 'data/pid_cits.txt'
-    build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
+    # build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
+
+    ## task 6
+    fecth_pubyear_of_com_ids(com_IDs_path\)
 
 
 
