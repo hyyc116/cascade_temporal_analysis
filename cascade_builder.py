@@ -217,7 +217,7 @@ if __name__ == '__main__':
     # build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
 
     ## task 6
-    fecth_pubyear_of_com_ids(com_IDs_path\)
+    fecth_pubyear_of_com_ids(com_IDs_path)
 
 
 
