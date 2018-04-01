@@ -25,8 +25,6 @@ def citation_distribution(pid_cits_path):
         pid_citations[pid].append(citing_id)
 
     pid_cit_num = []
-
-
     for pid in pid_citations.keys():
         pid_cit_num.append(len(pid_citations[pid]))
 
@@ -34,12 +32,18 @@ def citation_distribution(pid_cits_path):
     logging.info('citation list saved to citation_list.txt.')
 
     ## group paper into three groups
-    group_papers(pid_cit_num,'data/paper_groups.jpg')
+    xmin,xmax = group_papers(pid_cit_num,'data/paper_groups.jpg')
 
-    # logging.info('citation distribution saved to pdf/citation_dis.jpg.')
-
+    logging.info('save highly cited papers ...')
     ## get highly cited papers
+    highly_cited_papers = {}
+    for pid in pid_citations.keys():
+        if pid>=xmax:
+            highly_cited_papers[pid] = pid_citations[pid]
 
+    open('data/highly_cited_papers.json','w').write(json.dumps(highly_cited_papers))
+
+    logging.info('saved to data/highly_cited_papers.json.')
 
     
 

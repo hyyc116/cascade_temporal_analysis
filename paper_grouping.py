@@ -78,11 +78,13 @@ def group_papers(citation_list,distribution_path,x_min_max=80,x_max_min=100):
     ## plot the grid search result of using percentage r2
     ax40 = fig.add_subplot(5,2,9)
     ax41 = fig.add_subplot(5,2,10, projection='3d')
-    plot_fitting_and_distribution(fig,ax40,ax41,xs,ys,'adjusted_r2',_min_y,_max_y,x_min_max,x_max_min)
+    xmin,xmax = plot_fitting_and_distribution(fig,ax40,ax41,xs,ys,'adjusted_r2',_min_y,_max_y,x_min_max,x_max_min)
 
     plt.tight_layout()
     plt.savefig(distribution_path,dpi=200)
     logging.info('distribution saved to {:}.'.format(distribution_path))
+
+    return xmin,xmax
 
 def plot_fitting_and_distribution(fig,ax1,ax2,xs,ys,evaluator_name,_min_y,_max_y,x_min_max=80,x_max_min=100):
     logging.info('Optimize using {:} ... '.format(evaluator_name))
@@ -95,6 +97,8 @@ def plot_fitting_and_distribution(fig,ax1,ax2,xs,ys,evaluator_name,_min_y,_max_y
     ax1.plot(np.linspace(xmin, xmax, 10), power_low_func(np.linspace(xmin, xmax, 10), *popt),label='$\\alpha={:.2f}$'.format(popt[0]))
     # ax1.plot([start]*10, np.linspace(_min_y, _max_y, 10),'--',label='$x_{min}$'+'$={:}$'.format(start))
     # ax1.plot([end]*10, np.linspace(_min_y, _max_y, 10),'--',label='$x_{max}$'+'$={:}$'.format(end))
+
+    return xmin,xmax
 
 def plot_citation_distribution(ax,xs,ys,xmin,xmax,_min_y,_max_y,isFinal=False):
     ax.plot(xs,ys,'o',fillstyle='none')
