@@ -60,7 +60,7 @@ def plot_highly_cited_papers(highly_cited_papers_path):
     rows = (total_num/5)+1
     fig,axes = plt.subplots(rows,5,figsize=(25,rows*5))
     highly_cited_papers_ids = []
-    for i,pid in enumerate(high_pids):
+    for i,pid in enumerate(high_pids)[:100]:
 
         highly_cited_papers_ids.append(pid)
 
