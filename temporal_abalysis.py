@@ -52,20 +52,14 @@ def citation_distribution(pid_cits_path,com_IDs_year_path):
     logging.info('saved to data/highly_cited_papers.json.')
 
 
-def plot_highly_cited_papers(highly_cited_papers_path,):
-    highly_cited_papers = json.loads(open(highly_cited_papers_path).read())
-    com_ids_year = json.loads(open(com_IDs_year_path).read())
-
-    highly_cited_papers
-    for pid in highly_cited_papers.keys():
-
-
+def plot_highly_cited_papers(highly_cited_papers_path):
     pass
     
 
 if __name__ == '__main__':
     pid_cits_path = 'data/pid_cits.txt'
-    citation_distribution(pid_cits_path)
+    com_IDs_year_path = 'data/com_ids_year.json'
+    citation_distribution(pid_cits_path,com_IDs_year_path)
 
 
 
