@@ -33,7 +33,7 @@ def citation_distribution(pid_cits_path,com_IDs_year_path):
 
     logging.info("Paper grouping ...")
     ## group paper into three groups
-    xmin,xmax = group_papers(pid_cit_num,'data/paper_groups.jpg')
+    xmin,xmax = group_papers(pid_cit_num,'pdf/paper_groups.jpg')
 
     logging.info('save highly cited papers ...')
     ## get highly cited papers
@@ -48,9 +48,15 @@ def citation_distribution(pid_cits_path,com_IDs_year_path):
 
     open('data/highly_cited_papers.json','w').write(json.dumps(highly_cited_papers))
 
+
+def plot_highly_cited_papers(highly_cited_papers_path):
+    highly_cited_papers = json.loads(open(highly_cited_papers_path).read())
     logging.info('Plotting highly cited papers ..')
     high_pids = highly_cited_papers.keys()
     total_num = len(high_pids)
+
+
+    logging.info('there are {:} highly cited papers loaded.'.format(total_num))
     rows = (total_num/5)+1
     fig,axes = plt.subplots(rows,5,figsize=(25,rows*5))
     highly_cited_papers_ids = []
@@ -85,7 +91,9 @@ def citation_distribution(pid_cits_path,com_IDs_year_path):
 if __name__ == '__main__':
     pid_cits_path = 'data/pid_cits.txt'
     com_IDs_year_path = 'data/com_ids_year.json'
-    citation_distribution(pid_cits_path,com_IDs_year_path)
+    # citation_distribution(pid_cits_path,com_IDs_year_path)
+    highly_cited_papers_path = 'data/highly_cited_papers.json'
+    plot_highly_cited_papers(highly_cited_papers_path)
 
 
 
