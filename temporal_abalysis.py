@@ -13,7 +13,7 @@
 from basic_config import *
 from paper_grouping import group_papers
 
-def citation_distribution(pid_cits_path):
+def citation_distribution(pid_cits_path,com_IDs_year_path):
     logging.info("build cascade from {:} .".format(pid_cits_path))
 
     pid_citations = defaultdict(list)
@@ -28,9 +28,11 @@ def citation_distribution(pid_cits_path):
     for pid in pid_citations.keys():
         pid_cit_num.append(len(pid_citations[pid]))
 
-    open('data/citation_list.txt','w').write(','.join(pid_cit_num))
-    logging.info('citation list saved to citation_list.txt.')
+    logging.info('load published years ...')
+    com_IDs_year = json.loads(open(com_IDs_year_path).read())
 
+
+    logging.info("Paper grouping ...")
     ## group paper into three groups
     xmin,xmax = group_papers(pid_cit_num,'data/paper_groups.jpg')
 
@@ -39,12 +41,26 @@ def citation_distribution(pid_cits_path):
     highly_cited_papers = {}
     for pid in pid_citations.keys():
         if pid>=xmax:
-            highly_cited_papers[pid] = pid_citations[pid]
+            cpid_list = []
+            for cpid in pid_citations[pid]:
+                cpid_list.append([cpid,com_IDs_year.get(cpid,-1)])
+
+            highly_cited_papers[pid]=cpid_list
 
     open('data/highly_cited_papers.json','w').write(json.dumps(highly_cited_papers))
 
     logging.info('saved to data/highly_cited_papers.json.')
 
+
+def plot_highly_cited_papers(highly_cited_papers_path,):
+    highly_cited_papers = json.loads(open(highly_cited_papers_path).read())
+    com_ids_year = json.loads(open(com_IDs_year_path).read())
+
+    highly_cited_papers
+    for pid in highly_cited_papers.keys():
+
+
+    pass
     
 
 if __name__ == '__main__':
