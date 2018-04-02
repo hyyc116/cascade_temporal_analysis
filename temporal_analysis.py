@@ -97,7 +97,7 @@ if __name__ == '__main__':
     com_IDs_year_path = 'data/com_ids_year.json'
     # citation_distribution(pid_cits_path,com_IDs_year_path)
     highly_cited_papers_path = 'data/highly_cited_papers.json'
-    plot_highly_cited_papers(highly_cited_papers_path)
+    plot_highly_cited_papers(highly_cited_papers_path,highly_cited_papers_path)
 
 
 
