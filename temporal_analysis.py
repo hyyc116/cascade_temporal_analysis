@@ -49,7 +49,11 @@ def citation_distribution(pid_cits_path,com_IDs_year_path):
     open('data/highly_cited_papers.json','w').write(json.dumps(highly_cited_papers))
 
 
-def plot_highly_cited_papers(highly_cited_papers_path):
+def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
+    logging.info('load published years ...')
+    com_IDs_year = json.loads(open(com_IDs_year_path).read())
+    
+    logging.info('load published years ...')
     highly_cited_papers = json.loads(open(highly_cited_papers_path).read())
     logging.info('Plotting highly cited papers ..')
     high_pids = highly_cited_papers.keys()
