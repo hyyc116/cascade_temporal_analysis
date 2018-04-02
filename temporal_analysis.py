@@ -78,6 +78,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
         xs = []
         ys = []
         for year in sorted(year_num.keys()):
+            print year,y0
             xs.append(year-y0)
             ys.append(year_num[year])
 
