@@ -110,6 +110,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
         ax.set_ylabel('number of citations')
 
     open('data/highly_cited_papers_ids.txt','w').write('\n'.join(highly_cited_papers_ids))
+    plt.tight_layout()
     plt.savefig('pdf/plots_of_highly_cited_papers.jpg',dpi=200)
     logging.info('figure saved to pdf/plots_of_highly_cited_papers.jpg.')
 
