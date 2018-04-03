@@ -78,7 +78,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
         for cpid,year in citation_list:
             year = int(year)
             if year==-1:
-                continue\
+                continue
             year_num[int(year)]+=1
 
         xs = []
