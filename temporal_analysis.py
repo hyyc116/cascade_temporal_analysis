@@ -55,6 +55,8 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     
     logging.info('load published years ...')
     highly_cited_papers = json.loads(open(highly_cited_papers_path).read())
+
+    total_num = len(highly_cited_papers.keys())
     logging.info('there are {:} highly cited papers loaded.'.format(total_num))
 
     logging.info('Plotting highly cited papers ..')
