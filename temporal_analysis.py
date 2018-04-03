@@ -83,7 +83,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     rows = (total_num/5)+1
     fig,axes = plt.subplots(rows,5,figsize=(25,rows*5))
     highly_cited_papers_ids = []
-    for i,pid in enumerate(high_pids[:200]):
+    for i,pid in enumerate(high_pids[:total_num]):
 
         highly_cited_papers_ids.append(pid)
 
