@@ -63,6 +63,8 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     selected_highly_cited_papers = {}
     high_pids = highly_cited_papers.keys()
     for pid in high_pids:
+        if int(com_IDs_year.get(pid,-1))==-1:
+            continue
         citation_list = highly_cited_papers[pid]
         isused = True
         for cpid,year in citation_list:
@@ -86,9 +88,6 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
         highly_cited_papers_ids.append(pid)
 
         y0 = int(com_IDs_year[pid])
-        if int(y0)==-1:
-            continue
-
         ax = axes[i/5,i%5]
         citation_list = highly_cited_papers[pid]
         year_num =defaultdict(int)
