@@ -87,6 +87,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     total_num = 100 if len(selected_highly_cited_papers.keys())>100 else len(selected_highly_cited_papers.keys())
     rows = (total_num/5) if total_num%5==0 else (total_num/5)+1
     fig,axes = plt.subplots(rows,5,figsize=(25,rows*5))
+    high_pids = selected_highly_cited_papers.keys()
     highly_cited_papers_ids = []
     for i,pid in enumerate(high_pids[:total_num]):
 
@@ -98,8 +99,6 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
         year_num =defaultdict(int)
         for cpid,year in citation_list:
             year = int(year)
-            if year==-1:
-                continue
             year_num[int(year)]+=1
 
         xs = []
