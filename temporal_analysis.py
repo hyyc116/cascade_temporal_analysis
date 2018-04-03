@@ -84,7 +84,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
 
     logging.info('there are {:} highly cited papers loaded.'.format(len(selected_highly_cited_papers.keys())))
 
-    total_num = 500 if len(selected_highly_cited_papers.keys())>500 else len(selected_highly_cited_papers.keys())
+    total_num = 200 if len(selected_highly_cited_papers.keys())>200 else len(selected_highly_cited_papers.keys())
     rows = (total_num/5) if total_num%5==0 else (total_num/5)+1
     fig,axes = plt.subplots(rows,5,figsize=(15,rows*3))
     high_pids = selected_highly_cited_papers.keys()
