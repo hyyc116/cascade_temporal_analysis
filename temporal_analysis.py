@@ -68,7 +68,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
 
         highly_cited_papers_ids.append(pid)
 
-        y0 = com_IDs_year[pid]
+        y0 = int(com_IDs_year[pid])
         if int(y0)==-1:
             continue
 
