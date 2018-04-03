@@ -50,7 +50,7 @@ def citation_distribution(pid_cits_path,com_IDs_year_path):
 
 
 def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
-    logging.info('load published years ...')
+    logging.info('load com IDs year ...')
     com_IDs_year = json.loads(open(com_IDs_year_path).read())
     
     logging.info('load published years ...')
@@ -61,7 +61,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
 
 
     logging.info('there are {:} highly cited papers loaded.'.format(total_num))
-    rows = (total_num/5)+1
+    rows = (100/5)+1
     fig,axes = plt.subplots(rows,5,figsize=(25,rows*5))
     highly_cited_papers_ids = []
     for i,pid in enumerate(high_pids[:100]):
