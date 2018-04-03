@@ -60,8 +60,6 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     logging.info('there are {:} highly cited papers loaded.'.format(total_num))
 
     logging.info('Plotting highly cited papers ..')
-
-
     selected_highly_cited_papers = {}
     high_pids = highly_cited_papers.keys()
     for pid in high_pids:
@@ -69,12 +67,21 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
             continue
         citation_list = highly_cited_papers[pid]
         isused = True
+        years = []
+
+        year_num = defaultdict(int)
         for cpid,year in citation_list:
             year = int(year)
 
             if year==-1:
                 isused=False
                 break
+
+            years.append(year)
+            year_num[year]+=1
+
+        if year_num[np.max(years)]>20:
+            continue
 
         if isused:
             selected_highly_cited_papers[pid] = citation_list
@@ -101,6 +108,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
 
         xs = []
         ys = []
+
         for year in sorted(year_num.keys()):
             # print year,y0
             xs.append(year-y0)
@@ -115,8 +123,6 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     plt.tight_layout()
     plt.savefig('pdf/plots_of_highly_cited_papers.jpg',dpi=200)
     logging.info('figure saved to pdf/plots_of_highly_cited_papers.jpg.')
-
-    
 
 if __name__ == '__main__':
     pid_cits_path = 'data/pid_cits.txt'
