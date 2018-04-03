@@ -80,7 +80,7 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
             year_num[year]+=1
         
 
-        if isused & year_num[np.max(years)]<20::
+        if isused & year_num[np.max(years)]<20:
             selected_highly_cited_papers[pid] = citation_list
 
     logging.info('there are {:} highly cited papers loaded.'.format(len(selected_highly_cited_papers.keys())))
