@@ -55,16 +55,33 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     
     logging.info('load published years ...')
     highly_cited_papers = json.loads(open(highly_cited_papers_path).read())
-    logging.info('Plotting highly cited papers ..')
-    high_pids = highly_cited_papers.keys()
-    total_num = len(high_pids)
-
-
     logging.info('there are {:} highly cited papers loaded.'.format(total_num))
-    rows = (100/5)+1
+
+    logging.info('Plotting highly cited papers ..')
+
+
+    selected_highly_cited_papers = {}
+    high_pids = highly_cited_papers.keys()
+    for pid in high_pids:
+        citation_list = highly_cited_papers[pid]
+        isused = True
+        for cpid,year in citation_list:
+            year = int(year)
+
+            if year==-1:
+                isused=False
+                break
+
+        if isused:
+            selected_highly_cited_papers[pid] = citation_list
+
+    logging.info('there are {:} highly cited papers loaded.'.format(len(selected_highly_cited_papers.keys())))
+
+    total_num = 100 if len(selected_highly_cited_papers.keys())>100 else len(selected_highly_cited_papers.keys())
+    rows = (total_num/5)+1
     fig,axes = plt.subplots(rows,5,figsize=(25,rows*5))
     highly_cited_papers_ids = []
-    for i,pid in enumerate(high_pids[:100]):
+    for i,pid in enumerate(high_pids[:200]):
 
         highly_cited_papers_ids.append(pid)
 
