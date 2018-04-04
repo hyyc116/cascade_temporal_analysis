@@ -9,6 +9,7 @@
         4. get all citing papers of these com_IDs
         5. build citation cascade for every paper in selected_IDs
         6. fetch published year of combined ids
+        7. fetch subjects of combined ids
 
 '''
 ## task 1
@@ -199,6 +200,26 @@ def fecth_pubyear_of_com_ids(com_IDs_path):
     return com_ids_year
 
 
+def fecth_subjects_of_com_ids(com_IDs_path):
+    com_IDs = set([line.strip() for line in open(com_IDs_path)])
+    logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
+    com_ids_subjects = defaultdict(list)
+    ## query database wos_summary
+    query_op = dbop()
+    sql = 'select id,subject from wos_subjects'
+    progress=0
+    for pid,subject in query_op.query_database(sql):
+        progress+=1
+        if progress%1000000==0:
+            logging.info('progress {:} ...'.format(progress))
+        if pid in com_IDs:
+            com_ids_subjects[pid].append(subject)
+
+    query_op.close_db()
+    logging.info('{:} cited ids have citations'.format(len(com_ids_subjects.keys())))
+    open('data/com_ids_subjects.json','w').write(json.dumps(com_ids_subjects))
+    return com_ids_subjects
+
 
 if __name__ == '__main__':
     ## task 1
@@ -217,7 +238,10 @@ if __name__ == '__main__':
     # build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
 
     ## task 6
-    fecth_pubyear_of_com_ids(com_IDs_path)
+    # fecth_pubyear_of_com_ids(com_IDs_path)
+
+    ## task 7
+    fecth_subjects_of_com_ids(com_IDs_path)
 
 
 

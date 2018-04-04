@@ -119,6 +119,11 @@ def plot_highly_cited_papers(highly_cited_papers_path,com_IDs_year_path):
     plt.savefig('pdf/plots_of_highly_cited_papers.jpg',dpi=200)
     logging.info('figure saved to pdf/plots_of_highly_cited_papers.jpg.')
 
+
+
+
+
+
 if __name__ == '__main__':
     pid_cits_path = 'data/pid_cits.txt'
     com_IDs_year_path = 'data/com_ids_year.json'
