@@ -140,7 +140,7 @@ def fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_casc
     logging.info('loading highly cited papers ...')
     highly_cited_papers_ids = json.loads(open(highly_cited_papers_ids_years_path).read()).keys()
 
-    logging.info('{:} highly cited paper ids are loaded, loading citation cascades .. ')
+    logging.info('{:} highly cited paper ids are loaded, loading citation cascades .. '.format(len(highly_cited_papers_ids)))
     citation_cascade = json.loads(open(citation_cascade_path).read())
 
     highly_cited_citation_cascade = {}

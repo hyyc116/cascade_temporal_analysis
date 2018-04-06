@@ -143,14 +143,17 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
     logging.info('citation relation loaded, start to build cascade ...')
 
     progress = 0
-
+    saved_path = 'data/citation_cascade.json'
     citation_cascade = defaultdict(list)
-
+    total_num = 0
     for pid in selected_IDs:
         progress+=1
 
         if progress%100000==0:
-            logging.info('Building progress {:}/{:} ...'.format(progress,len(selected_IDs)))
+            total_num + = len(citation_cascade.keys())
+            open(saved_path,'w+').write(json.dumps(citation_cascade)+'\n')
+            logging.info('Building progress {:}/{:}, {:} citation cascades saved to {:}...'.format(progress,len(selected_IDs),total_num,saved_path))
+            citation_cascade = defaultdict(list)
 
         citing_list = set(pid_citations.get(pid,[]))
 
@@ -173,9 +176,8 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
             for inter_pid in citing_list & cit_citation_list:
                 citation_cascade[pid].append([inter_pid,cit])
 
-    saved_path = 'data/citation_cascade.json'
-    open(saved_path,'w').write(json.dumps(citation_cascade))
-    logging.info("{:} citation cascade has been build, and saved to {:}".format(len(citation_cascade.keys()),saved_path))
+    open(saved_path,'w+').write(json.dumps(citation_cascade))
+    logging.info("{:} citation cascade has been build, and saved to {:}".format(total_num,saved_path))
 
 
 def fecth_pubyear_of_com_ids(com_IDs_path):
@@ -235,13 +237,13 @@ if __name__ == '__main__':
 
     ## task 5
     pid_cits_path = 'data/pid_cits.txt'
-    # build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
+    build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
 
     ## task 6
     # fecth_pubyear_of_com_ids(com_IDs_path)
 
     ## task 7
-    fecth_subjects_of_com_ids(com_IDs_path)
+    # fecth_subjects_of_com_ids(com_IDs_path)
 
 
 
