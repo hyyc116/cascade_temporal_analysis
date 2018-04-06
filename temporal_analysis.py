@@ -92,6 +92,8 @@ def plot_highly_cited_papers(highly_cited_papers_cits_path,com_IDs_year_path):
     highly_cited_papers_ids = defaultdict(int)
     for i,pid in enumerate(high_pids[:total_num]):
 
+        index = i if i-100<0 else i-100
+
         if i%100==0:
 
             if i!=0:
@@ -108,7 +110,7 @@ def plot_highly_cited_papers(highly_cited_papers_cits_path,com_IDs_year_path):
         y0 = int(com_IDs_year[pid])
         highly_cited_papers_ids[pid] = y0
 
-        ax = axes[i/5,i%5]
+        ax = axes[index/5,index%5]
         citation_list = highly_cited_papers[pid]
         year_num =defaultdict(int)
         for cpid,year in citation_list:
