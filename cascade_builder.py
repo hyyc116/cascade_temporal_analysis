@@ -144,6 +144,9 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
 
     progress = 0
     saved_path = 'data/citation_cascade.json'
+    os.remove(saved_path) if os.path.exists(saved_path) else None
+
+    outfile = open(saved_path,'w+')
     citation_cascade = defaultdict(list)
     total_num = 0
     for pid in selected_IDs:
@@ -151,7 +154,7 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
 
         if progress%100000==0:
             total_num += len(citation_cascade.keys())
-            open(saved_path,'w+').write(json.dumps(citation_cascade)+'\n')
+            outfile.write(json.dumps(citation_cascade)+'\n')
             logging.info('Building progress {:}/{:}, {:} citation cascades saved to {:}...'.format(progress,len(selected_IDs),total_num,saved_path))
             citation_cascade = defaultdict(list)
 
@@ -176,7 +179,7 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
             for inter_pid in citing_list & cit_citation_list:
                 citation_cascade[pid].append([inter_pid,cit])
 
-    open(saved_path,'w+').write(json.dumps(citation_cascade))
+    outfile.write(json.dumps(citation_cascade)+"\n")
     logging.info("{:} citation cascade has been build, and saved to {:}".format(total_num,saved_path))
 
 
