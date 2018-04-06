@@ -92,7 +92,7 @@ def plot_highly_cited_papers(highly_cited_papers_cits_path,com_IDs_year_path):
     highly_cited_papers_ids = defaultdict(int)
     for i,pid in enumerate(high_pids[:total_num]):
 
-        index = i if i-100<0 else i-100
+        index = i%100
 
         if i%100==0:
 
