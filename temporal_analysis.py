@@ -109,7 +109,7 @@ def plot_highly_cited_papers(highly_cited_papers_cits_path,com_IDs_year_path):
 
         y0 = int(com_IDs_year[pid])
         highly_cited_papers_ids[pid] = y0
-
+        print index,index/5
         ax = axes[index/5,index%5]
         citation_list = highly_cited_papers[pid]
         year_num =defaultdict(int)
