@@ -141,7 +141,13 @@ def fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_casc
     highly_cited_papers_ids = json.loads(open(highly_cited_papers_ids_years_path).read()).keys()
 
     logging.info('{:} highly cited paper ids are loaded, loading citation cascades .. '.format(len(highly_cited_papers_ids)))
-    citation_cascade = json.loads(open(citation_cascade_path).read())
+    citation_cascade = {}
+    progress = 0
+    for line in open(citation_cascade_path):
+        line = line.strip()
+        progress+=1
+        logging.info('progress {:} ..'.format(progress))
+        citation_cascade.update(json.loads(line))
 
     highly_cited_citation_cascade = {}
 
@@ -267,7 +273,7 @@ if __name__ == '__main__':
     com_IDs_year_path = 'data/com_ids_year.json'
     # citation_distribution(pid_cits_path,com_IDs_year_path)
     highly_cited_papers_cits_path = 'data/highly_cited_papers_cits.json'
-    plot_highly_cited_papers(highly_cited_papers_cits_path,com_IDs_year_path)
+    # plot_highly_cited_papers(highly_cited_papers_cits_path,com_IDs_year_path)
     highly_cited_papers_ids_years_path = 'data/highly_cited_papers_ids_years.json'
     citation_cascade_path = 'data/citation_cascade.json'
     highly_cited_citation_cascade = 'data/highly_cited_citation_cascade.json'
