@@ -150,7 +150,7 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
         progress+=1
 
         if progress%100000==0:
-            total_num + = len(citation_cascade.keys())
+            total_num += len(citation_cascade.keys())
             open(saved_path,'w+').write(json.dumps(citation_cascade)+'\n')
             logging.info('Building progress {:}/{:}, {:} citation cascades saved to {:}...'.format(progress,len(selected_IDs),total_num,saved_path))
             citation_cascade = defaultdict(list)
