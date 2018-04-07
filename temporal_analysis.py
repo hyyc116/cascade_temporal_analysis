@@ -292,7 +292,7 @@ if __name__ == '__main__':
     citation_cascade_path = 'data/citation_cascade.json'
     highly_cited_citation_cascade = 'data/highly_cited_citation_cascade.json'
     # fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_cascade_path,highly_cited_citation_cascade)
-    com_IDs_subjects = 'data/com_ids_subjects.json'
+    com_IDs_subjects_path = 'data/com_ids_subjects.json'
     gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_cits_path,highly_cited_citation_cascade,com_IDs_subjects_path)
 
 
