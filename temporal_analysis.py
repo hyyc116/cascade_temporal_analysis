@@ -150,9 +150,18 @@ def fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_casc
         citation_cascade.update(json.loads(line))
 
     highly_cited_citation_cascade = {}
-
+    progress = 0
     for pid in highly_cited_papers_ids:
+        edges = citation_cascade.get(pid,[])
+        if len(edges)==0:
+            logging.info('error pid : {:} ..'.format(pid))
+            continue
+
+        progress+=1
+        logging.info('progress {:} ..'.format(progress))
+        
         highly_cited_citation_cascade[pid] = citation_cascade[pid]
+
 
     open(saved_cascade_path,'w').write(json.dumps(highly_cited_citation_cascade))
 
@@ -181,13 +190,10 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
     progress = 0
     for pid in highly_cited_papers_ids.keys():
         citation_list = highly_cited_papers_cits[pid]
-
         ## loads from cc
         diG = nx.DiGraph()
         edges =  highly_cited_citation_cascade.get(pid,[])
-        if len(edges)==0:
-            logging.info('error pid : {:} ..'.format(pid))
-            continue
+        
         diG.add_edges_from(edges)
 
         if not nx.is_directed_acyclic_graph(diG):
