@@ -291,9 +291,9 @@ if __name__ == '__main__':
     highly_cited_papers_ids_years_path = 'data/highly_cited_papers_ids_years.json'
     citation_cascade_path = 'data/citation_cascade.json'
     highly_cited_citation_cascade = 'data/highly_cited_citation_cascade.json'
-    fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_cascade_path,highly_cited_citation_cascade)
+    # fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_cascade_path,highly_cited_citation_cascade)
     com_IDs_subjects = 'data/com_ids_subjects.json'
-    plot_temporal_curves(highly_cited_papers_ids_years_path,highly_cited_papers_cits_path,highly_cited_citation_cascade,com_IDs_subjects_path)
+    gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_cits_path,highly_cited_citation_cascade,com_IDs_subjects_path)
 
 
 
