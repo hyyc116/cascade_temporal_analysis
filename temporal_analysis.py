@@ -255,7 +255,7 @@ def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
     num_of_le = 0
     num_of_cns = 0
     num_of_nes = 0
-    subject_list = 0
+    subject_list = []
     for nid in outdegree_dict.keys():
         od = outdegree_dict[nid]
         subject_list.extend(com_IDs_subjects.get(nid,[]))
