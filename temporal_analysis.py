@@ -243,7 +243,7 @@ def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
 
     ## edges
     edges = subgraph.edges()
-
+    print edges
     for edge in edges:
         if edge[1]!=pid:
             num_of_ils+=1
