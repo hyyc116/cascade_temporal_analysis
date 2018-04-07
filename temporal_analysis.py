@@ -231,7 +231,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
     open(saved_path,'w').write(paper_age_stats)
     logging.info('statistics data saved to {:}.'.format(saved_path))
 
-def indicators_of_graph(subgraph,size):
+def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
 
     size = float(size)
     depth = 0
