@@ -238,7 +238,8 @@ def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
     # modularity = 0
     num_of_ils = 0
     ## depth
-    depth=nx.dag_longest_path_length(subgraph)
+    depth = 0
+    # depth=nx.dag_longest_path_length(subgraph)
 
     ## edges
     edges = subgraph.edges()
