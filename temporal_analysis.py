@@ -213,7 +213,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
 
         ## yearly stat nodes
         age_stats = {}
-        age_nodes = []
+        age_nodes = [pid]
         for year in sorted(year_cits.keys()):
             age = year - y0
             print year,year_cits[year]
