@@ -193,19 +193,18 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         ## loads from cc
         diG = nx.DiGraph()
         edges =  highly_cited_citation_cascade.get(pid,[])
-        
         diG.add_edges_from(edges)
+
+        logging.debug('number of nodes: {:}, number of citations:{:} .'.format(len(diG.nodes()),len(citation_list)))
 
         if not nx.is_directed_acyclic_graph(diG):
             continue
 
         progress +=1
-
         logging.info('progress {:} ..'.format(progress))
 
         ## get published year of owner
         y0 = highly_cited_papers_ids[pid]
-
         ## stat yearly citations
         year_cits = defaultdict(list)
         for citation,year in citation_list:
@@ -216,10 +215,10 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         age_nodes = [pid]
         for year in sorted(year_cits.keys()):
             age = year - y0
-            print year,year_cits[year]
+            # print year,year_cits[year]
             age_nodes.extend(year_cits[year])
 
-            print age_nodes
+            # print age_nodes
             ##based on existing nodes, get subgraph of total cascade
             subgraph = diG.subgraph(age_nodes)
 
@@ -245,7 +244,7 @@ def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
 
     ## edges
     edges = subgraph.edges()
-    print edges
+    # print edges
     for edge in edges:
         if edge[1]!=pid:
             num_of_ils+=1
