@@ -195,6 +195,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         edges =  highly_cited_citation_cascade.get(pid,[])
         if len(edges)==0:
             logging.debug('paper:{:} has no edges.'.format(pid))
+            continue
 
 
 
