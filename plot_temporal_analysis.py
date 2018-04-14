@@ -42,7 +42,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		labels = ['numer of citations','late endorser','connector','normal endorser','depth','ICRs','number of subjects','subjects']
 		values = zip(*values)
 		
-		fig,axes = plt.subplots(1,2,figsize=(14,5))
+		fig,axes = plt.subplots(1,3,figsize=(21,5))
 		ax = axes[0]
 		for i,label in enumerate(labels):
 
@@ -57,17 +57,28 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 				subjects = values[i]
 				continue
 
+			if label == 'ICRs':
+				ICRs = values[i]
+				continue
+
 			ax.plot(ages,values[i],label=label,c=color_sequence[i],linewidth=2)
 
 
 		ax.set_xlabel('citation delay')
 		ax.set_ylabel('percentage')
+		ax.legend()
 
 		ax2 = axes[1]
 
 		ax2.plot(ages,num_of_subjects,c=color_sequence[2])
 		ax2.set_xlabel('ciattion delay')
 		ax2.set_ylabel('number of subjects')
+		plt.tight_layout()
+
+		ax3 = axes[2]
+		ax2.plot(ages,ICRs,c=color_sequence[2])
+		ax2.set_xlabel('ciattion delay')
+		ax2.set_ylabel('ICRs')
 		plt.tight_layout()
 
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
