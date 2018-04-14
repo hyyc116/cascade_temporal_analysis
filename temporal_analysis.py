@@ -174,6 +174,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
     ## load these data
     logging.info('load highly cited paper ids ..')
     highly_cited_papers_ids = json.loads(open(highly_cited_papers_ids_years_path).read())
+    logging.info('{:} highly cited paper ids loaded ..'.format(len(highly_cited_papers_ids.keys())))
 
     ## subjects
     logging.info('loading com Ids subjects ...')
