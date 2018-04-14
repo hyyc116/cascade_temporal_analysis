@@ -28,6 +28,27 @@ def plot_curve(highly_cited_paper_age_stat_path):
 		age_stat = highly_cited_paper_age_stat[pid]
 
 		ages = []
-
+		values = []
 		for age in sorted(age_stat.keys()):
-			noc,late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects = 
+			attrs = age_stats[age]
+
+			ages.append(age)
+			values.append(attrs)
+
+
+		labels = ['numer of citations','late endorser','connector','normal endorser','depth','$P(ICRs)$','number of subjects','subjects']
+		values = zip(*values)
+		
+		plt.figure(figsize=(7,5))
+		for i,label in enumerate(labels):
+
+			if label == 'depth':
+				continue
+
+			
+
+
+
+
+
+
