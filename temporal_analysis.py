@@ -227,7 +227,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
             # print year,year_cits[year]
             cits = year_cits[year]
             age_nodes.extend(cits)
-            noc = len(cits)/float(citation_list)
+            noc = len(cits)/float(len(citation_list))
 
             # print age_nodes
             ##based on existing nodes, get subgraph of total cascade
