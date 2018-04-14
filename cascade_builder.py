@@ -176,7 +176,7 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
             if len(cit_citation_list)==0:
                 continue
 
-            for inter_pid in citing_list & cit_citation_list:
+            for inter_pid in (citing_list & cit_citation_list):
                 citation_cascade[pid].append([inter_pid,cit])
 
     outfile.write(json.dumps(citation_cascade)+"\n")
