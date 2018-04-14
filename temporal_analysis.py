@@ -205,6 +205,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         logging.debug('number of nodes: {:}, number of citations:{:} .'.format(len(diG.nodes()),len(citation_list)))
 
         if not nx.is_directed_acyclic_graph(diG):
+            open('acyclic.txt','w').write(str(edges))
             continue
 
         progress +=1
