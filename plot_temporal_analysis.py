@@ -32,8 +32,8 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 
 		ages = []
 		values = []
-		for age in sorted(age_stats.keys()):
-			attrs = age_stats[age]
+		for age in sorted([int(a) for a  in age_stats.keys()]):
+			attrs = age_stats[str(age)]
 
 			ages.append(age)
 			values.append(attrs)
