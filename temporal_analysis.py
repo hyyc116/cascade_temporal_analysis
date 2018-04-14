@@ -205,7 +205,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         logging.debug('number of nodes: {:}, number of citations:{:} .'.format(len(diG.nodes()),len(citation_list)))
 
         if not nx.is_directed_acyclic_graph(diG):
-            open('acyclic.txt','w').write(str(edges))
+            analyze_acyclic(edges)
             continue
 
         progress +=1
@@ -239,6 +239,21 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
     saved_path = 'data/highly_cited_paper_age_stats.json'
     open(saved_path,'w').write(json.dumps(paper_age_stats))
     logging.info('statistics data saved to {:}.'.format(saved_path))
+
+
+def analyze_acyclic(edges):
+    known_edges=set()
+
+    for edge in edges:
+
+        e = '=='.join(sorted(edge))
+
+        if e in known_edges:
+            print e, edge
+        else:
+            known_edges.add(e)
+
+
 
 def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
 
