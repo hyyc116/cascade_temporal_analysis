@@ -235,7 +235,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         paper_age_stats[pid] = age_stats
 
     saved_path = 'data/highly_cited_paper_age_stats.json'
-    open(saved_path,'w').write(paper_age_stats)
+    open(saved_path,'w').write(json.dumps(paper_age_stats))
     logging.info('statistics data saved to {:}.'.format(saved_path))
 
 def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
