@@ -193,6 +193,11 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         ## loads from cc
         diG = nx.DiGraph()
         edges =  highly_cited_citation_cascade.get(pid,[])
+        if len(edges)==0:
+            logging.debug('paper:{:} has no edges.'.format(pid))
+
+
+
         diG.add_edges_from(edges)
 
         logging.debug('number of nodes: {:}, number of citations:{:} .'.format(len(diG.nodes()),len(citation_list)))
@@ -296,6 +301,7 @@ if __name__ == '__main__':
     highly_cited_citation_cascade = 'data/highly_cited_citation_cascade.json'
     # fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_cascade_path,highly_cited_citation_cascade)
     com_IDs_subjects_path = 'data/com_ids_subjects.json'
+    ### WARNING: DEPTH IS SET TO 0, SINCE THE OUTDATE 
     gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_cits_path,highly_cited_citation_cascade,com_IDs_subjects_path)
 
 
