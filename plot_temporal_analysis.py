@@ -39,7 +39,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 			values.append(attrs)
 
 
-		labels = ['numer of citations','late endorser','connector','normal endorser','depth','ICRs','number of subjects','subjects']
+		labels = ['number of citations','late endorser','connector','normal endorser','depth','ICRs','number of subjects','subjects']
 		values = zip(*values)
 		
 		fig,axes = plt.subplots(2,2,figsize=(28,5))
