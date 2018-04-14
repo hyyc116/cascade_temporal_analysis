@@ -28,11 +28,11 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 	for pid in highly_cited_paper_age_stat.keys():
 		logging.info('plot {:} ...'.format(pid))
 
-		age_stat = highly_cited_paper_age_stat[pid]
+		age_stats = highly_cited_paper_age_stat[pid]
 
 		ages = []
 		values = []
-		for age in sorted(age_stat.keys()):
+		for age in sorted(age_stats.keys()):
 			attrs = age_stats[age]
 
 			ages.append(age)
