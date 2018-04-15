@@ -220,22 +220,33 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
             year_cits[int(year)].append(citation)
 
         ## yearly stat nodes
-        age_stats = {}
+        age_stats = defaultdict(dict)
         age_nodes = [pid]
+        last_attr = [0]*7
         for year in sorted(year_cits.keys()):
             age = year - y0
             # print year,year_cits[year]
             cits = year_cits[year]
             age_nodes.extend(cits)
-            noc = len(cits)/float(len(citation_list))
+            noc = len(cits)
 
             # print age_nodes
             ##based on existing nodes, get subgraph of total cascade
             subgraph = diG.subgraph(age_nodes)
 
-            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects = indicators_of_graph(subgraph,len(age_nodes),pid,com_IDs_subjects)
+            attr = indicators_of_graph(subgraph,pid,com_IDs_subjects)
+            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects = attr
+            present_size = float(len(age_nodes))
+            indicators = []
+            accumulative_indicators = [noc/float(len(citation_list)),late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects]
+            indicators.extend(accumulative_indicators)
+            incremental_indicators = (np.array(attr[:5])-np.array(last_attr[:5]))/noc
+            incremental_indicators.append(attr[6]-last_attr[6])
+            indicators.extend(incremental_indicators)
 
-            age_stats[age] = [noc,late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects]
+            age_stats[age] = indicators
+
+            last_attr = attr
 
         paper_age_stats[pid] = age_stats
 
@@ -258,9 +269,8 @@ def analyze_acyclic(edges):
 
 
 
-def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
+def indicators_of_graph(subgraph,pid,com_IDs_subjects):
 
-    size = float(size)
     depth = 0
     # modularity = 0
     num_of_ils = 0
@@ -275,8 +285,6 @@ def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
         if edge[1]!=pid:
             num_of_ils+=1
     
-    num_of_ils = num_of_ils/size
-
     outdegree_dict = subgraph.out_degree()
 
     num_of_le = 0
@@ -302,9 +310,9 @@ def indicators_of_graph(subgraph,size,pid,com_IDs_subjects):
             num_of_nes+=1
 
 
-    late_endorser = num_of_le/size
-    connector = num_of_cns/size
-    norm_endorser = num_of_nes/size
+    late_endorser = num_of_le
+    connector = num_of_cns
+    norm_endorser = num_of_nes
 
     subjects = Counter(subject_list)
     num_of_subjects = len(subjects.keys())
