@@ -241,7 +241,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
             accumulative_indicators = [noc/float(len(citation_list)),late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects]
             indicators.extend(accumulative_indicators)
             incremental_indicators = list((np.array(attr[:5])-np.array(last_attr[:5]))/noc)
-            incremental_indicators.append(attr[6]-last_attr[6])
+            incremental_indicators.append(attr[5]-last_attr[5])
             indicators.extend(incremental_indicators)
 
             age_stats[age] = indicators
