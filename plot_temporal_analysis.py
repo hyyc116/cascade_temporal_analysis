@@ -42,7 +42,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		labels = ['number of citations','late endorser','connector','normal endorser','depth','ICRs','number of subjects','subjects','late endorser','connector','normal endorser','depth','ICRs','number of subjects']
 		values = zip(*values)
 		
-		fig,axes = plt.subplots(2,3,figsize=(10,10))
+		fig,axes = plt.subplots(2,3,figsize=(17,10))
 		ax1 = axes[0,1]
 		for i,label in enumerate(labels[:7]):
 
@@ -90,8 +90,8 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		plt.tight_layout()
 
 		ax1 = axes[0,2]
-		for i,label in enumerate(labels[8:]):
-
+		for i in range(8,len(labels)):
+			label = labels[i]
 			if label == 'depth':
 				continue
 
@@ -118,7 +118,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax1.legend()
 
 		ax2.plot(ages,num_of_subjects,c=color_sequence[3],label='incremental')
-		ax3.plot(ages,ICRs,c=color_sequence[2],label='incremental')
+		ax3.plot(ages,ICRs,c=color_sequence[3],label='incremental')
 
 		ax2.legend()
 		ax3.legend()
