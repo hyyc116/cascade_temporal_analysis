@@ -120,17 +120,19 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		##时间中间的分布
 
 		ax41 = axes[4,0]
-		ten_ind_dis = accumulative_values[-1][10]
+		ind_dises= accumulative_values[-1]
+		length = len(ages)
+		mid_ind_dis = ind_dises[length/2]
 		xs = []
 		ys = []
-		for ind in sorted(ten_ind_dis.keys()):
+		for ind in sorted(mid_ind_dis.keys()):
 			xs.append(ind)
-			ys.append(ten_ind_dis[ind])
+			ys.append(mid_ind_dis[ind])
 
 		ax41.plot(xs,ys,'o',c=color_sequence[0],fillstyle='none')
 		ax41.set_xlabel('Indegree of connectors')
 		ax41.set_ylabel('#(connectors)')
-		ax41.set_title('10th year')
+		ax41.set_title('mid year')
 		ax41.set_yscale('log')
 		ax41.set_xscale('log')
 
