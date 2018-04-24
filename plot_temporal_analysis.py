@@ -31,97 +31,105 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		age_stats = highly_cited_paper_age_stat[pid]
 
 		ages = []
-		values = []
+		accumulative_indicators  = []
+		incremental_indicators = []
 		for age in sorted([int(a) for a  in age_stats.keys()]):
 			attrs = age_stats[str(age)]
 
 			ages.append(age)
-			values.append(attrs)
+			accumulative_indicators.append(attrs['accumulative'])
+			incremental_indicators.append(attrs['incremental'])
 
-
-		labels = ['number of citations','late endorser','connector','normal endorser','depth','ICRs','number of subjects','subjects','late endorser','connector','normal endorser','depth','ICRs','number of subjects']
-		values = zip(*values)
+		labels = ['number of citations','late endorser','connector','normal endorser','depth','ICRs','number of subjects','subjects','in degree distribution']
+		accumulative_values = zip(*accumulative_indicators)
+		incremental_values = zip(*incremental_indicators)
+		## 画的图分为两列，左边是accumulative的图， 右边是incremental的图
+		fig,axes = plt.subplots(5,2,figsize=(12,25))
 		
-		fig,axes = plt.subplots(2,3,figsize=(17,10))
-		ax1 = axes[0,1]
-		for i,label in enumerate(labels[:7]):
+		## 第一行， number of citations
+		ax00 = axes[0,0]
+		ax00.plot(ages,accumulative_values[0])
+		ax00.set_xlabel('citation delay')
+		ax00.set_ylabel('number of citations')
+		ax00.set_title('accumulative')
 
-			if label == 'depth':
-				continue
+		ax01 = axes[0,1]
+		ax01.plot(ages,incremental_values[0])
+		ax00.set_xlabel('citation delay')
+		ax00.set_ylabel('number of citations')
+		ax00.set_title('incremental')
 
-			if label == 'number of subjects':
-				num_of_subjects = values[i]
-				continue
+		##第二行，三种不同的endorser的比例变化
+		ax10 = axes[1,0]
+		ax10.plot(ages,accumulative_values[1],label=labels[1])
+		ax10.plot(ages,accumulative_values[2],label=labels[2])
+		ax10.plot(ages,accumulative_values[3],label=labels[3])
 
-			if label == 'subjects':
-				subjects = values[i]
-				continue
+		ax10.set_xlabel('citation delay')
+		ax10.set_ylabel('percentage of endorsers')
+		ax10.legend()
 
-			if label == 'ICRs':
-				ICRs = values[i]
-				continue
+		ax11 = axes[1,1]
+		ax11.plot(ages,incremental_values[1],label=labels[1])
+		ax11.plot(ages,incremental_values[2],label=labels[2])
+		ax11.plot(ages,incremental_values[3],label=labels[3])
 
-			if label == 'number of citations':
-				cits = values[i]
-				continue
+		ax11.set_xlabel('citation delay')
+		ax11.set_ylabel('percentage of endorsers')
+		ax11.legend()
 
-			ax1.plot(ages,values[i],label=label,linewidth=2)
+		##第三行， 领域的数量
+		ax20 = axes[2,0]
+		ax20.plot(ages,accumulative_values[6])
+		ax20.set_xlabel('ciattion delay')
+		ax20.set_ylabel('number of subjects')
+		
+		ax21 = axes[2,1]
+		ax21.plot(ages,incremental_values[6])
+		ax21.set_xlabel('ciattion delay')
+		ax21.set_ylabel('number of subjects')
 
-		ax1.set_xlabel('citation delay')
-		ax1.set_ylabel('percentage')
-		ax1.legend()
+		## 第四行，indirect links的数量
+		ax30 = axes[3,0]
+		ax30.plot(ages,accumulative_values[5])
+		ax30.set_xlabel('ciattion delay')
+		ax30.set_ylabel('ICRs')
+		
+		ax31 = axes[3,1]
+		ax31.plot(ages,incremental_values[6])
+		ax31.set_xlabel('ciattion delay')
+		ax31.set_ylabel('ICRs')
 
-		ax = axes[0,0]
-		ax.plot(ages,cits)
-		ax1.set_xlabel('citation delay')
-		ax1.set_ylabel('percentage of citations')
+		## 第五行，分别画出最后一年的的in degree distribution
 
-		ax2 = axes[1,0]
+		ax40 = ax[4,0]
+		last_ind_dis = accumulative_values[-1][-1]
+		xs = []
+		ys = []
+		for ind in sorted(last_ind_dis.keys()):
+			xs.append(ind)
+			ys.append(last_ind_dis[ind])
 
-		ax2.plot(ages,num_of_subjects,c=color_sequence[2],label='accumulative')
-		ax2.set_xlabel('ciattion delay')
-		ax2.set_ylabel('number of subjects')
-		plt.tight_layout()
+		ax40.plot(xs,ys,'o',c=color_sequence[0],filltype='none')
+		ax40.set_xlabel('Indegree of connectors')
+		ax40.set_ylabel('#(connectors)')
+		ax40.set_title('Last year')
+		
+		##时间中间的分布
 
-		ax3 = axes[1,1]
-		ax3.plot(ages,ICRs,c=color_sequence[2],label='accumulative')
-		ax3.set_xlabel('ciattion delay')
-		ax3.set_ylabel('ICRs')
-		plt.tight_layout()
+		ax41 = ax[4,1]
+		ten_ind_dis = accumulative_values[-1][10]
+		xs = []
+		ys = []
+		for ind in sorted(ten_ind_dis.keys()):
+			xs.append(ind)
+			ys.append(ten_ind_dis[ind])
 
-		ax1 = axes[0,2]
-		for i in range(8,len(labels)):
-			label = labels[i]
-			if label == 'depth':
-				continue
+		ax41.plot(xs,ys,'o',c=color_sequence[0],filltype='none')
+		ax41.set_xlabel('Indegree of connectors')
+		ax41.set_ylabel('#(connectors)')
+		ax41.set_title('10th year')
 
-			if label == 'number of subjects':
-				num_of_subjects = values[i]
-				continue
-
-			if label == 'subjects':
-				subjects = values[i]
-				continue
-
-			if label == 'ICRs':
-				ICRs = values[i]
-				continue
-
-			if label == 'number of citations':
-				cits = values[i]
-				continue
-
-			ax1.plot(ages,values[i],label=label,c=color_sequence[i],linewidth=2)
-
-		ax1.set_xlabel('citation delay')
-		ax1.set_ylabel('incremental percentage')
-		ax1.legend()
-
-		ax2.plot(ages,num_of_subjects,c=color_sequence[3],label='incremental')
-		ax3.plot(ages,ICRs,c=color_sequence[3],label='incremental')
-
-		ax2.legend()
-		ax3.legend()
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
 		logging.info('saved to pdf/high_cascade/{:}.jpg ...'.format(pid.replace(':','_')))
 
