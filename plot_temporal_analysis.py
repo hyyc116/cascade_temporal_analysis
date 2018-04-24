@@ -65,7 +65,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 				cits = values[i]
 				continue
 
-			ax1.plot(ages,values[i],label=label,c=color_sequence[i],linewidth=2)
+			ax1.plot(ages,values[i],label=label,linewidth=2)
 
 		ax1.set_xlabel('citation delay')
 		ax1.set_ylabel('percentage')

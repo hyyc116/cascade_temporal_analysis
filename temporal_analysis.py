@@ -198,8 +198,6 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
             logging.debug('paper:{:} has no edges.'.format(pid))
             continue
 
-
-
         diG.add_edges_from(edges)
 
         logging.debug('number of nodes: {:}, number of citations:{:} .'.format(len(diG.nodes()),len(citation_list)))
@@ -228,23 +226,26 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
             # print year,year_cits[year]
             cits = year_cits[year]
             age_nodes.extend(cits)
-            noc = len(cits)
+            noc = float(len(cits))
 
-            # print age_nodes
             ##based on existing nodes, get subgraph of total cascade
             subgraph = diG.subgraph(age_nodes)
 
+            ## 获得所有可以获得的属性
             attr = indicators_of_graph(subgraph,pid,com_IDs_subjects)
-            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects = attr
+            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis = attr
             present_size = float(len(age_nodes))
             indicators = []
-            accumulative_indicators = [noc/float(len(citation_list)),late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects]
+            accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,nid_of_connector_dis]
             indicators.extend(accumulative_indicators)
-            incremental_indicators = list((np.array(attr[:5])-np.array(last_attr[:5]))/noc)
-            incremental_indicators.append(attr[5]-last_attr[5])
-            indicators.extend(incremental_indicators)
 
-            age_stats[age] = indicators
+            ## incremental的属性比例，也即是当年获得的引用中各种点所占的比例
+            incremental_indicators = [noc]
+            incremental_indicators.extend(list((np.array(attr[:5])-np.array(last_attr[:5]))/noc))
+            incremental_indicators.append(attr[5]-last_attr[5])
+
+            age_stats[age]['accumulative'] = accumulative_indicators
+            age_stats[age]['incremental'] = incremental_indicators
 
             last_attr = attr
 
@@ -291,6 +292,10 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects):
     num_of_cns = 0
     num_of_nes = 0
     subject_list = []
+
+    ### connector的入读的distribution
+    nid_of_connector_dis = defaultdict(int)
+
     for nid in outdegree_dict.keys():
         od = outdegree_dict[nid]
         subject_list.extend(com_IDs_subjects.get(nid,[]))
@@ -306,6 +311,9 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects):
         if ind>0:
             num_of_cns+=1
 
+            nid_of_connector_dis[ind]+=1
+
+
         if ind==0 and od == 1:
             num_of_nes+=1
 
@@ -316,7 +324,9 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects):
 
     subjects = Counter(subject_list)
     num_of_subjects = len(subjects.keys())
-    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects
+
+
+    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis
 
 
 if __name__ == '__main__':
