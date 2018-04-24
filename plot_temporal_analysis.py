@@ -110,7 +110,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 			xs.append(ind)
 			ys.append(last_ind_dis[ind])
 
-		ax40.plot(xs,ys,'o',c=color_sequence[0],filltype='none')
+		ax40.plot(xs,ys,'o',c=color_sequence[0],fillstyle='none')
 		ax40.set_xlabel('Indegree of connectors')
 		ax40.set_ylabel('#(connectors)')
 		ax40.set_title('Last year')
