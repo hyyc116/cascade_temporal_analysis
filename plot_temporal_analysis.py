@@ -55,9 +55,9 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 
 		ax01 = axes[0,1]
 		ax01.plot(ages,incremental_values[0])
-		ax00.set_xlabel('citation delay')
-		ax00.set_ylabel('number of citations')
-		ax00.set_title('incremental')
+		ax01.set_xlabel('citation delay')
+		ax01.set_ylabel('number of citations')
+		ax01.set_title('incremental')
 
 		##第二行，三种不同的endorser的比例变化
 		ax10 = axes[1,0]
@@ -81,28 +81,28 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		##第三行， 领域的数量
 		ax20 = axes[2,0]
 		ax20.plot(ages,accumulative_values[6])
-		ax20.set_xlabel('ciattion delay')
+		ax20.set_xlabel('citation delay')
 		ax20.set_ylabel('number of subjects')
 		
 		ax21 = axes[2,1]
 		ax21.plot(ages,incremental_values[6])
-		ax21.set_xlabel('ciattion delay')
+		ax21.set_xlabel('citation delay')
 		ax21.set_ylabel('number of subjects')
 
 		## 第四行，indirect links的数量
 		ax30 = axes[3,0]
 		ax30.plot(ages,accumulative_values[5])
-		ax30.set_xlabel('ciattion delay')
+		ax30.set_xlabel('citation delay')
 		ax30.set_ylabel('ICRs')
 		
 		ax31 = axes[3,1]
 		ax31.plot(ages,incremental_values[6])
-		ax31.set_xlabel('ciattion delay')
+		ax31.set_xlabel('citation delay')
 		ax31.set_ylabel('ICRs')
 
 		## 第五行，分别画出最后一年的的in degree distribution
 
-		ax40 = axes[4,0]
+		ax40 = axes[4,1]
 		last_ind_dis = accumulative_values[-1][-1]
 		xs = []
 		ys = []
@@ -114,10 +114,12 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax40.set_xlabel('Indegree of connectors')
 		ax40.set_ylabel('#(connectors)')
 		ax40.set_title('Last year')
+		ax40.set_xscale('log')
+		ax40.set_yscale('log')
 		
 		##时间中间的分布
 
-		ax41 = axes[4,1]
+		ax41 = axes[4,0]
 		ten_ind_dis = accumulative_values[-1][10]
 		xs = []
 		ys = []
@@ -129,6 +131,8 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax41.set_xlabel('Indegree of connectors')
 		ax41.set_ylabel('#(connectors)')
 		ax41.set_title('10th year')
+		ax41.set_yscale('log')
+		ax41.set_xscale('log')
 
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
 		logging.info('saved to pdf/high_cascade/{:}.jpg ...'.format(pid.replace(':','_')))
