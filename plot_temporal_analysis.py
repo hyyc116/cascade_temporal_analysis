@@ -102,7 +102,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 
 		## 第五行，分别画出最后一年的的in degree distribution
 
-		ax40 = ax[4,0]
+		ax40 = axes[4,0]
 		last_ind_dis = accumulative_values[-1][-1]
 		xs = []
 		ys = []
@@ -117,7 +117,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		
 		##时间中间的分布
 
-		ax41 = ax[4,1]
+		ax41 = axes[4,1]
 		ten_ind_dis = accumulative_values[-1][10]
 		xs = []
 		ys = []
