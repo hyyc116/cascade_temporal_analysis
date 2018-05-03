@@ -232,8 +232,8 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
             subgraph = diG.subgraph(age_nodes)
 
             ## 获得所有可以获得的属性
-            attr = indicators_of_graph(subgraph,pid,com_IDs_subjects)
-            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis = attr
+            attr = indicators_of_graph(subgraph,pid,com_IDs_subjects,cits)
+            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes = attr
             present_size = float(len(age_nodes))
             indicators = []
             accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,nid_of_connector_dis]
@@ -241,7 +241,22 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
 
             ## incremental的属性比例，也即是当年获得的引用中各种点所占的比例
             incremental_indicators = [noc]
-            incremental_indicators.extend(list((np.array(attr[:5])-np.array(last_attr[:5]))/noc))
+
+            ## 每年新增的引用中有多少是late endorser
+            incremental_indicators.append(new_les/noc)
+
+            
+            ## 每年新增一个citation,需要增加多少connector
+            incremental_indicators.append((attr[1]-last_attr[1])/noc)
+
+
+            ## 每年增加的点中有多少是 normal endorser
+            incremental_indicators.append(new_nes/noc)
+
+            ##每增加一个citation 所需要的indreict link的数量
+            incremental_indicators.append((attr[4]-last_attr[4])/noc)
+
+            ##每年增加subject的数量
             incremental_indicators.append(attr[5]-last_attr[5])
 
             age_stats[age]['accumulative'] = accumulative_indicators
@@ -270,7 +285,7 @@ def analyze_acyclic(edges):
 
 
 
-def indicators_of_graph(subgraph,pid,com_IDs_subjects):
+def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
 
     depth = 0
     # modularity = 0
@@ -278,6 +293,9 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects):
     ## depth
     depth = 0
     # depth=nx.dag_longest_path_length(subgraph)
+
+    ### 新的节点集合
+    new_cits = set(new_cits)
 
     ## edges
     edges = subgraph.edges()
@@ -292,6 +310,9 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects):
     num_of_cns = 0
     num_of_nes = 0
     subject_list = []
+
+    new_les = 0
+    new_nes = 0
 
     ### connector的入读的distribution
     nid_of_connector_dis = defaultdict(int)
@@ -318,6 +339,16 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects):
             num_of_nes+=1
 
 
+        ## 对于每年新的点，有多少点是late endorser, 有多少点是normal endorser, 这两个是互斥的
+        if nid in new_cits:
+
+            if od>1:
+                new_les +=1
+
+            else:
+
+                new_nes +=1
+
     late_endorser = num_of_le
     connector = num_of_cns
     norm_endorser = num_of_nes
@@ -326,7 +357,7 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects):
     num_of_subjects = len(subjects.keys())
 
 
-    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis
+    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis, new_les,new_nes
 
 
 if __name__ == '__main__':
