@@ -64,6 +64,8 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax10.plot(ages,accumulative_values[1],label=labels[1])
 		ax10.plot(ages,accumulative_values[2],label=labels[2])
 		ax10.plot(ages,accumulative_values[3],label=labels[3])
+		ax10.plot(ages,accumulative_values[-1],label='normal endorser and connector')
+		ax10.plot(ages,accumulative_values[-2],label='late endorser and connector')
 
 		ax10.set_xlabel('citation delay')
 		ax10.set_ylabel('percentage of endorsers')
