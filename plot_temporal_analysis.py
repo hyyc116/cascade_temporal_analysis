@@ -44,7 +44,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		accumulative_values = zip(*accumulative_indicators)
 		incremental_values = zip(*incremental_indicators)
 		## 画的图分为两列，左边是accumulative的图， 右边是incremental的图
-		fig,axes = plt.subplots(5,2,figsize=(12,25))
+		fig,axes = plt.subplots(4,2,figsize=(12,20))
 		
 		## 第一行， number of citations
 		ax00 = axes[0,0]
@@ -102,41 +102,41 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax31.set_xlabel('citation delay')
 		ax31.set_ylabel('ICRs')
 
-		## 第五行，分别画出最后一年的的in degree distribution
+		# ## 第五行，分别画出最后一年的的in degree distribution
 
-		ax40 = axes[4,1]
-		last_ind_dis = accumulative_values[-1][-1]
-		xs = []
-		ys = []
-		for ind in sorted(last_ind_dis.keys()):
-			xs.append(ind)
-			ys.append(last_ind_dis[ind])
+		# ax40 = axes[4,1]
+		# last_ind_dis = accumulative_values[-1][-1]
+		# xs = []
+		# ys = []
+		# for ind in sorted(last_ind_dis.keys()):
+		# 	xs.append(ind)
+		# 	ys.append(last_ind_dis[ind])
 
-		ax40.plot(xs,ys,'o',c=color_sequence[0],fillstyle='none')
-		ax40.set_xlabel('Indegree of connectors')
-		ax40.set_ylabel('#(connectors)')
-		ax40.set_title('Last year')
-		ax40.set_xscale('log')
-		ax40.set_yscale('log')
+		# ax40.plot(xs,ys,'o',c=color_sequence[0],fillstyle='none')
+		# ax40.set_xlabel('Indegree of connectors')
+		# ax40.set_ylabel('#(connectors)')
+		# ax40.set_title('Last year')
+		# ax40.set_xscale('log')
+		# ax40.set_yscale('log')
 		
-		##时间中间的分布
+		# ##时间中间的分布
 
-		ax41 = axes[4,0]
-		ind_dises= accumulative_values[-1]
-		length = len(ages)
-		mid_ind_dis = ind_dises[length/2]
-		xs = []
-		ys = []
-		for ind in sorted(mid_ind_dis.keys()):
-			xs.append(ind)
-			ys.append(mid_ind_dis[ind])
+		# ax41 = axes[4,0]
+		# ind_dises= accumulative_values[-1]
+		# length = len(ages)
+		# mid_ind_dis = ind_dises[length/2]
+		# xs = []
+		# ys = []
+		# for ind in sorted(mid_ind_dis.keys()):
+		# 	xs.append(ind)
+		# 	ys.append(mid_ind_dis[ind])
 
-		ax41.plot(xs,ys,'o',c=color_sequence[0],fillstyle='none')
-		ax41.set_xlabel('Indegree of connectors')
-		ax41.set_ylabel('#(connectors)')
-		ax41.set_title('mid year')
-		ax41.set_yscale('log')
-		ax41.set_xscale('log')
+		# ax41.plot(xs,ys,'o',c=color_sequence[0],fillstyle='none')
+		# ax41.set_xlabel('Indegree of connectors')
+		# ax41.set_ylabel('#(connectors)')
+		# ax41.set_title('mid year')
+		# ax41.set_yscale('log')
+		# ax41.set_xscale('log')
 
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
 		logging.info('saved to pdf/high_cascade/{:}.jpg ...'.format(pid.replace(':','_')))
