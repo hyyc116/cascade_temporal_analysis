@@ -85,7 +85,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax20.set_ylabel('number of subjects')
 		
 		ax21 = axes[2,1]
-		ax21.plot(ages,incremental_values[6])
+		ax21.plot(ages,incremental_values[5])
 		ax21.set_xlabel('citation delay')
 		ax21.set_ylabel('number of subjects')
 
@@ -96,7 +96,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax30.set_ylabel('ICRs')
 		
 		ax31 = axes[3,1]
-		ax31.plot(ages,incremental_values[5])
+		ax31.plot(ages,incremental_values[4])
 		ax31.set_xlabel('citation delay')
 		ax31.set_ylabel('ICRs')
 
