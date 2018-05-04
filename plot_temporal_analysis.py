@@ -151,6 +151,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		nid_roles = defaultdict(list)
 		for nr in node_roles:
 			for nid in nr.keys():
+
 				nid_roles[nid].append(nr[nid])
 
 		changes_role_times = defaultdict(list)
@@ -181,7 +182,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 
 		ax50.plot(xs,ys,'o',fillstyle='none')
 		ax50.set_xlabel('years for conversion')
-		ax50.set('#(normal endorser)')
+		ax50.set_ylabel('#(normal endorser)')
 
 		late_endorser_times = Counter(changes_role_times[1])
 
@@ -191,11 +192,11 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 			xs.append(time)
 			ys.append(late_endorser_times[time])
 
-		ax50 = axes[5,1]
+		ax51 = axes[5,1]
 
-		ax50.plot(xs,ys,'o',fillstyle='none')
-		ax50.set_xlabel('years for conversion')
-		ax50.set('#(late endorser)')
+		ax51.plot(xs,ys,'o',fillstyle='none')
+		ax51.set_xlabel('years for conversion')
+		ax51.set_ylabel('#(late endorser)')
 
 
 
