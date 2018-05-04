@@ -183,6 +183,8 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax50.plot(xs,ys,'o',fillstyle='none')
 		ax50.set_xlabel('years for conversion')
 		ax50.set_ylabel('#(normal endorser)')
+		ax50.set_xscale('log')
+		ax50.set_yscale('log')
 
 		late_endorser_times = Counter(changes_role_times[1])
 
@@ -197,6 +199,8 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax51.plot(xs,ys,'o',fillstyle='none')
 		ax51.set_xlabel('years for conversion')
 		ax51.set_ylabel('#(late endorser)')
+		ax51.set_xscale('log')
+		ax51.set_yscale('log')
 
 
 
