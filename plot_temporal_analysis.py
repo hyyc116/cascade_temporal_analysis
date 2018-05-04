@@ -151,7 +151,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		nid_roles = defaultdict(list)
 		for nr in node_roles:
 			for nid in nr.keys():
-				nid_roles[nid].append(role)
+				nid_roles[nid].append(nr[nid])
 
 		changes_role_times = defaultdict(list)
 		for nid in nid_roles.keys():
