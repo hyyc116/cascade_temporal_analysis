@@ -44,7 +44,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		accumulative_values = zip(*accumulative_indicators)
 		incremental_values = zip(*incremental_indicators)
 		## 画的图分为两列，左边是accumulative的图， 右边是incremental的图
-		fig,axes = plt.subplots(5,2,figsize=(12,25))
+		fig,axes = plt.subplots(6,2,figsize=(12,30))
 		
 		## 第一行， number of citations
 		ax00 = axes[0,0]
@@ -144,6 +144,60 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		# ax41.set_title('mid year')
 		# ax41.set_yscale('log')
 		# ax41.set_xscale('log')
+
+
+		### normal endorser, late endorser 转换成 connector 需要的时间
+		node_roles = accumulative_values[-4]
+		nid_roles = defaultdict(list)
+		for nr in node_roles:
+			for nid in nr.keys():
+				nid_roles[nid].append(role)
+
+		changes_role_times = defaultdict(list)
+		for nid in nid_roles.keys():
+			roles = nid_roles[nid]
+			initial_role = roles[0]
+			cy = 0
+			for i,role in enumerate(roles):
+
+				if role==2:
+					cy = i
+					break
+
+			changes_role_times[initial_role].append(cy)
+
+
+		## 对于两种角色转换成connector所需要的时间分布
+
+		normal_endorser_times = Counter(changes_role_times[0])
+
+		xs = []
+		ys = []
+		for time in sorted(normal_endorser_times.keys()):
+			xs.append(time)
+			ys.append(normal_endorser_times[time])
+
+		ax50 = axes[5,0]
+
+		ax50.plot(xs,ys,'o',fillstyle='none')
+		ax50.set_xlabel('years for conversion')
+		ax50.set('#(normal endorser)')
+
+		late_endorser_times = Counter(changes_role_times[1])
+
+		xs = []
+		ys = []
+		for time in sorted(late_endorser_times.keys()):
+			xs.append(time)
+			ys.append(late_endorser_times[time])
+
+		ax50 = axes[5,1]
+
+		ax50.plot(xs,ys,'o',fillstyle='none')
+		ax50.set_xlabel('years for conversion')
+		ax50.set('#(late endorser)')
+
+
 
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
 		logging.info('saved to pdf/high_cascade/{:}.jpg ...'.format(pid.replace(':','_')))

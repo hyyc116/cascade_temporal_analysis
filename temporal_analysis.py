@@ -233,10 +233,10 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
 
             ## 获得所有可以获得的属性
             attr = indicators_of_graph(subgraph,pid,com_IDs_subjects,cits)
-            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc = attr
+            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role = attr
             present_size = float(len(age_nodes))
             indicators = []
-            accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,nid_of_connector_dis,num_of_lc/present_size,num_of_nc/present_size]
+            accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,node_role,nid_of_connector_dis,num_of_lc/present_size,num_of_nc/present_size]
             indicators.extend(accumulative_indicators)
 
             ## incremental的属性比例，也即是当年获得的引用中各种点所占的比例
@@ -360,6 +360,7 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
                 role = 2
 
 
+        node_role[nid] = role
         ## 对于每年新的点，有多少点是late endorser, 有多少点是normal endorser, 这两个是互斥的
         if nid in new_cits:
 
@@ -367,6 +368,8 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
                 new_les +=1
             else:
                 new_nes +=1
+
+
 
     late_endorser = num_of_le
     connector = num_of_cns
@@ -376,7 +379,7 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     num_of_subjects = len(subjects.keys())
 
 
-    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis, new_les,new_nes,num_of_lc,num_of_nc
+    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role
 
 
 if __name__ == '__main__':
