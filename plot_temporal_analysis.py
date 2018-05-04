@@ -142,8 +142,8 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax41.set_xlabel('citation delay')
 		ax41.set_ylabel('#(connectors)')
 		# ax41.set_title('mid year')
-		ax41.set_yscale('log')
-		ax41.set_xscale('log')
+		# ax41.set_yscale('log')
+		# ax41.set_xscale('log')
 
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
 		logging.info('saved to pdf/high_cascade/{:}.jpg ...'.format(pid.replace(':','_')))

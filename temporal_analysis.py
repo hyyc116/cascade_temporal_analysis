@@ -321,6 +321,12 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     ### connector的入读的distribution
     nid_of_connector_dis = defaultdict(int)
 
+    ### late endorser的出度，每年新的late endorser的出度
+
+
+    ### 每个节点在该阶段的角色,主要记录0 normal endorser, 1 late endorser, 2 connector
+    node_role = {}
+
     for nid in outdegree_dict.keys():
         od = outdegree_dict[nid]
         subject_list.extend(com_IDs_subjects.get(nid,[]))
@@ -329,26 +335,29 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
             continue
 
         ind = subgraph.in_degree(nid)
-
+        ## late endorser
         if od>1:
             num_of_le+=1
-
+            role = 1
             if ind>0:
                 num_of_lc+=1
+                rolwe = 2
 
-
+        ## connector
         if ind>0:
             num_of_cns+=1
-
             nid_of_connector_dis[ind]+=1
+            role = 2
 
-
+        ## normal endorser
         if od == 1:
             if ind==0:
                 num_of_nes+=1
+                role = 0
 
             if ind>0:
                 num_of_nc +=1
+                role = 2
 
 
         ## 对于每年新的点，有多少点是late endorser, 有多少点是normal endorser, 这两个是互斥的
