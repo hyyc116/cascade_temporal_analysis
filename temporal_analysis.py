@@ -194,6 +194,7 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         ## loads from cc
         diG = nx.DiGraph()
         edges =  highly_cited_citation_cascade.get(pid,[])
+        
         if len(edges)==0:
             logging.debug('paper:{:} has no edges.'.format(pid))
             continue
@@ -202,10 +203,10 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
 
         logging.debug('number of nodes: {:}, number of citations:{:} .'.format(len(diG.nodes()),len(citation_list)))
 
-        ## WOS 中存在大量的相互引用，似乎，尤其是在物理学领域。
-        # if not nx.is_directed_acyclic_graph(diG):
-        #     analyze_acyclic(edges)
-        #     continue
+        # WOS 中存在大量的相互引用，似乎，尤其是在物理学领域。
+        if not nx.is_directed_acyclic_graph(diG):
+            # analyze_acyclic(edges)
+            continue
 
         progress +=1
         logging.info('progress {:} ..'.format(progress))
