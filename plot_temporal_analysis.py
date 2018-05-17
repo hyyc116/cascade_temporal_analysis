@@ -202,8 +202,6 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax51.set_xscale('log')
 		ax51.set_yscale('log')
 
-
-
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
 		logging.info('saved to pdf/high_cascade/{:}.jpg ...'.format(pid.replace(':','_')))
 

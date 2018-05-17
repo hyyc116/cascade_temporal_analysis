@@ -291,8 +291,8 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     # modularity = 0
     num_of_ils = 0
     ## depth
-    depth = 0
-    # depth=nx.dag_longest_path_length(subgraph)
+    # depth = 0
+    depth=nx.dag_longest_path_length(subgraph)
 
     ### 新的节点集合
     new_cits = set(new_cits)
@@ -327,8 +327,8 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     ### 每个节点在该阶段的角色,主要记录0 normal endorser, 1 late endorser, 2 connector
     node_role = {}
 
-    for nid in outdegree_dict.keys():
-        od = outdegree_dict[nid]
+    for nid,od in outdegree_dict:
+        # od = outdegree_dict[nid]
         subject_list.extend(com_IDs_subjects.get(nid,[]))
 
         if od==0:
@@ -393,7 +393,7 @@ if __name__ == '__main__':
     highly_cited_citation_cascade = 'data/highly_cited_citation_cascade.json'
     # fetch_highly_cited_cascades(highly_cited_papers_ids_years_path,citation_cascade_path,highly_cited_citation_cascade)
     com_IDs_subjects_path = 'data/com_ids_subjects.json'
-    ### WARNING: DEPTH IS SET TO 0, SINCE THE OUTDATE 
+    ### WARNING: DEPTH IS SET TO 0, SINCE THE OUTDATE  ====> DONE 
     gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_cits_path,highly_cited_citation_cascade,com_IDs_subjects_path)
 
 
