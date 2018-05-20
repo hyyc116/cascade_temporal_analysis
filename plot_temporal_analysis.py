@@ -202,6 +202,14 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		ax51.set_xscale('log')
 		ax51.set_yscale('log')
 
+		##第六行，depth的变化以及depth的分布
+		ax60 = axes[6,0]
+		depths = accumulative_values[4]
+		ax60.plot(ages,depths)
+		ax60.set_xlabel('citation delay')
+		ax60.set_ylabel('depth')
+
+
 		plt.savefig('pdf/high_cascade/{:}.jpg'.format(pid.replace(':','_')),dpi=400)
 		logging.info('saved to pdf/high_cascade/{:}.jpg ...'.format(pid.replace(':','_')))
 
