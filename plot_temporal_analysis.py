@@ -44,7 +44,7 @@ def plot_curve_of_all_attrs(highly_cited_paper_age_stat_path):
 		accumulative_values = zip(*accumulative_indicators)
 		incremental_values = zip(*incremental_indicators)
 		## 画的图分为两列，左边是accumulative的图， 右边是incremental的图
-		fig,axes = plt.subplots(6,2,figsize=(12,30))
+		fig,axes = plt.subplots(7,2,figsize=(12,35))
 		
 		## 第一行， number of citations
 		ax00 = axes[0,0]
