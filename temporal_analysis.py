@@ -204,9 +204,11 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
         logging.debug('number of nodes: {:}, number of citations:{:} .'.format(len(diG.nodes()),len(citation_list)))
 
         # WOS 中存在大量的相互引用，似乎，尤其是在物理学领域。
-        if not nx.is_directed_acyclic_graph(diG):
+        # if not nx.is_directed_acyclic_graph(diG):
             # analyze_acyclic(edges)
-            continue
+            # continue
+
+            
 
         progress +=1
         logging.info('progress {:} ..'.format(progress))
@@ -293,7 +295,7 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     num_of_ils = 0
     ## depth
     # depth = 0
-    depth=nx.dag_longest_path_length(subgraph)
+    # depth=nx.dag_longest_path_length(subgraph)
 
     ### 新的节点集合
     new_cits = set(new_cits)
