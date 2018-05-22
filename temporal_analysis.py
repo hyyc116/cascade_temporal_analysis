@@ -236,10 +236,10 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
 
             ## 获得所有可以获得的属性
             attr = indicators_of_graph(subgraph,pid,com_IDs_subjects,cits)
-            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role,le_od_dis = attr
+            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role,le_od_dis,tcs = attr
             present_size = float(len(age_nodes))
             indicators = []
-            accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,le_od_dis,node_role,nid_of_connector_dis,num_of_lc/present_size,num_of_nc/present_size]
+            accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,tcs,le_od_dis,node_role,nid_of_connector_dis,num_of_lc/present_size,num_of_nc/present_size]
             indicators.extend(accumulative_indicators)
 
             ## incremental的属性比例，也即是当年获得的引用中各种点所占的比例
@@ -393,8 +393,10 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     subjects = Counter(subject_list)
     num_of_subjects = len(subjects.keys())
 
+    tcs = nx.triadic_census(subgraph)
 
-    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role,le_od_dis
+
+    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role,le_od_dis,tcs
 
 
 if __name__ == '__main__':
