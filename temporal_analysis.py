@@ -236,10 +236,10 @@ def gen_temporal_stats(highly_cited_papers_ids_years_path,highly_cited_papers_ci
 
             ## 获得所有可以获得的属性
             attr = indicators_of_graph(subgraph,pid,com_IDs_subjects,cits)
-            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role = attr
+            late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role,le_od_dis = attr
             present_size = float(len(age_nodes))
             indicators = []
-            accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,node_role,nid_of_connector_dis,num_of_lc/present_size,num_of_nc/present_size]
+            accumulative_indicators = [present_size,late_endorser/present_size,connector/present_size,norm_endorser/present_size,depth,num_of_ils/present_size,num_of_subjects,subjects,le_od_dis,node_role,nid_of_connector_dis,num_of_lc/present_size,num_of_nc/present_size]
             indicators.extend(accumulative_indicators)
 
             ## incremental的属性比例，也即是当年获得的引用中各种点所占的比例
@@ -296,6 +296,15 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     ## depth
     # depth = 0
     # depth=nx.dag_longest_path_length(subgraph)
+    while True:
+        try:
+            
+            edgeList = nx.find_cycle(subgraph, orientation='original')
+            rn_edge = random.choice(edgeList)
+            subgraph.remove_edge(rn_edge[0],rn_edge[1])
+
+        except:
+            break
 
     ### 新的节点集合
     new_cits = set(new_cits)
@@ -321,11 +330,11 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     new_les = 0
     new_nes = 0
 
-    ### connector的入读的distribution
+    ### connector的入度的distribution
     nid_of_connector_dis = defaultdict(int)
 
     ### late endorser的出度，每年新的late endorser的出度
-
+    le_od_dis = defaultdict(int)
 
     ### 每个节点在该阶段的角色,主要记录0 normal endorser, 1 late endorser, 2 connector
     node_role = {}
@@ -342,9 +351,12 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
         if od>1:
             num_of_le+=1
             role = 1
+
+            le_od_dis[od]+=1
+
             if ind>0:
                 num_of_lc+=1
-                rolwe = 2
+                role = 2
 
         ## connector
         if ind>0:
@@ -382,7 +394,7 @@ def indicators_of_graph(subgraph,pid,com_IDs_subjects,new_cits):
     num_of_subjects = len(subjects.keys())
 
 
-    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role
+    return late_endorser,connector,norm_endorser,depth,num_of_ils,num_of_subjects,subjects,nid_of_connector_dis,new_les,new_nes,num_of_lc,num_of_nc,node_role,le_od_dis
 
 
 if __name__ == '__main__':
