@@ -48,5 +48,5 @@ def co_citation_pair(pid_cits_path):
 
 if __name__ == '__main__':
 	pid_cits_path = 'data/pid_cits.txt'
-	co_citation_pair(pid_cits_path\)
+	co_citation_pair(pid_cits_path)
 
