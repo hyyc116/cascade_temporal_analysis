@@ -14,7 +14,7 @@ def co_citation_pair(pid_cits_path):
 	logging.info("build co-citation pair from {:} .".format(pid_cits_path))
 
 	pid_refs = defaultdict(list)
-	pid_count = defaultdict(int)
+	# pid_count = defaultdict(int)
 
 	for line in open(pid_cits_path):
 
@@ -25,10 +25,10 @@ def co_citation_pair(pid_cits_path):
 			continue
 
 		pid_refs[citing_id].append(pid)
-		pid_count[pid]+=1
+		# pid_count[pid]+=1
 
-	open('data/pid_count.json','w').write(json.dumps(pid_count))
-	logging.info('data saved to data/pid_count.json.')
+	# open('data/pid_count.json','w').write(json.dumps(pid_count))
+	# logging.info('data saved to data/pid_count.json.')
 
 
 	refkey_dict = defaultdict(int)
