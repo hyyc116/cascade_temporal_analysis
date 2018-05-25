@@ -1,5 +1,6 @@
 #coding:utf-8
 
+from basic_config import *
 '''
 	Tasks in this script:
 
