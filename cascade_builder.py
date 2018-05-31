@@ -41,7 +41,7 @@ def filter_out_ids_of_field(field):
     open(saved_path,'w').write('\n'.join(selected_IDs))
     logging.info('number of papers belong to field [{:}] is [{:}] out of total {:} papers, and saved to {:}.'.format(field,len(selected_IDs),progress,saved_path))
 
-def fetch_ids_of_citing_papers(selected_IDs_path):
+def fetch_ids_of_citing_papers(selected_IDs_path,field='chemistry'):
     logging.info('fetch citing papers of selected IDs ...')
 
 
@@ -77,7 +77,7 @@ def fetch_ids_of_citing_papers(selected_IDs_path):
 
     citing_IDs = list(set(citing_IDs))
 
-    saved_path = 'data/citing_IDs.txt'
+    saved_path = 'data/citing_IDs_{:}.txt'.format(field)
 
     open(saved_path,'w').write('\n'.join(citing_IDs))
 
@@ -93,12 +93,12 @@ def fetch_ids_of_citing_papers(selected_IDs_path):
 
     com_IDs = list(set(com_IDs))
 
-    saved_path = 'data/com_IDs.txt'
+    saved_path = 'data/com_IDs_{:}.txt'.format(field)
     open(saved_path,'w').write('\n'.join(com_IDs))
     logging.info('{:} combine IDs are saved to {:}'.format(len(com_IDs),saved_path))
 
 
-def fetch_citing_papers_of_com_IDs(com_IDs_path):
+def fetch_citing_papers_of_com_IDs(com_IDs_path,field):
 
     logging.info('fetch citing papers of selected IDs ...')
 
@@ -122,7 +122,7 @@ def fetch_citing_papers_of_com_IDs(com_IDs_path):
 
     query_op.close_db()
 
-    saved_path = 'data/pid_cits.txt'
+    saved_path = 'data/pid_cits_{:}.txt'.format(field)
     open(saved_path,'w').write('\n'.join(pid_cits))
     logging.info('{:} citing relations are saved to {:}'.format(len(pid_cits),saved_path))
 
@@ -228,19 +228,20 @@ def fecth_subjects_of_com_ids(com_IDs_path):
 
 if __name__ == '__main__':
     ## task 1
-    # filter_out_ids_of_field('physics')
+    field = 'chemistry'
+    filter_out_ids_of_field(field)
 
     ## task 2 and task 3
-    selected_IDs_path = 'data/selected_IDs_from_physics.txt'
-    # fetch_ids_of_citing_papers(selected_IDs_path)
+    selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(field)
+    fetch_ids_of_citing_papers(selected_IDs_path,field)
 
     ## task 4
-    com_IDs_path = 'data/com_IDs.txt'
-    # fetch_citing_papers_of_com_IDs(com_IDs_path)
+    com_IDs_path = 'data/com_IDs_{:}.txt'.format(field)
+    fetch_citing_papers_of_com_IDs(com_IDs_path,field)
 
     ## task 5
-    pid_cits_path = 'data/pid_cits.txt'
-    build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
+    # pid_cits_path = 'data/pid_cits.txt'
+    # build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
 
     ## task 6
     # fecth_pubyear_of_com_ids(com_IDs_path)
