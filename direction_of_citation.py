@@ -31,7 +31,7 @@ def co_citation_pair(pid_cits_path):
 	# logging.info('data saved to data/pid_count.json.')
 
 
-	refkey_dict = defaultdict(int)
+	# refkey_dict = defaultdict(int)
 	for pid in pid_refs.keys():
 
 		refs = pid_refs[pid]
@@ -40,11 +40,12 @@ def co_citation_pair(pid_cits_path):
 			for ref2 in refs[i+1:]:
 				key = '\t'.join(sorted([ref1,ref2]))
 
-				refkey_dict[key] +=1
+				# refkey_dict[key] +=1
+				print key
 
-	open('data/refkey_dict.json','w').write(json.dumps(refkey_dict))
+	# open('data/refkey_dict.json','w').write(json.dumps(refkey_dict))
 
-	logging.info('data saved to data/refkey_dict.json')
+	# logging.info('data saved to data/refkey_dict.json')
 
 
 if __name__ == '__main__':
