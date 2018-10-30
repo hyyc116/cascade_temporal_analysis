@@ -9,7 +9,7 @@ def iso_cc(size_subcas_id,_id_subcascade,graph):
     num_of_subcases = len(_id_subcascade.keys())
 
     size = len(graph.nodes())
-    subcas_id  = size_subcas_id.get(size,{}).keys()
+    subcas_id  = size_subcas_id.get(size,{})
     is_iso = False
     for sub_cascade in subcas_id.keys():
         if nx.is_isomorphic(graph,sub_cascade):
