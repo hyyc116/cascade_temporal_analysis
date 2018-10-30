@@ -16,7 +16,32 @@
 
 from basic_config import *
 
-def filter_out_ids_of_field(field):
+
+
+## 定义需要保存的路径
+
+class PATHS:
+
+    def __init__(self,field):
+
+        self.field = field
+
+        self.name = '_'.join(field.split())
+
+        self.selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(name)
+
+        self.com_IDs_path = 'data/com_IDs_{:}.txt'.format(name)
+
+        self.pid_cits_path = 'data/pid_cits_{:}.txt'.format(name)
+
+        self.cascade_path = 'data/cascade_{:}.txt'.format(name)
+
+        self.paper_year_path = 'data/pubyear_{:}.json'.format(name)
+
+
+def filter_out_ids_of_field(pathObj):
+
+    field = pathObj.field
     logging.info('filter out paper ids from wos_subjects of field:[{:}].'.format(field))
     selected_IDs = []
     
@@ -29,7 +54,7 @@ def filter_out_ids_of_field(field):
     for fid,subject in query_op.query_database(sql):
         progress+=1
         if progress%10000000==0:
-            logging.info('progress {:} .... ' .format(progress))
+            logging.info('progress {:} .... '.format(progress))
 
             
         if field in subject.lower():
@@ -37,11 +62,16 @@ def filter_out_ids_of_field(field):
 
     query_op.close_db()
     selected_IDs = list(set(selected_IDs))
-    saved_path = 'data/selected_IDs_from_{:}.txt'.format(field)
+    saved_path = pathObj.selected_IDs_path
     open(saved_path,'w').write('\n'.join(selected_IDs))
     logging.info('number of papers belong to field [{:}] is [{:}] out of total {:} papers, and saved to {:}.'.format(field,len(selected_IDs),progress,saved_path))
 
-def fetch_ids_of_citing_papers(selected_IDs_path,field='chemistry'):
+def fetch_ids_of_citing_papers(pathObj):
+
+    selected_IDs_path = pathObj.selected_IDs_path
+    field = pathObj.field
+
+
     logging.info('fetch citing papers of selected IDs ...')
 
 
@@ -77,28 +107,24 @@ def fetch_ids_of_citing_papers(selected_IDs_path,field='chemistry'):
 
     citing_IDs = list(set(citing_IDs))
 
-    saved_path = 'data/citing_IDs_{:}.txt'.format(field)
-
-    open(saved_path,'w').write('\n'.join(citing_IDs))
-
     logging.info('{:} citing IDs are saved to {:}'.format(len(citing_IDs),saved_path))
 
-
-    ## combine IDs
-
     com_IDs = []
-
     com_IDs.extend(selected_IDs)
     com_IDs.extend(citing_IDs)
 
     com_IDs = list(set(com_IDs))
 
-    saved_path = 'data/com_IDs_{:}.txt'.format(field)
+    saved_path = pathObj.com_IDs_path
     open(saved_path,'w').write('\n'.join(com_IDs))
     logging.info('{:} combine IDs are saved to {:}'.format(len(com_IDs),saved_path))
 
 
-def fetch_citing_papers_of_com_IDs(com_IDs_path,field):
+def fetch_citing_papers_of_com_IDs(pathObj):
+
+    com_IDs_path = pathObj.com_IDs_path
+
+    field =pathObj.field
 
     logging.info('fetch citing papers of selected IDs ...')
 
@@ -122,11 +148,14 @@ def fetch_citing_papers_of_com_IDs(com_IDs_path,field):
 
     query_op.close_db()
 
-    saved_path = 'data/pid_cits_{:}.txt'.format(field)
+    saved_path = pathObj.pid_cits_path
     open(saved_path,'w').write('\n'.join(pid_cits))
     logging.info('{:} citing relations are saved to {:}'.format(len(pid_cits),saved_path))
 
-def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
+def build_cascade_from_pid_cits(pathObj):
+
+    pid_cits_path = pathObj.pid_cits_path
+    selected_IDs_path = pathObj.selected_IDs_path
 
     selected_IDs = [line.strip() for line in open(selected_IDs_path)]
 
@@ -143,7 +172,7 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
     logging.info('citation relation loaded, start to build cascade ...')
 
     progress = 0
-    saved_path = 'data/citation_cascade.json'
+    saved_path = pathObj.cascade_path
     os.remove(saved_path) if os.path.exists(saved_path) else None
 
     outfile = open(saved_path,'w+')
@@ -183,7 +212,8 @@ def build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path):
     logging.info("{:} citation cascade has been build, and saved to {:}".format(total_num,saved_path))
 
 
-def fecth_pubyear_of_com_ids(com_IDs_path):
+def fecth_pubyear_of_com_ids(pathObj):
+    com_IDs_path = pathObj.com_IDs_path
     com_IDs = set([line.strip() for line in open(com_IDs_path)])
     logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
     com_ids_year = {}
@@ -201,8 +231,9 @@ def fecth_pubyear_of_com_ids(com_IDs_path):
 
     query_op.close_db()
     logging.info('{:} cited ids have citations'.format(len(com_ids_year.keys())))
-    open('data/com_ids_year.json','w').write(json.dumps(com_ids_year))
-    return com_ids_year
+
+    saved_path = pathObj.paper_year_path
+    open(saved_path,'w').write(json.dumps(com_ids_year))
 
 
 def fecth_subjects_of_com_ids(com_IDs_path):
@@ -223,31 +254,32 @@ def fecth_subjects_of_com_ids(com_IDs_path):
     query_op.close_db()
     logging.info('{:} cited ids have citations'.format(len(com_ids_subjects.keys())))
     open('data/com_ids_subjects.json','w').write(json.dumps(com_ids_subjects))
-    return com_ids_subjects
+    # return com_ids_subjects
 
 
 if __name__ == '__main__':
     ## task 1
     field = 'chemistry'
-    filter_out_ids_of_field(field)
+
+    paths = PATHS(field)
+
+
+    filter_out_ids_of_field(paths)
 
     ## task 2 and task 3
-    selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(field)
-    fetch_ids_of_citing_papers(selected_IDs_path,field)
+    fetch_ids_of_citing_papers(paths)
 
     ## task 4
-    com_IDs_path = 'data/com_IDs_{:}.txt'.format(field)
-    fetch_citing_papers_of_com_IDs(com_IDs_path,field)
+    fetch_citing_papers_of_com_IDs(paths)
 
     ## task 5
-    # pid_cits_path = 'data/pid_cits.txt'
-    # build_cascade_from_pid_cits(pid_cits_path,selected_IDs_path)
+    build_cascade_from_pid_cits(paths)
 
-    ## task 6
-    # fecth_pubyear_of_com_ids(com_IDs_path)
+    # task 6
+    fecth_pubyear_of_com_ids(paths)
 
-    ## task 7
-    # fecth_subjects_of_com_ids(com_IDs_path)
+    # task 7
+    # fecth_subjects_of_com_ids(paths)
 
 
 
