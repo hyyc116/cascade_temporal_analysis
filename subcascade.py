@@ -6,9 +6,9 @@ from basic_config import *
 
 def iso_cc(size_subcas_id,_id_subcascade,graph):
     
-	num_of_subcases = len(_id_subcascade.keys())
+    num_of_subcases = len(_id_subcascade.keys())
 
-	size = len(subgraph.nodes())
+    size = len(subgraph.nodes())
     subcas_id  = size_subcas_id.get(size,{}).keys()
     is_iso = False
     if len(sub_cascades) > 0:
@@ -19,7 +19,7 @@ def iso_cc(size_subcas_id,_id_subcascade,graph):
                 break
 
     if not is_iso:
-    	_id = num_of_subcases
+        _id = num_of_subcases
         size_subcas_id[size][subgraph] = _id
         _id_subcascade[_id] = subgraph.edges()
     
@@ -106,13 +106,14 @@ def find_sub_cascades(pathObj):
             # 获得图像子图的边的数量
             node_size = len(subgraph.nodes())
 
-        	## 对subgraphs进行判断
-        	_id = -999
-        	if node_size<6:
-        		size_subcas_id,_id_subcascade,_id = iso_cc(size_subcas_id,_id_subcascade,subgraph)
-        	
-        	## 这个里面会将直接相连的节点省略
-        	pid_size_id[pid][node_size].append(_id)
+            ## 对subgraphs进行判断
+            _id = -999
+            if node_size<6:
+                size_subcas_id,_id_subcascade,_id = iso_cc(size_subcas_id,_id_subcascade,subgraph)
+            
+            ## 这个里面会将直接相连的节点省略
+            pid_size_id[pid][node_size].append(_id)
+
 
 
     ##保存radical num 的分布
@@ -133,19 +134,19 @@ def find_sub_cascades(pathObj):
 
 
 if __name__ == '__main__':
-	
-	if int(sys.argv[1])==0:
+    
+    if int(sys.argv[1])==0:
 
-		pathObj = PATHS('physics')
+        pathObj = PATHS('physics')
 
-		find_sub_cascades(pathObj)
+        find_sub_cascades(pathObj)
 
 
-	else:
+    else:
 
-		pathObj = PATHS('computer science')
+        pathObj = PATHS('computer science')
 
-		find_sub_cascades(pathObj)
+        find_sub_cascades(pathObj)
 
 
 
