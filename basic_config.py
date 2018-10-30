@@ -59,6 +59,35 @@ params = {'legend.fontsize': 8,
 pylab.rcParams.update(params)
 
 
+## 定义需要保存的路径
+
+class PATHS:
+
+    def __init__(self,field):
+
+        self.field = field
+
+        self.name = '_'.join(field.split())
+
+        self.selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(self.name)
+
+        self.com_IDs_path = 'data/com_IDs_{:}.txt'.format(self.name)
+
+        self.pid_cits_path = 'data/pid_cits_{:}.txt'.format(self.name)
+
+        self.cascade_path = 'data/cascade_{:}.txt'.format(self.name)
+
+        self.paper_year_path = 'data/pubyear_{:}.json'.format(self.name)
+
+        self.all_subcasdes_path = 'data/all_subcascades_{:}.json'.format(self.name)
+
+        self.paper_subcascades_path = 'data/paper_subcascades_{:}.json'.format(self.name)
+
+        self.radical_num_dis_path = 'data/radical_num_dis_{:}.json'.format(self.name)
+
+        self.paper_cit_num = 'data/paper_cit_num_{:}.json'.format(self.name)
+
+
 def circle(ax,x,y,radius=0.15):
 
     circle = Circle((x, y), radius, clip_on=False, zorder=10, linewidth=1,

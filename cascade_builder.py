@@ -17,28 +17,6 @@
 from basic_config import *
 
 
-
-## 定义需要保存的路径
-
-class PATHS:
-
-    def __init__(self,field):
-
-        self.field = field
-
-        self.name = '_'.join(field.split())
-
-        self.selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(self.name)
-
-        self.com_IDs_path = 'data/com_IDs_{:}.txt'.format(self.name)
-
-        self.pid_cits_path = 'data/pid_cits_{:}.txt'.format(self.name)
-
-        self.cascade_path = 'data/cascade_{:}.txt'.format(self.name)
-
-        self.paper_year_path = 'data/pubyear_{:}.json'.format(self.name)
-
-
 def filter_out_ids_of_field(pathObj):
 
     field = pathObj.field
@@ -230,7 +208,7 @@ def fecth_pubyear_of_com_ids(pathObj):
             com_ids_year[pid] = pubyear
 
     query_op.close_db()
-    logging.info('{:} cited ids have citations'.format(len(com_ids_year.keys())))
+    logging.info('{:} cited ids have year'.format(len(com_ids_year.keys())))
 
     saved_path = pathObj.paper_year_path
     open(saved_path,'w').write(json.dumps(com_ids_year))
@@ -252,7 +230,7 @@ def fecth_subjects_of_com_ids(com_IDs_path):
             com_ids_subjects[pid].append(subject)
 
     query_op.close_db()
-    logging.info('{:} cited ids have citations'.format(len(com_ids_subjects.keys())))
+    logging.info('{:} cited ids have subject'.format(len(com_ids_subjects.keys())))
     open('data/com_ids_subjects.json','w').write(json.dumps(com_ids_subjects))
     # return com_ids_subjects
 
