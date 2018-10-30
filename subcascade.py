@@ -8,7 +8,7 @@ def iso_cc(size_subcas_id,_id_subcascade,graph):
     
     num_of_subcases = len(_id_subcascade.keys())
 
-    size = len(subgraph.nodes())
+    size = len(graph.nodes())
     subcas_id  = size_subcas_id.get(size,{}).keys()
     is_iso = False
     if len(sub_cascades) > 0:
@@ -20,8 +20,8 @@ def iso_cc(size_subcas_id,_id_subcascade,graph):
 
     if not is_iso:
         _id = num_of_subcases
-        size_subcas_id[size][subgraph] = _id
-        _id_subcascade[_id] = subgraph.edges()
+        size_subcas_id[size][graph] = _id
+        _id_subcascade[_id] = graph.edges()
     
     return size_subcas_id,_id_subcascade,_id
 
