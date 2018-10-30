@@ -28,15 +28,15 @@ class PATHS:
 
         self.name = '_'.join(field.split())
 
-        self.selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(name)
+        self.selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(self.name)
 
-        self.com_IDs_path = 'data/com_IDs_{:}.txt'.format(name)
+        self.com_IDs_path = 'data/com_IDs_{:}.txt'.format(self.name)
 
-        self.pid_cits_path = 'data/pid_cits_{:}.txt'.format(name)
+        self.pid_cits_path = 'data/pid_cits_{:}.txt'.format(self.name)
 
-        self.cascade_path = 'data/cascade_{:}.txt'.format(name)
+        self.cascade_path = 'data/cascade_{:}.txt'.format(self.name)
 
-        self.paper_year_path = 'data/pubyear_{:}.json'.format(name)
+        self.paper_year_path = 'data/pubyear_{:}.json'.format(self.name)
 
 
 def filter_out_ids_of_field(pathObj):
