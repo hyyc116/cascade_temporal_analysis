@@ -259,10 +259,12 @@ def fecth_subjects_of_com_ids(com_IDs_path):
 
 if __name__ == '__main__':
     ## task 1
-    field = 'chemistry'
+    if int(sys.argv[1])==0:
+        field = 'physics'
+    else:
+        field = 'computer science'
 
     paths = PATHS(field)
-
 
     filter_out_ids_of_field(paths)
 
