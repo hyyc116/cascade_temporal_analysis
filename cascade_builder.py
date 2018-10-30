@@ -107,7 +107,7 @@ def fetch_ids_of_citing_papers(pathObj):
 
     citing_IDs = list(set(citing_IDs))
 
-    logging.info('{:} citing IDs are saved to {:}'.format(len(citing_IDs),saved_path))
+    # logging.info('{:} citing IDs are saved to {:}'.format(len(citing_IDs),saved_path))
 
     com_IDs = []
     com_IDs.extend(selected_IDs)
