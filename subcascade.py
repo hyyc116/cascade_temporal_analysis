@@ -129,7 +129,7 @@ def find_sub_cascades(pathObj):
 
     ## 每篇文章的引文数量
     open(pathObj.paper_cit_num,'w').write(json.dumps(pid_cnum))
-    logging.info('{:} papers has 1 more citations and saved to {:}.'.format(len(pid_num.keys()),pathObj.paper_cit_num))
+    logging.info('{:} papers has 1 more citations and saved to {:}.'.format(len(pid_cnum.keys()),pathObj.paper_cit_num))
 
 
 if __name__ == '__main__':
