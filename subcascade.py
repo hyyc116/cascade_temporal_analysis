@@ -257,12 +257,12 @@ def plot_num_of_comps(pathObj):
     maxes,means,medians,mins = zip(*maxsize_stats)
     fig_data = {}
     fig_data['x'] = cnum_xs
-    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['ys'] = [maxes,means,medians,mins,cnum_xs]
     fig_data['title'] = 'maximum size of sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'maximum size of sub-cascades'
-    fig_data['markers'] = ['-o','->','-s','-^']
-    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['markers'] = ['-o','->','-s','-^','--']
+    fig_data['labels'] =['maximum','mean','median','minimum','$y=x$']
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
@@ -282,12 +282,12 @@ def plot_num_of_comps(pathObj):
     maxes,means,medians,mins = zip(*nums_stats)
     fig_data = {}
     fig_data['x'] = cnum_xs
-    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['ys'] = [maxes,means,medians,mins,cnum_xs]
     fig_data['title'] = 'number of ALL sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of all sub-cascades'
-    fig_data['markers'] = ['-o','->','-s','-^']
-    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['markers'] = ['-o','->','-s','-^','--']
+    fig_data['labels'] =['maximum','mean','median','minimum','$y=x$']
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
@@ -299,12 +299,12 @@ def plot_num_of_comps(pathObj):
     maxes,means,medians,mins = zip(*non_0_nums_stats)
     fig_data = {}
     fig_data['x'] = cnum_xs
-    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['ys'] = [maxes,means,medians,mins,cnum_xs]
     fig_data['title'] = 'number of NON-0 sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of non 0 sub-cascades'
-    fig_data['markers'] = ['-o','->','-s','-^']
-    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['markers'] = ['-o','->','-s','-^','--']
+    fig_data['labels'] =['maximum','mean','median','minimum','$y=x$']
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
@@ -317,12 +317,12 @@ def plot_num_of_comps(pathObj):
     maxes,means,medians,mins = zip(*_0_nums_stats)
     fig_data = {}
     fig_data['x'] = cnum_xs
-    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['ys'] = [maxes,means,medians,mins,cnum_xs]
     fig_data['title'] = 'number of 0 sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of 0 sub-cascades'
-    fig_data['markers'] = ['-o','->','-s','-^']
-    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['markers'] = ['-o','->','-s','-^','--']
+    fig_data['labels'] =['maximum','mean','median','minimum','$y=x']
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
