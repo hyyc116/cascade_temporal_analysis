@@ -256,12 +256,13 @@ def plot_multi_lines_from_data(fig_data,ax=None):
     else:
         for i,ys in enumerate(yses):
             ax.plot(xs,ys,markers[i],label=labels[i])
-            
+
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)
         ax.set_title(title)
-        ax.set_xlabel(xscale)
-        ax.set_ylabel(yscale)
+        ax.set_xscale(xscale)
+        ax.set_yscale(yscale)
+        ax.legend()
 
 
 
