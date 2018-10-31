@@ -252,7 +252,7 @@ def plot_num_of_comps(pathObj):
         _0_nums_stats.append([np.max(_0_nums_list)+1,np.mean(_0_nums_list)+1,np.median(_0_nums_list)+1,np.min(_0_nums_list)+1])
 
         _0_percent_list = cnum_0_percent[cnum]
-        _0_percent_stats.append([np.max(_0_percent_list)+1,np.mean(_0_percent_list)+1,np.median(_0_percent_list)+1,np.min(_0_percent_list)+1])
+        _0_percent_stats.append([np.max(_0_percent_list),np.mean(_0_percent_list),np.median(_0_percent_list),np.min(_0_percent_list)])
 
 
         non_0_nums_list = cnum_non_0_nums[cnum]
@@ -348,9 +348,9 @@ def plot_num_of_comps(pathObj):
     fig_data = {}
     fig_data['x'] = cnum_xs
     fig_data['ys'] = [maxes,means,medians,mins]
-    fig_data['title'] = 'maximum size of sub-cascades distribution'
+    fig_data['title'] = 'Distribution of percentage of nodes directly connected to the owner'
     fig_data['xlabel'] = 'number of citations'
-    fig_data['ylabel'] = 'maximum size of sub-cascades'
+    fig_data['ylabel'] = 'percentage of nodes'
     fig_data['markers'] = ['-o','->','-s','-^']
     fig_data['labels'] =['maximum','mean','median','minimum']
     fig_data['xscale'] = 'log'
