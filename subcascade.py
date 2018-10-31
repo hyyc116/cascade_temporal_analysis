@@ -348,7 +348,7 @@ def plot_num_of_comps(pathObj):
     fig_data = {}
     fig_data['x'] = cnum_xs
     fig_data['ys'] = [maxes,means,medians,mins]
-    fig_data['title'] = 'Distribution of percentage of nodes directly connected to the owner'
+    fig_data['title'] = 'Distribution of percentage \n of nodes directly connected to the owner'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'percentage of nodes'
     fig_data['markers'] = ['-o','->','-s','-^']
