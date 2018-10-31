@@ -246,11 +246,11 @@ def plot_num_of_comps(pathObj):
         nums_stats.append([np.max(nums_list),np.mean(nums_list),np.median(nums_list),np.min(nums_list)])
 
         _0_nums_list = cnum_0_nums[cnum]
-        _0_nums_stats.append([np.max(_0_nums_list),np.mean(_0_nums_list),np.median(_0_nums_list),np.min(_0_nums_list)])
+        _0_nums_stats.append([np.max(_0_nums_list)+1,np.mean(_0_nums_list)+1,np.median(_0_nums_list)+1,np.min(_0_nums_list)+1])
 
 
         non_0_nums_list = cnum_non_0_nums[cnum]
-        non_0_nums_stats.append([np.max(non_0_nums_list)+1,np.mean(non_0_nums_list)+1,np.median(non_0_nums_list)+1,np.min(non_0_nums_list)+1])
+        non_0_nums_stats.append([np.max(non_0_nums_list),np.mean(non_0_nums_list),np.median(non_0_nums_list),np.min(non_0_nums_list)])
 
 
     ### maximum size of comps
