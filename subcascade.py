@@ -289,7 +289,7 @@ def plot_num_of_comps(pathObj):
     fig_data['markers'] = ['-o','->','-s','-^']
     fig_data['labels'] =['maximum','mean','median','minimum']
     fig_data['xscale'] = 'log'
-    # fig_data['yscale'] = 'log'
+    fig_data['yscale'] = 'log'
 
     datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax0)
@@ -306,7 +306,7 @@ def plot_num_of_comps(pathObj):
     fig_data['markers'] = ['-o','->','-s','-^']
     fig_data['labels'] =['maximum','mean','median','minimum']
     fig_data['xscale'] = 'log'
-    # fig_data['yscale'] = 'log'
+    fig_data['yscale'] = 'log'
 
     datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax1)
@@ -324,7 +324,7 @@ def plot_num_of_comps(pathObj):
     fig_data['markers'] = ['-o','->','-s','-^']
     fig_data['labels'] =['maximum','mean','median','minimum']
     fig_data['xscale'] = 'log'
-    # fig_data['yscale'] = 'log'
+    fig_data['yscale'] = 'log'
 
     datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax2)
