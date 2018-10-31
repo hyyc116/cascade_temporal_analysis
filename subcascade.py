@@ -132,20 +132,73 @@ def find_sub_cascades(pathObj):
     logging.info('{:} papers has 1 more citations and saved to {:}.'.format(len(pid_cnum.keys()),pathObj.paper_cit_num))
 
 
+### radical cascade的分布, 没有间接链接的文章的
+def plot_radical_dis(pathObj):
+
+    logging.info('plot citation distribution of radical cascade ...')
+    radical_num_dis_path = pathObj.radical_num_dis_path
+
+    num_dis = json.loads(open(radical_num_dis_path).read())
+
+    xs = []
+    ys = []
+
+    for num in sorted(num_dis.keys()):
+        xs.append(num)
+        ys.append(num_dis[num])
+
+    ## 每一个图都保存fig data
+    fig_data = {}
+    fig_data['x'] = xs
+    fig_data['y'] = ys
+    fig_data['title'] = 'citation distribution of radical cascades'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'number of cascades'
+    fig_data['marker'] = '-o'
+
+    open(pathObj._fd_radical_num_dis_path,'w').write(json.dumps(fig_data))
+
+    logging.info('data of citation distribution of radical distribution saved to {:}.'.format(pathObj._fd_radical_num_dis_path))
+
+    plot_line_from_data(fig_data)
+
+    plt.savefig(pathObj._f_radical_num_dis_path,dpi=400)
+
+    plt.info('figure of citation distribution of radical distribution saved to {:}.'.format(pathObj._f_radical_num_dis_path))
+
+
+
 if __name__ == '__main__':
     
+    data = int(sys.argv[1])
+    op = sys.argv[2]
+
     if int(sys.argv[1])==0:
+
 
         pathObj = PATHS('physics')
 
-        find_sub_cascades(pathObj)
+        if op=='find_subcas':
+
+            find_sub_cascades(pathObj)
+
+        elif op=='radical_num_dis':
+
+            plot_radical_dis(pathObj)
 
 
     else:
 
         pathObj = PATHS('computer science')
 
-        find_sub_cascades(pathObj)
+        if op=='find_subcas':
+
+            find_sub_cascades(pathObj)
+
+        elif op=='radical_num_dis':
+
+            plot_radical_dis(pathObj)
+            
 
 
 

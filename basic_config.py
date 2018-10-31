@@ -79,13 +79,19 @@ class PATHS:
 
         self.paper_year_path = 'data/pubyear_{:}.json'.format(self.name)
 
-        self.all_subcasdes_path = 'data/all_subcascades_{:}.json'.format(self.name)
+        self.all_subcasdes_path = 'subcascade/data/all_subcascades_{:}.json'.format(self.name)
 
-        self.paper_subcascades_path = 'data/paper_subcascades_{:}.json'.format(self.name)
+        self.paper_subcascades_path = 'subcascade/data/paper_subcascades_{:}.json'.format(self.name)
 
-        self.radical_num_dis_path = 'data/radical_num_dis_{:}.json'.format(self.name)
+        self.radical_num_dis_path = 'subcascade/data/radical_num_dis_{:}.json'.format(self.name)
 
         self.paper_cit_num = 'data/paper_cit_num_{:}.json'.format(self.name)
+
+        ###  figure path and fig data path
+        self._f_radical_num_dis_path = 'subcascade/fig/radical_num_dis_{:}.jpg'.format(self.name)
+        self._fd_radical_num_dis_path = 'subcascade/fig/data/radical_num_dis_{:}.json'.format(self.name)
+
+
 
 
 def circle(ax,x,y,radius=0.15):
@@ -179,3 +185,52 @@ class dbop:
 
     def close_db(self):
         self._db.close()
+
+
+
+def plot_line_from_data(figdata,ax=None):
+
+    xs = fig_data['x'] = xs
+    ys = fig_data['y'] = ys
+    title = fig_data['title']
+    xlabel = fig_data['xlabel']
+    ylabel = fig_data['ylabel']
+    marker = fig_data['marker']
+
+    if ax is None:
+
+        plt.figure(figsize=(7,5))
+
+        plt.plot(xs,ys,marker)
+
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+
+        plt.title(title)
+
+        plt.tight_layout()
+
+    else:
+
+        ax.plot(xs,ys,marker)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        ax.set_title(title)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
