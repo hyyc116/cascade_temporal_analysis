@@ -176,7 +176,9 @@ def plot_radical_dis(pathObj):
 ### 需要注意的是可能有直接相连的引证文献会去掉
 def plot_num_of_comps(pathObj):
 
-    pid_size_id = json.loads(open(pathObj.paper_subcascades_path).read()) 
+    logging.info('loading paper size id json ..')
+    pid_size_id = json.loads(open(pathObj.paper_subcascades_path).read())
+    logging.info('loading paper citation num json ..')
     pid_cnum = json.loads(open(pathObj.paper_cit_num).read())
 
     cnum_maxsize = defaultdict(list)
