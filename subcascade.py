@@ -145,7 +145,7 @@ def plot_radical_dis(pathObj):
 
     for num in sorted([int(num) for num in num_dis.keys()]):
         xs.append(num)
-        ys.append(num_dis[num])
+        ys.append(num_dis[str(num)])
 
     ## 每一个图都保存fig data
     fig_data = {}
