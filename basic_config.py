@@ -99,6 +99,9 @@ class PATHS:
         self._f_maxsize_of_comps_path = 'subcascade/fig/maxsize_of_comps_{:}.jpg'.format(self.name)
         self._fd_maxsize_of_comps_path = 'subcascade/fig/maxsize_of_comps_{:}.txt'.format(self.name)
 
+        ## 直接相连的结点所占的比例
+        self._f_0_percent_path = 'subcascade/fig/direct_connected_percentage_{:}.jpg'.format(self.name)
+        self._fd_0_percent_path = 'subcascade/fig/direct_connected_percentage_{:}.txt'.format(self.name)
 
 
 def circle(ax,x,y,radius=0.15):

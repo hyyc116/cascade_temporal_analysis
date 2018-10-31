@@ -190,6 +190,7 @@ def plot_num_of_comps(pathObj):
     cnum_nums = defaultdict(list)
     cnum_0_nums = defaultdict(list)
     cnum_non_0_nums = defaultdict(list)
+    cnum_0_percent = defaultdict(list)
 
     progress = 0
     for pid in pid_size_id.keys():
@@ -228,6 +229,7 @@ def plot_num_of_comps(pathObj):
         cnum_nums[cnum].append(num_of_comps)
         cnum_0_nums[cnum].append(_0_num_of_comps)
         cnum_non_0_nums[cnum].append(non_0_num_of_comps)
+        cnum_0_percent[cnum].append(_0_num_of_comps/float(cnum))
 
 
     cnum_xs = []
@@ -235,6 +237,7 @@ def plot_num_of_comps(pathObj):
     nums_stats = []
     _0_nums_stats = []
     non_0_nums_stats = []
+    _0_percent_stats = []
     for cnum in sorted(cnum_nums.keys()):
 
     	cnum_xs.append(cnum)
@@ -247,6 +250,9 @@ def plot_num_of_comps(pathObj):
 
         _0_nums_list = cnum_0_nums[cnum]
         _0_nums_stats.append([np.max(_0_nums_list)+1,np.mean(_0_nums_list)+1,np.median(_0_nums_list)+1,np.min(_0_nums_list)+1])
+
+        _0_percent_list = cnum_0_percent[cnum]
+        _0_percent_stats.append([np.max(_0_percent_list)+1,np.mean(_0_percent_list)+1,np.median(_0_percent_list)+1,np.min(_0_percent_list)+1])
 
 
         non_0_nums_list = cnum_non_0_nums[cnum]
@@ -337,7 +343,25 @@ def plot_num_of_comps(pathObj):
 
     logging.info('figure of number of sub-cascades saved to {:}.'.format(pathObj._f_num_of_comps_path))
 
+    ### percentage of nodes directly connected to owner
+    maxes,means,medians,mins = zip(*_0_percent_stats)
+    fig_data = {}
+    fig_data['x'] = cnum_xs
+    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['title'] = 'maximum size of sub-cascades distribution'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'maximum size of sub-cascades'
+    fig_data['markers'] = ['-o','->','-s','-^']
+    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['xscale'] = 'log'
+    # fig_data['yscale'] = 'log'
 
+    open(pathObj._fd_0_percent_path,'w').write(json.dumps(fig_data))
+    logging.info('data of percentage of directed connected nodes saved to {:}.'.format(pathObj._fd_0_percent_path))
+    plt.figure(figsize=(7,5))
+    plot_multi_lines_from_data(fig_data)
+    plt.savefig(pathObj._f_0_percent_path,dpi=300)
+    logging.info('figure of percentage of directed connected nodes saved to {:}.'.format(pathObj._f_0_percent_path))
 
 
 if __name__ == '__main__':
