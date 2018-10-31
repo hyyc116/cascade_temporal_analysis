@@ -235,6 +235,8 @@ def plot_num_of_comps(pathObj):
     non_0_nums_stats = []
     for cnum in sorted(cnum_nums.keys()):
 
+    	cnum_xs.append(cnum)
+    	
         maxsize_list = cnum_maxsize[cnum]
         maxsize_stats.append([np.max(maxsize_list),np.mean(maxsize_list),np.median(maxsize_list),np.min(maxsize_list)])
 
