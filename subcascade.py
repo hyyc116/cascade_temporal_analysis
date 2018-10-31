@@ -143,7 +143,7 @@ def plot_radical_dis(pathObj):
     xs = []
     ys = []
 
-    for num in sorted(num_dis.keys()):
+    for num in sorted([num for num in num_dis.keys()]):
         xs.append(num)
         ys.append(num_dis[num])
 
@@ -155,6 +155,8 @@ def plot_radical_dis(pathObj):
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of cascades'
     fig_data['marker'] = '-o'
+    fig_data['xscale'] = 'log'
+    fig_data['yscale'] = 'log'
 
     open(pathObj._fd_radical_num_dis_path,'w').write(json.dumps(fig_data))
 

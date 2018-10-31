@@ -196,16 +196,18 @@ def plot_line_from_data(fig_data,ax=None):
     xlabel = fig_data['xlabel']
     ylabel = fig_data['ylabel']
     marker = fig_data['marker']
+    xscale = fig_data.get('xscale','linear')
+    yscale = fig_data.get('yscale','linear')
+
 
     if ax is None:
 
         plt.plot(xs,ys,marker)
-
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
-
+        plt.xscale(xscale)
+        plt.yscale(yscale)
         plt.title(title)
-
         plt.tight_layout()
 
     else:
@@ -214,6 +216,8 @@ def plot_line_from_data(fig_data,ax=None):
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)
         ax.set_title(title)
+        ax.set_xlabel(xscale)
+        ax.set_ylabel(yscale)
 
 
 
