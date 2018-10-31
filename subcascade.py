@@ -172,6 +172,156 @@ def plot_radical_dis(pathObj):
     logging.info('figure of citation distribution of radical distribution saved to {:}.'.format(pathObj._f_radical_num_dis_path))
 
 
+### 文章sub-cascade数量的分布
+### 需要注意的是可能有直接相连的引证文献会去掉
+def plot_num_of_comps(pathObj):
+
+    pid_size_id = json.loads(open(pathObj.paper_subcascades_path).read()) 
+    pid_cnum = json.loads(open(pathObj.paper_cit_num).read())
+
+    cnum_maxsize = defaultdict(list)
+    cnum_nums = defaultdict(list)
+    cnum_0_nums = defaultdict(list)
+    cnum_non_0_nums = defaultdict(list)
+
+    for pid in pid_size_id.keys():
+
+        cnum = pid_cnum[pid]
+        num_of_nodes_in_none_0_comps = 0
+        non_0_num_of_comps = 0
+        ## 每一个size都有对应的一个list, list的长度的和就是一共多少的非0的component
+
+        max_size  = 0
+
+        for size in pid_size_id[pid].keys():
+
+            ids = pid_size_id[pid][size]
+
+            num_of_nodes_in_none_0_comps +=len(ids)*size
+
+            non_0_num_of_comps+=len(ids)
+
+            if size > max_size:
+                max_size = size
+
+
+        _0_num_of_comps = cnum - num_of_nodes_in_none_0_comps
+
+        num_of_comps = _0_num_of_comps+non_0_num_of_comps
+
+        cnum_maxsize[cnum].append(max_size)
+        cnum_nums[cnum].append(num_of_comps)
+        cnum_0_nums[cnum].append(_0_num_of_comps)
+        cnum_non_0_nums[cnum].append(non_0_num_of_comps)
+
+
+    cnum_xs = []
+    maxsize_stats = []
+    nums_stats = []
+    _0_nums_stats = []
+    non_0_nums_stats = []
+    for cnum in sorted(cnum_nums.keys()):
+
+        maxsize_list = cnum_maxsize[cnum]
+        maxsize_stats.append([np.max(maxsize_list),np.mean(maxsize_list),np.median(maxsize_list),np.min(maxsize_list)])
+
+        nums_list = cnum_nums[cnum]
+        nums_stats.append([np.max(nums_list),np.mean(nums_list),np.median(nums_list),np.min(nums_list)])
+
+        _0_nums_list = cnum_0_nums[cnum]
+        _0_nums_stats.append([np.max(_0_nums_list),np.mean(_0_nums_list),np.median(_0_nums_list),np.min(_0_nums_list)])
+
+
+        non_0_nums_list = cnum_non_0_nums[cnum]
+        non_0_nums_stats.append([np.max(non_0_nums_list),np.mean(non_0_nums_list),np.median(non_0_nums_list),np.min(non_0_nums_list)])
+
+
+    ### maximum size of comps
+    maxes,means,medians,mins = zip(*maxsize_stats)
+    fig_data = {}
+    fig_data['x'] = cnum_xs
+    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['title'] = 'maximum size of sub-cascades distribution'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'maximum size of sub-cascades'
+    fig_data['markers'] = ['-o','->','-s','-^']
+    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['xscale'] = 'log'
+    fig_data['yscale'] = 'log'
+
+    open(pathObj._fd_maxsize_of_comps_path,'w').write(json.dumps(fig_data))
+    logging.info('data of maximum size saved to {:}.'.format(pathObj._fd_maxsize_of_comps_path))
+    plt.figure(figsize=(7,5))
+    plot_multi_lines_from_data(fig_data)
+    plt.savefig(pathObj._f_maxsize_of_comps_path,dpi=300)
+    logging.info('figure of maximum size saved to {:}.'.format(pathObj._f_maxsize_of_comps_path))
+
+    # num of comps
+    datas = []
+    fig,axes = plt.subplots(3,1,figsize=(7,15))
+
+    ax0 = axes[0]
+    ## data of nums of all subcascades
+    maxes,means,medians,mins = zip(*nums_stats)
+    fig_data = {}
+    fig_data['x'] = cnum_xs
+    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['title'] = 'number of sub-cascades distribution'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'number of all sub-cascades'
+    fig_data['markers'] = ['-o','->','-s','-^']
+    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['xscale'] = 'log'
+    # fig_data['yscale'] = 'log'
+
+    datas.append(fig_data)
+    plot_multi_lines_from_data(fig_data,ax0)
+
+    ax1 = axes[1]
+    ## data of nums of all subcascades
+    maxes,means,medians,mins = zip(*non_0_nums_stats)
+    fig_data = {}
+    fig_data['x'] = cnum_xs
+    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['title'] = 'number of sub-cascades distribution'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'number of non 0 sub-cascades'
+    fig_data['markers'] = ['-o','->','-s','-^']
+    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['xscale'] = 'log'
+    # fig_data['yscale'] = 'log'
+
+    datas.append(fig_data)
+    plot_multi_lines_from_data(fig_data,ax1)
+
+
+    ax2 = axes[2]
+    ## data of nums of all subcascades
+    maxes,means,medians,mins = zip(*_0_nums_stats)
+    fig_data = {}
+    fig_data['x'] = cnum_xs
+    fig_data['ys'] = [maxes,means,medians,mins]
+    fig_data['title'] = 'number of sub-cascades distribution'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'number of 0 sub-cascades'
+    fig_data['markers'] = ['-o','->','-s','-^']
+    fig_data['labels'] =['maximum','mean','median','minimum']
+    fig_data['xscale'] = 'log'
+    # fig_data['yscale'] = 'log'
+
+    datas.append(fig_data)
+    plot_multi_lines_from_data(fig_data,ax2)
+
+    open(pathObj._fd_num_of_comps_path,'w').write(json.dumps(fig_data))
+    logging.info('data of number of sub-cascades saved to {:}.'.format(pathObj._fd_num_of_comps_path))
+    
+    plt.tight_layout()
+    plt.savefig(pathObj._f_num_of_comps_path,dpi=300)
+
+    logging.info('figure of number of sub-cascades saved to {:}.'.format(pathObj._f_num_of_comps_path))
+
+
+
 
 if __name__ == '__main__':
     
@@ -191,6 +341,10 @@ if __name__ == '__main__':
 
             plot_radical_dis(pathObj)
 
+        elif op=='num_of_comps':
+
+            plot_num_of_comps(pathObj)
+
 
     else:
 
@@ -200,11 +354,14 @@ if __name__ == '__main__':
 
             find_sub_cascades(pathObj)
 
+
         elif op=='radical_num_dis':
 
             plot_radical_dis(pathObj)
 
+        elif op=='num_of_comps':
 
+            plot_num_of_comps(pathObj)
 
 
 

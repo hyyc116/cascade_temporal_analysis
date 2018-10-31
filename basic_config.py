@@ -91,6 +91,13 @@ class PATHS:
         self._f_radical_num_dis_path = 'subcascade/fig/radical_num_dis_{:}.jpg'.format(self.name)
         self._fd_radical_num_dis_path = 'subcascade/fig/data/radical_num_dis_{:}.json'.format(self.name)
 
+        ## number of componets
+        self._f_num_of_comps_path = 'subcascade/fig/num_of_comps_{:}.jpg'.format(self.name)
+        self._fd_num_of_comps_path = 'subcascade/fig/num_of_comps_{:}.txt'.format(self.name)
+
+        ## number of max size
+        self._f_maxsize_of_comps_path = 'subcascade/fig/maxsize_of_comps_{:}.jpg'.format(self.name)
+        self._fd_maxsize_of_comps_path = 'subcascade/fig/maxsize_of_comps_{:}.txt'.format(self.name)
 
 
 
@@ -221,7 +228,40 @@ def plot_line_from_data(fig_data,ax=None):
 
 
 
+def plot_multi_lines_from_data(fig_data,ax=None):
 
+    xs = fig_data['x']
+    yses = fig_data['ys']
+    title = fig_data['title']
+    xlabel = fig_data['xlabel']
+    ylabel = fig_data['ylabel']
+    markers = fig_data['markers']
+    labels = fig_data['labels']
+    xscale = fig_data.get('xscale','linear')
+    yscale = fig_data.get('yscale','linear')
+
+
+    if ax is None:
+        for i,ys in enumerate(yses):
+            plt.plot(xs,ys,markers[i],label=labels[i])
+        
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.xscale(xscale)
+        plt.yscale(yscale)
+        plt.title(title)
+        plt.legend()
+        plt.tight_layout()
+
+    else:
+        for i,ys in enumerate(yses):
+            ax.plot(xs,ys,markers[i],label=labels[i])
+            
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        ax.set_title(title)
+        ax.set_xlabel(xscale)
+        ax.set_ylabel(yscale)
 
 
 
