@@ -178,6 +178,9 @@ def plot_num_of_comps(pathObj):
 
     logging.info('loading paper size id json ..')
     pid_size_id = json.loads(open(pathObj.paper_subcascades_path).read())
+
+    total_pids = len(pid_size_id.keys())
+
     logging.info('loading paper citation num json ..')
     pid_cnum = json.loads(open(pathObj.paper_cit_num).read())
 
@@ -186,7 +189,13 @@ def plot_num_of_comps(pathObj):
     cnum_0_nums = defaultdict(list)
     cnum_non_0_nums = defaultdict(list)
 
+    progress = 0
     for pid in pid_size_id.keys():
+
+        progress+=1
+
+        if progress%10000==0:
+            logging.info('progress {:}/{:} ...'.format(progress,total_pids))
 
         cnum = pid_cnum[pid]
         num_of_nodes_in_none_0_comps = 0
