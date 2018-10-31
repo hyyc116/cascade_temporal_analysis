@@ -142,6 +142,8 @@ def plot_radical_dis(pathObj):
 
     xs = []
     ys = []
+    total_num = np.sum(num_dis.values())
+    logging.info('total num of radical papers is {:}.'.format(total_num))
 
     for num in sorted([int(num) for num in num_dis.keys()]):
         xs.append(num)
@@ -236,7 +238,7 @@ def plot_num_of_comps(pathObj):
     for cnum in sorted(cnum_nums.keys()):
 
     	cnum_xs.append(cnum)
-    	
+
         maxsize_list = cnum_maxsize[cnum]
         maxsize_stats.append([np.max(maxsize_list),np.mean(maxsize_list),np.median(maxsize_list),np.min(maxsize_list)])
 
