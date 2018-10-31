@@ -167,7 +167,7 @@ def plot_radical_dis(pathObj):
 
     plt.savefig(pathObj._f_radical_num_dis_path,dpi=400)
 
-    plt.info('figure of citation distribution of radical distribution saved to {:}.'.format(pathObj._f_radical_num_dis_path))
+    logging.info('figure of citation distribution of radical distribution saved to {:}.'.format(pathObj._f_radical_num_dis_path))
 
 
 
