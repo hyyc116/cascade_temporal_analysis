@@ -160,6 +160,9 @@ def plot_radical_dis(pathObj):
 
     logging.info('data of citation distribution of radical distribution saved to {:}.'.format(pathObj._fd_radical_num_dis_path))
 
+
+    plt.figure(figsize=(7,5))
+
     plot_line_from_data(fig_data)
 
     plt.savefig(pathObj._f_radical_num_dis_path,dpi=400)
@@ -198,7 +201,7 @@ if __name__ == '__main__':
         elif op=='radical_num_dis':
 
             plot_radical_dis(pathObj)
-            
+
 
 
 

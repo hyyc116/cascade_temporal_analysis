@@ -188,7 +188,7 @@ class dbop:
 
 
 
-def plot_line_from_data(figdata,ax=None):
+def plot_line_from_data(fig_data,ax=None):
 
     xs = fig_data['x']
     ys = fig_data['y']
@@ -198,8 +198,6 @@ def plot_line_from_data(figdata,ax=None):
     marker = fig_data['marker']
 
     if ax is None:
-
-        plt.figure(figsize=(7,5))
 
         plt.plot(xs,ys,marker)
 
