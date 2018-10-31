@@ -190,8 +190,8 @@ class dbop:
 
 def plot_line_from_data(figdata,ax=None):
 
-    xs = fig_data['x'] = xs
-    ys = fig_data['y'] = ys
+    xs = fig_data['x']
+    ys = fig_data['y']
     title = fig_data['title']
     xlabel = fig_data['xlabel']
     ylabel = fig_data['ylabel']
