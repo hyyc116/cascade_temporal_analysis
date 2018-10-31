@@ -283,7 +283,7 @@ def plot_num_of_comps(pathObj):
     fig_data = {}
     fig_data['x'] = cnum_xs
     fig_data['ys'] = [maxes,means,medians,mins]
-    fig_data['title'] = 'number of sub-cascades distribution'
+    fig_data['title'] = 'number of ALL sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of all sub-cascades'
     fig_data['markers'] = ['-o','->','-s','-^']
@@ -300,7 +300,7 @@ def plot_num_of_comps(pathObj):
     fig_data = {}
     fig_data['x'] = cnum_xs
     fig_data['ys'] = [maxes,means,medians,mins]
-    fig_data['title'] = 'number of sub-cascades distribution'
+    fig_data['title'] = 'number of NON-0 sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of non 0 sub-cascades'
     fig_data['markers'] = ['-o','->','-s','-^']
@@ -317,8 +317,8 @@ def plot_num_of_comps(pathObj):
     maxes,means,medians,mins = zip(*_0_nums_stats)
     fig_data = {}
     fig_data['x'] = cnum_xs
-    fig_data['ys'] = [maxes,means,medians,mins]
-    fig_data['title'] = 'number of sub-cascades distribution'
+    fig_data['ys'] = [np.array(maxes)+1,np.array(means)+1,np.array(medians)+1,np.array(mins)+1]
+    fig_data['title'] = 'number of 0 sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of 0 sub-cascades'
     fig_data['markers'] = ['-o','->','-s','-^']
