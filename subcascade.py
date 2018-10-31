@@ -197,7 +197,9 @@ def plot_num_of_comps(pathObj):
 
         for size in pid_size_id[pid].keys():
 
-            ids = pid_size_id[pid][size]
+            size = int(size)
+
+            ids = pid_size_id[pid][str(size)]
 
             num_of_nodes_in_none_0_comps +=len(ids)*size
 
