@@ -250,7 +250,7 @@ def plot_num_of_comps(pathObj):
 
 
         non_0_nums_list = cnum_non_0_nums[cnum]
-        non_0_nums_stats.append([np.max(non_0_nums_list),np.mean(non_0_nums_list),np.median(non_0_nums_list),np.min(non_0_nums_list)])
+        non_0_nums_stats.append([np.max(non_0_nums_list)+1,np.mean(non_0_nums_list)+1,np.median(non_0_nums_list)+1,np.min(non_0_nums_list)+1])
 
 
     ### maximum size of comps
@@ -317,7 +317,7 @@ def plot_num_of_comps(pathObj):
     maxes,means,medians,mins = zip(*_0_nums_stats)
     fig_data = {}
     fig_data['x'] = cnum_xs
-    fig_data['ys'] = [np.array(maxes)+1,np.array(means)+1,np.array(medians)+1,np.array(mins)+1]
+    fig_data['ys'] = [maxes,means,medians,mins]
     fig_data['title'] = 'number of 0 sub-cascades distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of 0 sub-cascades'
