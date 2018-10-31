@@ -143,7 +143,7 @@ def plot_radical_dis(pathObj):
     xs = []
     ys = []
 
-    for num in sorted([num for num in num_dis.keys()]):
+    for num in sorted([int(num) for num in num_dis.keys()]):
         xs.append(num)
         ys.append(num_dis[num])
 
