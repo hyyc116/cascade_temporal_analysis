@@ -244,6 +244,10 @@ def plot_num_of_comps(pathObj):
     _0_nums_stats = []
     non_0_nums_stats = []
     _0_percent_stats = []
+
+    ### 对不同的slice进行可视化
+    NS=[10,20,50,100,200,500]
+    slice_datas = {}
     for cnum in sorted(cnum_nums.keys()):
 
         cnum_xs.append(cnum)
@@ -264,6 +268,80 @@ def plot_num_of_comps(pathObj):
         non_0_nums_list = cnum_non_0_nums[cnum]
         non_0_nums_stats.append([np.max(non_0_nums_list),np.mean(non_0_nums_list),np.median(non_0_nums_list),np.min(non_0_nums_list)])
 
+
+        if cnum in NS:
+        	slice_datas[cnum] = [maxsize_list,nums_list,_0_nums_list,non_0_nums_list]
+
+
+    ## slice的distribution
+    slice_size_data = {}
+    for size in sorted(slice_data.keys()):
+
+    	data = slice_data[size]
+
+    	xs,ys = hist_2_bar(data[0])
+
+    	fig_data = {}
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
+    	fig_data['title'] = 'Maximum Size Distribution\n when N='+str(size)
+    	fig_data['xlabel'] = 'Maximum size of sub-cascade'
+    	fig_data['ylabel'] = 'number of papers'
+
+    	slice_size_data[size].append(fig_data)
+
+    	xs,ys = hist_2_bar(data[1])
+
+    	fig_data = {}
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
+    	fig_data['title'] = 'Number of sub-cascade Distribution\n when N='+str(size)
+    	fig_data['xlabel'] = 'Number of sub-cascade'
+    	fig_data['ylabel'] = 'number of papers'
+
+    	slice_size_data[size].append(fig_data)
+
+
+    	xs,ys = hist_2_bar(data[2])
+
+    	fig_data = {}
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
+    	fig_data['title'] = 'Number of Sub-cascade Distribution (size=1)\n when N='+str(size)
+    	fig_data['xlabel'] = 'Number of sub-cascade'
+    	fig_data['ylabel'] = 'number of papers'
+
+    	slice_size_data[size].append(fig_data)
+
+    	xs,ys = hist_2_bar(data[3])
+
+    	fig_data = {}
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
+    	fig_data['title'] = 'Number of Sub-cascade Distribution (size>1)\n when N='+str(size)
+    	fig_data['xlabel'] = 'Number of sub-cascade'
+    	fig_data['ylabel'] = 'number of papers'
+
+    	slice_size_data[size].append(fig_data)
+
+    open(pathObj._fd_slice_distribution_path,'w').write(json.dumps(slice_size_data))
+    logging.info('data of slice distribution saved to {:}.'.format(pathObj._fd_slice_distribution_path))
+
+    ### 根据数据进行画图
+    fig,axes = plt.subplots(len(NS),4,figsize=(28,len(NS)*5))
+
+    for i,size in enumerate(NS):
+
+    	for j,fig_data in enumerate(slice_size_data[size]):
+
+    		ax = axes[i,j]
+
+    		plot_bar_from_data(fig_data,ax)
+
+    plt.tight_layout()
+
+    plt.savefig(pathObj._f_slice_distribution_path,dpi=300)
+    logging.info('data of slice distribution saved to {:}.'.format(pathObj._f_slice_distribution_path))
 
     ### maximum size of comps
     maxes,means,medians,mins = zip(*maxsize_stats)
@@ -286,7 +364,7 @@ def plot_num_of_comps(pathObj):
     logging.info('figure of maximum size saved to {:}.'.format(pathObj._f_maxsize_of_comps_path))
 
     # num of comps
-    # datas = []
+    datas = []
     fig,axes = plt.subplots(3,1,figsize=(7,15))
 
     ax0 = axes[0]
@@ -303,7 +381,7 @@ def plot_num_of_comps(pathObj):
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
-    # datas.append(fig_data)
+    datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax0)
 
     ax1 = axes[1]
@@ -320,7 +398,7 @@ def plot_num_of_comps(pathObj):
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
-    # datas.append(fig_data)
+    datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax1)
 
 
@@ -338,10 +416,10 @@ def plot_num_of_comps(pathObj):
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
-    # datas.append(fig_data)
+    datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax2)
 
-    open(pathObj._fd_num_of_comps_path,'w').write(json.dumps(fig_data))
+    open(pathObj._fd_num_of_comps_path,'w').write(json.dumps(datas))
     logging.info('data of number of sub-cascades saved to {:}.'.format(pathObj._fd_num_of_comps_path))
     
     plt.tight_layout()
@@ -372,22 +450,25 @@ def plot_num_of_comps(pathObj):
     ### 不同sub-cascade的size的分布
 
     last_num = 0
-
+    last_total = 0
     cnum_alis = {}
     new_cnum_dis = defaultdict(list)
     for cnum in sorted(cnum_dis.keys()):
 
         num_of_papers = cnum_dis[cnum]
 
-        if num_of_papers < 10:
+        if num_of_papers < 10 and last_total <50:
 
             cnum_alis[cnum] = last_num
+
+            last_total += num_of_papers
 
             new_cnum_dis[last_num].append(num_of_papers)
 
         else:
             cnum_alis[cnum] = cnum
             last_num  = cnum
+            last_total = num_of_papers
 
             new_cnum_dis[cnum].append(num_of_papers)
 
@@ -471,6 +552,10 @@ def plot_num_of_comps(pathObj):
     plot_multi_lines_from_two_data(fig_data)
     plt.savefig(pathObj._f_citation_distribution_path,dpi=300)
     logging.info('figure of citation distribution saved to {:}.'.format(pathObj._f_citation_distribution_path))
+
+    
+
+
 
 
 ## 对citation count的不同的切面做分布

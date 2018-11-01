@@ -111,6 +111,10 @@ class PATHS:
         self._f_citation_distribution_path = 'subcascade/fig/citation_distribution_{:}.jpg'.format(self.name)
         self._fd_citation_distribution_path = 'subcascade/fig/data/citation_distribution_{:}.json'.format(self.name)
 
+        ## slice distribution
+        self._f_slice_distribution_path = 'subcascade/fig/slice_distribution_{:}.jpg'.format(self.name)
+        self._fd_slice_distribution_path = 'subcascade/fig/data/slice_distribution_{:}.json'.format(self.name)
+
 
 def circle(ax,x,y,radius=0.15):
 
@@ -237,6 +241,36 @@ def plot_line_from_data(fig_data,ax=None):
         ax.set_xscale(xscale)
         ax.set_yscale(yscale)
 
+def plot_bar_from_data(fig_data,ax=None):
+
+    xs = fig_data['x']
+    ys = fig_data['y']
+    title = fig_data['title']
+    xlabel = fig_data['xlabel']
+    ylabel = fig_data['ylabel']
+    xscale = fig_data.get('xscale','linear')
+    yscale = fig_data.get('yscale','linear')
+
+
+    if ax is None:
+
+        plt.bar(xs,ys,align='center')
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.xscale(xscale)
+        plt.yscale(yscale)
+        plt.title(title)
+        plt.tight_layout()
+
+    else:
+
+        ax.bar(xs,ys,align='center')
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        ax.set_title(title)
+        ax.set_xscale(xscale)
+        ax.set_yscale(yscale)
+
 
 
 def plot_multi_lines_from_data(fig_data,ax=None):
@@ -312,7 +346,9 @@ def plot_multi_lines_from_two_data(fig_data,ax=None):
         ax.legend()
 
 
-
+def hist_2_bar(data,bins=50):
+    n,bins,patches = plt.hist(data,bins=bins)
+    return bins[:-1],n
 
 
 
