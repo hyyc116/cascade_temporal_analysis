@@ -386,7 +386,7 @@ def plot_num_of_comps(pathObj):
     fig_data = {}
     fig_data['x'] = cnum_xs
     fig_data['ys'] = [size_percents[2],size_percents[3],size_percents[4],size_percents[5],size_percents[6]]
-    fig_data['title'] = 'Distribution of percentage of sub-cascade\t with N nodes'
+    fig_data['title'] = 'Distribution of percentage of sub-cascade\n with N nodes'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'percentage of papers'
     fig_data['markers'] = ['-o','->','-s','-^','-*']
