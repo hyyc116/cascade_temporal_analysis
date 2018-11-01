@@ -247,7 +247,7 @@ def plot_num_of_comps(pathObj):
 
     ### 对不同的slice进行可视化
     NS=[10,20,50,100,200,500]
-    slice_datas = {}
+    slice_datas = defaultdict(list)
     for cnum in sorted(cnum_nums.keys()):
 
         cnum_xs.append(cnum)
