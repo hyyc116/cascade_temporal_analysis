@@ -374,6 +374,7 @@ def plot_num_of_comps(pathObj):
     last_num = 0
 
     cnum_alis = {}
+    new_cnum_dis = defaultdict(list)
     for cnum in sorted(cnum_dis.keys()):
 
         num_of_papers = cnum_dis[cnum]
@@ -382,11 +383,13 @@ def plot_num_of_comps(pathObj):
 
             cnum_alis[cnum] = last_num
 
+            new_cnum_dis[last_num].append(num_of_papers)
+
         else:
             cnum_alis[cnum] = cnum
             last_num  = cnum
 
-
+            new_cnum_dis[cnum].append(num_of_papers)
 
 
     size_cnum_num = defaultdict(lambda:defaultdict(list))
@@ -433,6 +436,41 @@ def plot_num_of_comps(pathObj):
     plt.savefig(pathObj._f_size_percent_path,dpi=300)
     logging.info('figure of size percentage saved to {:}.'.format(pathObj._f_size_percent_path))
 
+    xs = []
+    ys = []
+    for cnum in sorted(cnum_dis):
+
+    	num = cnum_dis[cnum]
+
+    	xs.append(cnum)
+    	ys.append(num)
+
+    xs2 = []
+    ys2 = []
+    for cnum in sorted(new_cnum_dis):
+
+    	num = new_cnum_dis[cnum]
+
+    	xs2.append(cnum)
+    	ys2.append(num)
+
+    fig_data = {}
+    fig_data['xs'] = [xs,xs2]
+    fig_data['ys'] = [ys,ys2]
+    fig_data['title'] = 'citation distribution'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'number of papers'
+    fig_data['marker'] = ['-o','-^']
+    fig_data['label'] =['normal','normed']
+    fig_data['xscale'] = 'log'
+    fig_data['yscale'] = 'log'
+
+    open(pathObj._f_citation_distribution_path,'w').write(json.dumps(fig_data))
+    logging.info('data of citation distribution saved to {:}.'.format(pathObj._f_citation_distribution_path))
+    plt.figure(figsize=(7,5))
+    plot_multi_lines_from_two_data(fig_data)
+    plt.savefig(pathObj._fd_citation_distribution_path,dpi=300)
+    logging.info('figure of citation distribution saved to {:}.'.format(pathObj._fd_citation_distribution_path))
 
 
 ## 对citation count的不同的切面做分布

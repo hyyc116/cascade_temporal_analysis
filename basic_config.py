@@ -107,6 +107,9 @@ class PATHS:
         self._f_0_percent_path = 'subcascade/fig/direct_connected_percentage_{:}.jpg'.format(self.name)
         self._fd_0_percent_path = 'subcascade/fig/data/direct_connected_percentage_{:}.txt'.format(self.name)
 
+        ## subcascade citation distritbuion
+        self._f_citation_distribution_path = 'subcascade/fig/citation_distribution_{:}.jpg'.format(self.name)
+        self._fd_citation_distribution_path = 'subcascade/fig/data/citation_distribution_{:}.json'.format(self.name)
 
 
 def circle(ax,x,y,radius=0.15):
@@ -264,6 +267,42 @@ def plot_multi_lines_from_data(fig_data,ax=None):
     else:
         for i,ys in enumerate(yses):
             ax.plot(xs,ys,markers[i],label=labels[i])
+
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel(ylabel)
+        ax.set_title(title)
+        ax.set_xscale(xscale)
+        ax.set_yscale(yscale)
+        ax.legend()
+
+
+def plot_multi_lines_from_two_data(fig_data,ax=None):
+
+    xses = fig_data['xs']
+    yses = fig_data['ys']
+    title = fig_data['title']
+    xlabel = fig_data['xlabel']
+    ylabel = fig_data['ylabel']
+    markers = fig_data['markers']
+    labels = fig_data['labels']
+    xscale = fig_data.get('xscale','linear')
+    yscale = fig_data.get('yscale','linear')
+
+    if ax is None:
+        for i,ys in enumerate(yses):
+            plt.plot(xses[i],ys,markers[i],label=labels[i])
+        
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.xscale(xscale)
+        plt.yscale(yscale)
+        plt.title(title)
+        plt.legend()
+        plt.tight_layout()
+
+    else:
+        for i,ys in enumerate(yses):
+            ax.plot(xses[i],ys,markers[i],label=labels[i])
 
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)
