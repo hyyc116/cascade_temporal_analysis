@@ -389,8 +389,8 @@ def plot_num_of_comps(pathObj):
 
 
 
-    size_cnum_num = defaultdict(lambda:defaultfict(list))
-    size_cnum_total = defaultdict(lambda:defaultfict(list))
+    size_cnum_num = defaultdict(lambda:defaultdict(list))
+    size_cnum_total = defaultdict(lambda:defaultdict(list))
     for cnum in sorted(cnum_size_appears.keys()):
         
         num_of_papers = cnum_dis[cnum]
