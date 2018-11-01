@@ -274,7 +274,7 @@ def plot_num_of_comps(pathObj):
 
 
     ## slice的distribution
-    slice_size_data = {}
+    slice_size_data = defaultdict(list)
     for size in sorted(slice_datas.keys()):
 
     	data = slice_datas[size]
