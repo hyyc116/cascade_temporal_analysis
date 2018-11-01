@@ -465,12 +465,12 @@ def plot_num_of_comps(pathObj):
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
-    open(pathObj._f_citation_distribution_path,'w').write(json.dumps(fig_data))
-    logging.info('data of citation distribution saved to {:}.'.format(pathObj._f_citation_distribution_path))
+    open(pathObj._fd_citation_distribution_path,'w').write(json.dumps(fig_data))
+    logging.info('data of citation distribution saved to {:}.'.format(pathObj._fd_citation_distribution_path))
     plt.figure(figsize=(7,5))
     plot_multi_lines_from_two_data(fig_data)
-    plt.savefig(pathObj._fd_citation_distribution_path,dpi=300)
-    logging.info('figure of citation distribution saved to {:}.'.format(pathObj._fd_citation_distribution_path))
+    plt.savefig(pathObj._f_citation_distribution_path,dpi=300)
+    logging.info('figure of citation distribution saved to {:}.'.format(pathObj._f_citation_distribution_path))
 
 
 ## 对citation count的不同的切面做分布
