@@ -247,7 +247,7 @@ def plot_num_of_comps(pathObj):
 
     ### 对不同的slice进行可视化
     NS=[10,20,50,100,200,500]
-    slice_datas = {}
+    slice_datass = {}
     for cnum in sorted(cnum_nums.keys()):
 
         cnum_xs.append(cnum)
@@ -275,9 +275,9 @@ def plot_num_of_comps(pathObj):
 
     ## slice的distribution
     slice_size_data = {}
-    for size in sorted(slice_data.keys()):
+    for size in sorted(slice_datas.keys()):
 
-    	data = slice_data[size]
+    	data = slice_datas[size]
 
     	xs,ys = hist_2_bar(data[0])
 
