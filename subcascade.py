@@ -404,7 +404,7 @@ def plot_num_of_comps(pathObj):
 
             size_cnum_total[size][a_cnum].append(num_of_papers)
 
-    size_percents = []
+    size_percents = defaultdict(list)
     for size in size_cnum_num.keys():
         cnum_xs = []
         for cnum in size_cnum_num[size].keys():
