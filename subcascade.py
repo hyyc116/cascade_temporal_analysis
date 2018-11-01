@@ -192,6 +192,10 @@ def plot_num_of_comps(pathObj):
     cnum_non_0_nums = defaultdict(list)
     cnum_0_percent = defaultdict(list)
 
+    ## 不同的cnum中每种size在文献中出现的0/1list
+    cnum_size_appears = defaultdict(lambda:defaultdict(int))
+    cnum_dis = defaultdict(int)
+
     progress = 0
     for pid in pid_size_id.keys():
 
@@ -204,12 +208,14 @@ def plot_num_of_comps(pathObj):
         num_of_nodes_in_none_0_comps = 0
         non_0_num_of_comps = 0
         ## 每一个size都有对应的一个list, list的长度的和就是一共多少的非0的component
-
+        cnum_dis[cnum]+=1
         max_size  = 0
 
         for size in pid_size_id[pid].keys():
 
             size = int(size)
+
+            cnum_size_appears[cnum][size]+=1
 
             ids = pid_size_id[pid][str(size)]
 
@@ -280,7 +286,7 @@ def plot_num_of_comps(pathObj):
     logging.info('figure of maximum size saved to {:}.'.format(pathObj._f_maxsize_of_comps_path))
 
     # num of comps
-    datas = []
+    # datas = []
     fig,axes = plt.subplots(3,1,figsize=(7,15))
 
     ax0 = axes[0]
@@ -297,7 +303,7 @@ def plot_num_of_comps(pathObj):
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
-    datas.append(fig_data)
+    # datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax0)
 
     ax1 = axes[1]
@@ -314,7 +320,7 @@ def plot_num_of_comps(pathObj):
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
-    datas.append(fig_data)
+    # datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax1)
 
 
@@ -332,7 +338,7 @@ def plot_num_of_comps(pathObj):
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
-    datas.append(fig_data)
+    # datas.append(fig_data)
     plot_multi_lines_from_data(fig_data,ax2)
 
     open(pathObj._fd_num_of_comps_path,'w').write(json.dumps(fig_data))
@@ -363,6 +369,45 @@ def plot_num_of_comps(pathObj):
     plt.savefig(pathObj._f_0_percent_path,dpi=300)
     logging.info('figure of percentage of directed connected nodes saved to {:}.'.format(pathObj._f_0_percent_path))
 
+    ### 不同sub-cascade的size的分布
+    size_percents = defaultdict(list)
+    cnum_xs = []
+    for cnum in sorted(cnum_size_appears.keys()):
+    	
+    	num_of_papers = cnum_dis[cnum]
+    	cnum_xs.append(cnum)
+
+    	for size in sorted(range(2,7)):
+
+    		anum = cnum_size_appears[cnum].get(size,0)
+
+    		size_percents[size].append(anum/float(num_of_papers))
+
+   	fig_data = {}
+   	fig_data['x'] = cnum_xs
+   	fig_data['ys'] = [size_percents[2],size_percents[3],size_percents[4],size_percents[5]]
+   	fig_data['title'] = 'Distribution of percentage of sub-cascade with N nodes'
+    fig_data['xlabel'] = 'number of citations'
+    fig_data['ylabel'] = 'percentage of papers has N size sub-cascade'
+    fig_data['markers'] = ['-o','->','-s','-^']
+    fig_data['labels'] =['$N=2$','$N=3$','$N=4$','$N=5$']
+    fig_data['xscale'] = 'log'
+
+    open(pathObj._fd_size_percent_path,'w').write(json.dumps(fig_data))
+    logging.info('data of size percentage saved to {:}.'.format(pathObj._fd_size_percent_path))
+    plt.figure(figsize=(7,5))
+    plot_multi_lines_from_data(fig_data)
+    plt.savefig(pathObj._f_size_percent_path,dpi=300)
+    logging.info('figure of size percentage saved to {:}.'.format(pathObj._f_size_percent_path))
+
+
+
+## 对citation count的不同的切面做分布
+def slice_distribution(pathObj,Ns):
+
+
+
+	pass
 
 if __name__ == '__main__':
     

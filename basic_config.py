@@ -93,15 +93,20 @@ class PATHS:
 
         ## number of componets
         self._f_num_of_comps_path = 'subcascade/fig/num_of_comps_{:}.jpg'.format(self.name)
-        self._fd_num_of_comps_path = 'subcascade/fig/num_of_comps_{:}.txt'.format(self.name)
+        self._fd_num_of_comps_path = 'subcascade/fig/data/num_of_comps_{:}.txt'.format(self.name)
 
-        ## number of max size
+        ## max size
         self._f_maxsize_of_comps_path = 'subcascade/fig/maxsize_of_comps_{:}.jpg'.format(self.name)
-        self._fd_maxsize_of_comps_path = 'subcascade/fig/maxsize_of_comps_{:}.txt'.format(self.name)
+        self._fd_maxsize_of_comps_path = 'subcascade/fig/data/maxsize_of_comps_{:}.txt'.format(self.name)
+
+        ## 不同size的sub-cascade的比例分布
+        self._f_size_percent_path = 'subcascade/fig/size_percent_{:}.jpg'.format(self.name)
+        self._fd_size_percent_path = 'subcascade/fig/data/size_percent_{:}.json'.format(self.name)
 
         ## 直接相连的结点所占的比例
         self._f_0_percent_path = 'subcascade/fig/direct_connected_percentage_{:}.jpg'.format(self.name)
-        self._fd_0_percent_path = 'subcascade/fig/direct_connected_percentage_{:}.txt'.format(self.name)
+        self._fd_0_percent_path = 'subcascade/fig/data/direct_connected_percentage_{:}.txt'.format(self.name)
+
 
 
 def circle(ax,x,y,radius=0.15):
