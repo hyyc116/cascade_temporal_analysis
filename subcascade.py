@@ -246,7 +246,7 @@ def plot_num_of_comps(pathObj):
     _0_percent_stats = []
     for cnum in sorted(cnum_nums.keys()):
 
-    	cnum_xs.append(cnum)
+        cnum_xs.append(cnum)
 
         maxsize_list = cnum_maxsize[cnum]
         maxsize_stats.append([np.max(maxsize_list),np.mean(maxsize_list),np.median(maxsize_list),np.min(maxsize_list)])
@@ -373,24 +373,24 @@ def plot_num_of_comps(pathObj):
     size_percents = defaultdict(list)
     cnum_xs = []
     for cnum in sorted(cnum_size_appears.keys()):
-    	
-    	num_of_papers = cnum_dis[cnum]
-    	cnum_xs.append(cnum)
+        
+        num_of_papers = cnum_dis[cnum]
+        cnum_xs.append(cnum)
 
-    	for size in sorted(range(2,7)):
+        for size in sorted(range(2,7)):
 
-    		anum = cnum_size_appears[cnum].get(size,0)
+            anum = cnum_size_appears[cnum].get(size,0)
 
-    		size_percents[size].append(anum/float(num_of_papers))
+            size_percents[size].append(anum/float(num_of_papers))
 
-   	fig_data = {}
-   	fig_data['x'] = cnum_xs
-   	fig_data['ys'] = [size_percents[2],size_percents[3],size_percents[4],size_percents[5]]
-   	fig_data['title'] = 'Distribution of percentage of sub-cascade with N nodes'
+    fig_data = {}
+    fig_data['x'] = cnum_xs
+    fig_data['ys'] = [size_percents[2],size_percents[3],size_percents[4],size_percents[5],size_percents[6]]
+    fig_data['title'] = 'Distribution of percentage of sub-cascade\t with N nodes'
     fig_data['xlabel'] = 'number of citations'
-    fig_data['ylabel'] = 'percentage of papers has N size sub-cascade'
-    fig_data['markers'] = ['-o','->','-s','-^']
-    fig_data['labels'] =['$N=2$','$N=3$','$N=4$','$N=5$']
+    fig_data['ylabel'] = 'percentage of papers'
+    fig_data['markers'] = ['-o','->','-s','-^','-*']
+    fig_data['labels'] =['$N=2$','$N=3$','$N=4$','$N=5$','$N=6$']
     fig_data['xscale'] = 'log'
 
     open(pathObj._fd_size_percent_path,'w').write(json.dumps(fig_data))
@@ -407,7 +407,7 @@ def slice_distribution(pathObj,Ns):
 
 
 
-	pass
+    pass
 
 if __name__ == '__main__':
     
@@ -439,7 +439,6 @@ if __name__ == '__main__':
         if op=='find_subcas':
 
             find_sub_cascades(pathObj)
-
 
         elif op=='radical_num_dis':
 
