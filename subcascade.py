@@ -370,18 +370,51 @@ def plot_num_of_comps(pathObj):
     logging.info('figure of percentage of directed connected nodes saved to {:}.'.format(pathObj._f_0_percent_path))
 
     ### 不同sub-cascade的size的分布
-    size_percents = defaultdict(list)
-    cnum_xs = []
+
+    last_num = 0
+
+    cnum_alis = {}
+    for cnum in sorted(cnum_dis.keys()):
+
+    	num_of_papers = cnum_dis[cnum]
+
+    	if num_of_papers < 10:
+
+    		cnum_alis[cnum] = last_num
+
+    	else:
+    		cnum_alis[cnum] = cnum
+    		last_num  = cnum
+
+
+
+
+    size_cnum_num = defaultdict(list)
+    size_cnum_total = defaultdict(list)
     for cnum in sorted(cnum_size_appears.keys()):
         
         num_of_papers = cnum_dis[cnum]
-        cnum_xs.append(cnum)
+        a_cnum = cnum_alis[cnum]
 
         for size in sorted(range(2,7)):
 
             anum = cnum_size_appears[cnum].get(size,0)
 
-            size_percents[size].append(anum/float(num_of_papers))
+            size_cnum_num[size][a_cnum].append(anum)
+
+            size_cnum_total[size][a_cnum].append(num_of_papers)
+
+    size_percents = []
+    for size in size_cnum_num.keys():
+    	cnum_xs = []
+    	for cnum in size_cnum_num[size].keys():
+
+    		cnum_xs.append(cnum)
+    		
+    		num = np.sum(size_cnum_num[size][cnum])
+    		total = np.sum(size_cnum_total[size][cnum])
+
+    		size_percents[size].append(num/float(total))
 
     fig_data = {}
     fig_data['x'] = cnum_xs
