@@ -376,21 +376,21 @@ def plot_num_of_comps(pathObj):
     cnum_alis = {}
     for cnum in sorted(cnum_dis.keys()):
 
-    	num_of_papers = cnum_dis[cnum]
+        num_of_papers = cnum_dis[cnum]
 
-    	if num_of_papers < 10:
+        if num_of_papers < 10:
 
-    		cnum_alis[cnum] = last_num
+            cnum_alis[cnum] = last_num
 
-    	else:
-    		cnum_alis[cnum] = cnum
-    		last_num  = cnum
-
-
+        else:
+            cnum_alis[cnum] = cnum
+            last_num  = cnum
 
 
-    size_cnum_num = defaultdict(list)
-    size_cnum_total = defaultdict(list)
+
+
+    size_cnum_num = defaultdict(lambda:defaultfict(list))
+    size_cnum_total = defaultdict(lambda:defaultfict(list))
     for cnum in sorted(cnum_size_appears.keys()):
         
         num_of_papers = cnum_dis[cnum]
@@ -406,15 +406,15 @@ def plot_num_of_comps(pathObj):
 
     size_percents = []
     for size in size_cnum_num.keys():
-    	cnum_xs = []
-    	for cnum in size_cnum_num[size].keys():
+        cnum_xs = []
+        for cnum in size_cnum_num[size].keys():
 
-    		cnum_xs.append(cnum)
-    		
-    		num = np.sum(size_cnum_num[size][cnum])
-    		total = np.sum(size_cnum_total[size][cnum])
+            cnum_xs.append(cnum)
 
-    		size_percents[size].append(num/float(total))
+            num = np.sum(size_cnum_num[size][cnum])
+            total = np.sum(size_cnum_total[size][cnum])
+
+            size_percents[size].append(num/float(total))
 
     fig_data = {}
     fig_data['x'] = cnum_xs
