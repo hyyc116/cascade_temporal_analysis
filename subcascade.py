@@ -452,7 +452,7 @@ def plot_num_of_comps(pathObj):
     	num = new_cnum_dis[cnum]
 
     	xs2.append(cnum)
-    	ys2.append(num)
+    	ys2.append(np.sum(num))
 
     fig_data = {}
     fig_data['xs'] = [xs,xs2]
