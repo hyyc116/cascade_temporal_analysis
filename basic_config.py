@@ -348,7 +348,7 @@ def plot_multi_lines_from_two_data(fig_data,ax=None):
 
 def hist_2_bar(data,bins=50):
     n,bins,patches = plt.hist(data,bins=bins)
-    return bins[:-1],n
+    return [x for x in bins[:-1]],[x for x in n]
 
 
 

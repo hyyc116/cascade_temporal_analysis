@@ -282,8 +282,8 @@ def plot_num_of_comps(pathObj):
     	xs,ys = hist_2_bar(data[0])
 
     	fig_data = {}
-    	fig_data['x'] = list(xs)
-    	fig_data['y'] = list(ys)
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
     	fig_data['title'] = 'Maximum Size Distribution\n when N='+str(size)
     	fig_data['xlabel'] = 'Maximum size of sub-cascade'
     	fig_data['ylabel'] = 'number of papers'
@@ -293,8 +293,8 @@ def plot_num_of_comps(pathObj):
     	xs,ys = hist_2_bar(data[1])
 
     	fig_data = {}
-    	fig_data['x'] = list(xs)
-    	fig_data['y'] = list(ys)
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
     	fig_data['title'] = 'Number of sub-cascade Distribution\n when N='+str(size)
     	fig_data['xlabel'] = 'Number of sub-cascade'
     	fig_data['ylabel'] = 'number of papers'
@@ -305,8 +305,8 @@ def plot_num_of_comps(pathObj):
     	xs,ys = hist_2_bar(data[2])
 
     	fig_data = {}
-    	fig_data['x'] = list(xs)
-    	fig_data['y'] = list(ys)
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
     	fig_data['title'] = 'Number of Sub-cascade Distribution (size=1)\n when N='+str(size)
     	fig_data['xlabel'] = 'Number of sub-cascade'
     	fig_data['ylabel'] = 'number of papers'
@@ -316,8 +316,8 @@ def plot_num_of_comps(pathObj):
     	xs,ys = hist_2_bar(data[3])
 
     	fig_data = {}
-    	fig_data['x'] = list(xs)
-    	fig_data['y'] = list(ys)
+    	fig_data['x'] = xs
+    	fig_data['y'] = ys
     	fig_data['title'] = 'Number of Sub-cascade Distribution (size>1)\n when N='+str(size)
     	fig_data['xlabel'] = 'Number of sub-cascade'
     	fig_data['ylabel'] = 'number of papers'
