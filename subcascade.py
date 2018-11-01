@@ -460,8 +460,8 @@ def plot_num_of_comps(pathObj):
     fig_data['title'] = 'citation distribution'
     fig_data['xlabel'] = 'number of citations'
     fig_data['ylabel'] = 'number of papers'
-    fig_data['marker'] = ['-o','-^']
-    fig_data['label'] =['normal','normed']
+    fig_data['markers'] = ['-o','-^']
+    fig_data['labels'] =['normal','normed']
     fig_data['xscale'] = 'log'
     fig_data['yscale'] = 'log'
 
