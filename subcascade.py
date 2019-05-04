@@ -5,7 +5,7 @@
 from basic_config import *
 
 def iso_cc(size_subcas_id,_id_subcascade,graph):
-    
+
     num_of_subcases = len(_id_subcascade.keys())
 
     size = len(graph.nodes())
@@ -21,7 +21,7 @@ def iso_cc(size_subcas_id,_id_subcascade,graph):
         _id = num_of_subcases
         size_subcas_id[size][graph] = _id
         _id_subcascade[_id] = list(graph.edges())
-    
+
     return size_subcas_id,_id_subcascade,_id
 
 ## 将与根节点的链接的边去掉,相当于出度小于2的点都去掉了
@@ -83,10 +83,10 @@ def find_sub_cascades(pathObj):
         for edge in edges:
             source = edge[0]
             target = edge[1]
-            
+
             if target!=pid:
                 remaining_edges.append(edge)
-        
+
         ## 去掉与owner直接相连的边之后的边的数量
         remaining_edges_size = len(remaining_edges)
         # remaining_statistics[citation_count].append(remaining_edges_size/size_of_cascade)
@@ -109,7 +109,7 @@ def find_sub_cascades(pathObj):
             _id = -999
             if node_size<6:
                 size_subcas_id,_id_subcascade,_id = iso_cc(size_subcas_id,_id_subcascade,subgraph)
-            
+
             ## 这个里面会将直接相连的节点省略
             pid_size_id[pid][node_size].append(_id)
 
@@ -421,7 +421,7 @@ def plot_num_of_comps(pathObj):
 
     open(pathObj._fd_num_of_comps_path,'w').write(json.dumps(datas))
     logging.info('data of number of sub-cascades saved to {:}.'.format(pathObj._fd_num_of_comps_path))
-    
+
     plt.tight_layout()
     plt.savefig(pathObj._f_num_of_comps_path,dpi=300)
 
@@ -476,7 +476,7 @@ def plot_num_of_comps(pathObj):
     size_cnum_num = defaultdict(lambda:defaultdict(list))
     size_cnum_total = defaultdict(lambda:defaultdict(list))
     for cnum in sorted(cnum_size_appears.keys()):
-        
+
         num_of_papers = cnum_dis[cnum]
         a_cnum = cnum_alis[cnum]
 
@@ -553,69 +553,41 @@ def plot_num_of_comps(pathObj):
     plt.savefig(pathObj._f_citation_distribution_path,dpi=300)
     logging.info('figure of citation distribution saved to {:}.'.format(pathObj._f_citation_distribution_path))
 
-    
-
-
-
 
 ## 对citation count的不同的切面做分布
 def slice_distribution(pathObj,Ns):
 
 
-
     pass
 
+
+
 if __name__ == '__main__':
-    
+
     data = int(sys.argv[1])
     op = sys.argv[2]
 
-    if int(sys.argv[1])==0:
+    if data==0:
 
 
         pathObj = PATHS('physics')
-
-        if op=='find_subcas':
-
-            find_sub_cascades(pathObj)
-
-        elif op=='radical_num_dis':
-
-            plot_radical_dis(pathObj)
-
-        elif op=='num_of_comps':
-
-            plot_num_of_comps(pathObj)
 
 
     else:
 
         pathObj = PATHS('computer science')
 
-        if op=='find_subcas':
 
-            find_sub_cascades(pathObj)
+    if op=='find_subcas':
 
-        elif op=='radical_num_dis':
+        find_sub_cascades(pathObj)
 
-            plot_radical_dis(pathObj)
+    elif op=='radical_num_dis':
 
-        elif op=='num_of_comps':
+        plot_radical_dis(pathObj)
 
-            plot_num_of_comps(pathObj)
+    elif op=='num_of_comps':
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        plot_num_of_comps(pathObj)
 
 

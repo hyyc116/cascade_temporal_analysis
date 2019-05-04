@@ -33,23 +33,25 @@ from matplotlib.colors import LinearSegmentedColormap
 from networkx.algorithms.core import core_number
 from networkx.algorithms.core import k_core
 import psycopg2
-
+from cycler import cycler
 # from gini import gini
 
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',level=logging.INFO)
 
 mpl.rcParams['agg.path.chunksize'] = 10000
 
+# color_sequence = ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c',
+#                   '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5',
+#                   '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f',
+#                   '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+# mpl.rcParams['axes.prop_cycle'] = cycler('color', color_sequence)
 
-color_sequence = ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c',
-                  '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5',
-                  '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f',
-                  '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+color = plt.cm.viridis(np.linspace(0.01,0.99,6)) # This returns RGBA; convert:
+hexcolor = map(lambda rgb:'#%02x%02x%02x' % (rgb[0]*255,rgb[1]*255,rgb[2]*255),
+               tuple(color[:,0:-1]))
 
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',level=logging.DEBUG)
-PREFIX='all'
-PROGRAM_ID='cascade'
-FIGDIR='pdf'
-DATADIR='data'
+mpl.rcParams['axes.prop_cycle'] = cycler('color', hexcolor)
+
 
 params = {'legend.fontsize': 8,
          'axes.labelsize': 15,
@@ -59,61 +61,7 @@ params = {'legend.fontsize': 8,
 pylab.rcParams.update(params)
 
 
-## 定义需要保存的路径
-
-class PATHS:
-
-    def __init__(self,field):
-
-        self.field = field
-
-        self.name = '_'.join(field.split())
-
-        self.selected_IDs_path = 'data/selected_IDs_from_{:}.txt'.format(self.name)
-
-        self.com_IDs_path = 'data/com_IDs_{:}.txt'.format(self.name)
-
-        self.pid_cits_path = 'data/pid_cits_{:}.txt'.format(self.name)
-
-        self.cascade_path = 'data/cascade_{:}.txt'.format(self.name)
-
-        self.paper_year_path = 'data/pubyear_{:}.json'.format(self.name)
-
-        self.all_subcasdes_path = 'subcascade/data/all_subcascades_{:}.json'.format(self.name)
-
-        self.paper_subcascades_path = 'subcascade/data/paper_subcascades_{:}.json'.format(self.name)
-
-        self.radical_num_dis_path = 'subcascade/data/radical_num_dis_{:}.json'.format(self.name)
-
-        self.paper_cit_num = 'data/paper_cit_num_{:}.json'.format(self.name)
-
-        ###  figure path and fig data path
-        self._f_radical_num_dis_path = 'subcascade/fig/radical_num_dis_{:}.jpg'.format(self.name)
-        self._fd_radical_num_dis_path = 'subcascade/fig/data/radical_num_dis_{:}.json'.format(self.name)
-
-        ## number of componets
-        self._f_num_of_comps_path = 'subcascade/fig/num_of_comps_{:}.jpg'.format(self.name)
-        self._fd_num_of_comps_path = 'subcascade/fig/data/num_of_comps_{:}.txt'.format(self.name)
-
-        ## max size
-        self._f_maxsize_of_comps_path = 'subcascade/fig/maxsize_of_comps_{:}.jpg'.format(self.name)
-        self._fd_maxsize_of_comps_path = 'subcascade/fig/data/maxsize_of_comps_{:}.txt'.format(self.name)
-
-        ## 不同size的sub-cascade的比例分布
-        self._f_size_percent_path = 'subcascade/fig/size_percent_{:}.jpg'.format(self.name)
-        self._fd_size_percent_path = 'subcascade/fig/data/size_percent_{:}.json'.format(self.name)
-
-        ## 直接相连的结点所占的比例
-        self._f_0_percent_path = 'subcascade/fig/direct_connected_percentage_{:}.jpg'.format(self.name)
-        self._fd_0_percent_path = 'subcascade/fig/data/direct_connected_percentage_{:}.txt'.format(self.name)
-
-        ## subcascade citation distritbuion
-        self._f_citation_distribution_path = 'subcascade/fig/citation_distribution_{:}.jpg'.format(self.name)
-        self._fd_citation_distribution_path = 'subcascade/fig/data/citation_distribution_{:}.json'.format(self.name)
-
-        ## slice distribution
-        self._f_slice_distribution_path = 'subcascade/fig/slice_distribution_{:}.jpg'.format(self.name)
-        self._fd_slice_distribution_path = 'subcascade/fig/data/slice_distribution_{:}.json'.format(self.name)
+from paths import *
 
 
 def circle(ax,x,y,radius=0.15):
@@ -153,11 +101,11 @@ def autolabel(rects,ax,total_count=None,step=1,):
 class dbop:
 
     def __init__(self,insert_index=0):
-        
+
         self._insert_index=insert_index
         self._insert_values=[]
         logging.debug("connect database with normal cursor.")
-        self._db = psycopg2.connect(database='wos_core_3',user="huanyong",password = "pendulum_wist_estival")    
+        self._db = psycopg2.connect(database='wos_core_3',user="buyi",password = "tattler_oar_banns")
         self._cursor = self._db.cursor()
 
 
@@ -175,7 +123,7 @@ class dbop:
         self._cursor.executemany(sql,values)
         logging.debug("insert data to database with sql {:}".format(sql))
         self._db.commit()
-        
+
 
     def batch_insert(self,sql,row,step,is_auto=True,end=False):
         if end:
@@ -289,7 +237,7 @@ def plot_multi_lines_from_data(fig_data,ax=None):
     if ax is None:
         for i,ys in enumerate(yses):
             plt.plot(xs,ys,markers[i],label=labels[i])
-        
+
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.xscale(xscale)
@@ -325,7 +273,7 @@ def plot_multi_lines_from_two_data(fig_data,ax=None):
     if ax is None:
         for i,ys in enumerate(yses):
             plt.plot(xses[i],ys,markers[i],label=labels[i])
-        
+
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         plt.xscale(xscale)
@@ -352,11 +300,18 @@ def hist_2_bar(data,bins=50):
 
 
 
+if __name__ == '__main__':
+    # test color theme
 
+    xs = range(5)
+    ys = np.random.random((5, 5))
 
+    plt.figure()
+    plt.plot(xs,ys)
 
+    plt.tight_layout()
 
-
+    plt.savefig('fig/test_color.jpg')
 
 
 
