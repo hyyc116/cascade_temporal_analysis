@@ -57,7 +57,7 @@ def build_cascade_from_pid_cits(pathObj):
     pid_dis = defaultdict(int)
 
     length = len(pids)
-    logging.info('{:} citation relation loaded, start to build cascade ...'.format(length))
+    logging.info('{:} papers has citations, start to build cascade ...'.format(length))
     progress = 0
     saved_path = pathObj.cascade_path
     os.remove(saved_path) if os.path.exists(saved_path) else None
@@ -71,7 +71,7 @@ def build_cascade_from_pid_cits(pathObj):
         if progress%100000==0:
             total_num += len(citation_cascade.keys())
             outfile.write(json.dumps(citation_cascade)+'\n')
-            logging.info('Building progress {:}/{:}, {:} citation cascades saved to {:}...'.format(progress,len(selected_IDs),total_num,saved_path))
+            logging.info('Building progress {:}/{:}, {:} citation cascades saved to {:}...'.format(progress,length,total_num,saved_path))
             citation_cascade = defaultdict(list)
 
         citing_list = set(pid_citations.get(pid,[]))
