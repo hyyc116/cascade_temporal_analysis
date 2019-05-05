@@ -54,7 +54,7 @@ def build_cascade_from_pid_cits(pathObj):
 
     pids = pid_citations.keys()
 
-    pid_dis = {}
+    pid_dis = defaultdict(int)
 
     length = len(pids)
     logging.info('{:} citation relation loaded, start to build cascade ...'.format(length))
@@ -100,6 +100,8 @@ def build_cascade_from_pid_cits(pathObj):
     outfile.write(json.dumps(citation_cascade)+"\n")
     logging.info("{:} citation cascade has been build, and saved to {:}".format(total_num,saved_path))
 
+    open('data/pid_dis.json','w').write(json.dumps(pid_dis))
+
 
 def fecth_subjects():
     # com_IDs = set([line.strip() for line in open(com_IDs_path)])
@@ -132,7 +134,7 @@ if __name__ == '__main__':
     paths = PATHS(field)
 
     ## task 4
-    fetch_citing_relations(paths)
+    # fetch_citing_relations(paths)
 
     ## task 5
     build_cascade_from_pid_cits(paths)
