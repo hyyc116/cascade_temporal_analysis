@@ -18,6 +18,8 @@ class PATHS:
 
         self.cascade_path = 'data/cascade_{:}.txt'.format(self.name)
 
+        self.cascade_bak_path = 'data/cascade_{:}_bak.txt'.format(self.name)
+
         self.paper_year_path = 'data/pubyear_{:}.json'.format(self.name)
 
         self.all_subcasdes_path = 'subcascade/data/all_subcascades_{:}.json'.format(self.name)

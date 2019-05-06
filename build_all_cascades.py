@@ -107,7 +107,6 @@ def fecth_subjects():
     # com_IDs = set([line.strip() for line in open(com_IDs_path)])
     # logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
 
-    subjects = set([line.strip().lower() for line in open('subjects.txt') if not line.startswith('=====') and line.strip()!=''])
 
     logging.info('%d unique subjects loaded ...' % len(subjects))
 
@@ -130,23 +129,55 @@ def fecth_subjects():
     logging.info('{:}  papers have subject'.format(len(_ids_subjects.keys())))
     open('data/_ids_subjects.json','w').write(json.dumps(_ids_subjects))
 
-    for pid in _ids_subjects:
+    # for pid in _ids_subjects:
 
-        in_subjects = False
-        for subject in _ids_subjects[pid]:
+    #     in_subjects = False
+    #     for subject in _ids_subjects[pid]:
 
-            if subject in subjects:
-                in_subjects=True
+    #         if subject in subjects:
+    #             in_subjects=True
 
-        if in_subjects:
-            num_with_subject+=1
+    #     if in_subjects:
+    #         num_with_subject+=1
 
-    print '{:} papers with subject in subjects.'.format(num_with_subject)
+    # print '{:} papers with subject in subjects.'.format(num_with_subject)
 
     # return com_ids_subjects
 
+## 根据subject的论文保留cascade
+def split_cascades_within_subjects(pathObj):
+    # subjects = set([line.strip().lower() for line in open('subjects.txt') if not line.startswith('=====') and line.strip()!=''])
+    _ids_subjects = json.loads(open('data/_ids_subjects.json').read())
 
-# def split_cascades_with
+    citation_cascades = {}
+    outfile = open(pathObj.cascade_bak_path,'w+')
+    progress=0
+    total = 0
+    for line in open(pathObj.cascade_path):
+
+        line = line.strip()
+
+        progress+=1
+
+        if progress%10==0:
+            total+= len(citation_cascades.keys())
+            logging.info('{:} lines procesed, {:} cascades reserved.'.format(progress,total))
+            outfile.write(json.dumps(citation_cascades)+'\n')
+            citation_cascades = {}
+
+        cascades = json.loads(line)
+
+        for pid in cascades.keys():
+
+            if len(_ids_subjects.get(pid,[]))>0:
+
+                citation_cascades[pid] = cascades[pid]
+
+
+    total+= len(citation_cascades.keys())
+    logging.info('{:} lines procesed, {:} cascades reserved.'.format(progress,total))
+    outfile.write(json.dumps(citation_cascades)+'\n')
+
 
 
 def plot_citation_dis():
@@ -194,7 +225,9 @@ if __name__ == '__main__':
     # task 6
     # fecth_subjects()
 
-    plot_citation_dis()
+    # plot_citation_dis()
+
+    split_cascades_within_subjects(paths)
 
     # task 7
     # fecth_subjects_of_com_ids(paths)
