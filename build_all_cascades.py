@@ -137,10 +137,10 @@ if __name__ == '__main__':
     # fetch_citing_relations(paths)
 
     ## task 5
-    build_cascade_from_pid_cits(paths)
+    # build_cascade_from_pid_cits(paths)
 
     # task 6
-    fecth_subjects(paths)
+    fecth_subjects()
 
     # task 7
     # fecth_subjects_of_com_ids(paths)
