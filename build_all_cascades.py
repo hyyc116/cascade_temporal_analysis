@@ -146,6 +146,36 @@ def fecth_subjects():
     # return com_ids_subjects
 
 
+# def split_cascades_with
+
+
+def plot_citation_dis():
+
+    num_dis = json.loads(open('data/pid_dis.json').read())
+
+    xs = []
+    ys = []
+
+    for num in sorted(num_dis.keys()):
+
+        xs.append(num)
+        ys.append(num_dis[num])
+
+    plt.figure(figsize=(5,4))
+
+    plt.plot(xs,ys,'o',fillstyle='none')
+
+    plt.xlabel('number of citations')
+    plt.ylabel('number of publications')
+
+    plt.xscale('log')
+    plt.yscale('log')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/citation_dis.png',dpi=400)
+
+
 if __name__ == '__main__':
     ## task 1
     # if int(sys.argv[1])==0:
@@ -162,7 +192,9 @@ if __name__ == '__main__':
     # build_cascade_from_pid_cits(paths)
 
     # task 6
-    fecth_subjects()
+    # fecth_subjects()
+
+    plot_citation_dis()
 
     # task 7
     # fecth_subjects_of_com_ids(paths)
