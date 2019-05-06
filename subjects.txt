@@ -1,0 +1,267 @@
+=====Arts & Humanities
+Art
+Architecture
+Classics
+Cultural Studies
+Dance
+Folklore
+History
+History & Philosophy of Science
+Humanities, Multidisciplinary
+Language & Linguistics
+Linguistics
+Literary Reviews
+Literary Theory & Criticism
+Literature
+Literature, African, Australian, Canadian
+Literature, American
+Literature, British Isles
+Literature, German, Dutch, Scandanavian
+Literature, Romance
+Literature, Slavic
+Medieval & Renaissance Studies
+Music
+Philosophy
+Poetry
+Religion
+Theater
+=====Clinical, Pre-Clinical & Health
+Allergy
+Anesthesiology
+Audiology & Speech-Language Pathology
+Cardiac & Cardiovascular Systems
+Clinical Neurology
+Critical Care Medicine
+Dentistry, Oral Surgery & Medicine
+Dermatology
+Emergency Medicine
+Endocrinology & Metabolism
+Gastroenterology & Hepatology
+Geriatrics & Gerontology
+Health Care Sciences & Services
+Hematology
+Infectious Diseases
+Integrative & Complementary Medicine
+Medical Ethics
+Medical Informatics
+Medical Laboratory Technology
+Medicine, General & Internal
+Medicine, Legal
+Medicine, Research & Experimental
+Neuroimaging
+Nursing
+Nutrition & Dietetics
+Obstetrics & Gynecology
+Oncology
+Ophthalmology
+Orthopedics
+Otorhinolaryngology
+Pathology
+Pediatrics
+Peripheral Vascular Disease
+Pharmacology & Pharmacy
+Primary Health Care
+Psychiatry
+Public, Environmental & Occupational Health
+Radiology, Nuclear Medicine & Medical Imaging
+Rehabilitation
+Respiratory System
+Rheumatology
+Sport Sciences
+Substance Abuse
+Surgery
+Transplantation
+Tropical Medicine
+Urology & Nephrology
+=====Engineering & Technology
+Acoustics
+Automation & Control Systems
+Computer Science, Artificial Intelligence
+Computer Science, Cybernetics
+Computer Science, Hardware & Architecture
+Computer Science, Information Systems
+Computer Science, Interdisciplinary Applications
+Computer Science, Software Engineering
+Computer Science, Theory & Methods
+Construction & Building Technology
+Energy & Fuels
+Engineering, Aerospace
+Engineering, Biomedical
+Engineering, Chemical
+Engineering, Civil
+Engineering, Electrical & Electronic
+Engineering, Environmental
+Engineering, Geological
+Engineering, Industrial
+Engineering, Manufacturing
+Engineering, Marine
+Engineering, Mechanical
+Engineering, Multidisciplinary
+Engineering, Ocean
+Engineering, Petroleum
+Ergonomics
+Imaging Science & Photographic Technology
+Information Science & Library Science
+Instruments & Instrumentation
+Materials Science, Biomaterials
+Materials Science, Ceramics
+Materials Science, Characterization & Testing
+Materials Science, Composites
+Materials Science, Multidisciplinary
+Materials Science, Paper & Wood
+Materials Science, Coatings & Films
+Materials Science, Textiles
+Mechanics
+Metallurgy & Metallurgical Engineering
+Microscopy
+Mining & Mineral Processing
+Nuclear Science & Technology
+Operations Research & Management Science
+Remote Sensing
+Robotics
+Telecommunications
+Transportation
+Transportation Science & Technology
+=====Life Sciences
+Agricultural Economics & Policy
+Agricultural Engineering
+Agriculture, Dairy & Animal Science
+Agriculture, Multidisciplinary
+Agronomy
+Anatomy & Morphology
+Andrology
+Behavioral Sciences
+Biochemical Research Methods
+Biochemistry & Molecular Biology
+Biodiversity Conservation
+Biology
+Biophysics
+Biotechnology & Applied Microbiology
+Cardiac & Cardiovascular Systems
+Cell & Tissue Engineering
+Cell Biology
+Developmental Biology
+Ecology
+Endocrinology & Metabolism
+Entomology
+Environmental Sciences
+Evolutionary Biology
+Fisheries
+Food Science & Technology
+Forestry
+Gastroenterology & Hepatology
+Genetics & Heredity
+Horticulture
+Immunology
+Limnology
+Marine & Freshwater Biology
+Mathematical & Computational Biology
+Microbiology
+Multidisciplinary Sciences
+Mycology
+Neurosciences
+Oncology
+Ornithology
+Paleontology
+Parasitology
+Pathology
+Peripheral Vascular Disease
+Pharmacology & Pharmacy
+Physiology
+Plant Sciences
+Reproductive Biology
+Soil Science
+Toxicology
+Transplantation
+Veterinary Sciences
+Virology
+Zoology
+=====Physical Sciences
+Astronomy/Astrophysics
+Chemistry, Analytical
+Chemistry, Applied
+Chemistry, Inorganic & Nuclear
+Chemistry, Medicinal
+Chemistry, Multidisciplinary
+Chemistry, Organic
+Chemistry, Physical
+Crystallography
+Electrochemistry
+Geochemistry & Geophysics
+Geography, Physical
+Geology
+Geosciences, Multidisciplinary
+Logic
+Mathematics
+Mathematics, Applied
+Mathematics, Interdisciplinary Applications
+Meteorology & Atmospheric Science
+Mineralogy
+Multidisciplinary Sciences
+Nanoscience & Nanotechnology
+Oceanography
+Optics
+Physics, Applied
+Physics, Atomic, Molecular & Chemical
+Physics, Condensed Matter
+Physics, Fluids & Plasmas
+Physics, Mathematical
+Physics, Multidisciplinary
+Physics, Nuclear
+Physics, Particles & Fields
+Polymer Science
+Spectroscopy
+Statistics & Probability
+Thermodynamics
+Water Resources
+=====Social Sciences
+Anthropology
+Archaeology
+Area Studies
+Asian Studies
+Business
+Business, Finance
+Communication
+Criminology & Penology
+Demography
+Economics
+Education & Educational Research
+Education, Scientific Disciplines
+Education, Special
+Environmental Studies
+Ethics
+Ethnic Studies
+Family Studies
+Film, Radio, Television
+Geography
+Gerontology
+Health Policy & Services
+History of Social Sciences
+Hospitality, Leisure, Sport & Tourism
+Industrial Relations & Labor
+International Relations
+Law
+Linguistics
+Management
+Planning & Development
+Political Science
+Psychology
+Psychology, Applied
+Psychology, Biological
+Psychology, Clinical
+Psychology, Developmental
+Psychology, Educational
+Psychology, Experimental
+Psychology, Mathematical
+Psychology, Multidisciplinary
+Psychology, Psychoanalysis
+Psychology, Social
+Public Administration
+Social Issues
+Social Sciences, Biomedical
+Social Sciences, Interdisciplinary
+Social Sciences, Mathematical Methods
+Social Work
+Sociology
+Urban Studies
+Women’s Studies

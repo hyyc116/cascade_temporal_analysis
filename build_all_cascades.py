@@ -106,21 +106,43 @@ def build_cascade_from_pid_cits(pathObj):
 def fecth_subjects():
     # com_IDs = set([line.strip() for line in open(com_IDs_path)])
     # logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
+
+    subjects = set([line.strip().lower() for line in open('subjects.txt') if not line.startswith('=====') and line.strip()!=''])
+
+    logging.info('%d unique subjects loaded ...' % len(subjects))
+
     _ids_subjects = defaultdict(list)
     ## query database wos_summary
     query_op = dbop()
+    num_with_subject = 0
     sql = 'select id,subject from wos_subjects'
     progress=0
     for pid,subject in query_op.query_database(sql):
         progress+=1
         if progress%1000000==0:
-            logging.info('progress {:} ...'.format(progress))
+            logging.info('progress {:}, {:} papers within subjects ...'.format(progress,num_with_subject))
 
+        # if subject.strip().lower() in subjects:
+        #     num_with_subject+=1
         _ids_subjects[pid].append(subject)
 
     query_op.close_db()
-    logging.info('{:} cited ids have subject'.format(len(_ids_subjects.keys())))
+    logging.info('{:}  papers have subject'.format(len(_ids_subjects.keys())))
     open('data/_ids_subjects.json','w').write(json.dumps(_ids_subjects))
+
+    for pid in _ids_subjects:
+
+        in_subjects = False
+        for subject in _ids_subjects[pid]:
+
+            if subject in subjects:
+                in_subjects=True
+
+        if in_subjects:
+            num_with_subject+=1
+
+    print '{:} papers with subject in subjects.'.format(num_with_subject)
+
     # return com_ids_subjects
 
 
