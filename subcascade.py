@@ -573,10 +573,13 @@ if __name__ == '__main__':
         pathObj = PATHS('physics')
 
 
-    else:
+    else if data ==1:
 
         pathObj = PATHS('computer science')
 
+    else:
+
+        pathObj = PATHS('ALL')
 
     if op=='find_subcas':
 
