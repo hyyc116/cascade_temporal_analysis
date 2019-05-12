@@ -68,7 +68,7 @@ def _ids_2_top_subject():
 
             if top_subj is None:
                 error_subjs.append(subj)
-                # logging.info('error subj %s' % subj)
+                logging.info('error subj %s' % subj)
             else:
                 top_subjs.append(top_subj)
 
@@ -78,7 +78,7 @@ def _ids_2_top_subject():
 
         _ids_top_subjs[_id] = top_subjs
 
-    open('data/missing_subjects.txt','w').write('\n'.join(list(set(error_subjs))))
+    # open('data/missing_subjects.txt','w').write('\n'.join(list(set(error_subjs))))
 
     open('data/_ids_top_subjects.json','w').write(json.dumps(_ids_top_subjs))
     logging.info('_ids_top_subjects.json saved')
