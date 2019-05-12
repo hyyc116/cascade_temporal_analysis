@@ -136,7 +136,7 @@ def _id_2_citation_classification(pathObj):
 
         for _id in cascades.keys():
 
-            edges = cascades
+            edges = cascades[_id]
             cn = 0
             for cpid,pid in edges:
 
