@@ -119,6 +119,9 @@ def _id_2_citation_classification(pathObj):
     ##统计
     citation_num_dis = defaultdict(int)
     _id_cn = {}
+
+    progress = 0
+
     for line in open(pathObj.cascade_path):
 
         line = line.strip()
@@ -221,7 +224,7 @@ def fecth_doctype_of_com_ids(pathObj):
 if __name__ == '__main__':
 
     ## 为每个id统计top_subj
-    _ids_2_top_subject()
+    # _ids_2_top_subject()
 
     field = 'ALL'
 
