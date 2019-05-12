@@ -26,6 +26,7 @@ def _ids_2_top_subject():
     logging.info('loading mapping relations to top subject ...')
     top_subject = None
     subject_2_top = {}
+
     for line in open('subjects.txt'):
 
         line = line.strip()
@@ -53,6 +54,8 @@ def _ids_2_top_subject():
     _ids_top_subjs = {}
     progress = 0
     error_subjs = []
+
+    topsubj_num = defaultdict(int)
     for _id in _ids_subjects.keys():
 
         progress+=1
@@ -72,18 +75,43 @@ def _ids_2_top_subject():
             else:
                 top_subjs.append(top_subj)
 
+                topsubj_num[top_subj]+=1
+
+
         top_subjs = list(set(top_subjs))
 
         nums_top_subjs.append(len(top_subjs))
 
         _ids_top_subjs[_id] = top_subjs
-
     # open('data/missing_subjects.txt','w').write('\n'.join(list(set(error_subjs))))
 
     open('data/_ids_top_subjects.json','w').write(json.dumps(_ids_top_subjs))
     logging.info('_ids_top_subjects.json saved')
 
     logging.info(Counter(nums_top_subjs))
+
+    ## 顶级领域的文章数量
+    plt.figure(figsize=(5,4))
+    xs = []
+    ys = []
+
+    for subject in sorted(topsubj_num.keys()):
+        xs.append(subject)
+        ys.append(topsubj_num[subject])
+
+    plt.bar(np.arange(len(xs)),ys,width=0.8)
+
+    plt.xticks(np.arange(len(xs)),xs)
+
+    plt.xlabel('filed')
+
+    plt.ylael('number of papers')
+
+    plt.yscale('log')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/top_subject_num_dis,png',dpi=400)
 
 
 def _id_2_citation_classification(pathObj):
