@@ -68,7 +68,7 @@ def _ids_2_top_subject():
 
             if top_subj is None:
                 error_subjs.append(subj)
-                logging.info('error subj %s' % subj)
+                # logging.info('error subj %s' % subj)
             else:
                 top_subjs.append(top_subj)
 
@@ -153,7 +153,9 @@ if __name__ == '__main__':
     paths = PATHS(field)
 
 
+    # _id_2_citation_classification(paths)
 
+    # fecth_pubyear_of_com_ids(paths)
 
 
 
