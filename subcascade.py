@@ -573,7 +573,7 @@ if __name__ == '__main__':
         pathObj = PATHS('physics')
 
 
-    else if data ==1:
+    elif data ==1:
 
         pathObj = PATHS('computer science')
 
