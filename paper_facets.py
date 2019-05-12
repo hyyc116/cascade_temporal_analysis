@@ -52,6 +52,7 @@ def _ids_2_top_subject():
     nums_top_subjs  = []
     _ids_top_subjs = {}
     progress = 0
+    error_subjs = []
     for _id in _ids_subjects.keys():
 
         progress+=1
@@ -66,6 +67,7 @@ def _ids_2_top_subject():
             top_subj = subject_2_top.get(subj.strip().lower(),None)
 
             if top_subj is None:
+                error_subjs.append(subj)
                 logging.info('error subj %s' % subj)
             else:
                 top_subjs.append(top_subj)
@@ -75,6 +77,8 @@ def _ids_2_top_subject():
         nums_top_subjs.append(len(top_subjs))
 
         _ids_top_subjs[_id] = top_subjs
+
+    open('data/missing_subjects.txt','w').write('\n'.join(list(set(error_subjs))))
 
     open('data/_ids_top_subjects.json','w').write(json.dumps(_ids_top_subjs))
     logging.info('_ids_top_subjects.json saved')
@@ -118,6 +122,26 @@ def _id_2_citation_classification(pathObj):
 
     open('data/_id_cn.json','w').write(json.dumps(_id_cn))
     logging.info('%d papers cn saved to data/_id_cn.json.'% len(_id_cn.keys()))
+
+def fecth_pubyear_of_com_ids(pathObj):
+    com_ids_year = {}
+    ## query database wos_summary
+    query_op = dbop()
+    sql = 'select id,pubyear from wos_summary'
+    progress=0
+    for pid,pubyear in query_op.query_database(sql):
+        progress+=1
+        if progress%1000000==0:
+            logging.info('progress {:} ...'.format(progress))
+
+        com_ids_year[pid] = pubyear
+
+    query_op.close_db()
+    logging.info('{:} cited ids have year'.format(len(com_ids_year.keys())))
+
+    saved_path = pathObj.paper_year_path
+    open(saved_path,'w').write(json.dumps(com_ids_year))
+
 
 if __name__ == '__main__':
 
