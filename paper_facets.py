@@ -105,7 +105,7 @@ def _ids_2_top_subject():
 
     plt.xlabel('filed')
 
-    plt.ylael('number of papers')
+    plt.ylabel('number of papers')
 
     plt.yscale('log')
 
@@ -147,9 +147,37 @@ def _id_2_citation_classification(pathObj):
     open('data/_citation_dis.json','w').write(json.dumps(citation_num_dis))
     logging.info('data saved to data/_citation_dis.json.')
     ##
+    plot_citation_dis()
 
     open('data/_id_cn.json','w').write(json.dumps(_id_cn))
     logging.info('%d papers cn saved to data/_id_cn.json.'% len(_id_cn.keys()))
+
+
+def plot_citation_dis():
+
+    num_dis = json.loads(open('data/_citation_dis.json').read())
+
+    xs = []
+    ys = []
+
+    for num in sorted(num_dis.keys()):
+
+        xs.append(num)
+        ys.append(num_dis[num])
+
+    plt.figure(figsize=(5,4))
+
+    plt.plot(xs,ys,'o',fillstyle='none')
+
+    plt.xlabel('number of citations')
+    plt.ylabel('number of publications')
+
+    plt.xscale('log')
+    plt.yscale('log')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/_citation_dis.png',dpi=400)
 
 def fecth_pubyear_of_com_ids(pathObj):
     com_ids_year = {}
