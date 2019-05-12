@@ -91,7 +91,7 @@ def _ids_2_top_subject():
     logging.info(Counter(nums_top_subjs))
 
     ## 顶级领域的文章数量
-    plt.figure(figsize=(5,4))
+    plt.figure(figsize=(5,6))
     xs = []
     ys = []
 
@@ -101,7 +101,7 @@ def _ids_2_top_subject():
 
     plt.bar(np.arange(len(xs)),ys,width=0.8)
 
-    plt.xticks(np.arange(len(xs)),xs)
+    plt.xticks(np.arange(len(xs)),xs,rotation=60)
 
     plt.xlabel('filed')
 
