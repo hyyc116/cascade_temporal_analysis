@@ -30,13 +30,7 @@ def find_sub_cascades(pathObj):
     cc_path = pathObj.cascade_path
 
     logging.info('loading citation cascade from {:}.'.format(cc_path))
-    citation_cascade = {}
 
-    for line in open(cc_path):
-
-        line = line.strip()
-
-        citation_cascade.update(json.loads(line))
 
     num_of_cascades = len(citation_cascade.keys())
     logging.info('{:} citation cascade are loaded.'.format(num_of_cascades))
@@ -55,63 +49,71 @@ def find_sub_cascades(pathObj):
     ## 文章的citation 数量
     pid_cnum = defaultdict(int)
 
-    for pid in citation_cascade.keys():
-        progress_index+=1
+    # citation_cascade = {}
 
-        if progress_index%1000==0:
-            logging.info('progress report:{:}/{:}'.format(progress_index,num_of_cascades))
+    for line in open(cc_path):
 
-        edges = citation_cascade[pid]
-        num_of_edges = len(edges)
+        line = line.strip()
 
-        # 创建graph
-        dig  = nx.DiGraph()
-        dig.add_edges_from(edges)
+        citation_cascade = json.loads(line)
 
-        ##如果有环
-        if not nx.is_directed_acyclic_graph(dig):
-            cyclic_pids.append(pid)
-            continue
+        for pid in citation_cascade.keys():
+            progress_index+=1
 
-        num_of_nodes = len(dig.nodes())
-        citation_count = num_of_nodes-1
+            if progress_index%10000==0:
+                logging.info('progress report:{:}/{:}'.format(progress_index,num_of_cascades))
 
-        pid_cnum[pid] = citation_count
+            edges = citation_cascade[pid]
+            num_of_edges = len(edges)
 
-        ## 如果没有环
-        remaining_edges=[]
-        for edge in edges:
-            source = edge[0]
-            target = edge[1]
+            # 创建graph
+            dig  = nx.DiGraph()
+            dig.add_edges_from(edges)
 
-            if target!=pid:
-                remaining_edges.append(edge)
+            ##如果有环
+            if not nx.is_directed_acyclic_graph(dig):
+                cyclic_pids.append(pid)
+                continue
 
-        ## 去掉与owner直接相连的边之后的边的数量
-        remaining_edges_size = len(remaining_edges)
-        # remaining_statistics[citation_count].append(remaining_edges_size/size_of_cascade)
+            num_of_nodes = len(dig.nodes())
+            citation_count = num_of_nodes-1
 
-        #如果剩余边的数量是0，无子图，原图形状为扇形
-        if remaining_edges_size==0:
-            ## 放射型cascade的分布计算
-            radical_size_num[citation_count]+=1
-            continue
+            pid_cnum[pid] = citation_count
 
-        # 根据剩余边创建图
-        dig  = nx.DiGraph()
-        dig.add_edges_from(remaining_edges)
-        #根据创建的有向图，获得其所有弱连接的子图
-        for subgraph in nx.weakly_connected_component_subgraphs(dig):
-            # 获得图像子图的边的数量
-            node_size = len(subgraph.nodes())
+            ## 如果没有环
+            remaining_edges=[]
+            for edge in edges:
+                source = edge[0]
+                target = edge[1]
 
-            ## 对subgraphs进行判断
-            _id = -999
-            if node_size<6:
-                size_subcas_id,_id_subcascade,_id = iso_cc(size_subcas_id,_id_subcascade,subgraph)
+                if target!=pid:
+                    remaining_edges.append(edge)
 
-            ## 这个里面会将直接相连的节点省略
-            pid_size_id[pid][node_size].append(_id)
+            ## 去掉与owner直接相连的边之后的边的数量
+            remaining_edges_size = len(remaining_edges)
+            # remaining_statistics[citation_count].append(remaining_edges_size/size_of_cascade)
+
+            #如果剩余边的数量是0，无子图，原图形状为扇形
+            if remaining_edges_size==0:
+                ## 放射型cascade的分布计算
+                radical_size_num[citation_count]+=1
+                continue
+
+            # 根据剩余边创建图
+            dig  = nx.DiGraph()
+            dig.add_edges_from(remaining_edges)
+            #根据创建的有向图，获得其所有弱连接的子图
+            for subgraph in nx.weakly_connected_component_subgraphs(dig):
+                # 获得图像子图的边的数量
+                node_size = len(subgraph.nodes())
+
+                ## 对subgraphs进行判断
+                _id = -999
+                if node_size<6:
+                    size_subcas_id,_id_subcascade,_id = iso_cc(size_subcas_id,_id_subcascade,subgraph)
+
+                ## 这个里面会将直接相连的节点省略
+                pid_size_id[pid][node_size].append(_id)
 
 
 
