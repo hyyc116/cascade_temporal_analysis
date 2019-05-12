@@ -22,6 +22,8 @@ class PATHS:
 
         self.paper_year_path = 'data/pubyear_{:}.json'.format(self.name)
 
+        self.paper_doctype_path = 'data/pubyear_{:}.json'.format(self.name)
+
         self.all_subcasdes_path = 'subcascade/data/all_subcascades_{:}.json'.format(self.name)
 
         self.paper_subcascades_path = 'subcascade/data/paper_subcascades_{:}.json'.format(self.name)

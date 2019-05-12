@@ -22,8 +22,8 @@ def filter_out_ids_of_field(pathObj):
     field = pathObj.field
     logging.info('filter out paper ids from wos_subjects of field:[{:}].'.format(field))
     selected_IDs = []
-    
-    ## query database 
+
+    ## query database
     query_op = dbop()
 
     sql = 'select id,subject from wos_subjects'
@@ -34,7 +34,7 @@ def filter_out_ids_of_field(pathObj):
         if progress%10000000==0:
             logging.info('progress {:} .... '.format(progress))
 
-            
+
         if field in subject.lower():
             selected_IDs.append(str(fid))
 
@@ -72,7 +72,7 @@ def fetch_ids_of_citing_papers(pathObj):
         progress+=1
         if progress%10000000==0:
             logging.info('total progress {:} ...'.format(progress))
-        
+
         if ref_id in selected_IDs:
 
             has_citations.append(ref_id)
@@ -120,7 +120,7 @@ def fetch_citing_papers_of_com_IDs(pathObj):
         progress+=1
         if progress%10000000==0:
             logging.info('total progress {:} ...'.format(progress))
-        
+
         if ref_id in com_IDs:
             pid_cits.append('{:}\t{:}'.format(ref_id,pid))
 

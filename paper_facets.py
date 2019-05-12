@@ -83,7 +83,7 @@ def _ids_2_top_subject():
     open('data/_ids_top_subjects.json','w').write(json.dumps(_ids_top_subjs))
     logging.info('_ids_top_subjects.json saved')
 
-    loging.info(Counter(nums_top_subjs))
+    logging.info(Counter(nums_top_subjs))
 
 
 def _id_2_citation_classification(pathObj):
@@ -143,6 +143,25 @@ def fecth_pubyear_of_com_ids(pathObj):
     open(saved_path,'w').write(json.dumps(com_ids_year))
 
 
+def fecth_doctype_of_com_ids(pathObj):
+    com_ids_doctype = {}
+    ## query database wos_summary
+    query_op = dbop()
+    sql = 'select id,doctype from wos_doctypes'
+    progress=0
+    for pid,pubyear in query_op.query_database(sql):
+        progress+=1
+        if progress%1000000==0:
+            logging.info('progress {:} ...'.format(progress))
+
+        com_ids_doctype[pid] = pubyear
+
+    query_op.close_db()
+    logging.info('{:} cited ids have year'.format(len(com_ids_doctype.keys())))
+
+    saved_path = pathObj.paper_year_path
+    open(saved_path,'w').write(json.dumps(com_ids_doctype))
+
 if __name__ == '__main__':
 
     ## 为每个id统计top_subj
@@ -155,7 +174,7 @@ if __name__ == '__main__':
 
     # _id_2_citation_classification(paths)
 
-    # fecth_pubyear_of_com_ids(paths)
+     # fecth_pubyear_of_com_ids(paths)
 
 
 

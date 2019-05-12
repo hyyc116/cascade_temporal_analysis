@@ -1,4 +1,6 @@
 =====Arts & Humanities
+Literature, German, Dutch, Scandinavian
+Arts & Humanities - Other Topics
 Art
 Architecture
 Classics
@@ -26,6 +28,10 @@ Poetry
 Religion
 Theater
 =====Clinical, Pre-Clinical & Health
+Cardiovascular System & Cardiology
+Research & Experimental Medicine
+Legal Medicine
+General & Internal Medicine
 Allergy
 Anesthesiology
 Audiology & Speech-Language Pathology
@@ -74,6 +80,8 @@ Transplantation
 Tropical Medicine
 Urology & Nephrology
 =====Engineering & Technology
+Neurosciences & Neurology
+Science & Technology - Other Topics
 Acoustics
 Automation & Control Systems
 Computer Science, Artificial Intelligence
@@ -123,6 +131,8 @@ Telecommunications
 Transportation
 Transportation Science & Technology
 =====Life Sciences
+Biodiversity & Conservation
+Environmental Sciences & Ecology
 Agricultural Economics & Policy
 Agricultural Engineering
 Agriculture, Dairy & Animal Science
@@ -177,6 +187,8 @@ Veterinary Sciences
 Virology
 Zoology
 =====Physical Sciences
+Meteorology & Atmospheric Sciences
+Physical Geography
 Astronomy/Astrophysics
 Chemistry, Analytical
 Chemistry, Applied
@@ -214,6 +226,7 @@ Spectroscopy
 Statistics & Probability
 Thermodynamics
 Water Resources
+Astronomy & Astrophysics
 =====Social Sciences
 Anthropology
 Archaeology
@@ -221,6 +234,7 @@ Area Studies
 Asian Studies
 Business
 Business, Finance
+Business & Economics
 Communication
 Criminology & Penology
 Demography
@@ -264,4 +278,10 @@ Social Sciences, Mathematical Methods
 Social Work
 Sociology
 Urban Studies
-Women’s Studies
+Biomedical Social Sciences
+Women's Studies
+Film, Radio & Television
+Mathematical Methods In Social Sciences
+Government & Law
+Social Sciences - Other Topics
+Life Sciences & Biomedicine - Other Topics
