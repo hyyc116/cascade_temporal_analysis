@@ -178,6 +178,9 @@ def split_cascades_within_subjects(pathObj):
     logging.info('{:} lines procesed, {:} cascades reserved.'.format(progress,total))
     outfile.write(json.dumps(citation_cascades)+'\n')
 
+def split_cascade_into_subject():
+    _ids_subjects = json.loads(open('data/_ids_subjects.json').read())
+
 
 
 def plot_citation_dis():
