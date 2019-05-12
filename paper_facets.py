@@ -39,6 +39,12 @@ def _ids_2_top_subject():
         else:
             subject_2_top[line.lower()] = top_subject
 
+            if ',' in line.lower():
+
+                for subj in line.split(','):
+
+                    subject_2_top[subj.lower()] = top_subj
+
     logging.info('%d subjects are loaded ..' % len(subject_2_top.keys()))
 
     ## 所有论文的顶级subject
@@ -77,6 +83,7 @@ def _id_2_citation_classification(pathObj):
 
     ##统计
     citation_num_dis = defaultdict(int)
+    _id_cn = {}
     for line in open(pathObj.cascade_path):
 
         line = line.strip()
@@ -84,21 +91,30 @@ def _id_2_citation_classification(pathObj):
         progress+=1
 
         if progress%10==0:
-            total+= len(citation_cascades.keys())
-            outfile.write(json.dumps(citation_cascades)+'\n')
-            citation_cascades = {}
+
+            logging.info('progress %d .... ' %progress)
 
         cascades = json.loads(line)
 
-        for pid in cascades.keys():
-            pass
+        for _id in cascades.keys():
 
+            edges = cascades
+            cn = 0
+            for cpid,pid in edges:
 
+                if pid==_id:
+                    cn+=1
 
+            _id_cn[_id] = cn
 
+            citation_num_dis[cn]+=1
 
+    open('data/_citation_dis.json','w').write(json.dumps(citation_num_dis))
+    logging.info('data saved to data/_citation_dis.json.')
+    ##
 
-
+    open('data/_id_cn.json','w').write(json.dumps(_id_cn))
+    logging.info('%d papers cn saved to data/_id_cn.json.'% len(_id_cn.keys()))
 
 if __name__ == '__main__':
 
