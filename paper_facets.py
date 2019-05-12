@@ -228,11 +228,11 @@ if __name__ == '__main__':
     paths = PATHS(field)
 
 
-    # _id_2_citation_classification(paths)
+    _id_2_citation_classification(paths)
 
-     # fecth_pubyear_of_com_ids(paths)
+    fecth_pubyear_of_com_ids(paths)
 
-
+    fecth_doctype_of_com_ids(paths)
 
 
 
