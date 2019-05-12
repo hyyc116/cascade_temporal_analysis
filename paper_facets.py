@@ -43,7 +43,7 @@ def _ids_2_top_subject():
 
                 for subj in line.split(','):
 
-                    subject_2_top[subj.lower()] = top_subj
+                    subject_2_top[subj.lower()] = top_subject
 
     logging.info('%d subjects are loaded ..' % len(subject_2_top.keys()))
 
