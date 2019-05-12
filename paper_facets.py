@@ -42,7 +42,7 @@ def _ids_2_top_subject():
     logging.info('%d subjects are loaded ..' % len(subject_2_top.keys()))
 
     ## 所有论文的顶级subject
-    loggin.info('paper top subjs ....')
+    logging.info('paper top subjs ....')
     nums_top_subjs  = []
     _ids_top_subjs = {}
     progress = 0
@@ -73,6 +73,30 @@ def _ids_2_top_subject():
     loging.info(Counter(nums_top_subjs))
 
 
+def _id_2_citation_classification(pathObj):
+
+    ##统计
+    citation_num_dis = defaultdict(int)
+    for line in open(pathObj.cascade_path):
+
+        line = line.strip()
+
+        progress+=1
+
+        if progress%10==0:
+            total+= len(citation_cascades.keys())
+            outfile.write(json.dumps(citation_cascades)+'\n')
+            citation_cascades = {}
+
+        cascades = json.loads(line)
+
+        for pid in cascades.keys():
+            pass
+
+
+
+
+
 
 
 
@@ -80,6 +104,10 @@ if __name__ == '__main__':
 
     ## 为每个id统计top_subj
     _ids_2_top_subject()
+
+    field = 'ALL'
+
+    paths = PATHS(field)
 
 
 
