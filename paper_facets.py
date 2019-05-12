@@ -63,9 +63,12 @@ def _ids_2_top_subject():
         top_subjs = []
         for subj in _ids_subjects[_id]:
 
-            top_subj = subject_2_top[subj.strip().lower()]
+            top_subj = subject_2_top.get(subj.strip().lower(),None)
 
-            top_subjs.append(top_subj)
+            if top_subj is None:
+                logging.info('error subj %s' % subj)
+            else:
+                top_subjs.append(top_subj)
 
         top_subjs = list(set(top_subjs))
 
