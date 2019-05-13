@@ -224,18 +224,18 @@ def fecth_doctype_of_com_ids(pathObj):
 if __name__ == '__main__':
 
     ## 为每个id统计top_subj
-    # _ids_2_top_subject()
+    _ids_2_top_subject()
 
     field = 'ALL'
 
     paths = PATHS(field)
 
 
-    _id_2_citation_classification(paths)
+    # _id_2_citation_classification(paths)
 
-    fecth_pubyear_of_com_ids(paths)
+    # fecth_pubyear_of_com_ids(paths)
 
-    fecth_doctype_of_com_ids(paths)
+    # fecth_doctype_of_com_ids(paths)
 
 
 
