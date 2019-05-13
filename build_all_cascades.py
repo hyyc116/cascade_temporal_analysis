@@ -62,7 +62,7 @@ def build_cascade_from_pid_cits(pathObj):
         pid,citing_id = line.split("\t")
 
         ## 如果不是wos的论文
-        if len(_id_subjects.get(pid,[]))==0:
+        if len(_ids_subjects.get(pid,[]))==0:
             continue
 
         pid_citations[pid].append(citing_id)
