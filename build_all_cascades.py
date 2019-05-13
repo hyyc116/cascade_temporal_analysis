@@ -45,11 +45,26 @@ def build_cascade_from_pid_cits(pathObj):
 
     logging.info("build cascade from {:} .".format(pid_cits_path))
 
+    _ids_subjects = json.loads(open('data/_ids_subjects.json').read())
+
+    logging.info('_id_subjects.json loaded ....')
+
     pid_citations = defaultdict(list)
+    progress = 0
     for line in open(pid_cits_path):
+
+        progress+=1
+
+        if progress%10000000==0:
+            logging.info('reading citation relations....')
 
         line = line.strip()
         pid,citing_id = line.split("\t")
+
+        ## 如果不是wos的论文
+        if len(_id_subjects.get(pid,[]))==0:
+            continue
+
         pid_citations[pid].append(citing_id)
 
     pids = pid_citations.keys()
@@ -102,6 +117,9 @@ def build_cascade_from_pid_cits(pathObj):
 
     open('data/pid_dis.json','w').write(json.dumps(pid_dis))
 
+    ## 画引用次数分布
+    plot_citation_dis()
+    logging.info('citation distribtuion plot saved...')
 
 def fecth_subjects():
     # com_IDs = set([line.strip() for line in open(com_IDs_path)])
@@ -223,14 +241,14 @@ if __name__ == '__main__':
     # fetch_citing_relations(paths)
 
     ## task 5
-    # build_cascade_from_pid_cits(paths)
+    build_cascade_from_pid_cits(paths)
 
     # task 6
     # fecth_subjects()
 
     # plot_citation_dis()
 
-    split_cascades_within_subjects(paths)
+    # split_cascades_within_subjects(paths)
 
     # task 7
     # fecth_subjects_of_com_ids(paths)
