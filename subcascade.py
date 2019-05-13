@@ -61,7 +61,7 @@ def find_sub_cascades(pathObj):
             progress_index+=1
 
             if progress_index%10000==0:
-                logging.info('progress report:{:}/{:}'.format(progress_index))
+                logging.info('progress report:{:}'.format(progress_index))
 
             edges = citation_cascade[pid]
             num_of_edges = len(edges)
