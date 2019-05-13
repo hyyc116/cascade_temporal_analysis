@@ -56,7 +56,7 @@ def build_cascade_from_pid_cits(pathObj):
         progress+=1
 
         if progress%10000000==0:
-            logging.info('reading citation relations....')
+            logging.info('reading %d citation relations....' % progress)
 
         line = line.strip()
         pid,citing_id = line.split("\t")
@@ -208,9 +208,9 @@ def plot_citation_dis():
     xs = []
     ys = []
 
-    for num in sorted(num_dis.keys()):
+    for num in sorted(num_dis.keys(),key=x:int(x)):
 
-        xs.append(num)
+        xs.append(int(num))
         ys.append(num_dis[num])
 
     plt.figure(figsize=(5,4))
@@ -241,7 +241,9 @@ if __name__ == '__main__':
     # fetch_citing_relations(paths)
 
     ## task 5
-    build_cascade_from_pid_cits(paths)
+    # build_cascade_from_pid_cits(paths)
+
+    plot_citation_dis()
 
     # task 6
     # fecth_subjects()
