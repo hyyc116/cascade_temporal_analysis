@@ -32,8 +32,8 @@ def find_sub_cascades(pathObj):
     logging.info('loading citation cascade from {:}.'.format(cc_path))
 
 
-    num_of_cascades = len(citation_cascade.keys())
-    logging.info('{:} citation cascade are loaded.'.format(num_of_cascades))
+    # num_of_cascades = len(citation_cascade.keys())
+    # logging.info('{:} citation cascade are loaded.'.format(num_of_cascades))
 
     ##进度index
     progress_index = 0
@@ -61,7 +61,7 @@ def find_sub_cascades(pathObj):
             progress_index+=1
 
             if progress_index%10000==0:
-                logging.info('progress report:{:}/{:}'.format(progress_index,num_of_cascades))
+                logging.info('progress report:{:}/{:}'.format(progress_index))
 
             edges = citation_cascade[pid]
             num_of_edges = len(edges)
