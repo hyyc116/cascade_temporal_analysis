@@ -208,7 +208,7 @@ def plot_citation_dis():
     xs = []
     ys = []
 
-    for num in sorted(num_dis.keys(),key=x:int(x)):
+    for num in sorted(num_dis.keys(),key=lambda x:int(x)):
 
         xs.append(int(num))
         ys.append(num_dis[num])
