@@ -238,12 +238,12 @@ if __name__ == '__main__':
     paths = PATHS(field)
 
     ## task 4
-    # fetch_citing_relations(paths)
+    fetch_citing_relations(paths)
 
     ## task 5
-    # build_cascade_from_pid_cits(paths)
+    build_cascade_from_pid_cits(paths)
 
-    plot_citation_dis()
+    # plot_citation_dis()
 
     # task 6
     # fecth_subjects()
