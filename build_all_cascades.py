@@ -19,7 +19,7 @@ def fetch_citing_relations(pathObj):
     logging.info('fetch citing relations ...')
 
     query_op = dbop()
-    sql = 'select id,ref_id from wos_references'
+    sql = 'select id,ref_id from wos_core.wos_references'
     progress=0
     sub_progress = 0
     pid_cits = []
