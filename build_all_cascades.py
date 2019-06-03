@@ -132,7 +132,7 @@ def fecth_subjects():
     ## query database wos_summary
     query_op = dbop()
     num_with_subject = 0
-    sql = 'select id,subject from wos_subjects'
+    sql = 'select id,subject from wos_core.wos_subjects'
     progress=0
     for pid,subject in query_op.query_database(sql):
         progress+=1
