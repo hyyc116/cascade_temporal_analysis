@@ -237,16 +237,18 @@ if __name__ == '__main__':
 
     paths = PATHS(field)
 
-    ## task 4
-    fetch_citing_relations(paths)
+    ## 将数据库中的引用关系保存到本地
+    # fetch_citing_relations(paths)
 
-    ## task 5
+    ## 获得论文的subject
+    fecth_subjects()
+
+    ## 构建所有文章的cascade
     build_cascade_from_pid_cits(paths)
 
     # plot_citation_dis()
 
     # task 6
-    # fecth_subjects()
 
     # plot_citation_dis()
 
