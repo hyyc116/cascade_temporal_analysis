@@ -126,7 +126,7 @@ def fecth_subjects():
     # logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
 
 
-    logging.info('%d unique subjects loaded ...' % len(subjects))
+    # logging.info('%d unique subjects loaded ...' % len(subjects))
 
     _ids_subjects = defaultdict(list)
     ## query database wos_summary
