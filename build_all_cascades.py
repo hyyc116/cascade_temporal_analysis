@@ -126,13 +126,13 @@ def fecth_subjects():
     # logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
 
 
-    logging.info('%d unique subjects loaded ...' % len(subjects))
+    # logging.info('%d unique subjects loaded ...' % len(subjects))
 
     _ids_subjects = defaultdict(list)
     ## query database wos_summary
     query_op = dbop()
     num_with_subject = 0
-    sql = 'select id,subject from wos_subjects'
+    sql = 'select id,subject from wos_core.wos_subjects'
     progress=0
     for pid,subject in query_op.query_database(sql):
         progress+=1
@@ -237,16 +237,18 @@ if __name__ == '__main__':
 
     paths = PATHS(field)
 
-    ## task 4
-    fetch_citing_relations(paths)
+    ## 将数据库中的引用关系保存到本地
+    # fetch_citing_relations(paths)
 
-    ## task 5
+    ## 获得论文的subject
+    fecth_subjects()
+
+    ## 构建所有文章的cascade
     build_cascade_from_pid_cits(paths)
 
     # plot_citation_dis()
 
     # task 6
-    # fecth_subjects()
 
     # plot_citation_dis()
 
