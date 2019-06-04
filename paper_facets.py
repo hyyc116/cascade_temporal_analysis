@@ -83,7 +83,7 @@ def _ids_2_top_subject():
         nums_top_subjs.append(len(top_subjs))
 
         _ids_top_subjs[_id] = top_subjs
-    # open('data/missing_subjects.txt','w').write('\n'.join(list(set(error_subjs))))
+    open('data/missing_subjects.txt','w').write('\n'.join(list(set(error_subjs))))
 
     open('data/_ids_top_subjects.json','w').write(json.dumps(_ids_top_subjs))
     logging.info('_ids_top_subjects.json saved')
@@ -116,8 +116,8 @@ def _ids_2_top_subject():
 
 def _id_2_citation_classification(pathObj):
 
-    ##统计
-    citation_num_dis = defaultdict(int)
+    ##统计每篇论文被引的次数
+    cn_dis = defaultdict(int)
     _id_cn = {}
 
     progress = 0
@@ -145,9 +145,9 @@ def _id_2_citation_classification(pathObj):
 
             _id_cn[_id] = cn
 
-            citation_num_dis[cn]+=1
+            cn_dis[pid]+=1
 
-    open('data/_citation_dis.json','w').write(json.dumps(citation_num_dis))
+    open('data/_citation_dis.json','w').write(json.dumps(cn_dis))
     logging.info('data saved to data/_citation_dis.json.')
     ##
     plot_citation_dis()
@@ -231,7 +231,7 @@ if __name__ == '__main__':
     paths = PATHS(field)
 
 
-    # _id_2_citation_classification(paths)
+    _id_2_citation_classification(paths)
 
     # fecth_pubyear_of_com_ids(paths)
 
