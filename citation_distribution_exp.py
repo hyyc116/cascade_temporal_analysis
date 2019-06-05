@@ -7,6 +7,7 @@
 '''
 
 from basic_config import *
+from paper_grouping import *
 
 ### 读取所有的论文及各类别的引用次数分布
 def read_subject_cns():
@@ -32,7 +33,7 @@ def read_subject_cns():
 	open('data/subj_cns.json','w').write(json.dumps(subj_cns))
 	logging.info('data saved to data/subj_cns.json.')
 
-def group_papers():
+def group_subject_papers():
 
 	subj_cns = json.loads(open('data/subj_cns.json').read())
 	## 所有论文的citation count识别
@@ -49,8 +50,8 @@ def compare_methods():
 
 
 if __name__ == '__main__':
-	read_subject_cns()
-	group_papers()
+	# read_subject_cns()
+	group_subject_papers()
 
 
 
