@@ -1,4 +1,5 @@
 =====Arts & Humanities
+Arts  Humanities - Other Topics
 Literature, German, Dutch, Scandinavian
 Arts & Humanities - Other Topics
 Art
@@ -27,7 +28,32 @@ Philosophy
 Poetry
 Religion
 Theater
+Film, Radio  Television
+History  Philosophy of Science
+History  Philosophy Of Science
+Language  Linguistics
+Medieval  Renaissance Studies
 =====Clinical, Pre-Clinical & Health
+Urology  Nephrology
+Research  Experimental Medicine
+Radiology, Nuclear Medicine  Medical Imaging
+Public, Environmental  Occupational Health
+Obstetrics  Gynecology
+Nutrition  Dietetics
+Medicine, Research  Experimental
+Medicine, General  Internal
+Integrative  Complementary Medicine
+Health Policy  Services
+Health Care Sciences  Services
+Geriatrics  Gerontology
+General  Internal Medicine
+Gastroenterology  Hepatology
+Endocrinology  Metabolism
+Dentistry, Oral Surgery  Medicine
+Cell  Tissue Engineering
+Cardiovascular System  Cardiology
+Cardiac  Cardiovascular Systems
+Audiology  Speech-Language Pathology
 Cardiovascular System & Cardiology
 Research & Experimental Medicine
 Legal Medicine
@@ -80,6 +106,24 @@ Transplantation
 Tropical Medicine
 Urology & Nephrology
 =====Engineering & Technology
+Transportation Science  Technology
+Science  Technology - Other Topics
+Operations Research  Management Science
+Nuclear Science  Technology
+Mining  Mineral Processing
+Metallurgy  Metallurgical Engineering
+Materials Science, Coatings  Films
+Instruments  Instrumentation
+Information Science  Library Science
+Imaging Science  Photographic Technology
+GREEN  SUSTAINABLE SCIENCE  TECHNOLOGY
+GREEN & SUSTAINABLE SCIENCE & TECHNOLOGY
+Computer Science, Hardware  Architecture
+Engineering, Electrical  Electronic
+Energy  Fuels
+Construction  Building Technology
+Computer Science, Theory  Methods
+Automation  Control Systems
 Neurosciences & Neurology
 Science & Technology - Other Topics
 Acoustics
@@ -131,6 +175,16 @@ Telecommunications
 Transportation
 Transportation Science & Technology
 =====Life Sciences
+Pharmacology  Pharmacy
+Neurosciences  Neurology
+Mathematical  Computational Biology
+Marine  Freshwater Biology
+Life Sciences  Biomedicine - Other Topics
+Genetics  Heredity
+Food Science  Technology
+Environmental Sciences  Ecology
+Biochemistry  Molecular Biology
+Anatomy  Morphology
 Agriculture, Dairy  Animal Science
 Biodiversity & Conservation
 Environmental Sciences & Ecology
@@ -143,11 +197,13 @@ Anatomy & Morphology
 Andrology
 Behavioral Sciences
 Biochemical Research Methods
+Biodiversity  Conservation
 Biochemistry & Molecular Biology
 Biodiversity Conservation
 Biology
 Biophysics
 Biotechnology & Applied Microbiology
+Biotechnology  Applied Microbiology
 Cardiac & Cardiovascular Systems
 Cell & Tissue Engineering
 Cell Biology
@@ -188,6 +244,15 @@ Veterinary Sciences
 Virology
 Zoology
 =====Physical Sciences
+Statistics  Probability
+Physics, Atomic, Molecular  Chemical
+Physics, Fluids  Plasmas
+Physics, Particles  Fields
+Nanoscience  Nanotechnology
+Meteorology  Atmospheric Sciences
+Geochemistry  Geophysics
+Chemistry, Inorganic  Nuclear
+Astronomy  Astrophysics
 Meteorology & Atmospheric Sciences
 Physical Geography
 Astronomy/Astrophysics
@@ -229,6 +294,8 @@ Thermodynamics
 Water Resources
 Astronomy & Astrophysics
 =====Social Sciences
+Criminology  Penology
+Business  Economics
 Anthropology
 Archaeology
 Area Studies
@@ -286,3 +353,5 @@ Mathematical Methods In Social Sciences
 Government & Law
 Social Sciences - Other Topics
 Life Sciences & Biomedicine - Other Topics
+Education  Educational Research
+Government  Law

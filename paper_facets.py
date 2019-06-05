@@ -209,7 +209,7 @@ def fecth_doctype_of_com_ids(pathObj):
     com_ids_doctype = {}
     ## query database wos_summary
     query_op = dbop()
-    sql = 'select id,doctype from wos.wos_doctypes'
+    sql = 'select id,doctype from wos_core.wos_doctypes'
     progress=0
     for pid,pubyear in query_op.query_database(sql):
         progress+=1
@@ -234,7 +234,7 @@ if __name__ == '__main__':
     paths = PATHS(field)
 
 
-    _id_2_citation_classification(paths)
+    # _id_2_citation_classification(paths)
 
     fecth_pubyear_of_com_ids(paths)
 
