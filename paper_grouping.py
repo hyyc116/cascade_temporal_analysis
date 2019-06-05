@@ -172,9 +172,9 @@ def fit_xmin_xmax(xs,ys,fig,ax,evaluator_name='adjusted_r2',x_min_max=80,x_max_m
             percent_of_num = np.sum(normed_y)/float(np.sum(normed_total_ys))
             percentage_r2 = r2*percent_of_num
 
-            percent_of_x = float(len(y))/float(len(ys))
-            efficiency = percent_of_num/percent_of_x
-            adjusted_r2 = percentage_r2*efficiency
+            percent_of_x = np.log(len(y))/np.log(len(ys))
+            # efficiency = percent_of_num/percent_of_x
+            adjusted_r2 = percentage_r2/percent_of_x
 
             if evaluator_name=='adjusted_r2':
                 evaluator = adjusted_r2

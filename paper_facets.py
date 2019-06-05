@@ -10,7 +10,6 @@
 '''
 from basic_config import *
 
-
 ## data/_ids_subjects.json中subject归为大类
 
 def _ids_2_top_subject():
@@ -36,7 +35,7 @@ def _ids_2_top_subject():
 
         if line.startswith('====='):
 
-            top_subject = line[6:]
+            top_subject = line[5:]
         else:
             subject_2_top[line.lower()] = top_subject
 
@@ -114,7 +113,7 @@ def _ids_2_top_subject():
 
     plt.tight_layout()
 
-    plt.savefig('fig/top_subject_num_dis,png',dpi=400)
+    plt.savefig('fig/top_subject_num_dis.png',dpi=400)
 
 
 def _id_2_citation_classification(pathObj):
