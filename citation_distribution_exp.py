@@ -18,7 +18,7 @@ def read_subject_cns():
 
 	_id_top_subj = json.loads(open('data/_id_cn.json').read())
 
-	subj_cns = defautdict(list)
+	subj_cns = defaultdict(list)
 
 	for _id in _id_cn.keys():
 
