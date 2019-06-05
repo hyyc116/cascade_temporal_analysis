@@ -23,7 +23,7 @@ def read_subject_cns():
 
 	for _id in _id_cn.keys():
 
-		subj_cns['ALL'] = _id_cn[_id]
+		subj_cns['ALL'].append(_id_cn[_id])
 
 		for subj in _id_top_subj[_id]:
 
@@ -50,7 +50,7 @@ def compare_methods():
 
 
 if __name__ == '__main__':
-	# read_subject_cns()
+	read_subject_cns()
 	group_subject_papers()
 
 
