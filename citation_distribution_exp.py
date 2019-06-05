@@ -16,7 +16,7 @@ def read_subject_cns():
 
 	logging.info('loading data/_ids_top_subjects.json ...')
 
-	_id_top_subj = json.loads(open('data/_id_cn.json').read())
+	_id_top_subj = json.loads(open('data/_id_top_subjects.json').read())
 
 	subj_cns = defaultdict(list)
 
