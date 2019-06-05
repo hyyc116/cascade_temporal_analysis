@@ -36,15 +36,21 @@ def group_papers():
 
 	subj_cns = json.loads(open('data/subj_cns.json').read())
 	## 所有论文的citation count识别
-	for subj in subj_cns.keys():
+	for i,subj in enumerate(subj_cns.keys()):
 
-		pass
+		cns = subj_cns[subj]
+		logging.info('{:}th subject is {:}'.format(i,subj))
+		group_papers(cns,'fig/citation_distribution_{:}.png'.format(i))
 
 
 def compare_methods():
 
 	pass
 
+
+if __name__ == '__main__':
+	read_subject_cns()
+	group_papers()
 
 
 

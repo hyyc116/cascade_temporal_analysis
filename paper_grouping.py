@@ -8,7 +8,7 @@ git repository: https://github.com/hyyc116/paper-grouping.git
 from basic_config import *
 
 ## from a citation distribution dict {count: #(count)}, to split papers to three levels
-def group_papers(citation_list,distribution_path,x_min_max=80,x_max_min=100):
+def group_papers(citation_list,distribution_path,x_min_max=80,x_max_min=90):
     # 所有文章的被引次数
     citation_dis = Counter(citation_list)
     total = np.sum(citation_dis.values())
@@ -61,11 +61,11 @@ def group_papers(citation_list,distribution_path,x_min_max=80,x_max_min=100):
     ax11 = fig.add_subplot(5,2,4, projection='3d')
     plot_fitting_and_distribution(fig,ax10,ax11,xs,ys,'r2',_min_y,_max_y,x_min_max,x_max_min)
 
-    ##plot percent curves as increase of x_max 
+    ##plot percent curves as increase of x_max
     ax20 = fig.add_subplot(5,2,5)
     logging.info('plotting the percentage rate .. ')
     plot_percentage_curves(ax20,p_xs,p_ys,'$x_{max}$','$P(1,x_{max})$','trend of $P(1,x_{max})$')
-    
+
     ax21 = fig.add_subplot(5,2,6)
     logging.info('plotting the points perentage .. ')
     plot_percentage_curves(ax21,px_xs,px_ys,'$x_{max}$','#($x_i$)/#($X$)','trend of #($x_i$)/#($X$)')
@@ -207,7 +207,7 @@ def fit_xmin_xmax(xs,ys,fig,ax,evaluator_name='adjusted_r2',x_min_max=80,x_max_m
 
 def power_low_func(x,a,b):
     return b*(x**(-a))
-    
+
 def main(citation_dis_path,output_path):
     citation_list = []
     for line in open(citation_dis_path):
@@ -215,5 +215,5 @@ def main(citation_dis_path,output_path):
         citation_list.extend(citations)
     group_papers(citation_list,output_path)
 
-        
+
 
