@@ -45,6 +45,9 @@ def _ids_2_top_subject():
                 for subj in line.split(','):
 
                     subject_2_top[subj.lower()] = top_subject
+            if '&' in line.lower():
+
+                subject_2_top[line.replace('&','')] = top_subject
 
     logging.info('%d subjects are loaded ..' % len(subject_2_top.keys()))
 
@@ -186,7 +189,7 @@ def fecth_pubyear_of_com_ids(pathObj):
     com_ids_year = {}
     ## query database wos_summary
     query_op = dbop()
-    sql = 'select id,pubyear from wos_summary'
+    sql = 'select id,pubyear from wos_core.wos_summary'
     progress=0
     for pid,pubyear in query_op.query_database(sql):
         progress+=1
@@ -206,7 +209,7 @@ def fecth_doctype_of_com_ids(pathObj):
     com_ids_doctype = {}
     ## query database wos_summary
     query_op = dbop()
-    sql = 'select id,doctype from wos_doctypes'
+    sql = 'select id,doctype from wos.wos_doctypes'
     progress=0
     for pid,pubyear in query_op.query_database(sql):
         progress+=1
@@ -233,9 +236,9 @@ if __name__ == '__main__':
 
     _id_2_citation_classification(paths)
 
-    # fecth_pubyear_of_com_ids(paths)
+    fecth_pubyear_of_com_ids(paths)
 
-    # fecth_doctype_of_com_ids(paths)
+    fecth_doctype_of_com_ids(paths)
 
 
 

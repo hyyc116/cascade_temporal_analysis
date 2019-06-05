@@ -563,17 +563,13 @@ def slice_distribution(pathObj,Ns):
     pass
 
 
-
 if __name__ == '__main__':
 
     data = int(sys.argv[1])
     op = sys.argv[2]
 
     if data==0:
-
-
         pathObj = PATHS('physics')
-
 
     elif data ==1:
 
