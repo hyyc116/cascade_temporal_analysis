@@ -210,34 +210,33 @@ def fecth_doctype_of_com_ids(pathObj):
     query_op = dbop()
     sql = 'select id,doctype from wos_core.wos_doctypes'
     progress=0
-    for pid,pubyear in query_op.query_database(sql):
+    for pid,doctype in query_op.query_database(sql):
         progress+=1
         if progress%1000000==0:
             logging.info('progress {:} ...'.format(progress))
 
-        com_ids_doctype[pid] = pubyear
+        com_ids_doctype[pid] = doctype
 
     query_op.close_db()
     logging.info('{:} cited ids have year'.format(len(com_ids_doctype.keys())))
 
-    saved_path = pathObj.paper_year_path
+    saved_path = pathObj.paper_doctype_path
     open(saved_path,'w').write(json.dumps(com_ids_doctype))
 
 if __name__ == '__main__':
 
     ## 为每个id统计top_subj
-    _ids_2_top_subject()
+    # _ids_2_top_subject()
 
     field = 'ALL'
-
     paths = PATHS(field)
 
-
+    ### 所有论文的引用次数
     # _id_2_citation_classification(paths)
 
-    # fecth_pubyear_of_com_ids(paths)
-
-    # fecth_doctype_of_com_ids(paths)
+    ### 所有论文的发表年份以及所有论文的type
+    fecth_pubyear_of_com_ids(paths)
+    fecth_doctype_of_com_ids(paths)
 
 
 

@@ -117,17 +117,8 @@ def build_cascade_from_pid_cits(pathObj):
 
     open('data/pid_dis.json','w').write(json.dumps(pid_dis))
 
-    ## 画引用次数分布
-    plot_citation_dis()
-    logging.info('citation distribtuion plot saved...')
 
 def fecth_subjects():
-    # com_IDs = set([line.strip() for line in open(com_IDs_path)])
-    # logging.info('fetch published year of {:} combine ids'.format(len(com_IDs)))
-
-
-    # logging.info('%d unique subjects loaded ...' % len(subjects))
-
     _ids_subjects = defaultdict(list)
     ## query database wos_summary
     query_op = dbop()
@@ -147,20 +138,7 @@ def fecth_subjects():
     logging.info('{:}  papers have subject'.format(len(_ids_subjects.keys())))
     open('data/_ids_subjects.json','w').write(json.dumps(_ids_subjects))
 
-    # for pid in _ids_subjects:
 
-    #     in_subjects = False
-    #     for subject in _ids_subjects[pid]:
-
-    #         if subject in subjects:
-    #             in_subjects=True
-
-    #     if in_subjects:
-    #         num_with_subject+=1
-
-    # print '{:} papers with subject in subjects.'.format(num_with_subject)
-
-    # return com_ids_subjects
 
 ## 根据subject的论文保留cascade
 def split_cascades_within_subjects(pathObj):
@@ -196,49 +174,14 @@ def split_cascades_within_subjects(pathObj):
     logging.info('{:} lines procesed, {:} cascades reserved.'.format(progress,total))
     outfile.write(json.dumps(citation_cascades)+'\n')
 
-def split_cascade_into_subject():
-    _ids_subjects = json.loads(open('data/_ids_subjects.json').read())
-
-
-
-def plot_citation_dis():
-
-    num_dis = json.loads(open('data/pid_dis.json').read())
-
-    xs = []
-    ys = []
-
-    for num in sorted(num_dis.keys(),key=lambda x:int(x)):
-
-        xs.append(int(num))
-        ys.append(num_dis[num])
-
-    plt.figure(figsize=(5,4))
-
-    plt.plot(xs,ys,'o',fillstyle='none')
-
-    plt.xlabel('number of citations')
-    plt.ylabel('number of publications')
-
-    plt.xscale('log')
-    plt.yscale('log')
-
-    plt.tight_layout()
-
-    plt.savefig('fig/citation_dis.png',dpi=400)
 
 
 if __name__ == '__main__':
-    ## task 1
-    # if int(sys.argv[1])==0:
-    #     field = 'physics'
-    # else:
     field = 'ALL'
-
     paths = PATHS(field)
 
     ## 将数据库中的引用关系保存到本地
-    # fetch_citing_relations(paths)
+    fetch_citing_relations(paths)
 
     ## 获得论文的subject
     fecth_subjects()
@@ -246,16 +189,6 @@ if __name__ == '__main__':
     ## 构建所有文章的cascade
     build_cascade_from_pid_cits(paths)
 
-    # plot_citation_dis()
-
-    # task 6
-
-    # plot_citation_dis()
-
-    # split_cascades_within_subjects(paths)
-
-    # task 7
-    # fecth_subjects_of_com_ids(paths)
 
 
 
