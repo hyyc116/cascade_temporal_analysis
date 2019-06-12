@@ -264,18 +264,16 @@ def pubyear_dis(pathObj):
 
     xs = []
     ys = []
-    for pubyear in sorted(pubyear_counter.keys(),key=lambda x:pubyear_counter[x],reverse=True)[:10]:
+    for pubyear in sorted(pubyear_counter.keys()):
         xs.append(pubyear)
         ys.append(pubyear_counter[pubyear])
 
 
     plt.figure(figsize=(4,3.5))
 
-    plt.bar(range(len(xs)),ys)
+    plt.plot(xs,ys)
 
-    plt.xticks(range(len(xs)),xs)
-
-    plt.xlabel('published year')
+    plt.xlabel('year')
 
     plt.ylabel('number of papers')
 
@@ -304,7 +302,7 @@ if __name__ == '__main__':
 
     ## 年份以及发表年份的分布
 
-    doctype_dis(paths)
+    # doctype_dis(paths)
     pubyear_dis(paths)
 
 
