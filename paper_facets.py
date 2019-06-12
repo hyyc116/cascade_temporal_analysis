@@ -304,7 +304,7 @@ if __name__ == '__main__':
 
     ## 年份以及发表年份的分布
 
-    doctype_dis(paths)
+    # doctype_dis(paths)
     pubyear_dis(paths)
 
 
