@@ -242,7 +242,7 @@ def doctype_dis(pathObj):
 
     plt.bar(range(len(xs)),ys)
 
-    plt.xticks(range(len(xs)),xs)
+    plt.xticks(range(len(xs)),xs,rotation=60)
 
     plt.xlabel('doctype')
 
