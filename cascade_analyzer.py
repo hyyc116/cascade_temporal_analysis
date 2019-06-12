@@ -27,11 +27,42 @@ doctype_dict = {
 
 }
 
+## 所有论文的dccp
+def dccp_of_paper(pathObj):
+
+    _id_dccp = {}
+
+    logging.info('start to stat dccp of all papers ....')
+    progress = 0
+    for line in open(pathObj.cascade_path):
+        cascades = json.loads(line)
+
+        logging.info('{:} line processed ...'.format(progress))
+        progress+=1
+
+        for pid in cascades.keys():
+
+            edges = cascades[pid]
+
+            direct_cit_num = 0
+            for e_cpid,e_pid in edges:
+                if e_pid == pid:
+                    direct_cit_num+=1
+
+            if direct_cit_num==len(edges):
+
+                has_dccp=0
+            else:
+                has_dccp=1
+
+            _id_dccp[pid] = has_dccp
+
+    open(pathObj.dccp_path,'w').write(json.dumps(_id_dccp))
+    logging.info('id dccp json saved to {:} .'.format(pathObj.dccp_path))
 
 
 
-if __name__ == '__main__':
-
+def parse_args():
     parser = argparse.ArgumentParser(usage='python %(prog)s [options] \n  exp. python -m ST-NA-ALL -f impact')
 
     ## 领域选择
@@ -48,4 +79,13 @@ if __name__ == '__main__':
 
 
     arg = parser.parse_args()
+
+
+if __name__ == '__main__':
+
+    field = 'ALL'
+    paths = PATHS(field)
+    dccp_of_paper(paths)
+
+
 
