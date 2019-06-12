@@ -264,8 +264,8 @@ def pubyear_dis(pathObj):
 
     xs = []
     ys = []
-    for pubyear in sorted(pubyear_counter.keys()):
-        xs.append(pubyear)
+    for pubyear in sorted(pubyear_counter.keys(),key=lambda x:int(x)):
+        xs.append(int(pubyear))
         ys.append(pubyear_counter[pubyear])
 
 
@@ -303,7 +303,7 @@ if __name__ == '__main__':
     ## 年份以及发表年份的分布
 
     doctype_dis(paths)
-    # pubyear_dis(paths)
+    pubyear_dis(paths)
 
 
 
