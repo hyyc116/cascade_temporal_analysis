@@ -277,6 +277,8 @@ def pubyear_dis(pathObj):
 
     plt.ylabel('number of papers')
 
+    plt.yscale('log')
+
     plt.tight_layout()
 
     plt.savefig('fig/pubyear_dis.png',dpi=400)
