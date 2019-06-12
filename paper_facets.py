@@ -223,6 +223,63 @@ def fecth_doctype_of_com_ids(pathObj):
     saved_path = pathObj.paper_doctype_path
     open(saved_path,'w').write(json.dumps(com_ids_doctype))
 
+
+def doctype_dis(pathObj):
+
+    _id_doctype = json.loads(open(pathObj.paper_doctype_path))
+
+    doctype_counter = Counter(_id_doctype.values())
+
+    xs = []
+    ys = []
+    for doctype in sorted(doctype_counter.keys(),key=lambda x:doctype_counter[x],reverse=True)[:10]:
+        xs.append(doctype)
+        ys.append(doctype_counter[doctype])
+
+
+    plt.figure(figsize=(4,3.5))
+
+    plt.bar(range(len(xs)),ys)
+
+    plt.xticks(range(len(xs)),xs)
+
+    plt.xlabel('doctype')
+
+    plt.ylabel('number of papers')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/doctype_dis.png',dpi=400)
+
+def pubyear_dis(pathObj):
+
+    _id_pubyear = json.loads(open(pathObj.paper_year_path))
+
+    pubyear_counter = Counter(_id_pubyear.values())
+
+    xs = []
+    ys = []
+    for pubyear in sorted(pubyear_counter.keys(),key=lambda x:pubyear_counter[x],reverse=True)[:10]:
+        xs.append(pubyear)
+        ys.append(pubyear_counter[pubyear])
+
+
+    plt.figure(figsize=(4,3.5))
+
+    plt.bar(range(len(xs)),ys)
+
+    plt.xticks(range(len(xs)),xs)
+
+    plt.xlabel('published year')
+
+    plt.ylabel('number of papers')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/pubyear_dis.png',dpi=400)
+
+
+
 if __name__ == '__main__':
 
     ## 为每个id统计top_subj
@@ -235,9 +292,13 @@ if __name__ == '__main__':
     # _id_2_citation_classification(paths)
 
     ### 所有论文的发表年份以及所有论文的type
-    fecth_pubyear_of_com_ids(paths)
-    fecth_doctype_of_com_ids(paths)
+    # fecth_pubyear_of_com_ids(paths)
+    # fecth_doctype_of_com_ids(paths)
 
+    ## 年份以及发表年份的分布
+
+    doctype_dis(paths)
+    pubyear_dis(paths)
 
 
 
