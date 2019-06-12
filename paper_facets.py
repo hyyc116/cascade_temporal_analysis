@@ -226,7 +226,8 @@ def fecth_doctype_of_com_ids(pathObj):
 
 def doctype_dis(pathObj):
 
-    _id_doctype = json.loads(open(pathObj.paper_doctype_path))
+    logging.info('stating doctype distribution ...')
+    _id_doctype = json.loads(open(pathObj.paper_doctype_path).read())
 
     doctype_counter = Counter(_id_doctype.values())
 
@@ -251,9 +252,13 @@ def doctype_dis(pathObj):
 
     plt.savefig('fig/doctype_dis.png',dpi=400)
 
+    logging.info('saved to fig/doctype_dis.png ...')
+
+
 def pubyear_dis(pathObj):
 
-    _id_pubyear = json.loads(open(pathObj.paper_year_path))
+    logging.info("stating published year distribution ...")
+    _id_pubyear = json.loads(open(pathObj.paper_year_path).read())
 
     pubyear_counter = Counter(_id_pubyear.values())
 
@@ -277,6 +282,8 @@ def pubyear_dis(pathObj):
     plt.tight_layout()
 
     plt.savefig('fig/pubyear_dis.png',dpi=400)
+
+    logging.info('fig saved to fig/pubyear_dis.png.')
 
 
 
