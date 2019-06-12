@@ -248,6 +248,8 @@ def doctype_dis(pathObj):
 
     plt.ylabel('number of papers')
 
+    plt.scale('log')
+
     plt.tight_layout()
 
     plt.savefig('fig/doctype_dis.png',dpi=400)
@@ -304,8 +306,8 @@ if __name__ == '__main__':
 
     ## 年份以及发表年份的分布
 
-    # doctype_dis(paths)
-    pubyear_dis(paths)
+    doctype_dis(paths)
+    # pubyear_dis(paths)
 
 
 
