@@ -248,7 +248,7 @@ def doctype_dis(pathObj):
 
     plt.ylabel('number of papers')
 
-    plt.scale('log')
+    plt.yscale('log')
 
     plt.tight_layout()
 
