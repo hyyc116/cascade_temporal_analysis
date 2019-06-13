@@ -143,7 +143,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
             continue
 
         ## 年份
-        if _year < start_year or _year > end_year:
+        if int(_year) < start_year or int(_year) > end_year:
             continue
 
         ## doctype
@@ -155,6 +155,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
 
         if progress%100000==1:
             logging.info('progress {:} ...'.format(progress))
+
         for i,_cn in enumerate(_cn_clas):
 
             if _cn==1:
@@ -230,9 +231,9 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
 
     plt.tight_layout()
 
-    plt.savefig('data/{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year),dpi=400)
+    plt.savefig('fig/{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year),dpi=400)
 
-    logging.info('fig saved to data/{:}'.format('{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year)))
+    logging.info('fig saved to fig/{:}'.format('{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year)))
 
 
 
