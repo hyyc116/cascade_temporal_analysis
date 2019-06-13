@@ -26,13 +26,21 @@ class PATHS:
 
         self.paper_doctype_path = 'data/doctype_{:}.json'.format(self.name)
 
+        ### id citation num
+        self.paper_cit_num_path = 'data/_id_cn.json'
+
+        ### id top subj
+        self.paper_id_topsubj = 'data/_ids_top_subjects.json'
+        
+
+
         self.all_subcasdes_path = 'subcascade/data/all_subcascades_{:}.json'.format(self.name)
 
         self.paper_subcascades_path = 'subcascade/data/paper_subcascades_{:}.json'.format(self.name)
 
         self.radical_num_dis_path = 'subcascade/data/radical_num_dis_{:}.json'.format(self.name)
 
-        self.paper_cit_num = 'data/paper_cit_num_{:}.json'.format(self.name)
+        # self.paper_cit_num = 'data/paper_cit_num_{:}.json'.format(self.name)
 
         ###  figure path and fig data path
         self._f_radical_num_dis_path = 'subcascade/fig/radical_num_dis_{:}.jpg'.format(self.name)
