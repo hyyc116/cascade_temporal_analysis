@@ -222,7 +222,10 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
     ys = []
     for year in sorted(year_dccp.keys()):
         xs.append(year)
-        ys.append(year_dccp[year])
+        dccp = year_dccp[year]
+
+        percent = np.sum(dccp)/float(len(dccp))
+        ys.append(percent)
 
     ax2.plot(xs,ys)
 
