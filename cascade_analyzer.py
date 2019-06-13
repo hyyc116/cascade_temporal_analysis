@@ -106,6 +106,8 @@ def load_attrs(pathObj):
 
     logging.info('loading _id_doctype ...')
     _id_doctype = json.loads(open(pathObj.paper_doctype_path).read())
+
+    doctype_counter = Counter(_id_doctype.values())
     top10_doctypes = sorted(doctype_counter.keys(),key=lambda x:doctype_counter[x],reverse=True)[:10]
 
     logging.info('loading _id_pubyear ...')
