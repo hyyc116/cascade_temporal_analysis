@@ -175,6 +175,9 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
 
         ys.append(percent)
 
+    logging.info('xs:{:}'.format(xs))
+    logging.info('ys:{:}'.format(ys))
+
     ax0.bar(xs,ys)
     ax0.set_xticks(xs)
     ax0.set_xticklabels(labels)
@@ -218,9 +221,9 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
 
     plt.tight_layout()
 
-    plt.savefig('{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year),dpi=400)
+    plt.savefig('data/{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year),dpi=400)
 
-    logging.info('fig saved to {:}'.format('{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year)))
+    logging.info('fig saved to data/{:}'.format('{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year)))
 
 
 
