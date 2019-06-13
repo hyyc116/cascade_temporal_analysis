@@ -143,7 +143,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
             continue
 
         ## 年份
-        if year < start_year or year > end_year:
+        if _year < start_year or _year > end_year:
             continue
 
         ## doctype
@@ -240,18 +240,18 @@ def parse_args(pathObj):
     parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
 
     ## 领域选择
-    parser.add_argument('-f','--field',dest='field',default='ALL',type=int,choices=[0,1,2,3,4,5,6],help='field code dict %s' % str(field_dict))
+    parser.add_argument('-f','--field',dest='field',default=0,type=int,choices=[0,1,2,3,4,5,6],help='field code dict %s' % str(field_dict))
     ## 数据开始时间
-    parser.add_argument('-s','--start_year',dest='start_year',type=int,help='start year of papers used in analyzing.')
+    parser.add_argument('-s','--start_year',dest='start_year',default=1980,type=int,help='start year of papers used in analyzing.')
     ## 数据结束时间
-    parser.add_argument('-e','--end_year',dest='end_year',type=int,help='end year of papers used in analyzing.')
+    parser.add_argument('-e','--end_year',dest='end_year',default=2019,type=int,help='end year of papers used in analyzing.')
     ## 数据的时间间隔
-    parser.add_argument('-i','--interval',dest='interval',type=int,default=1,help='interval of data.')
+    parser.add_argument('-i','--interval',dest='interval',default=1,type=int,help='interval of data.')
     ## 文章类型
-    parser.add_argument('-t','--doctype',dest='doctype',type=str,help='doctype used, ALL means top 10.')
+    parser.add_argument('-t','--doctype',dest='doctype',default='ALL',type=str,help='doctype used, ALL means top 10.')
 
     ## 操作类型
-    parser.add_argument('-p','--operation',dest='operation',type=str,choices=['dccp','subcas_num','subcas_size','motif'],help='select operations')
+    parser.add_argument('-p','--operation',dest='operation',default='dccp',type=str,choices=['dccp','subcas_num','subcas_size','motif'],help='select operations')
 
     arg = parser.parse_args()
 
