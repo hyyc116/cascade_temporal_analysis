@@ -270,7 +270,7 @@ def parse_args(pathObj):
     operation = arg.operation
 
     if operation=='dccp':
-        dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype)
+        dccp_on_facets(pathObj,field_name,start_year,end_year,interval,doctype)
     else:
         print 'no such action.'
 
