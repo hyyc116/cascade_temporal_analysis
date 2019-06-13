@@ -120,6 +120,7 @@ def load_attrs(pathObj):
 
 def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
 
+    logging.info('stating dccp of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
     ## 加载数据
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
 
