@@ -109,6 +109,7 @@ def load_attrs(pathObj):
 
     doctype_counter = Counter(_id_doctype.values())
     top10_doctypes = sorted(doctype_counter.keys(),key=lambda x:doctype_counter[x],reverse=True)[:10]
+    logging.info('top 10 doctypes:{:}'.format(top10_doctypes))
 
     logging.info('loading _id_pubyear ...')
     _id_pubyear = json.loads(open(pathObj.paper_year_path).read())
@@ -132,6 +133,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
     cnclas_dccp = defaultdict(list)
 
     logging.info('stating dccp ...')
+    progress=0
     for _id in _id_dccp.keys():
         _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
         dccp = _id_dccp[_id]
@@ -147,6 +149,11 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
         if doctype_!='ALL' and doctype_!=_doctype:
             continue
 
+
+        progress+=1
+
+        if progress%100000==1:
+            logging.info('progress {:} ...'.format(progress))
         for i,_cn in enumerate(_cn_clas):
 
             if _cn==1:
@@ -155,6 +162,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
         doctype_dccp[_doctype].append(dccp)
 
         year_dccp[_year].append(dccp)
+
 
 
     logging.info('plotting data ....')
