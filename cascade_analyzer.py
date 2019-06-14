@@ -339,13 +339,11 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
         id_counter = Counter(doctype_subcasid[doctype])
 
-        for _id in sorted(id_counter.keys(),key=lambda x:id_counter[x],reverse=True):
+        for i,_id in enumerate(sorted(id_counter.keys(),key=lambda x:id_counter[x],reverse=True)[:10]):
 
-            
-
-
-
-    pass
+            lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i,_id,id_counter[_id]))
+    
+    open('README.md','w+').write('\n'.join(lines))            
 
 def parse_args(pathObj):
     parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
@@ -384,6 +382,9 @@ def parse_args(pathObj):
 
     if operation=='dccp':
         dccp_on_facets(pathObj,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
+    
+    elif operation=='motif'
+        common_motif_on_facets(pathObj,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
     else:
         print 'no such action.'
 
