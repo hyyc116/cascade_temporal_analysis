@@ -383,7 +383,7 @@ def parse_args(pathObj):
     if operation=='dccp':
         dccp_on_facets(pathObj,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
     
-    elif operation=='motif'
+    elif operation=='motif':
         common_motif_on_facets(pathObj,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
     else:
         print 'no such action.'
