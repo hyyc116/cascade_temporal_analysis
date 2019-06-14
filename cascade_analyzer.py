@@ -330,6 +330,21 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
     ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
 
+    lines = ['### {:}'.format(field)]
+
+    for doctype in doctype_subcasid.keys():
+        lines.append('#### {:}'.format(doctype))
+        lines.append('|order|motif|frequency|')
+        lines.append('|:----:|:-----:|:----:|')
+
+        id_counter = Counter(doctype_subcasid[doctype])
+
+        for _id in sorted(id_counter.keys(),key=lambda x:id_counter[x],reverse=True):
+
+            
+
+
+
     pass
 
 def parse_args(pathObj):
