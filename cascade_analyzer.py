@@ -322,11 +322,11 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
         all_subcas_ids = list(set([subcas_id for subcas_id in all_subcas_ids if subcas_id!=-999]))
 
-        doctype_subcasid[_doctype].extends(all_subcas_ids)
+        doctype_subcasid[_doctype].extend(all_subcas_ids)
 
         for i,_cn_clas in enumerate(_cn_clas):
 
-            cnclas_subcasid[_cn_clas].extends(all_subcas_ids)
+            cnclas_subcasid[_cn_clas].extend(all_subcas_ids)
 
     ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
 
