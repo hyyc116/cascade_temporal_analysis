@@ -27,6 +27,9 @@ doctype_dict = {
 
 }
 
+labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf'] 
+
+
 ## 所有论文的dccp
 def dccp_of_paper(pathObj):
 
@@ -175,7 +178,6 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
 
     ax0 = axes[0,0]
     ## 画出所有的citation num的dccp分布
-    labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf'] 
     xs = []
     ys = []
     for _cn in cnclas_dccp.keys():
@@ -329,11 +331,12 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
             cnclas_subcasid[_cn_clas].extend(all_subcas_ids)
 
     ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
+    readme = open('README.md','a')
+    lines = ['### Subject:{:}'.format(field)]
 
-    lines = ['### {:}'.format(field)]
-
-    for doctype in doctype_subcasid.keys():
-        lines.append('#### {:}'.format(doctype))
+    for doctype in top10_doctypes:
+        logging.info('doctype:{:}'.format(doctype))
+        lines.append('#### doctype:{:}'.format(doctype))
         lines.append('|order|motif|frequency|')
         lines.append('|:----:|:-----:|:----:|')
 
@@ -343,7 +346,23 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
             lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i,_id,id_counter[_id]))
     
-    open('README.md','w+').write('\n'.join(lines))            
+    readme.write('\n'.join(lines))
+
+    lines = []
+    for cnclas in sorted(cnclas_subcasid.keys()):
+        subject_name = labels[cnclas]
+        logging.info('subject:{:}'.format(cnclas))
+        lines.append('#### subject:{:}'.format(cnclas))
+        lines.append('|order|motif|frequency|')
+        lines.append('|:----:|:-----:|:----:|')
+
+        id_counter = Counter(cnclas_subcasid[cnclas])
+
+        for i,_id in enumerate(sorted(id_counter.keys(),key=lambda x:id_counter[x],reverse=True)[:10]):
+
+            lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i,_id,id_counter[_id]))
+    
+    readme.write('\n'.join(lines))
 
 def parse_args(pathObj):
     parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
