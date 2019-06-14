@@ -133,6 +133,9 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
     doctype_dccp = defaultdict(list)
     cnclas_dccp = defaultdict(list)
 
+    doctype_year_dccp = defaultdict(lambda:defaultdict(list))
+    cnclas_year_dccp = defaultdict(lambda:defaultdict(list))
+
     logging.info('stating dccp ...')
     progress=0
     for _id in _id_dccp.keys():
@@ -160,17 +163,22 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
 
             if _cn==1:
                 cnclas_dccp[i].append(dccp)
+                cnclas_year_dccp[i][int(_year)].append(dccp)
+
 
         doctype_dccp[_doctype].append(dccp)
 
         year_dccp[int(_year)].append(dccp)
 
+        doctype_year_dccp[_doctype][int(_year)].append(dccp)
+
+
 
 
     logging.info('plotting data ....')
-    fig,axes = plt.subplots(1,3,figsize=(13.5,3))
+    fig,axes = plt.subplots(2,2,figsize=(8,7))
 
-    ax0 = axes[0]
+    ax0 = axes[0,0]
     ## 画出所有的citation num的dccp分布
     labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf'] 
     xs = []
@@ -196,7 +204,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
     ax0.set_ylabel('percetage of DCCP')
 
     ## 画出doctype的
-    ax1 = axes[1]
+    ax1 = axes[0,1]
     xs = []
     ys = []
     for doctype in top10_doctypes:
@@ -217,20 +225,44 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
     ax1.set_ylabel('percetage of DCCP')
 
     ## 画出year的关系
-    ax2 = axes[2]
-    xs = []
-    ys = []
-    for year in sorted(year_dccp.keys()):
-        xs.append(year)
-        dccp = year_dccp[year]
+    ax2 = axes[1,0]
+    
+    for cnclas in cnclas_year_dccp.keys():
+        year_dccp = cnclas_year_dccp[cnclas]
+        xs = []
+        ys = []
+        for year in sorted(year_dccp.keys()):
+            xs.append(year)
+            dccp = year_dccp[year]
 
-        percent = np.sum(dccp)/float(len(dccp))
-        ys.append(percent)
+            percent = np.sum(dccp)/float(len(dccp))
+            ys.append(percent)
 
-    ax2.plot(xs,ys)
+            ax2.plot(xs,ys,label=labels[cnclas])
 
     ax2.set_xlabel("year")
     ax2.set_ylabel('percentage of DCCP')
+    ax2.legend()
+
+    ## 画出year的关系
+    ax3 = axes[1,1]
+    
+    for doctype in doctype_year_dccp.keys():
+        year_dccp = doctype_year_dccp[doctype]
+        xs = []
+        ys = []
+        for year in sorted(year_dccp.keys()):
+            xs.append(year)
+            dccp = year_dccp[year]
+
+            percent = np.sum(dccp)/float(len(dccp))
+            ys.append(percent)
+
+            ax2.plot(xs,ys,label=labels[doctype])
+
+    ax2.set_xlabel("year")
+    ax2.set_ylabel('percentage of DCCP')
+    ax2.legend()
 
     plt.tight_layout()
 
