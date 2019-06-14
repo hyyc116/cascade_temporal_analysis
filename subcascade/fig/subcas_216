@@ -1,0 +1,12 @@
+digraph {
+	node [fixedwith=true height=0.2 shape=point width=0.2]
+	edge [arrowhead=open]
+	graph [rankdir=RL]
+	WOS_000346892900001 -> WOS_A1997WH69600006 [style=dashed]
+	WOS_000346892900001 -> WOS_000293364400005 [style=dashed]
+	WOS_000346892900001 -> WOS_000085362700017 [style=dashed]
+	WOS_000293364400005 -> WOS_A1997WH69600006 [style=dashed]
+	WOS_000293364400005 -> WOS_000085362700017 [style=dashed]
+	WOS_000293364400005 -> WOS_A1993NA65000002 [style=dashed]
+	WOS_000085362700017 -> WOS_A1993NA65000002 [style=dashed]
+}
