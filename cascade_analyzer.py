@@ -331,7 +331,7 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
             cnclas_subcasid[i].extend(all_subcas_ids)
 
     ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
-    readme = open('README.md','a')
+    readme = open('README.md','w')
     lines = ['### Subject:{:}'.format(field)]
 
     for doctype in top10_doctypes:
@@ -348,7 +348,7 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
     
     readme.write('\n'.join(lines))
 
-    lines = []
+    lines = ['### number of citations']
     for cnclas in sorted(cnclas_subcasid.keys()):
         subject_name = labels[cnclas]
         logging.info('subject:{:}'.format(subject_name))
