@@ -559,12 +559,12 @@ def plot_num_of_comps(pathObj):
 
 ## 把subcascade的motif都画出来
 def plot_cascade_motif(pathObj):
-    from viz_graph import *
+    from viz_graph import plot_a_subcascade
     _id_subcascade = json.loads(open(pathObj.all_subcasdes_path).read())
     logging.info('{:} subcascades loaded.'.format(len(_id_subcascade.keys())))
     for _id in _id_subcascade.keys():
         edges = _id_subcascade[_id]
-        plot_a_subcascade(edges,'subcascade/fig/subcas_{:}'.format(_id),shape='dot')
+        plot_a_subcascade(edges,'subcascade/fig/subcas_{:}'.format(_id),shape='point')
 
     logging.info('done')
 
