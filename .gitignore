@@ -7,6 +7,7 @@ __pycache__/
 *.so
 logs/
 data/
+subcascade/data/
 # Distribution / packaging
 .Python
 env/

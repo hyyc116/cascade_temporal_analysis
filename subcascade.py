@@ -556,11 +556,17 @@ def plot_num_of_comps(pathObj):
     logging.info('figure of citation distribution saved to {:}.'.format(pathObj._f_citation_distribution_path))
 
 
-## 对citation count的不同的切面做分布
-def slice_distribution(pathObj,Ns):
 
+## 把subcascade的motif都画出来
+def plot_cascade_motif(pathObj):
+    from viz_graph import *
+    _id_subcascade = json.loads(open(pathObj.all_subcasdes_path).read())
+    logging.info('{:} subcascades loaded.'.format(len(_id_subcascade.keys())))
+    for _id in _id_subcascade.keys():
+        edges = _id_subcascade[_id]
+        plot_a_subcascade(edges,'subcascade/fig/subcas_{:}'.format(_id),shape='dot')
 
-    pass
+    logging.info('done')
 
 
 if __name__ == '__main__':
@@ -590,5 +596,8 @@ if __name__ == '__main__':
     elif op=='num_of_comps':
 
         plot_num_of_comps(pathObj)
+
+    elif op =='plot_subcas':
+        plot_cascade_motif(pathObj)
 
 

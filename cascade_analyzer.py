@@ -324,12 +324,13 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
         doctype_subcasid[_doctype].extends(all_subcas_ids)
 
+        for i,_cn_clas in enumerate(_cn_clas):
 
+            cnclas_subcasid[_cn_clas].extends(all_subcas_ids)
 
+    ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
 
-      
     pass
-
 
 def parse_args(pathObj):
     parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
