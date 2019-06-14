@@ -31,8 +31,6 @@ class PATHS:
 
         ### id top subj
         self.paper_id_topsubj = 'data/_ids_top_subjects.json'
-        
-
 
         self.all_subcasdes_path = 'subcascade/data/all_subcascades_{:}.json'.format(self.name)
 

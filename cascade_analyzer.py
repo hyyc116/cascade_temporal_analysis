@@ -242,7 +242,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
     ## 画出year的关系
     ax3 = axes[1,1]
     
-    for doctype in doctype_year_dccp.keys():
+    for doctype in top10_doctypes:
         year_dccp = doctype_year_dccp[doctype]
         xs = []
         ys = []
@@ -276,8 +276,58 @@ def num_of_comp_on_facets():
     pass
 
 ### 不同学科、不同引用次数、不同类型的common motif
-def common_motif_on_facets():
+def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes):
+    logging.info('stating common motif of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
 
+    ## 加载DCCP的数据
+    logging.info('loading paper subcascades  ...')
+    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
+
+    # year_doctype_cnclas_dccp = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+    # year_dccp = defaultdict(list)
+    doctype_subcasid = defaultdict(list)
+    cnclas_subcasid = defaultdict(list)
+
+    doctype_year_subcasid = defaultdict(lambda:defaultdict(list))
+    cnclas_year_subcasid = defaultdict(lambda:defaultdict(list))
+
+    logging.info('stating dccp ...')
+    progress=0
+    for _id in paper_size_id.keys():
+        _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+        # dccp = _id_dccp[_id]
+
+         ## 领域
+        if field!='ALL' and field not in _top_sujects:
+            continue
+
+        ## 年份
+        if int(_year) < start_year or int(_year) > end_year:
+            continue
+
+        ## doctype
+        if doctype_!='ALL' and doctype_!=_doctype:
+            continue
+
+        progress+=1
+
+        if progress%100000==1:
+            logging.info('progress {:} ...'.format(progress))
+
+        all_subcas_ids = []
+        for size in paper_size_id[_id].keys():
+            subcas_ids = paper_size_id[_id][size]
+
+            all_subcas_ids.extend(subcas_ids)
+
+        all_subcas_ids = list(set([subcas_id for subcas_id in all_subcas_ids if subcas_id!=-999]))
+
+        doctype_subcasid[_doctype].extends(all_subcas_ids)
+
+
+
+
+      
     pass
 
 
