@@ -233,7 +233,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
             percent = np.sum(dccp)/float(len(dccp))
             ys.append(percent)
 
-            ax2.plot(xs,ys,label=labels[cnclas])
+        ax2.plot(xs,ys,label=labels[cnclas])
 
     ax2.set_xlabel("year")
     ax2.set_ylabel('percentage of DCCP')
@@ -253,7 +253,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
             percent = np.sum(dccp)/float(len(dccp))
             ys.append(percent)
 
-            ax3.plot(xs,ys,label=doctype)
+        ax3.plot(xs,ys,label=doctype)
 
     ax3.set_xlabel("year")
     ax3.set_ylabel('percentage of DCCP')
