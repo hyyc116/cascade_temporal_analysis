@@ -210,8 +210,8 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
         ys.append(percent)
 
     ax1.bar(range(len(xs)),ys)
-    ax1.set_xticks(range(len(xs)),rotation=-60)
-    ax1.set_xticklabels(xs)
+    ax1.set_xticks(range(len(xs)))
+    ax1.set_xticklabels(xs,rotation=-60)
 
     ax1.set_xlabel('doctype')
     ax1.set_ylabel('percetage of DCCP')
