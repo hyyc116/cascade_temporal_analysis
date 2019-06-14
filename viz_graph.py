@@ -84,7 +84,7 @@ def subcascade():
     p.edge('I','G',style='dashed')
     p.render('subcascade3')
 
-def (edges,name,shape='circle',format='jpg'):
+def plot_a_subcascade(edges,name,shape='circle',format='jpg'):
     # logging.info('plot edges ...')
     p = gv.Digraph(format=format)
     p.attr('node', shape=shape,width='0.2',height='0.2',fixedwith='true')
