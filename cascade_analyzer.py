@@ -351,8 +351,8 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
     lines = []
     for cnclas in sorted(cnclas_subcasid.keys()):
         subject_name = labels[cnclas]
-        logging.info('subject:{:}'.format(cnclas))
-        lines.append('#### subject:{:}'.format(cnclas))
+        logging.info('subject:{:}'.format(subject_name))
+        lines.append('#### subject:{:}'.format(subject_name))
         lines.append('|order|motif|frequency|')
         lines.append('|:----:|:-----:|:----:|')
 
