@@ -118,11 +118,9 @@ def load_attrs(pathObj):
 
     return _id_subjects,_id_cn,_id_doctype,_id_pubyear,top10_doctypes
 
-def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
+def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes):
 
     logging.info('stating dccp of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
-    ## 加载数据
-    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
 
     ## 加载DCCP的数据
     logging.info('loading dccp data ...')
@@ -165,14 +163,11 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
                 cnclas_dccp[i].append(dccp)
                 cnclas_year_dccp[i][int(_year)].append(dccp)
 
-
         doctype_dccp[_doctype].append(dccp)
 
         year_dccp[int(_year)].append(dccp)
 
         doctype_year_dccp[_doctype][int(_year)].append(dccp)
-
-
 
 
     logging.info('plotting data ....')
@@ -258,11 +253,11 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
             percent = np.sum(dccp)/float(len(dccp))
             ys.append(percent)
 
-            ax2.plot(xs,ys,label=labels[doctype])
+            ax3.plot(xs,ys,label=doctype)
 
-    ax2.set_xlabel("year")
-    ax2.set_ylabel('percentage of DCCP')
-    ax2.legend()
+    ax3.set_xlabel("year")
+    ax3.set_ylabel('percentage of DCCP')
+    ax3.legend()
 
     plt.tight_layout()
 
@@ -270,6 +265,20 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_):
 
     logging.info('fig saved to fig/{:}'.format('{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year)))
 
+
+def size_of_subcascade_on_facets():
+
+    pass
+
+
+def num_of_comp_on_facets():
+
+    pass
+
+### 不同学科、不同引用次数、不同类型的common motif
+def common_motif_on_facets():
+
+    pass
 
 
 def parse_args(pathObj):
@@ -305,8 +314,10 @@ def parse_args(pathObj):
 
     operation = arg.operation
 
+    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+
     if operation=='dccp':
-        dccp_on_facets(pathObj,field_name,start_year,end_year,interval,doctype)
+        dccp_on_facets(pathObj,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
     else:
         print 'no such action.'
 
