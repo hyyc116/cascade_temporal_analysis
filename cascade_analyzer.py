@@ -74,21 +74,21 @@ def stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year):
     ## 被引次数可分为多个 1-inf,5-inf,10-inf,20-inf,50-inf,100-inf,500-inf,1000-inf
 
     if cn >= 1000:
-        cn_clas =  [0,0,0,0,0,0,0,1]
-    elif cn >=500:
-        cn_clas =  [0,0,0,0,0,0,1,1]
-    elif cn >= 100:
-        cn_clas =  [0,0,0,0,0,1,1,1]
-    elif cn>= 50:
-        cn_clas =  [0,0,0,0,1,1,1,1]
-    elif cn>= 20:
-        cn_clas =  [0,0,0,1,1,1,1,1]
-    elif cn>= 10:
-        cn_clas =  [0,0,1,1,1,1,1,1]
-    elif cn>= 5:
-        cn_clas =  [0,1,1,1,1,1,1,1]
-    else:
         cn_clas =  [1,1,1,1,1,1,1,1]
+    elif cn >=500:
+        cn_clas =  [1,1,1,1,1,1,1,0]
+    elif cn >= 100:
+        cn_clas =  [1,1,1,1,1,1,0,0]
+    elif cn>= 50:
+        cn_clas =  [1,1,1,1,1,0,0,0]
+    elif cn>= 20:
+        cn_clas =  [1,1,1,1,0,0,0,0]
+    elif cn>= 10:
+        cn_clas =  [1,1,1,0,0,0,0,0]
+    elif cn>= 5:
+        cn_clas =  [1,1,0,0,0,0,0,0]
+    else:
+        cn_clas =  [1,0,0,0,0,0,0,0]
 
     ## 返回每一个id的doctype, 只分析doctype数量前十的论文
     doctype = _id_doctype[_id]
