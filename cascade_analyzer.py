@@ -386,7 +386,7 @@ def parse_args(pathObj):
 
     field = arg.field
 
-    field_name = field_dict[field]
+    field_name = field_dict[field].replace(' ','_').replace('&','and')
 
     start_year = arg.start_year
 
