@@ -82,11 +82,52 @@ def author_papers():
     open('data/author_papers.txt','w').write('\n'.join(papers_ids))
 
 
+def author_papers2():
+
+    authors = []
+
+    for line in open('data/authors.txt'):
+        authors.append(line.split(',')[0])
+
+    authors = set(authors)
+
+    papers = set([line.strip() for line in open('data/author_papers.txt')])
+
+    sql = 'select author_id,paper_id from mag_core.paper_author_affiliations'
+
+    query_op = dbop()
+
+    author_paper_collaborators = defaultdict(lambda:defaultdict(list))
+    paper_authors = defaultdict(list)
+    for author_id,paper_id in query_op.query_database(sql):
+
+        if str(paper_id) in papers:
+
+            # papers_ids.append(str(paper_id))
+
+            # author_paper_collaborators[]
+
+            paper_authors[paper_id].append(author_id)
+
+
+    for paper_id in paper_authors.keys():
+
+        for author in paper_authors[paper_id]:
+
+            if str(author) in authors:
+
+                author_paper_collaborators[author][paper_id] = paper_authors
+
+
+
+    open('data/author_paper_collaborators.json','w').write(json.dumps(author_paper_collaborators))
 
 if __name__ == '__main__':
     # test_author_collaborators()
 
-    author_papers()
+    # author_papers()
+
+    author_papers2()
 
 
 
