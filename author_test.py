@@ -38,6 +38,7 @@ def test_author_collaborators():
         author_names.append('{:} {:}'.format(firstname,secondname))
 
     author_names= set(author_names)
+    print(author_names)
 
     query_op = dbop()
 
