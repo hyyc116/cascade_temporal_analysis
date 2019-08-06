@@ -24,7 +24,7 @@ SELECT * FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemana
 
 
 '''
-
+from basic_config import *
 
 ### 使用mag的数据进行作者的合作机构以及合作者的数量随时间的变化曲线
 def test_author_collaborators():
