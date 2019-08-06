@@ -58,8 +58,35 @@ def test_author_collaborators():
 
 
 
+def author_papers():
+
+    authors = []
+
+    for line in open('data/authors.txt'):
+        authors.append(line.split(',')[0])
+
+    authors = set(authors)
+
+    sql = 'select author_id,paper_id from mag_core.paper_author_affiliations'
+
+    query_op = dbop()
+
+    papers_ids = []
+    for author_id,paper_id in query_op.query_database(sql):
+
+        if str(author_id) in authors:
+
+            papers_ids.append(str(paper_id))
+
+
+    open('data/author_papers.txt','w').write('\n'.join(papers_ids))
+
+
+
 if __name__ == '__main__':
-    test_author_collaborators()
+    # test_author_collaborators()
+
+    author_papers()
 
 
 
