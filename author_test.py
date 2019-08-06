@@ -122,12 +122,35 @@ def author_papers2():
 
     open('data/author_paper_collaborators.json','w').write(json.dumps(author_paper_collaborators))
 
+
+
+def paper_year():
+
+
+    papers = set([line.strip() for line in open('data/author_papers.txt')])
+    sql = 'select paper_id,year from mag_core.papers'
+    query_op = dbop()
+
+    paper_year = {}
+    for paper_id,year in query_op.query_database(sql):
+
+        if str(paper_id) in papers:
+            paper_year[paper_id] = year
+
+
+    open('data/author_paper_year.json','w').write(json.dumps(paper_year))
+
+
 if __name__ == '__main__':
     # test_author_collaborators()
 
     # author_papers()
 
-    author_papers2()
+    # author_papers2()
+
+    paper_year()
+
+
 
 
 
