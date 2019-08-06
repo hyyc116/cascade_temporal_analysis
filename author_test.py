@@ -47,7 +47,7 @@ def test_author_collaborators():
     authors = []
     for author_id,display_name,last_known_affiliation_id in query_op.query_database(sql):
 
-        if display_name.strip() in author_names and last_known_affiliation_id.srtip()!='':
+        if display_name.strip() in author_names and last_known_affiliation_id.strip()!='':
 
             authors.append('{},{},{}'.format(author_id,display_name,last_known_affiliation_id))
 
