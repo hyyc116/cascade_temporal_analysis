@@ -143,14 +143,29 @@ def author_collaborators():
     author_paper_collaborators = json.loads(open('data/author_paper_collaborators.json').read())
     paper_year =json.loads(open('data/author_paper_year.json').read())
 
-    author_id_name = {}
+    # author_id_name = {}
 
-    for line in open('data/authors.txt'):
+    # for line in open('data/authors.txt'):
 
-        line = line.strip()
+    #     line = line.strip()
 
-        line.split(',')
+    #     line.split(',')
 
+    author_year_collaborators = defaultdict(lambda:defaultdict(list))
+    for author in author_paper_collaborators.keys():
+
+
+        paper_collaborators = author_paper_collaborators[author]
+
+        for paper in sorted(paper_collaborators.keys(),key = lambda x:int(paper_year[x])):
+            year = int(paper_year[paper])
+
+            for author_id,affiliation_id in paper_collaborators[paper]:
+
+                author_year_collaborators[author][year].append([author_id,affiliation_id])
+
+
+    open('data/author_year_collaborators.json','w').write(json.dumps(author_year_collaborators))
 
 
 if __name__ == '__main__':
@@ -158,11 +173,11 @@ if __name__ == '__main__':
 
     # author_papers()
 
-    author_papers2()
+    # author_papers2()
 
     # paper_year()
 
-
+    author_collaborators()
 
 
 
