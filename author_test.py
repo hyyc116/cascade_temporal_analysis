@@ -93,13 +93,13 @@ def author_papers2():
 
     papers = set([line.strip() for line in open('data/author_papers.txt')])
 
-    sql = 'select author_id,paper_id from mag_core.paper_author_affiliations'
+    sql = 'select author_id,paper_id,affiliation_id from mag_core.paper_author_affiliations'
 
     query_op = dbop()
 
     author_paper_collaborators = defaultdict(lambda:defaultdict(list))
     paper_authors = defaultdict(list)
-    for author_id,paper_id in query_op.query_database(sql):
+    for author_id,paper_id,affiliation_id in query_op.query_database(sql):
 
         if str(paper_id) in papers:
 
@@ -107,25 +107,22 @@ def author_papers2():
 
             # author_paper_collaborators[]
 
-            paper_authors[paper_id].append(author_id)
+            paper_authors[paper_id].append([author_id,affiliation_id])
 
 
     for paper_id in paper_authors.keys():
 
-        for author in paper_authors[paper_id]:
+        for author,affiliation_id in paper_authors[paper_id]:
 
             if str(author) in authors:
 
                 author_paper_collaborators[author][paper_id] = paper_authors
-
-
 
     open('data/author_paper_collaborators.json','w').write(json.dumps(author_paper_collaborators))
 
 
 
 def paper_year():
-
 
     papers = set([line.strip() for line in open('data/author_papers.txt')])
     sql = 'select paper_id,year from mag_core.papers'
@@ -137,8 +134,23 @@ def paper_year():
         if str(paper_id) in papers:
             paper_year[paper_id] = year
 
-
     open('data/author_paper_year.json','w').write(json.dumps(paper_year))
+
+
+def author_collaborators():
+
+
+    author_paper_collaborators = json.loads(open('data/author_paper_collaborators.json').read())
+    paper_year =json.loads(open('data/author_paper_year.json').read())
+
+    author_id_name = {}
+
+    for line in open('data/authors.txt'):
+
+        line = line.strip()
+
+        line.split(',')
+
 
 
 if __name__ == '__main__':
@@ -146,9 +158,9 @@ if __name__ == '__main__':
 
     # author_papers()
 
-    # author_papers2()
+    author_papers2()
 
-    paper_year()
+    # paper_year()
 
 
 
