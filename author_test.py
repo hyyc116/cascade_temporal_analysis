@@ -42,12 +42,12 @@ def test_author_collaborators():
 
     query_op = dbop()
 
-    sql = 'select author_id,display_name,last_known_affiliation_id from mag_core.authors'
+    sql = 'select author_id,display_name,last_known_affiliation_id,paper_count from mag_core.authors'
 
     authors = []
-    for author_id,display_name,last_known_affiliation_id in query_op.query_database(sql):
+    for author_id,display_name,last_known_affiliation_id,paper_count in query_op.query_database(sql):
 
-        if display_name.strip() in author_names and last_known_affiliation_id.strip()!='':
+        if display_name.strip() in author_names and last_known_affiliation_id.strip()!='' and paper_count>10:
 
             authors.append('{},{},{}'.format(author_id,display_name,last_known_affiliation_id))
 
