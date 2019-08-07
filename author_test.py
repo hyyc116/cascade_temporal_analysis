@@ -188,6 +188,7 @@ def author_collaborators_affs():
         xs = []
         unique_author_nums = []
         unique_aff_nums = []
+        paper_nums = []
 
         year_collaborators = author_year_collaborators[author]
 
@@ -197,6 +198,7 @@ def author_collaborators_affs():
                 continue
 
             xs.append(int(year))
+            paper_nums.append(len(year_collaborators[year]))
             au_list = []
             aff_list = []
             for author_id,aff_id in year_collaborators[year]:
@@ -213,6 +215,7 @@ def author_collaborators_affs():
         author_data[author]['xs'] = xs
         author_data[author]['author_nums'] = unique_author_nums
         author_data[author]['aff_nums'] = unique_aff_nums
+        author_data[author]['paper_nums'] = paper_nums
 
 
     open('data/author_collaborators_aff_data.json','w').write(json.dumps(author_data))
