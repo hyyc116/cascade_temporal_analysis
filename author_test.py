@@ -181,7 +181,7 @@ def author_collaborators_affs():
 
     author_year_collaborators = json.loads(open('data/author_year_collaborators.json').read())
 
-    author_data = {}
+    author_data = defaultdict(dict)
 
     for author in author_year_collaborators.keys():
 
