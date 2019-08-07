@@ -160,7 +160,10 @@ def author_collaborators():
         for paper in sorted(paper_collaborators.keys(),key = lambda x:int(paper_year[x])):
             year = int(paper_year[paper])
 
-            print(paper_collaborators)
+            # print(paper_collaborators)
+
+            if len(paper_collaborators[paper])==0:
+                continue
             for author_id,affiliation_id in paper_collaborators[paper]:
 
                 author_year_collaborators[author][year].append([author_id,affiliation_id])
