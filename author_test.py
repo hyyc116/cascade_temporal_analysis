@@ -166,6 +166,9 @@ def author_collaborators():
                 continue
             for author_id,affiliation_id in paper_collaborators[paper]:
 
+                if author_id == author:
+                    continue
+
                 author_year_collaborators[author][year].append([author_id,affiliation_id])
 
 
