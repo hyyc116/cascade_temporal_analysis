@@ -175,6 +175,49 @@ def author_collaborators():
     open('data/author_year_collaborators.json','w').write(json.dumps(author_year_collaborators))
 
 
+## 将每一个作者的每年的合作者数量和机构数量的变化曲线进行画出来
+
+def author_collaborators_affs():
+
+    author_year_collaborators = json.loads(open('data/author_year_collaborators.json').read())
+
+    author_data = {}
+
+    for author in author_year_collaborators.keys():
+
+        xs = []
+        unique_author_nums = []
+        unique_aff_nums = []
+
+        year_collaborators = author_year_collaborators[author]
+
+        for year in sorted(year_collaborators.keys(),key = lambda x:int(x)):
+
+            if int(year)>2016:
+                continue
+
+            xs.append(int(year))
+            au_list = []
+            aff_list = []
+            for author_id,aff_id in year_collaborators[year]:
+
+                au_list.append(author_id)
+
+                if aff_id!='':
+                    aff_list.append(aff_id)
+
+            unique_author_nums.append(len(set(au_list)))
+            unique_aff_nums.append(len(set(aff_list)))
+
+
+        author_data[author]['xs'] = xs
+        author_data[author]['author_nums'] = unique_author_nums
+        author_data[author]['aff_nums'] = unique_aff_nums
+
+
+    open('data/author_collaborators_aff_data.json','w').write(json.dumps(author_data))
+
+
 if __name__ == '__main__':
     # test_author_collaborators()
 
@@ -184,9 +227,9 @@ if __name__ == '__main__':
 
     # paper_year()
 
-    author_collaborators()
+    # author_collaborators()
 
-
+    author_collaborators_affs()
 
 
 
