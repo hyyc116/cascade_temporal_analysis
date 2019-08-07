@@ -116,7 +116,7 @@ def author_papers2():
 
             if str(author) in authors:
 
-                author_paper_collaborators[author][paper_id] = paper_authors
+                author_paper_collaborators[author][paper_id] = paper_authors[paper_id]
 
     open('data/author_paper_collaborators.json','w').write(json.dumps(author_paper_collaborators))
 
@@ -177,7 +177,7 @@ if __name__ == '__main__':
 
     # author_papers()
 
-    # author_papers2()
+    author_papers2()
 
     # paper_year()
 
