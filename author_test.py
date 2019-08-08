@@ -202,7 +202,7 @@ def author_collaborators_affs():
             au_list = []
             aff_list = []
             pid_list = []
-            for pid_author_id,aff_id in year_collaborators[year]:
+            for pid,author_id,aff_id in year_collaborators[year]:
 
                 au_list.append(author_id)
 
@@ -227,15 +227,15 @@ def author_collaborators_affs():
 
 
 if __name__ == '__main__':
-    test_author_collaborators()
+    # test_author_collaborators()
 
-    author_papers()
+    # author_papers()
 
-    author_papers2()
+    # author_papers2()
 
-    paper_year()
+    # paper_year()
 
-    author_collaborators()
+    # author_collaborators()
 
     author_collaborators_affs()
 
