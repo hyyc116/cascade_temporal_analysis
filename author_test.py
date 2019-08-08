@@ -239,6 +239,8 @@ if __name__ == '__main__':
 
     author_collaborators_affs()
 
+    print('Done')
+
 
 
 
