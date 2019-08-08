@@ -47,7 +47,7 @@ def test_author_collaborators():
     authors = []
     for author_id,display_name,last_known_affiliation_id,paper_count in query_op.query_database(sql):
 
-        if display_name.strip() in author_names and last_known_affiliation_id.strip()!='' and paper_count>10:
+        if display_name.strip() in author_names and last_known_affiliation_id.strip()!='':
 
             authors.append('{},{},{}'.format(author_id,display_name,last_known_affiliation_id))
 
@@ -169,7 +169,7 @@ def author_collaborators():
                 if author_id == author:
                     continue
 
-                author_year_collaborators[author][year].append([author_id,affiliation_id])
+                author_year_collaborators[author][year].append([paper,author_id,affiliation_id])
 
 
     open('data/author_year_collaborators.json','w').write(json.dumps(author_year_collaborators))
@@ -198,18 +198,23 @@ def author_collaborators_affs():
                 continue
 
             xs.append(int(year))
-            paper_nums.append(len(year_collaborators[year]))
+            # paper_nums.append(len(year_collaborators[year]))
             au_list = []
             aff_list = []
-            for author_id,aff_id in year_collaborators[year]:
+            pid_list = []
+            for pid_author_id,aff_id in year_collaborators[year]:
 
                 au_list.append(author_id)
+
+                pid_list.append(pid)
 
                 if aff_id!='':
                     aff_list.append(aff_id)
 
+
             unique_author_nums.append(len(set(au_list)))
             unique_aff_nums.append(len(set(aff_list)))
+            paper_nums.append(len(set(pid_list)))
 
 
         author_data[author]['xs'] = xs
@@ -222,15 +227,15 @@ def author_collaborators_affs():
 
 
 if __name__ == '__main__':
-    # test_author_collaborators()
+    test_author_collaborators()
 
-    # author_papers()
+    author_papers()
 
-    # author_papers2()
+    author_papers2()
 
-    # paper_year()
+    paper_year()
 
-    # author_collaborators()
+    author_collaborators()
 
     author_collaborators_affs()
 
