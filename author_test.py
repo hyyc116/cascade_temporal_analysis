@@ -53,6 +53,9 @@ def test_author_collaborators():
 
         firstname,secondname = display_name.split(' ')[0],display_name.split(' ')[-1]
 
+        if firstname=='':
+            continue
+
         abbrev_name = firstname[0]+' '+secondname
         if display_name.strip() in author_names or abbrev_name in author_names:
 
