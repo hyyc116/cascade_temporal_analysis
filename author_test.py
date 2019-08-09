@@ -51,6 +51,12 @@ def test_author_collaborators():
         if display_name=='':
             continue
 
+        if last_known_affiliation_id=='':
+            continue
+
+        if paper_count<2:
+            continue
+
         firstname,secondname = display_name.split(' ')[0],display_name.split(' ')[-1]
 
         if firstname=='':
