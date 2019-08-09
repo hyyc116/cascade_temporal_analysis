@@ -298,17 +298,17 @@ def author_collaborators_affs():
 
 
 if __name__ == '__main__':
-    test_author_collaborators()
+    # test_author_collaborators()
 
-    # author_papers()
+    author_papers()
 
-    # author_papers2()
+    author_papers2()
 
-    # paper_year()
+    paper_year()
 
-    # author_collaborators()
+    author_collaborators()
 
-    # author_collaborators_affs()
+    author_collaborators_affs()
 
     print('Done')
 
