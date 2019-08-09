@@ -36,7 +36,7 @@ def test_author_collaborators():
         secondname,firstname,field = line.split(',')[0:3]
 
         author_names.append('{:} {:}'.format(firstname,secondname))
-        author_names.append('{:} {:}'.format(firstname[0],secondname))
+        # author_names.append('{:} {:}'.format(firstname[0],secondname))
 
     author_names= set(author_names)
     print(author_names)
@@ -46,6 +46,7 @@ def test_author_collaborators():
     sql = 'select author_id,display_name,last_known_affiliation_id,paper_count from mag_core.authors'
 
     authors = []
+    has_names = []
     for author_id,display_name,last_known_affiliation_id,paper_count in query_op.query_database(sql):
 
         if display_name=='':
@@ -63,14 +64,63 @@ def test_author_collaborators():
             continue
 
         abbrev_name = firstname[0]+' '+secondname
+
         if display_name.strip() in author_names:
 
             authors.append('{},{},{},{}'.format(author_id,display_name,last_known_affiliation_id,1))
 
-        elif abbrev_name in author_names:
+            has_names.append(display_name)
+
+
+        # elif abbrev_name in author_names:
+
+        #     authors.append('{},{},{},{}'.format(author_id,display_name,last_known_affiliation_id,0))
+
+    author_abbrevs = []
+    for line in open('test_authors.csv'):
+        line = line.strip()
+
+        secondname,firstname,field = line.split(',')[0:3]
+
+        name = '{:} {:}'.format(firstname,secondname)
+
+        if name in has_names:
+            continue
+        # author_names.append()
+        author_abbrevs.append('{:} {:}'.format(firstname[0],secondname))
+
+
+    author_abbrevs = set(author_abbrevs)
+    # author_names= set(author_names)
+    # print(author_names)
+
+    sql = 'select author_id,display_name,last_known_affiliation_id,paper_count from mag_core.authors'
+
+    authors = []
+    has_names = []
+    for author_id,display_name,last_known_affiliation_id,paper_count in query_op.query_database(sql):
+
+        if display_name=='':
+            continue
+
+        if last_known_affiliation_id=='':
+            continue
+
+        if paper_count<2:
+            continue
+
+        firstname,secondname = display_name.split(' ')[0],display_name.split(' ')[-1]
+
+        if firstname=='':
+            continue
+
+        abbrev_name = firstname[0]+' '+secondname
+
+        if abbrev_name.strip() in author_abbrevs:
 
             authors.append('{},{},{},{}'.format(author_id,display_name,last_known_affiliation_id,0))
 
+            # has_names.append(display_name)
 
 
     open('data/authors.txt','w').write('\n'.join(authors))
