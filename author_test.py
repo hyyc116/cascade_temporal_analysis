@@ -48,6 +48,9 @@ def test_author_collaborators():
     authors = []
     for author_id,display_name,last_known_affiliation_id,paper_count in query_op.query_database(sql):
 
+        if display_name=='':
+            continue
+
         firstname,secondname = display_name.split(' ')[0],display_name.split(' ')[-1]
 
         abbrev_name = firstname[0]+' '+secondname
