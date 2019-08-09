@@ -36,6 +36,7 @@ def test_author_collaborators():
         secondname,firstname,field = line.split(',')[0:3]
 
         author_names.append('{:} {:}'.format(firstname,secondname))
+        author_names.append('{:} {:}'.format(firstname[0],secondname))
 
     author_names= set(author_names)
     print(author_names)
@@ -47,7 +48,8 @@ def test_author_collaborators():
     authors = []
     for author_id,display_name,last_known_affiliation_id,paper_count in query_op.query_database(sql):
 
-        if display_name.strip() in author_names and last_known_affiliation_id.strip()!='':
+
+        if display_name.strip() in author_names:
 
             authors.append('{},{},{}'.format(author_id,display_name,last_known_affiliation_id))
 
@@ -227,7 +229,7 @@ def author_collaborators_affs():
 
 
 if __name__ == '__main__':
-    # test_author_collaborators()
+    test_author_collaborators()
 
     # author_papers()
 
@@ -237,7 +239,7 @@ if __name__ == '__main__':
 
     # author_collaborators()
 
-    author_collaborators_affs()
+    # author_collaborators_affs()
 
     print('Done')
 
