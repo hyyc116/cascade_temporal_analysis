@@ -96,8 +96,8 @@ def test_author_collaborators():
 
     sql = 'select author_id,display_name,last_known_affiliation_id,paper_count from mag_core.authors'
 
-    authors = []
-    has_names = []
+    # authors = []
+    # has_names = []
     for author_id,display_name,last_known_affiliation_id,paper_count in query_op.query_database(sql):
 
         if display_name=='':
