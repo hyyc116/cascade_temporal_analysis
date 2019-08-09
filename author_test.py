@@ -63,9 +63,14 @@ def test_author_collaborators():
             continue
 
         abbrev_name = firstname[0]+' '+secondname
-        if display_name.strip() in author_names or abbrev_name in author_names:
+        if display_name.strip() in author_names:
 
-            authors.append('{},{},{}'.format(author_id,display_name,last_known_affiliation_id))
+            authors.append('{},{},{},{}'.format(author_id,display_name,last_known_affiliation_id,1))
+
+        elif abbrev_name in author_names:
+
+            authors.append('{},{},{},{}'.format(author_id,display_name,last_known_affiliation_id,0))
+
 
 
     open('data/authors.txt','w').write('\n'.join(authors))
