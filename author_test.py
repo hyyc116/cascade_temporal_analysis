@@ -128,6 +128,36 @@ def test_author_collaborators():
     print(len(authors))
 
 
+def aff_id_name():
+
+    data  = []
+
+    for line in open('data/authors.txt'):
+
+        data.append(line.split(','))
+
+    author_ids,display_names,aff_ids,tags = zip(*data)
+
+    aff_id_set = set(aff_ids)
+
+
+    sql = 'select  affiliation_id,normalized_name,display_name,paper_count,citation_count from mag_core.affiliations'
+
+    query_op = dbop()
+    lines = ['affiliation_id,normalized_name,display_name,paper_count,citation_count']
+    for affiliation_id,normalized_name,display_name,paper_count,citation_count in query_op.query_database(sql):
+
+        if affiliation_id in aff_id_set:
+
+            lines.append('{},{},{},{},{}'.format(affiliation_id,normalized_name,display_name,paper_count,citation_count))
+
+
+    open('data/aff_id_names.csv','w').write('\n'.join(lines))
+
+
+
+
+
 
 def author_papers():
 
@@ -300,15 +330,17 @@ def author_collaborators_affs():
 if __name__ == '__main__':
     # test_author_collaborators()
 
-    author_papers()
+    aff_id_name()
 
-    author_papers2()
+    # author_papers()
 
-    paper_year()
+    # author_papers2()
 
-    author_collaborators()
+    # paper_year()
 
-    author_collaborators_affs()
+    # author_collaborators()
+
+    # author_collaborators_affs()
 
     print('Done')
 
