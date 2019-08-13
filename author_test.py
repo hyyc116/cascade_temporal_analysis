@@ -149,15 +149,10 @@ def aff_id_name():
 
         if affiliation_id in aff_id_set:
 
-            lines.append('{},{},{},{},{}'.format(affiliation_id,normalized_name,display_name,paper_count,citation_count))
+            lines.append('{},{},{},{},{}'.format(affiliation_id,normalized_name.replace(',',' '),display_name.replace(',',' '),paper_count,citation_count))
 
 
     open('data/aff_id_names.csv','w').write('\n'.join(lines))
-
-
-
-
-
 
 def author_papers():
 
