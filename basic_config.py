@@ -105,7 +105,7 @@ class dbop:
         self._insert_index=insert_index
         self._insert_values=[]
         logging.debug("connect database with normal cursor.")
-        self._db = psycopg2.connect(database='core_data',user="buyi",password = "a")
+        self._db = psycopg2.connect(database='core_data',user="buyi",password = "ruth_hardtop_isthmus_bubbly")
         self._cursor = self._db.cursor()
 
 
