@@ -217,6 +217,18 @@ def author_papers2():
     open('data/author_paper_collaborators.json','w').write(json.dumps(author_paper_collaborators))
 
 
+    sql = 'select paper_id,paper_title,year from mag_core.papers'
+    lines = ['paper_id,paper_title,year']
+    for paper_id,paper_title,year in query_op.query_database(sql):
+
+        if paper_authors.get(paper_id,None) is None:
+            continue
+
+        lines.append('{},{},{}'.format(paper_id,paper_title,year))
+
+    open('data/paper_info.csv','w').write('\n'.join(lines))
+
+
 
 def paper_year():
 
@@ -325,11 +337,11 @@ def author_collaborators_affs():
 if __name__ == '__main__':
     # test_author_collaborators()
 
-    aff_id_name()
+    # aff_id_name()
 
     # author_papers()
 
-    # author_papers2()
+    author_papers2()
 
     # paper_year()
 
