@@ -121,14 +121,9 @@ def load_attrs(pathObj):
 
     return _id_subjects,_id_cn,_id_doctype,_id_pubyear,top10_doctypes
 
-def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
+def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
 
     logging.info('stating dccp of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
-
-    ## 加载DCCP的数据
-    logging.info('loading dccp data ...')
-    _id_dccp=json.loads(open(pathObj.dccp_path).read())
-
     ## 只需要过滤所有的数据 然后统计分布就行了
     if _t=='point':
 
@@ -167,14 +162,14 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
             year='ALL'
         else:
             year=  start_year
-        plt.title('{:}-{:}-{:}-{:}-{:}'.format(field,doctype,labels[citation_range],start_year,end_year))
+        plt.title('{:}-{:}-{:}-{:}-{:}'.format(field,doctype_,labels[citation_range],start_year,end_year))
 
         plt.tight_layout()
 
 
-        plt.savefig('{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype,labels[citation_range],start_year,end_year),dpi=300)
+        plt.savefig('{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year),dpi=300)
 
-        print('fig saved to {:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype,labels[citation_range],start_year,end_year))
+        print('fig saved to {:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
 
 
     # else:
@@ -330,14 +325,8 @@ def num_of_comp_on_facets():
     pass
 
 ### 不同学科、不同引用次数、不同类型的common motif
-def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
+def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
     logging.info('stating common motif of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
-
-    ## 加载DCCP的数据
-    logging.info('loading paper subcascades  ...')
-    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
-
-
 
     ## 如果是point
     logging.info('stating dccp ...')
@@ -409,10 +398,10 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
     ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
     readme = open('README.md','a')
-    lines = ['### Type:{:} - {:} - {:} - {:}-{:}'.format(field,doctype,labels[citation_range],start_year,end_year)]
+    lines = ['### Type:{:} - {:} - {:} - {:}-{:}'.format(field,doctype_,labels[citation_range],start_year,end_year)]
 
-    logging.info('doctype:{:}'.format(doctype))
-    lines.append('#### doctype:{:}'.format(doctype))
+    logging.info('doctype:{:}'.format(doctype_))
+    lines.append('#### doctype:{:}'.format(doctype_))
     lines.append('|order|motif|frequency|')
     lines.append('|:----:|:-----:|:----:|')
 
@@ -445,7 +434,7 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
     plt.tight_layout()
 
-    plt.savefig('{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field,doctype,labels[citation_range],year))
+    plt.savefig('{:}-{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
 
     subcas_nums_counter = Counter(subcas_nums)
 
@@ -466,7 +455,7 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
 
     plt.tight_layout()
 
-    plt.savefig('{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field,doctype,labels[citation_range],year))
+    plt.savefig('{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
 
 
     
@@ -498,7 +487,7 @@ def parse_args(pathObj):
 
     field = arg.field
 
-    field_name = field_dict[field].replace(' ','_').replace('&','and')
+    field_name = field_dict[field]
 
     start_year = arg.start_year
 
@@ -510,7 +499,7 @@ def parse_args(pathObj):
 
     operation = arg.operation
 
-    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+    
 
     citation_range = arg.citation_range
 
@@ -528,19 +517,46 @@ def parse_args(pathObj):
 
 
     if operation=='dccp':
-        dccp_on_facets(pathObj,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
+        ## 加载DCCP的数据
+        logging.info('loading dccp data ...')
+        _id_dccp=json.loads(open(pathObj.dccp_path).read())
+        dccp_on_facets(_id_dccp,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
     
     elif operation=='motif':
-        common_motif_on_facets(pathObj,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
+        logging.info('loading paper subcascades  ...')
+        paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
+        common_motif_on_facets(paper_size_id,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
     else:
         print 'no such action.'
+
+def run_all(pathObj):
+    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+    start_year = 1980
+    end_year = 2015
+    interval = 1
+    logging.info('loading dccp data ...')
+    _id_dccp=json.loads(open(pathObj.dccp_path).read())
+    logging.info('loading paper subcascades  ...')
+    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
+
+    for field_name in field_dict.values():
+
+        for doctype in top10_doctypes:
+
+            for citation_range in range(8):
+
+                _t = 'point'
+
+                dccp_on_facets(_id_dccp,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
+                common_motif_on_facets(paper_size_id,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
+
 
 
 if __name__ == '__main__':
 
-    field = 'ALL'
-    paths = PATHS(field)
-    parse_args(paths)
+    # field = 'ALL'
+    # paths = PATHS(field)
+    # parse_args(paths)
    
 
 
