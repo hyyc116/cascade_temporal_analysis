@@ -559,5 +559,7 @@ if __name__ == '__main__':
     # parse_args(paths)
    run_all()
 
+   logging.info('Done')
+
 
 
