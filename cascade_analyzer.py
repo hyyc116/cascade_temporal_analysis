@@ -425,7 +425,7 @@ def parse_args(pathObj):
     ## 数据开始时间
     parser.add_argument('-s','--start_year',dest='start_year',default=1980,type=int,help='start year of papers used in analyzing.')
     ## 数据结束时间
-    parser.add_argument('-e','--end_year',dest='end_year',default=2019,type=int,help='end year of papers used in analyzing.')
+    parser.add_argument('-e','--end_year',dest='end_year',default=2015,type=int,help='end year of papers used in analyzing.')
     ## 数据的时间间隔
     parser.add_argument('-i','--interval',dest='interval',default=1,type=int,help='interval of data.')
 
