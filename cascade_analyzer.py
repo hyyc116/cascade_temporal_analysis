@@ -461,6 +461,7 @@ def parse_args(pathObj):
     citation_range = arg.citation_range
 
     _t = arg.optype
+    
 
     print('top 10 doctype: ',top10_doctypes)
 
