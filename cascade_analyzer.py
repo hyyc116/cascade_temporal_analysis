@@ -557,7 +557,7 @@ if __name__ == '__main__':
     # field = 'ALL'
     # paths = PATHS(field)
     # parse_args(paths)
-   
+   run_all()
 
 
 
