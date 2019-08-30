@@ -156,18 +156,18 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
             ## 剩下的就是剩余的论文的dccp，画出其分布的柱状图，并且标明均值和中位数
             dccps.append(_id_dccp[_id])
 
-        fig,ax = plt.subplots(figszie=(4,3))
+        plt.figure(figsize=(4,3))
 
-        ax.hist(dccps,bins=20)
+        plt.hist(dccps,bins=20)
 
-        ax.set_xlabel('Percentage of DCCP')
-        ax.set_ylabel('percentage')
+        plt.xlabel('Percentage of DCCP')
+        plt.ylabel('percentage')
 
         if start_year!=end_year:
             year='ALL'
         else:
             year=  start_year
-        ax.set_title('{:}-{:}-{:}-{:}'.format(field,doctype,labels[citation_range],year))
+        plt.title('{:}-{:}-{:}-{:}'.format(field,doctype,labels[citation_range],year))
 
         plt.tight_layout()
 
@@ -463,14 +463,14 @@ def parse_args(pathObj):
     _t = arg.optype
     
 
-    print('top 10 doctype: ',top10_doctypes)
+    # print('top 10 doctype: ',top10_doctypes)
 
     if doctype_id!='ALL':
         doctype= top10_doctypes[int(doctype_id)]
     else:
         doctype='ALL'
 
-    print('-----doctype:',doctype)
+    logging.info('-----doctype:',doctype)
 
 
     if operation=='dccp':
