@@ -150,7 +150,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
                 continue
 
             ## citation range,_cn_class是不同range的标签，如果是1就说明在这个range内
-            if _cn_clas[cn_t]==1:
+            if _cn_clas[cn_t]!=1:
                 continue
 
             ## 剩下的就是剩余的论文的dccp，画出其分布的柱状图，并且标明均值和中位数
@@ -167,14 +167,14 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
             year='ALL'
         else:
             year=  start_year
-        plt.title('{:}-{:}-{:}-{:}'.format(field,doctype,labels[citation_range],year))
+        plt.title('{:}-{:}-{:}-{:}-{:}'.format(field,doctype,labels[citation_range],start_year,end_year))
 
         plt.tight_layout()
 
 
-        plt.savefig('{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype,labels[citation_range],year),dpi=300)
+        plt.savefig('{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype,labels[citation_range],start_year,end_year),dpi=300)
 
-        print('fig saved to {:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype,labels[citation_range],year))
+        print('fig saved to {:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype,labels[citation_range],start_year,end_year))
 
 
     # else:
@@ -337,16 +337,22 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
     logging.info('loading paper subcascades  ...')
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
 
-    # year_doctype_cnclas_dccp = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
-    # year_dccp = defaultdict(list)
-    doctype_subcasid = defaultdict(list)
-    cnclas_subcasid = defaultdict(list)
 
-    doctype_year_subcasid = defaultdict(lambda:defaultdict(list))
-    cnclas_year_subcasid = defaultdict(lambda:defaultdict(list))
 
+    ## 如果是point
     logging.info('stating dccp ...')
     progress=0
+
+    ## 统计subcascade的属性
+
+    ## size的分布
+    subcas_sizes = []
+    ## num分布
+    subcas_nums = []
+    ## subcascade id
+    subcas_freq_ids  = []
+
+
     for _id in paper_size_id.keys():
         _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
         # dccp = _id_dccp[_id]
@@ -363,59 +369,107 @@ def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_
         if doctype_!='ALL' and doctype_!=_doctype:
             continue
 
+        if _cn_clas[cn_t]!=1:
+            continue
+
         progress+=1
 
         if progress%100000==1:
             logging.info('progress {:} ...'.format(progress))
 
         all_subcas_ids = []
+        all_subcas_sizes = []
+        all_subcas_num = 0
         for size in paper_size_id[_id].keys():
             subcas_ids = paper_size_id[_id][size]
+
+            for subcasid in subcas_ids:
+                all_subcas_sizes.append(size)
+
+                all_subcas_num+=1
 
             all_subcas_ids.extend(subcas_ids)
 
         all_subcas_ids = list(set([subcas_id for subcas_id in all_subcas_ids if subcas_id!=-999]))
 
-        doctype_subcasid[_doctype].extend(all_subcas_ids)
+        subcas_freq_ids.extend(all_subcas_ids)
+        subcas_nums.extend(all_subcas_sizes)
+        subcas_sizes.extend(all_subcas_num)
 
-        for i,_cn_clas in enumerate(_cn_clas):
+    if start_year!=end_year:
+        year='ALL'
+    else:
+        year=  start_year
 
-            if _cn_clas==1:
-                cnclas_subcasid[i].extend(all_subcas_ids)
+
+    ## 保存freq的subcasde pattern
+    subcas_counter = Counter(subcas_freq_ids)
+
+    top_10_freq_ids = sorted(subcas_counter.keys(),key=lambda x:subcas_counter[x],reverse=True)[:10]
 
     ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
-    readme = open('README.md','w')
-    lines = ['### Subject:{:}'.format(field)]
+    readme = open('README.md','a')
+    lines = ['### Type:{:} - {:} - {:} - {:}-{:}'.format(field,doctype,labels[citation_range],start_year,end_year)]
 
-    for doctype in top10_doctypes:
-        logging.info('doctype:{:}'.format(doctype))
-        lines.append('#### doctype:{:}'.format(doctype))
-        lines.append('|order|motif|frequency|')
-        lines.append('|:----:|:-----:|:----:|')
+    logging.info('doctype:{:}'.format(doctype))
+    lines.append('#### doctype:{:}'.format(doctype))
+    lines.append('|order|motif|frequency|')
+    lines.append('|:----:|:-----:|:----:|')
 
-        id_counter = Counter(doctype_subcasid[doctype])
+    for i,_id in enumerate(top_10_freq_ids):
 
-        for i,_id in enumerate(sorted(id_counter.keys(),key=lambda x:id_counter[x],reverse=True)[:10]):
-
-            lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i,_id,id_counter[_id]))
+        lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i+1,_id,subcas_counter[_id]))
     
     readme.write('\n'.join(lines))
 
-    lines = ['### number of citations']
-    for cnclas in sorted(cnclas_subcasid.keys()):
-        subject_name = labels[cnclas]
-        logging.info('subject:{:}'.format(subject_name))
-        lines.append('#### subject:{:}'.format(subject_name))
-        lines.append('|order|motif|frequency|')
-        lines.append('|:----:|:-----:|:----:|')
+    readme.close()
 
-        id_counter = Counter(cnclas_subcasid[cnclas])
+    ## 保存size distribution 以及 num distribution
 
-        for i,_id in enumerate(sorted(id_counter.keys(),key=lambda x:id_counter[x],reverse=True)[:10]):
+    subcas_sizes_counter = Counter(subcas_sizes)
 
-            lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i,_id,id_counter[_id]))
+    xs = []
+    ys = []
+
+    for size in sorted(subcas_sizes_counter.keys()):
+
+        xs.append(size)
+        ys.append(subcas_sizes_counter[size])
+
+    plt.figure(figsize=(4,3))
+
+    plt.plot(xs,ys)
+
+    plt.xlabel('size of subcascade')
+    plt.yalbel('number of papers')
+
+    plt.tight_layout()
+
+    plt.savefig('{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field,doctype,labels[citation_range],year))
+
+    subcas_nums_counter = Counter(subcas_nums)
+
+    xs = []
+    ys = []
+
+    for size in sorted(subcas_nums_counter.keys()):
+
+        xs.append(size)
+        ys.append(subcas_nums_counter[size])
+
+    plt.figure(figsize=(4,3))
+
+    plt.plot(xs,ys)
+
+    plt.xlabel('number of subcascade')
+    plt.yalbel('number of papers')
+
+    plt.tight_layout()
+
+    plt.savefig('{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field,doctype,labels[citation_range],year))
+
+
     
-    readme.write('\n'.join(lines))
 
 def parse_args(pathObj):
     parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
