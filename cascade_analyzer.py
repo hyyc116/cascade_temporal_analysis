@@ -150,7 +150,7 @@ def dccp_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subje
                 continue
 
             ## citation range,_cn_class是不同range的标签，如果是1就说明在这个range内
-            if _cn_clas[citation_range]==1:
+            if _cn_clas[cn_t]==1:
                 continue
 
             ## 剩下的就是剩余的论文的dccp，画出其分布的柱状图，并且标明均值和中位数
@@ -330,7 +330,7 @@ def num_of_comp_on_facets():
     pass
 
 ### 不同学科、不同引用次数、不同类型的common motif
-def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,_t='point'):
+def common_motif_on_facets(pathObj,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
     logging.info('stating common motif of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
 
     ## 加载DCCP的数据
