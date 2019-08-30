@@ -435,7 +435,7 @@ def parse_args(pathObj):
     ## 文章类型
     parser.add_argument('-d','--doctypeid',dest='doctypeid',default='ALL',type=str,choices=['ALL','0','1','2','3','4','5','6','7','8','9'],help='doctype used, ALL means top 10.')
 
-     parser.add_argument('-t','--optype',dest='optype',default='point',type=str,choices=['point','temporal'],help='op type:point or temporal')
+    parser.add_argument('-t','--optype',dest='optype',default='point',type=str,choices=['point','temporal'],help='op type:point or temporal')
 
     ## 操作类型
     parser.add_argument('-p','--operation',dest='operation',default='dccp',type=str,choices=['dccp','subcas_num','subcas_size','motif'],help='select operations')
