@@ -383,7 +383,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
 
         subcas_freq_ids.extend(all_subcas_ids)
         subcas_nums.extend(all_subcas_sizes)
-        subcas_sizes.extend(all_subcas_num)
+        subcas_sizes.append(all_subcas_num)
 
     if start_year!=end_year:
         year='ALL'
