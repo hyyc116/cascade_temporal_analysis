@@ -167,7 +167,7 @@ def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subj
         plt.tight_layout()
 
 
-        plt.savefig('{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year),dpi=300)
+        plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year),dpi=300)
 
         print('fig saved to {:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
 
@@ -434,7 +434,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
 
     plt.tight_layout()
 
-    plt.savefig('{:}-{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
+    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
 
     subcas_nums_counter = Counter(subcas_nums)
 
@@ -455,7 +455,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
 
     plt.tight_layout()
 
-    plt.savefig('{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
+    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field,doctype_,labels[citation_range],start_year,end_year))
 
 
     
