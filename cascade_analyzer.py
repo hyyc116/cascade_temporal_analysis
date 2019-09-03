@@ -430,7 +430,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
     plt.plot(xs,ys)
 
     plt.xlabel('size of subcascade')
-    plt.yalbel('number of papers')
+    plt.ylabel('number of papers')
 
     plt.tight_layout()
 
@@ -451,7 +451,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
     plt.plot(xs,ys)
 
     plt.xlabel('number of subcascade')
-    plt.yalbel('number of papers')
+    plt.ylabel('number of papers')
 
     plt.tight_layout()
 
