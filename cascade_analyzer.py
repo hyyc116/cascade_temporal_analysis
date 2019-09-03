@@ -554,10 +554,10 @@ def run_all(pathObj):
 
 if __name__ == '__main__':
 
-    # field = 'ALL'
-    # paths = PATHS(field)
+    field = 'ALL'
+    paths = PATHS(field)
     # parse_args(paths)
-   run_all()
+   run_all(paths)
 
    logging.info('Done')
 
