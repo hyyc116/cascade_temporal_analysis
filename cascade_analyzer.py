@@ -151,9 +151,18 @@ def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subj
             ## 剩下的就是剩余的论文的dccp，画出其分布的柱状图，并且标明均值和中位数
             dccps.append(_id_dccp[_id])
 
-        plt.figure(figsize=(4,3))
 
-        plt.hist(dccps,bins=20)
+        dccp_counter = Counter(dccps)
+        plt.figure(figsize=(4,3))
+        xs = []
+        ys = []
+        for dccp in sorted(dccp_counter.keys()):
+            xs.append(dccp)
+            ys.append(dccp_counter[dccp])
+
+        plt.yscale('log')
+
+        # plt.hist(dccps,bins=20)
 
         plt.xlabel('Percentage of DCCP')
         plt.ylabel('percentage')
@@ -167,9 +176,9 @@ def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subj
         plt.tight_layout()
 
 
-        plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype_,labels[cn_t],start_year,end_year),dpi=300)
+        plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year),dpi=300)
 
-        print('fig saved to {:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field,doctype_,labels[cn_t],start_year,end_year))
+        print('fig saved to {:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
 
 
     # else:
@@ -429,12 +438,15 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
 
     plt.plot(xs,ys)
 
+    plt.xscale('log')
+    plt.yscale('log')
+
     plt.xlabel('size of subcascade')
     plt.ylabel('number of papers')
 
     plt.tight_layout()
 
-    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field,doctype_,labels[cn_t],start_year,end_year))
+    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
 
     subcas_nums_counter = Counter(subcas_nums)
 
@@ -450,12 +462,15 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
 
     plt.plot(xs,ys)
 
+    plt.xscale('log')
+    plt.yscale('log')
+
     plt.xlabel('number of subcascade')
     plt.ylabel('number of papers')
 
     plt.tight_layout()
 
-    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field,doctype_,labels[cn_t],start_year,end_year))
+    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
 
 
     
