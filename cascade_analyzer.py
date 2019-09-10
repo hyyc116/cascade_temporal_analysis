@@ -164,6 +164,8 @@ def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subj
 
         # plt.hist(dccps,bins=20)
 
+        plt.plot(xs,ys)
+
         plt.xlabel('Percentage of DCCP')
         plt.ylabel('percentage')
 
