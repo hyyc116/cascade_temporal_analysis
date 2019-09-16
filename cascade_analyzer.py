@@ -673,7 +673,7 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
 
-    plot_dccp(pathObj)
+    plot_dccp(paths)
 
     logging.info('Done')
 
