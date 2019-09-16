@@ -123,7 +123,7 @@ def load_attrs(pathObj):
 
 
 ### 不同的field为一条线，然后分别描述dccp与citation count， dccp与doctype，dccp与时间之间的相互变化关系
-def dccp_depits(_id_dccp,field,start_year,end_year,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes):
+def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes):
 
     ### 领域内不同cc对应的dccps
     field_cc_dccps = defaultdict(lambda:defaultdict(list))
@@ -195,6 +195,12 @@ def dccp_depits(_id_dccp,field,start_year,end_year,doctype_,_id_subjects,_id_cn,
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
+            if year>end_year:
+                continue
+
+            if year<start_year:
+                continue
+
             xs.append(year)
             ys.append(p_of_dccp)
             ax2.plot(xs,ys,label='{}'.format(field))
@@ -204,6 +210,8 @@ def dccp_depits(_id_dccp,field,start_year,end_year,doctype_,_id_subjects,_id_cn,
 
     plt.tight_layout()
     plt.savefig('fig/dccp_total.png',dpi=300)
+
+    logging.info('Done')
 
 
 def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
@@ -646,13 +654,26 @@ def run_all(pathObj):
                 dccp_on_facets(_id_dccp,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
                 common_motif_on_facets(paper_size_id,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
 
+def plot_dccp(pathObj):
+
+    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+    start_year = 1980
+    end_year = 2015
+    interval = 1
+    logging.info('loading dccp data ...')
+    _id_dccp=json.loads(open(pathObj.dccp_path).read())
+    logging.info('loading paper subcascades  ...')
+    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
+    dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
 
 if __name__ == '__main__':
 
     field = 'ALL'
     paths = PATHS(field)
     # parse_args(paths)
-    run_all(paths)
+    # run_all(paths)
+
+    plot_dccp(pathObj)
 
     logging.info('Done')
 
