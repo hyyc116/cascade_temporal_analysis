@@ -136,11 +136,11 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         for subj in _top_sujects:
 
-            field_cc_dccps[subj][_cn].append(_id_dccp[_id])
+            field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
 
-            field_year_dccps[subj][_year].append(_id_dccp[_id])
+            field_year_dccps[subj][_year].append(_id_dccp[_id][0])
 
-            field_doctype_dccps[subj][_doctype].append(_id_dccp[_id])
+            field_doctype_dccps[subj][_doctype].append(_id_dccp[_id][0])
 
     fig,axes = plt.subplots(3,1,figsize=(4.5,9))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
