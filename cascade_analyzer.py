@@ -173,7 +173,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax1 = axes[1]
         xs = []
         ys = []
-        for doctype in sorted(field_doctype_dccps[field].keys()):
+        for doctype in top10_doctypes:
             dccps = field_doctype_dccps[field][doctype]
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
@@ -181,8 +181,10 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(doctype)
             ys.append(p_of_dccp)
 
-            ax1.plot(xs,ys,label='{}'.format(field))
+            ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field))
 
+        ax1.set_xticks(range(len(top10_doctypes)))
+        ax1.set_xticklabels(top10_doctypes)    
         ax1.set_xlabel('Doctype')
         ax1.set_ylabel('$P$')
 
