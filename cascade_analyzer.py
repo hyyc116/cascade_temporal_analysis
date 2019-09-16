@@ -23,10 +23,6 @@ field_dict = {
     6:'Social Sciences'
 }
 
-doctype_dict = {
-
-}
-
 labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf'] 
 
 
@@ -53,12 +49,11 @@ def dccp_of_paper(pathObj):
                     direct_cit_num+=1
 
             if direct_cit_num==len(edges):
-
                 has_dccp=0
             else:
                 has_dccp=1
 
-            _id_dccp[pid] = has_dccp
+            _id_dccp[pid] = [has_dccp,len(edges)-direct_cit_num]
 
     open(pathObj.dccp_path,'w').write(json.dumps(_id_dccp))
     logging.info('id dccp json saved to {:} .'.format(pathObj.dccp_path))
@@ -163,7 +158,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(cc)
             ys.append(p_of_dccp)
 
-            ax.plot(xs,ys,label='{}'.format(field))
+        ax.plot(xs,ys,label='{}'.format(field))
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P$')
@@ -181,7 +176,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(doctype)
             ys.append(p_of_dccp)
 
-            ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field))
+        ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes)    
@@ -205,7 +200,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
             xs.append(year)
             ys.append(p_of_dccp)
-            ax2.plot(xs,ys,label='{}'.format(field))
+        ax2.plot(xs,ys,label='{}'.format(field))
         
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$P$')
@@ -664,8 +659,8 @@ def plot_dccp(pathObj):
     interval = 1
     logging.info('loading dccp data ...')
     _id_dccp=json.loads(open(pathObj.dccp_path).read())
-    logging.info('loading paper subcascades  ...')
-    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
+    # logging.info('loading paper subcascades  ...')
+    # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
 
 if __name__ == '__main__':
@@ -674,7 +669,7 @@ if __name__ == '__main__':
     paths = PATHS(field)
     # parse_args(paths)
     # run_all(paths)
-
+    dccp_of_paper(paths)
     plot_dccp(paths)
 
     logging.info('Done')
