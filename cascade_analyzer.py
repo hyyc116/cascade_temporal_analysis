@@ -94,7 +94,7 @@ def stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year):
     doctype = _id_doctype[_id]
 
     ## 发表年份
-    year  = _id_year[_id]
+    year  = int(_id_year[_id])
 
     return top_sujects,cn_clas,doctype,year
 
@@ -120,6 +120,91 @@ def load_attrs(pathObj):
     logging.info('Data loaded')
 
     return _id_subjects,_id_cn,_id_doctype,_id_pubyear,top10_doctypes
+
+
+### 不同的field为一条线，然后分别描述dccp与citation count， dccp与doctype，dccp与时间之间的相互变化关系
+def dccp_depits(_id_dccp,field,start_year,end_year,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes):
+
+    ### 领域内不同cc对应的dccps
+    field_cc_dccps = defaultdict(lambda:defaultdict(list))
+
+    ## 领域 时间 dccps
+    field_year_dccps = defaultdict(lambda:defaultdict(list))
+
+    ## 领域 doctype dccps
+    field_doctype_dccps = defaultdict(lambda:defaultdict(list))
+
+    for _id in _id_dccp.keys():
+        ## 获得这一篇论文的基础属性值
+        _cn = int(_id_cn[_id])
+        _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+
+        for subj in _top_sujects:
+
+            field_cc_dccps[subj][_cn].append(_id_dccp[_id])
+
+            field_year_dccps[subj][_year].append(_id_dccp[_id])
+
+            field_doctype_dccps[subj][_doctype].append(_id_dccp[_id])
+
+    fig,axes = plt.subplots(3,1,figsize=(4.5,9))
+    ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
+    for field in sorted(field_cc_dccps.keys()):
+
+        ## dccp随着citation count的变化
+        ax = axes[0]
+        xs = [] 
+        ys = []
+        for cc in sorted(field_cc_dccps[field].keys()):
+            dccps  = field_cc_dccps[field][cc]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            xs.append(cc)
+            ys.append(p_of_dccp)
+
+            ax.plot(xs,ys,label='{}'.format(field))
+
+        ax.set_xlabel('number of citations')
+        ax.set_ylabel('$P$')
+
+
+        ## dccp与doctype的关系
+        ax1 = axes[1]
+        xs = []
+        ys = []
+        for doctype in sorted(field_doctype_dccps[field].keys()):
+            dccps = field_doctype_dccps[field][doctype]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            xs.append(doctype)
+            ys.append(p_of_dccp)
+
+            ax1.plot(xs,ys,label='{}'.format(field))
+
+        ax1.set_xlabel('Doctype')
+        ax1.set_ylabel('$P$')
+
+        ## dccp与时间之间的关系
+        ax2 = axes[2]
+        xs = []
+        ys = []
+        for year in sorted(field_year_dccps[field].keys()):
+            dccps = field_year_dccps[field][year]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            xs.append(year)
+            ys.append(p_of_dccp)
+            ax2.plot(xs,ys,label='{}'.format(field))
+        
+        ax2.set_xlabel('Year')
+        ax2.set_ylabel('$P$')
+
+    plt.tight_layout()
+    plt.savefig('fig/dccp_total.png',dpi=300)
+
 
 def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
 
@@ -475,8 +560,6 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
     plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
 
 
-    
-
 def parse_args(pathObj):
     parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
 
@@ -516,12 +599,9 @@ def parse_args(pathObj):
 
     operation = arg.operation
 
-    
-
     citation_range = arg.citation_range
 
     _t = arg.optype
-    
 
     # print('top 10 doctype: ',top10_doctypes)
 
@@ -531,7 +611,6 @@ def parse_args(pathObj):
         doctype='ALL'
 
     logging.info('-----doctype:',doctype)
-
 
     if operation=='dccp':
         ## 加载DCCP的数据
@@ -566,7 +645,6 @@ def run_all(pathObj):
 
                 dccp_on_facets(_id_dccp,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
                 common_motif_on_facets(paper_size_id,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
-
 
 
 if __name__ == '__main__':
