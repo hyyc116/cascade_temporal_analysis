@@ -221,6 +221,80 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     plt.savefig('fig/dccp_total.png',dpi=300,additional_artists=[lgd],
     bbox_inches="tight")
 
+
+    fig,axes = plt.subplots(1,3,figsize=(20,5))
+    ## 分不同的领域查看ein随着citation count, doctype, 时间之间的变化
+    for fi,field in enumerate(sorted(field_cc_eins.keys())):
+
+        ## dccp随着citation count的变化
+        ax = axes[0]
+        xs = [] 
+        ys = []
+        for cc in sorted(field_cc_eins[field].keys()):
+            dccps  = field_cc_eins[field][cc]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            xs.append(cc)
+            ys.append(p_of_dccp)
+
+        ax.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
+        ax.set_xscale('log')
+
+        ax.set_xlabel('number of citations')
+        ax.set_ylabel('$e_{i-norm}$')
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.2, -0.1), ncol=2)
+
+        ## dccp与doctype的关系
+        ax1 = axes[1]
+        xs = []
+        ys = []
+        for doctype in top10_doctypes:
+            dccps = field_doctype_eins[field][doctype]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            xs.append(doctype)
+            ys.append(p_of_dccp)
+
+        ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
+
+        ax1.set_xticks(range(len(top10_doctypes)))
+        ax1.set_xticklabels(top10_doctypes,rotation=-90)    
+        ax1.set_xlabel('Doctype')
+        ax1.set_ylabel('$e_{i-norm}$')
+
+
+        # ax1.legend()
+
+        ## dccp与时间之间的关系
+        ax2 = axes[2]
+        xs = []
+        ys = []
+        for year in sorted(field_year_eins[field].keys()):
+            dccps = field_year_eins[field][year]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            if year>end_year:
+                continue
+
+            if year<start_year:
+                continue
+
+            xs.append(year)
+            ys.append(p_of_dccp)
+        ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
+        
+        ax2.set_xlabel('Year')
+        ax2.set_ylabel('$e_{i-norm}$')
+
+        # ax2.legend()
+
+    plt.tight_layout()
+    plt.savefig('fig/dccp_total.png',dpi=300,additional_artists=[lgd],
+    bbox_inches="tight")
+
     logging.info('Done')
 
 
