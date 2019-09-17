@@ -53,7 +53,7 @@ def dccp_of_paper(pathObj):
             else:
                 has_dccp=1
 
-            _id_dccp[pid] = [has_dccp,len(edges)-direct_cit_num]
+            _id_dccp[pid] = [has_dccp,(len(edges)-direct_cit_num)/float(direct_cit_num)]
 
     open(pathObj.dccp_path,'w').write(json.dumps(_id_dccp))
     logging.info('id dccp json saved to {:} .'.format(pathObj.dccp_path))
@@ -122,12 +122,15 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
     ### 领域内不同cc对应的dccps
     field_cc_dccps = defaultdict(lambda:defaultdict(list))
+    field_cc_eins = defaultdict(lambda:defaultdict(list))
 
     ## 领域 时间 dccps
     field_year_dccps = defaultdict(lambda:defaultdict(list))
+    field_year_eins = defaultdict(lambda:defaultdict(list))
 
     ## 领域 doctype dccps
     field_doctype_dccps = defaultdict(lambda:defaultdict(list))
+    field_doctype_eins = defaultdict(lambda:defaultdict(list))
 
     for _id in _id_dccp.keys():
         ## 获得这一篇论文的基础属性值
@@ -137,10 +140,13 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         for subj in _top_sujects:
 
             field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
+            field_cc_eins[subj][_cn].append(_id_dccp[_id][1]/float(_cn))
 
             field_year_dccps[subj][_year].append(_id_dccp[_id][0])
+            field_year_eins[subj][_year].append(_id_dccp[_id][1]/float(_cn))
 
             field_doctype_dccps[subj][_doctype].append(_id_dccp[_id][0])
+            field_doctype_eins[subj][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
     fig,axes = plt.subplots(3,1,figsize=(4.5,9))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
@@ -163,8 +169,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P$')
-        ax.legend()
-
+        lgd = ax.legend(loc=9,bbox_to_anchor=(1.1, 0.5), ncol=1)
 
         ## dccp与doctype的关系
         ax1 = axes[1]
@@ -186,7 +191,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax1.set_ylabel('$P$')
 
 
-        ax1.legend()
+        # ax1.legend()
 
         ## dccp与时间之间的关系
         ax2 = axes[2]
@@ -210,10 +215,11 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$P$')
 
-        ax2.legend()
+        # ax2.legend()
 
     plt.tight_layout()
-    plt.savefig('fig/dccp_total.png',dpi=300)
+    plt.savefig('fig/dccp_total.png',dpi=300,additional_artists=[lgd],
+    bbox_inches="tight")
 
     logging.info('Done')
 
