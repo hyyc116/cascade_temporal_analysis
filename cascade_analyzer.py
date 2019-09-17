@@ -169,7 +169,8 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P$')
-        lgd = ax.legend(loc=9,bbox_to_anchor=(0.2, -0.1), ncol=2)
+        ax.set_xlime(1,1000)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
         ## dccp与doctype的关系
         ax1 = axes[1]
@@ -233,7 +234,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         for cc in sorted(field_cc_eins[field].keys()):
             dccps  = field_cc_eins[field][cc]
             ## dccp 在这个的比例
-            p_of_dccp = np.sum(dccps)/float(len(dccps))
+            p_of_dccp = np.mean(dccps)
 
             xs.append(cc)
             ys.append(p_of_dccp)
@@ -252,6 +253,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         for doctype in top10_doctypes:
             dccps = field_doctype_eins[field][doctype]
             ## dccp 在这个的比例
+            # p_of_dccp = np.mean(dccps)
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
             xs.append(doctype)
