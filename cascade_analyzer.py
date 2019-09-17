@@ -159,9 +159,11 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             ys.append(p_of_dccp)
 
         ax.plot(xs,ys,label='{}'.format(field))
+        ax.set_xscale('log')
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P$')
+        ax.legend()
 
 
         ## dccp与doctype的关系
@@ -179,9 +181,12 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
-        ax1.set_xticklabels(top10_doctypes)    
+        ax1.set_xticklabels(top10_doctypes,rotation=-45)    
         ax1.set_xlabel('Doctype')
         ax1.set_ylabel('$P$')
+
+
+        ax1.legend()
 
         ## dccp与时间之间的关系
         ax2 = axes[2]
@@ -204,6 +209,8 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$P$')
+
+        ax2.legend()
 
     plt.tight_layout()
     plt.savefig('fig/dccp_total.png',dpi=300)
@@ -669,7 +676,7 @@ if __name__ == '__main__':
     paths = PATHS(field)
     # parse_args(paths)
     # run_all(paths)
-    dccp_of_paper(paths)
+    # dccp_of_paper(paths)
     plot_dccp(paths)
 
     logging.info('Done')
