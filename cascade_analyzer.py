@@ -222,7 +222,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     bbox_inches="tight")
 
 
-    fig,axes = plt.subplots(1,3,figsize=(20,5))
+    fig,axes = plt.subplots(1,3,figsize=(18,5))
     ## 分不同的领域查看ein随着citation count, doctype, 时间之间的变化
     for fi,field in enumerate(sorted(field_cc_eins.keys())):
 
@@ -243,7 +243,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$e_{i-norm}$')
-        lgd = ax.legend(loc=9,bbox_to_anchor=(0.2, -0.1), ncol=2)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
         ## dccp与doctype的关系
         ax1 = axes[1]
@@ -292,7 +292,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         # ax2.legend()
 
     plt.tight_layout()
-    plt.savefig('fig/dccp_total.png',dpi=300,additional_artists=[lgd],
+    plt.savefig('fig/eins_total.png',dpi=300,additional_artists=[lgd],
     bbox_inches="tight")
 
     logging.info('Done')
