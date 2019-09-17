@@ -169,7 +169,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P$')
-        ax.set_xlime(1,1000)
+        ax.set_xlim(1,1000)
         lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
         ## dccp与doctype的关系
