@@ -116,7 +116,7 @@ def load_attrs(pathObj):
 
     return _id_subjects,_id_cn,_id_doctype,_id_pubyear,top10_doctypes
 
-
+markers = ['o','>','^','s','.','*']
 ### 不同的field为一条线，然后分别描述dccp与citation count， dccp与doctype，dccp与时间之间的相互变化关系
 def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes):
 
@@ -148,9 +148,9 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             field_doctype_dccps[subj][_doctype].append(_id_dccp[_id][0])
             field_doctype_eins[subj][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
-    fig,axes = plt.subplots(1,3,figsize=(13,5))
+    fig,axes = plt.subplots(1,3,figsize=(20,5))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
-    for field in sorted(field_cc_dccps.keys()):
+    for fi,field in enumerate(sorted(field_cc_dccps.keys())):
 
         ## dccp随着citation count的变化
         ax = axes[0]
@@ -164,12 +164,12 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(cc)
             ys.append(p_of_dccp)
 
-        ax.plot(xs,ys,label='{}'.format(field))
+        ax.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
         ax.set_xscale('log')
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P$')
-        lgd = ax.legend(loc=9,bbox_to_anchor=(0.2, -0.1), ncol=3)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.2, -0.1), ncol=2)
 
         ## dccp与doctype的关系
         ax1 = axes[1]
@@ -183,10 +183,10 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(doctype)
             ys.append(p_of_dccp)
 
-        ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field))
+        ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
         ax1.set_xticks(range(len(top10_doctypes)))
-        ax1.set_xticklabels(top10_doctypes,rotation=-45)    
+        ax1.set_xticklabels(top10_doctypes,rotation=-90)    
         ax1.set_xlabel('Doctype')
         ax1.set_ylabel('$P$')
 
@@ -210,7 +210,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
             xs.append(year)
             ys.append(p_of_dccp)
-        ax2.plot(xs,ys,label='{}'.format(field))
+        ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
         
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$P$')
