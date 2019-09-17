@@ -148,7 +148,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             field_doctype_dccps[subj][_doctype].append(_id_dccp[_id][0])
             field_doctype_eins[subj][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
-    fig,axes = plt.subplots(3,1,figsize=(4.5,9))
+    fig,axes = plt.subplots(1,3,figsize=(13,5))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
     for field in sorted(field_cc_dccps.keys()):
 
@@ -169,7 +169,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P$')
-        lgd = ax.legend(loc=9,bbox_to_anchor=(1.1, 0.5), ncol=1)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.2, -0.1), ncol=3)
 
         ## dccp与doctype的关系
         ax1 = axes[1]
