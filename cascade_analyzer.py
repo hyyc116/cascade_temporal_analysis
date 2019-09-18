@@ -926,7 +926,11 @@ def plot_subcascade_data():
     lines = []
     for subj in sorted(subj_ccbin_motif_dict.keys()):
         line = '#### Subject:{}'.format(subj)
+        header = "|"+'|'.join(['0']*25)+"|"
+        pos = "|"+'|'.join([':--------:']*25)+"|"
         lines.append(line)
+        lines.append(header)
+        lines.append(pos)
         ccbin_motif_dict = subj_ccbin_motif_dict[subj]
         cc_lines = []
         for ccbin in sorted(ccbin_motif_dict.keys()):
