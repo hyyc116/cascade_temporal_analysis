@@ -774,6 +774,9 @@ def stat_subcascades(pathObj):
     ## 记录subcascade的DF
     field_subcascade_df = defaultdict(lambda:defaultdict(int))
 
+    ## 每一个field对应的文章数量
+    field_ccbin_num = defaultdict(lambda:defaultdict(int))
+
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
@@ -785,12 +788,149 @@ def stat_subcascades(pathObj):
         for subj in _top_subjects:
             ## size
             num = 0
+            all_ids = []
             for size in size_id.keys():
                 ids = size_id[size]
                 num+=len(ids)
                 field_size_dict[subj][size]+=len(ids)
+
+                all_ids.extend(ids)
+
+            for _cc_ix,_cc_cl in enumerate(_cn_clas):
+                if _cc_cl==1:
+                    for sub_id in set(all_ids):
+                        field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
+                        field_subcascade_df[subj][sub_id]+=1
+                        field_ccbin_num[subj][_cc_ix]+=1
             
             field_num_dict[subj][num]+=1
+            # field_total_num[subj]+=1
+
+
+    ## 不同field对应的size的distribution
+
+    fig,axes = plt.subplots(2,3,figsize=(12,6))
+
+    for i,subj in enumerate(sorted(field_size_dict.keys())):
+
+        xs = []
+        ys = []
+
+        ax = axes[i/3,i%3]
+        for size in sorted(field_size_dict[field]):
+
+            xs.append(size)
+            ys.append(field_size_dict[field][size])
+
+        ax.plot(xs,ys,'o',fillstyle='none')
+
+        ax.set_xlabel('size of subcascade')
+        ax.set_ylabel('number of subcascade')
+
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+
+        ax.set_title('{}'.format(subj))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_subcas_size_dis.png',dpi=400)
+    logging.info('Size distribution saved to fig/field_subcas_size_dis.png.')
+
+    ## 不同field对应的num distribution
+    fig,axes = plt.subplots(2,3,figsize=(12,6))
+
+    for i,subj in enumerate(sorted(field_num_dict.keys())):
+
+        xs = []
+        ys = []
+
+        ax = axes[i/3,i%3]
+        for size in sorted(field_num_dict[field]):
+
+            xs.append(size)
+            ys.append(field_num_dict[field][size])
+
+        ax.plot(xs,ys,'o',fillstyle='none')
+
+        ax.set_xlabel('number of components')
+        ax.set_ylabel('number of papers')
+
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+
+        ax.set_title('{}'.format(subj))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_subcas_num_dis.png',dpi=400)
+    logging.info('Size distribution saved to fig/field_subcas_num_dis.png.')
+
+
+    ## 不同field中不同ccbin对应的common motif,以tf/df进行排序，找出个ccbin对应的独特的motif
+    subj_ccbin_motif_dict = defaultdict(lambda:defaultdict(dict))
+    for subj in sorted(field_cnbin_subcascade.keys()):
+
+        subcas_df = field_subcascade_df[subj]
+        for cc_bin in sorted(field_cnbin_subcascade[field].keys()):
+
+            subcas_num_dict = field_cnbin_subcascade[field][cc_bin]
+
+            subcas_num_total = field_ccbin_num[field][cc_bin]
+
+            motif_dict = {}
+
+            for sub_id in subcas_num_dict.keys():
+
+                df = subcas_df[sub_id]/float(len(field_cnbin_subcascade.keys()))
+
+                tf = subcas_num_dict[sub_id]
+
+                norm_tf = tf/float(subcas_num_total)
+
+                tfidf = norm_tf*(np.log(len(labels)/float(df))+0.01)
+
+                motif_dict[sub_id]['tf'] = tf
+                motif_dict[sub_id]['norm_tf'] = norm_tf
+                motif_dict[sub_id]['tfidf'] = tfidf
+
+            ## 对于改bin下的top motif进行输出
+            subj_ccbin_motif_dict[subj][cc_bin]= motif_dict
+
+    ## 分别对每一个subject下不同的ccbin的motif进行计算
+    lines = []
+    for subj in sorted(subj_ccbin_motif_dict.keys()):
+        line = ['#### Subject:{}'.format(subj)]
+        lines.append(line)
+        ccbin_motif_dict = subj_ccbin_motif_dict[subj]
+        cc_lines = []
+        for ccbin in sorted(ccbin_motif_dict.keys()):
+            motif_dict = ccbin_motif_dict[ccbin]
+            cc_line = ['{}||'.format(labels[ccbin])]
+            for motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tfidf'],reverse=True)[:10]):
+                line = '{}|{}|{}'.format(motif,motif_dict['tf'],motif_dict['tfidf'])
+                cc_line.append(line)
+
+            cc_lines.append(cc_line)
+
+        for ix,line in enumerate(zip(cc_lines)):
+
+            line= "|{}|".format(ix)+'|'.join(line)+"|"
+            lines.append(line)
+
+    open("README.md",'w').write('\n'.join(lines)+'\n')
+    logging.info('saved to README.md')
+
+
+
+
+
+
+
+
+
+
+
 
 
 
