@@ -122,7 +122,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
     ### 领域内不同cc对应的dccps
     field_cc_dccps = defaultdict(lambda:defaultdict(list))
-    field_cc_eins = defaultdict(lambda:defaultdict(list))
+    field_ccbin_eins = defaultdict(lambda:defaultdict(list))
 
     ## 领域 时间 dccps
     field_year_dccps = defaultdict(lambda:defaultdict(list))
@@ -140,7 +140,9 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         for subj in _top_sujects:
 
             field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
-            field_cc_eins[subj][_cn].append(_id_dccp[_id][1]/float(_cn))
+            for cc_ix,_cc_cl in _cn_clas:
+                if _cc_cl==1:
+                    field_cc_eins[subj][cc_ix].append(_id_dccp[_id][1]/float(_cn))
 
             field_year_dccps[subj][_year].append(_id_dccp[_id][0])
             field_year_eins[subj][_year].append(_id_dccp[_id][1]/float(_cn))
@@ -240,7 +242,9 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             ys.append(p_of_dccp)
 
         ax.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
-        ax.set_xscale('log')
+        # ax.set_xscale('log')
+        ax.set_xticks(xs)
+        ax.set_xticklabels(labels)
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$e_{i-norm}$')
