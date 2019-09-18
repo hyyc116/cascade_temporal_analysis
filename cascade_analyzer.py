@@ -923,17 +923,6 @@ def stat_subcascades(pathObj):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
 
     field = 'ALL'
@@ -941,7 +930,8 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    plot_dccp(paths)
+    # plot_dccp(paths)
+    stat_subcascades(paths)
 
     logging.info('Done')
 
