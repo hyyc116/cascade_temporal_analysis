@@ -903,7 +903,7 @@ def plot_subcascade_data():
 
             subcas_num_total = field_ccbin_num[subj][cc_bin]
 
-            motif_dict = {}
+            motif_dict = defaultdict(dict)
 
             for sub_id in subcas_num_dict.keys():
 
