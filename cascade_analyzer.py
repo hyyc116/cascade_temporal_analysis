@@ -835,10 +835,10 @@ def plot_subcascade_data():
 
         ax = axes[i/3,i%3]
         
-        for size in sorted(field_size_dict[field].keys(),key=lambda x:int(x)):
+        for size in sorted(field_size_dict[subj].keys(),key=lambda x:int(x)):
 
             xs.append(int(size))
-            ys.append(field_size_dict[field][size])
+            ys.append(field_size_dict[subj][size])
 
         logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.plot(xs,ys,'o',fillstyle='none')
@@ -866,10 +866,10 @@ def plot_subcascade_data():
         ys = []
 
         ax = axes[i/3,i%3]
-        for size in sorted(field_num_dict[field].keys()):
+        for size in sorted(field_num_dict[subj].keys()):
 
             xs.append(size)
-            ys.append(field_num_dict[field][size])
+            ys.append(field_num_dict[subj][size])
 
         ax.plot(xs,ys,'o',fillstyle='none')
         logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
@@ -897,11 +897,11 @@ def plot_subcascade_data():
         subcas_df = field_subcascade_df[subj]
         logging.info("subj of subcascade {},length of subcascade {}".format(subj,len(subcas_df)))
 
-        for cc_bin in sorted(field_cnbin_subcascade[field].keys()):
+        for cc_bin in sorted(field_cnbin_subcascade[subj].keys()):
 
-            subcas_num_dict = field_cnbin_subcascade[field][cc_bin]
+            subcas_num_dict = field_cnbin_subcascade[subj][cc_bin]
 
-            subcas_num_total = field_ccbin_num[field][cc_bin]
+            subcas_num_total = field_ccbin_num[subj][cc_bin]
 
             motif_dict = {}
 
