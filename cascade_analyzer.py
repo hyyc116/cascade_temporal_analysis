@@ -778,9 +778,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-
         size_id = paper_size_id[_id]
-
         ## 对每一篇论文所属的field进行统计
         for subj in _top_subjects:
             ## size
@@ -796,6 +794,10 @@ def stat_subcascades(pathObj):
             for _cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
                     for sub_id in set(all_ids):
+
+                        if sub_id==-999:
+                            continue
+
                         field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
                         field_subcascade_df[subj][sub_id]+=1
                         field_ccbin_num[subj][_cc_ix]+=1
@@ -803,7 +805,7 @@ def stat_subcascades(pathObj):
             field_num_dict[subj][num]+=1
             # field_total_num[subj]+=1
 
-
+    # logging.info('')
     ## 不同field对应的size的distribution
 
     fig,axes = plt.subplots(2,3,figsize=(12,6))
@@ -814,9 +816,9 @@ def stat_subcascades(pathObj):
         ys = []
 
         ax = axes[i/3,i%3]
-        for size in sorted(field_size_dict[field]):
+        for size in sorted(field_size_dict[field].keys(),key=lambda x:int(x)):
 
-            xs.append(size)
+            xs.append(int(size))
             ys.append(field_size_dict[field][size])
 
         ax.plot(xs,ys,'o',fillstyle='none')
@@ -843,7 +845,7 @@ def stat_subcascades(pathObj):
         ys = []
 
         ax = axes[i/3,i%3]
-        for size in sorted(field_num_dict[field]):
+        for size in sorted(field_num_dict[field].keys()):
 
             xs.append(size)
             ys.append(field_num_dict[field][size])
@@ -867,8 +869,9 @@ def stat_subcascades(pathObj):
     ## 不同field中不同ccbin对应的common motif,以tf/df进行排序，找出个ccbin对应的独特的motif
     subj_ccbin_motif_dict = defaultdict(lambda:defaultdict(dict))
     for subj in sorted(field_cnbin_subcascade.keys()):
-
         subcas_df = field_subcascade_df[subj]
+        logging.info("subj of subcascade {},length of subcascade {}".format(subj,len(subcas_df)))
+
         for cc_bin in sorted(field_cnbin_subcascade[field].keys()):
 
             subcas_num_dict = field_cnbin_subcascade[field][cc_bin]
