@@ -140,7 +140,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         for subj in _top_sujects:
 
             field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
-            for cc_ix,_cc_cl in _cn_clas:
+            for cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
                     field_cc_eins[subj][cc_ix].append(_id_dccp[_id][1]/float(_cn))
 
@@ -755,6 +755,30 @@ def plot_dccp(pathObj):
     # logging.info('loading paper subcascades  ...')
     # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
+
+def stat_subcascades(pathObj):
+    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+    start_year = 1980
+    end_year = 2015
+    interval = 1
+    logging.info('loading dccp data ...')
+    logging.info('loading paper subcascades  ...')
+    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
+
+    ## 各个field对应的size以及num distribution
+    field_size_dict = defaultdict(lambda:defaultdict(int))
+    field_num_dict = defaultdict(lambda:defaultdict(int))
+    ## field中不同citation count对应的subcascade的频次
+    field_cnbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
+    ## 
+
+    for _id in paper_size_id.keys():
+        _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+
+        ## 对每一篇论文所属的field进行统计
+
+
 
 if __name__ == '__main__':
 
