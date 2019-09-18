@@ -761,7 +761,7 @@ def stat_subcascades(pathObj):
     start_year = 1980
     end_year = 2015
     interval = 1
-    logging.info('loading dccp data ...')
+    # logging.info('loading dccp data ...')
     logging.info('loading paper subcascades  ...')
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
 
