@@ -772,7 +772,7 @@ def stat_subcascades(pathObj):
     ## field中不同citation count对应的subcascade的频次
     field_cnbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     ## 记录subcascade的DF
-    field_subcascade_df = defaultdict(lambda:defaultdict(int))
+    field_subcascade_df = defaultdict(lambda:defaultdict(list))
     ## 每一个field对应的文章数量
     field_ccbin_num = defaultdict(lambda:defaultdict(int))
 
@@ -807,7 +807,7 @@ def stat_subcascades(pathObj):
                             continue
 
                         field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
-                        field_subcascade_df[subj][sub_id]+=1
+                        field_subcascade_df[subj][sub_id].append(_cc_ix)
                         field_ccbin_num[subj][_cc_ix]+=1
             
             field_num_dict[subj][num]+=1
@@ -907,13 +907,13 @@ def plot_subcascade_data():
 
             for sub_id in subcas_num_dict.keys():
 
-                df = subcas_df[sub_id]/float(len(field_cnbin_subcascade.keys()))
+                df = len(set(subcas_df[sub_id]))
 
                 tf = subcas_num_dict[sub_id]
 
                 norm_tf = tf/float(subcas_num_total)
 
-                tfidf = norm_tf*(np.log(len(labels)/float(df))+1)
+                tfidf = norm_tf*(np.log(len(labels)/df)+0.01)
 
                 motif_dict[sub_id]['tf'] = tf
                 motif_dict[sub_id]['norm_tf'] = norm_tf

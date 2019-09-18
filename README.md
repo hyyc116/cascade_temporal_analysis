@@ -1,4 +1,6 @@
 #### Subject:Arts & Humanities
+|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 |0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
 |1|![subcascade](subcascade/fig/subcas_193.jpg)|18|9.79086192537e-05|![subcascade](subcascade/fig/subcas_193.jpg)|18|0.000127905665575|![subcascade](subcascade/fig/subcas_79.jpg)|12|0.000131758744318|![subcascade](subcascade/fig/subcas_79.jpg)|7|0.000162747315718|![subcascade](subcascade/fig/subcas_96.jpg)|2|0.000305302175842|![subcascade](subcascade/fig/subcas_287.jpg)|1|0.000571020426207|![subcascade](subcascade/fig/subcas_149.jpg)|1|0.0161429164911|![subcascade](subcascade/fig/subcas_50.jpg)|1|-0.108296425856|
 |2|![subcascade](subcascade/fig/subcas_88.jpg)|18|9.19599009131e-05|![subcascade](subcascade/fig/subcas_88.jpg)|18|0.000120134390845|![subcascade](subcascade/fig/subcas_97.jpg)|14|0.000122058778672|![subcascade](subcascade/fig/subcas_208.jpg)|3|0.000147766296182|![subcascade](subcascade/fig/subcas_220.jpg)|2|0.000282072343139|![subcascade](subcascade/fig/subcas_210.jpg)|1|0.000534133448503|![subcascade](subcascade/fig/subcas_55.jpg)|1|-0.00736367271325|![subcascade](subcascade/fig/subcas_6.jpg)|2|-0.583339374648|
