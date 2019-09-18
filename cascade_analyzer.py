@@ -776,9 +776,16 @@ def stat_subcascades(pathObj):
     ## 每一个field对应的文章数量
     field_ccbin_num = defaultdict(lambda:defaultdict(int))
 
+    progress =0
+
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
         
+        progress+=1
+
+        if progress%1000000==0:
+            logging.info('progress {}'.format(progress))
+
         size_id = paper_size_id[_id]
         ## 对每一篇论文所属的field进行统计
         for subj in _top_subjects:
@@ -806,9 +813,17 @@ def stat_subcascades(pathObj):
             field_num_dict[subj][num]+=1
             # field_total_num[subj]+=1
 
-    # logging.info('')
-    ## 不同field对应的size的distribution
-    
+    open('data/field_num_dict_all.json','w').write(json.dumps(field_num_dict))
+    open('data/field_size_dict_all.json','w').write(json.dumps(field_size_dict))
+
+    ## ===
+    open('data/field_cnbin_subcascade_all.json','w').write(json.dumps(field_cnbin_subcascade))
+    open('data/field_subcascade_df_all.json','w').write(json.dumps(field_subcascade_df))
+    open('data/field_ccbin_num_all.json','w').write(json.dumps(field_ccbin_num))
+
+def plot_subcascade_data():
+
+    field_num_dict = json.loads(open('data/field_num_dict_all.json').read())
     fig,axes = plt.subplots(2,3,figsize=(12,6))
 
     for i,subj in enumerate(sorted(field_size_dict.keys())):
@@ -839,6 +854,7 @@ def stat_subcascades(pathObj):
     plt.savefig('fig/field_subcas_size_dis.png',dpi=400)
     logging.info('Size distribution saved to fig/field_subcas_size_dis.png.')
 
+    field_num_dict = json.loads(open('data/field_size_dict_all.json').read())
     ## 不同field对应的num distribution
     fig,axes = plt.subplots(2,3,figsize=(12,6))
 
@@ -868,6 +884,10 @@ def stat_subcascades(pathObj):
     plt.savefig('fig/field_subcas_num_dis.png',dpi=400)
     logging.info('Size distribution saved to fig/field_subcas_num_dis.png.')
 
+    ## ===
+    field_cnbin_subcascade = json.loads(open('data/field_cnbin_subcascade_all.json').read())
+    field_subcascade_df = json.loads(open('data/field_subcascade_df_all.json').read())
+    field_ccbin_num = json.loads(open('data/field_ccbin_num_all.json').read())
 
     ## 不同field中不同ccbin对应的common motif,以tf/df进行排序，找出个ccbin对应的独特的motif
     subj_ccbin_motif_dict = defaultdict(lambda:defaultdict(dict))
