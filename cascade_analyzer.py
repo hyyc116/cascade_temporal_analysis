@@ -936,12 +936,14 @@ def plot_subcascade_data():
             for ix,motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tfidf'],reverse=True)[:10]):
                 tf = motif_dict[motif]['tf']
                 tfidf = motif_dict[motif]['tfidf']
-                line = '{}|{}|{}'.format(motif,tf,tfidf)
+                line = '![subcascade](subcascade/fig/subcas_{:}.jpg)|{}|{}'.format(motif,tf,tfidf)
                 # print line
                 cc_line.append(line)
 
 
             cc_lines.append(cc_line)
+
+        print cc_lines[0]
 
         for ix,line in enumerate(zip(cc_lines)):
             print line
