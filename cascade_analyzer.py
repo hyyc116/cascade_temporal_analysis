@@ -840,7 +840,7 @@ def plot_subcascade_data():
             xs.append(int(size))
             ys.append(field_size_dict[subj][size])
 
-        logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
+        # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.plot(xs,ys,'o',fillstyle='none')
 
         ax.set_xlabel('size of subcascade')
@@ -866,10 +866,10 @@ def plot_subcascade_data():
         ys = []
 
         ax = axes[i/3,i%3]
-        for size in sorted(field_num_dict[subj].keys()):
+        for num in sorted(field_num_dict[subj].keys(),key=lambda x:int(x)):
 
-            xs.append(size)
-            ys.append(field_num_dict[subj][size])
+            xs.append(int(num))
+            ys.append(field_num_dict[subj][num])
 
         ax.plot(xs,ys,'o',fillstyle='none')
         logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
