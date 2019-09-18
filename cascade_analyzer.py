@@ -825,7 +825,7 @@ def stat_subcascades(pathObj):
 
 def plot_subcascade_data():
 
-    field_num_dict = json.loads(open('data/field_num_dict_all.json').read())
+    field_size_dict = json.loads(open('data/field_size_dict_all.json').read())
     fig,axes = plt.subplots(2,3,figsize=(12,6))
 
     for i,subj in enumerate(sorted(field_size_dict.keys())):
@@ -856,7 +856,7 @@ def plot_subcascade_data():
     plt.savefig('fig/field_subcas_size_dis.png',dpi=400)
     logging.info('Size distribution saved to fig/field_subcas_size_dis.png.')
 
-    field_num_dict = json.loads(open('data/field_size_dict_all.json').read())
+    field_num_dict = json.loads(open('data/field_num_dict_all.json').read())
     ## 不同field对应的num distribution
     fig,axes = plt.subplots(2,3,figsize=(12,6))
 
