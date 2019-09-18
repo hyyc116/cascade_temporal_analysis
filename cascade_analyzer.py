@@ -779,13 +779,18 @@ def stat_subcascades(pathObj):
 
         size_id = paper_size_id[_id]
 
-        for size in size_id.keys():
-            ids = size_id[size]
+        
 
         ## 对每一篇论文所属的field进行统计
         for subj in _top_subjects:
             ## size
-            field_size_dict[subj][]
+            num = 0
+            for size in size_id.keys():
+                ids = size_id[size]
+                num+=len(ids)
+                field_size_dict[subj][size]+=len(ids)
+            
+            field_num_dict[subj][num]+=1
 
 
 
