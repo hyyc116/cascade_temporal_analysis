@@ -944,7 +944,7 @@ def plot_subcascade_data():
             cc_lines.append(cc_line)
 
         for ix,line in enumerate(zip(cc_lines)):
-            # print line
+            print line
 
             line= "|{}|".format(ix)+'|'.join(line)+"|"
             print line
