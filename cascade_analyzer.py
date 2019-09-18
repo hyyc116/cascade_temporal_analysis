@@ -821,6 +821,8 @@ def stat_subcascades(pathObj):
     open('data/field_subcascade_df_all.json','w').write(json.dumps(field_subcascade_df))
     open('data/field_ccbin_num_all.json','w').write(json.dumps(field_ccbin_num))
 
+    logging.info("subcascade data saved.")
+
 def plot_subcascade_data():
 
     field_num_dict = json.loads(open('data/field_num_dict_all.json').read())
@@ -955,7 +957,7 @@ if __name__ == '__main__':
     # dccp_of_paper(paths)
     # plot_dccp(paths)
     stat_subcascades(paths)
-
+    plot_subcascade_data()
     logging.info('Done')
 
 
