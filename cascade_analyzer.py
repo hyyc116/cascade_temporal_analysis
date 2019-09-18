@@ -142,7 +142,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
             for cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
-                    field_cc_eins[subj][cc_ix].append(_id_dccp[_id][1]/float(_cn))
+                    field_ccbin_eins[subj][cc_ix].append(_id_dccp[_id][1]/float(_cn))
 
             field_year_dccps[subj][_year].append(_id_dccp[_id][0])
             field_year_eins[subj][_year].append(_id_dccp[_id][1]/float(_cn))
@@ -227,14 +227,14 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
     fig,axes = plt.subplots(1,3,figsize=(18,5))
     ## 分不同的领域查看ein随着citation count, doctype, 时间之间的变化
-    for fi,field in enumerate(sorted(field_cc_eins.keys())):
+    for fi,field in enumerate(sorted(field_ccbin_eins.keys())):
 
         ## dccp随着citation count的变化
         ax = axes[0]
         xs = [] 
         ys = []
-        for cc in sorted(field_cc_eins[field].keys()):
-            dccps  = field_cc_eins[field][cc]
+        for cc in sorted(field_ccbin_eins[field].keys()):
+            dccps  = field_ccbin_eins[field][cc]
             ## dccp 在这个的比例
             p_of_dccp = np.mean(dccps)
 
@@ -771,12 +771,21 @@ def stat_subcascades(pathObj):
     ## field中不同citation count对应的subcascade的频次
     field_cnbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
 
-    ## 
+    ## 记录subcascade的DF
+    field_subcascade_df = defaultdict(lambda:defaultdict(int))
 
     for _id in paper_size_id.keys():
-        _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+        _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+
+        size_id = paper_size_id[_id]
+
+        for size in size_id.keys():
+            ids = size_id[size]
 
         ## 对每一篇论文所属的field进行统计
+        for subj in _top_subjects:
+            ## size
+            field_size_dict[subj][]
 
 
 
