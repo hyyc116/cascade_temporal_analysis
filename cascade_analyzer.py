@@ -765,15 +765,14 @@ def stat_subcascades(pathObj):
     logging.info('loading paper subcascades  ...')
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
 
+    logging.info('{} paper size dict loaded.'.format(len(paper_size_id)))
     ## 各个field对应的size以及num distribution
     field_size_dict = defaultdict(lambda:defaultdict(int))
     field_num_dict = defaultdict(lambda:defaultdict(int))
     ## field中不同citation count对应的subcascade的频次
     field_cnbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
-
     ## 记录subcascade的DF
     field_subcascade_df = defaultdict(lambda:defaultdict(int))
-
     ## 每一个field对应的文章数量
     field_ccbin_num = defaultdict(lambda:defaultdict(int))
 
@@ -781,8 +780,6 @@ def stat_subcascades(pathObj):
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
         size_id = paper_size_id[_id]
-
-        
 
         ## 对每一篇论文所属的field进行统计
         for subj in _top_subjects:
