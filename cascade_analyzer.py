@@ -931,7 +931,7 @@ def plot_subcascade_data():
         cc_lines = []
         for ccbin in sorted(ccbin_motif_dict.keys()):
             motif_dict = ccbin_motif_dict[ccbin]
-            cc_line = ['{}||'.format(labels[ccbin])]
+            cc_line = ['{}||'.format(labels[int(ccbin)])]
             for motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tfidf'],reverse=True)[:10]):
                 line = '{}|{}|{}'.format(motif,motif_dict['tf'],motif_dict['tfidf'])
                 cc_line.append(line)
