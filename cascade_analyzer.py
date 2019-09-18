@@ -913,7 +913,7 @@ def plot_subcascade_data():
 
                 norm_tf = tf/float(subcas_num_total)
 
-                tfidf = norm_tf*(np.log(len(labels)/df)+0.01)
+                tfidf = norm_tf*(np.log(len(labels)/df))
 
                 motif_dict[sub_id]['tf'] = tf
                 motif_dict[sub_id]['norm_tf'] = norm_tf
