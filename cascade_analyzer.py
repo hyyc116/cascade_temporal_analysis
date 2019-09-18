@@ -925,7 +925,7 @@ def plot_subcascade_data():
     ## 分别对每一个subject下不同的ccbin的motif进行计算
     lines = []
     for subj in sorted(subj_ccbin_motif_dict.keys()):
-        line = ['#### Subject:{}'.format(subj)]
+        line = '#### Subject:{}'.format(subj)
         lines.append(line)
         ccbin_motif_dict = subj_ccbin_motif_dict[subj]
         cc_lines = []
@@ -943,7 +943,7 @@ def plot_subcascade_data():
 
             cc_lines.append(cc_line)
 
-        print cc_lines[0]
+        # print cc_lines[0]
 
         for ix,line in enumerate(zip(*cc_lines)):
             print line
