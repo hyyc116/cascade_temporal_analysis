@@ -778,6 +778,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+        
         size_id = paper_size_id[_id]
         ## 对每一篇论文所属的field进行统计
         for subj in _top_subjects:
@@ -807,7 +808,7 @@ def stat_subcascades(pathObj):
 
     # logging.info('')
     ## 不同field对应的size的distribution
-
+    
     fig,axes = plt.subplots(2,3,figsize=(12,6))
 
     for i,subj in enumerate(sorted(field_size_dict.keys())):
@@ -816,11 +817,13 @@ def stat_subcascades(pathObj):
         ys = []
 
         ax = axes[i/3,i%3]
+        
         for size in sorted(field_size_dict[field].keys(),key=lambda x:int(x)):
 
             xs.append(int(size))
             ys.append(field_size_dict[field][size])
 
+        logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.plot(xs,ys,'o',fillstyle='none')
 
         ax.set_xlabel('size of subcascade')
@@ -851,7 +854,7 @@ def stat_subcascades(pathObj):
             ys.append(field_num_dict[field][size])
 
         ax.plot(xs,ys,'o',fillstyle='none')
-
+        logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.set_xlabel('number of components')
         ax.set_ylabel('number of papers')
 
