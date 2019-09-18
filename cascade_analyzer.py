@@ -872,7 +872,7 @@ def plot_subcascade_data():
             ys.append(field_num_dict[subj][num])
 
         ax.plot(xs,ys,'o',fillstyle='none')
-        logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
+        # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.set_xlabel('number of components')
         ax.set_ylabel('number of papers')
 
