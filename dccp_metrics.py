@@ -325,7 +325,7 @@ def plot_dccp(pathObj):
     interval = 1
     logging.info('loading dccp data ...')
     _id_dccp=json.loads(open(pathObj.dccp_path).read())
-    sciento_ids = [l.strip() for l in open('scientomretics.txt')]
+    sciento_ids = [l.strip() for l in open('scientometrics.txt')]
     # logging.info('loading paper subcascades  ...')
     # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,sciento_ids)
