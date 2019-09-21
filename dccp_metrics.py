@@ -100,6 +100,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     field_doctype_dccps = defaultdict(lambda:defaultdict(list))
     field_doctype_eins = defaultdict(lambda:defaultdict(list))
 
+    logging.info('startting to stat dccp ...')
     for _id in _id_dccp.keys():
         ## 获得这一篇论文的基础属性值
         _cn = int(_id_cn[_id])
@@ -146,6 +147,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
                 if _cc_cl==1:
                     field_ccbin_eins['SCIENTOMETRICS'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
 
+    logging.info('startting to plotting ....')
     fig,axes = plt.subplots(1,3,figsize=(20,5))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
     for fi,field in enumerate(sorted(field_cc_dccps.keys())):
