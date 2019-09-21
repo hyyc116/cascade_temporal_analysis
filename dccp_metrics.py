@@ -23,7 +23,7 @@ field_dict = {
     6:'Social Sciences'
 }
 
-labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf'] 
+labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf']
 
 
 ## 根据id的各种属性进行分类
@@ -152,7 +152,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ## dccp随着citation count的变化
         ax = axes[0]
-        xs = [] 
+        xs = []
         ys = []
         for cc in sorted(field_cc_dccps[field].keys()):
             dccps  = field_cc_dccps[field][cc]
@@ -192,7 +192,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax1.bar(range(len(top10_doctypes))+bias,ys,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
-        ax1.set_xticklabels(top10_doctypes,rotation=-90)    
+        ax1.set_xticklabels(top10_doctypes,rotation=-90)
         ax1.set_xlabel('Doctype')
         ax1.set_ylabel('$p$')
 
@@ -217,7 +217,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(year)
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
-        
+
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$p$')
 
@@ -234,7 +234,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ## dccp随着citation count的变化
         ax = axes[0]
-        xs = [] 
+        xs = []
         ys = []
         for cc in sorted(field_ccbin_eins[field].keys()):
             dccps  = field_ccbin_eins[field][cc]
@@ -274,9 +274,9 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             bi+=1
         bias = bi*width/8
         ax1.bar(range(len(top10_doctypes))+bias,ys,label='{}'.format(field))
-        
+
         ax1.set_xticks(range(len(top10_doctypes)))
-        ax1.set_xticklabels(top10_doctypes,rotation=-90)    
+        ax1.set_xticklabels(top10_doctypes,rotation=-90)
         ax1.set_xlabel('Doctype')
         ax1.set_ylabel('$e_{i-norm}$')
 
@@ -301,7 +301,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(year)
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
-        
+
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$e_{i-norm}$')
 
@@ -325,7 +325,7 @@ def plot_dccp(pathObj):
     interval = 1
     logging.info('loading dccp data ...')
     _id_dccp=json.loads(open(pathObj.dccp_path).read())
-    sciento_ids = [l.strip() for l in open('scientometrics.txt')]
+    sciento_ids = set([l.strip() for l in open('scientometrics.txt')])
     # logging.info('loading paper subcascades  ...')
     # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,sciento_ids)
@@ -354,7 +354,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-        
+
         progress+=1
 
         if progress%1000000==0:
@@ -383,7 +383,7 @@ def stat_subcascades(pathObj):
                         field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
                         field_subcascade_df[subj][sub_id].append(_cc_ix)
                         field_ccbin_num[subj][_cc_ix]+=1
-            
+
             field_num_dict[subj][num]+=1
             # field_total_num[subj]+=1
 
@@ -408,7 +408,7 @@ def plot_subcascade_data():
         ys = []
 
         ax = axes[i/3,i%3]
-        
+
         for size in sorted(field_size_dict[subj].keys(),key=lambda x:int(x)):
 
             xs.append(int(size))
