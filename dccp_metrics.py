@@ -23,44 +23,8 @@ field_dict = {
     6:'Social Sciences'
 }
 
-doctype_dict = {
+labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf'] 
 
-}
-
-labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf']
-
-
-## 所有论文的dccp
-def dccp_of_paper(pathObj):
-
-    _id_dccp = {}
-
-    logging.info('start to stat dccp of all papers ....')
-    progress = 0
-    for line in open(pathObj.cascade_path):
-        cascades = json.loads(line)
-
-        logging.info('{:} line processed ...'.format(progress))
-        progress+=1
-
-        for pid in cascades.keys():
-
-            edges = cascades[pid]
-
-            direct_cit_num = 0
-            for e_cpid,e_pid in edges:
-                if e_pid == pid:
-                    direct_cit_num+=1
-
-            if direct_cit_num==len(edges):
-                has_dccp=0
-            else:
-                has_dccp=1
-
-            _id_dccp[pid] = [has_dccp,(len(edges)-direct_cit_num)/float(direct_cit_num)]
-
-    open(pathObj.dccp_path,'w').write(json.dumps(_id_dccp))
-    logging.info('id dccp json saved to {:} .'.format(pathObj.dccp_path))
 
 ## 根据id的各种属性进行分类
 def stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year):
@@ -141,6 +105,10 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         _cn = int(_id_cn[_id])
         _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
+        ## 过滤时间
+        if int(_year)>end_year:
+            continue
+
         for subj in _top_sujects:
 
             field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
@@ -154,16 +122,16 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             field_doctype_dccps[subj][_doctype].append(_id_dccp[_id][0])
             field_doctype_eins[subj][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
-        field_doctype_dccps['ALL'][_doctype].append(_id_dccp[_id][0])
-        field_doctype_eins['ALL'][_doctype].append(_id_dccp[_id][1]/float(_cn))
+        field_doctype_dccps['WOS_ALL'][_doctype].append(_id_dccp[_id][0])
+        field_doctype_eins['WOS_ALL'][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
-        field_year_dccps['ALL'][_year].append(_id_dccp[_id][0])
-        field_year_eins['ALL'][_year].append(_id_dccp[_id][1]/float(_cn))
+        field_year_dccps['WOS_ALL'][_year].append(_id_dccp[_id][0])
+        field_year_eins['WOS_ALL'][_year].append(_id_dccp[_id][1]/float(_cn))
 
-        field_cc_dccps['ALL'][_cn].append(_id_dccp[_id][0])
+        field_cc_dccps['WOS_ALL'][_cn].append(_id_dccp[_id][0])
         for cc_ix,_cc_cl in enumerate(_cn_clas):
             if _cc_cl==1:
-                field_ccbin_eins['ALL'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
+                field_ccbin_eins['WOS_ALL'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
 
         if _id in SCIENTO_IDS:
 
@@ -184,7 +152,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ## dccp随着citation count的变化
         ax = axes[0]
-        xs = []
+        xs = [] 
         ys = []
         for cc in sorted(field_cc_dccps[field].keys()):
             dccps  = field_cc_dccps[field][cc]
@@ -198,7 +166,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax.set_xscale('log')
 
         ax.set_xlabel('number of citations')
-        ax.set_ylabel('$P$')
+        ax.set_ylabel('$p$')
         ax.set_xlim(1,1000)
         lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -214,12 +182,19 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(doctype)
             ys.append(p_of_dccp)
 
-        ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
+        # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
+
+        width = 0.8
+        bi = fi-4
+        if bi>=0:
+            bi+=1
+        bias = bi*width/8
+        ax1.bar(range(len(top10_doctypes))+bias,ys,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
-        ax1.set_xticklabels(top10_doctypes,rotation=-90)
+        ax1.set_xticklabels(top10_doctypes,rotation=-90)    
         ax1.set_xlabel('Doctype')
-        ax1.set_ylabel('$P$')
+        ax1.set_ylabel('$p$')
 
 
         # ax1.legend()
@@ -242,9 +217,9 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(year)
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
-
+        
         ax2.set_xlabel('Year')
-        ax2.set_ylabel('$P$')
+        ax2.set_ylabel('$p$')
 
         # ax2.legend()
 
@@ -259,7 +234,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ## dccp随着citation count的变化
         ax = axes[0]
-        xs = []
+        xs = [] 
         ys = []
         for cc in sorted(field_ccbin_eins[field].keys()):
             dccps  = field_ccbin_eins[field][cc]
@@ -291,10 +266,17 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(doctype)
             ys.append(p_of_dccp)
 
-        ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
+        # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
+        width = 0.8
+        bi = fi-4
+        if bi>=0:
+            bi+=1
+        bias = bi*width/8
+        ax1.bar(range(len(top10_doctypes))+bias,ys,label='{}'.format(field))
+        
         ax1.set_xticks(range(len(top10_doctypes)))
-        ax1.set_xticklabels(top10_doctypes,rotation=-90)
+        ax1.set_xticklabels(top10_doctypes,rotation=-90)    
         ax1.set_xlabel('Doctype')
         ax1.set_ylabel('$e_{i-norm}$')
 
@@ -319,7 +301,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             xs.append(year)
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
-
+        
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$e_{i-norm}$')
 
@@ -332,471 +314,21 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     logging.info('Done')
 
 
-def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
-
-    logging.info('stating dccp of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
-    ## 只需要过滤所有的数据 然后统计分布就行了
-    if _t=='point':
-
-        dccps = []
-        for _id in _id_dccp.keys():
-            ## 获得这一篇论文的基础属性值
-            _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-
-            ## field 只有是all或者top field中的一个才可以
-            if field!='ALL' and field not in _top_sujects:
-                continue
-
-            ## 年份,point的start_year和end_year相同或者保留所有的年份数据
-            if int(_year) < start_year or int(_year) > end_year:
-                continue
-
-            ## doctype
-            if doctype_!='ALL' and doctype_!=_doctype:
-                continue
-
-            ## citation range,_cn_class是不同range的标签，如果是1就说明在这个range内
-            if _cn_clas[cn_t]!=1:
-                continue
-
-            ## 剩下的就是剩余的论文的dccp，画出其分布的柱状图，并且标明均值和中位数
-            dccps.append(_id_dccp[_id])
-
-
-        dccp_counter = Counter(dccps)
-        plt.figure(figsize=(4,3))
-        xs = []
-        ys = []
-        for dccp in sorted(dccp_counter.keys()):
-            xs.append(dccp)
-            ys.append(dccp_counter[dccp])
-
-        plt.yscale('log')
-
-        # plt.hist(dccps,bins=20)
-
-        plt.plot(xs,ys)
-
-        plt.xlabel('Percentage of DCCP')
-        plt.ylabel('percentage')
-
-        if start_year!=end_year:
-            year='ALL'
-        else:
-            year=  start_year
-        plt.title('{:}-{:}-{:}-{:}-{:}'.format(field,doctype_,labels[cn_t],start_year,end_year))
-
-        plt.tight_layout()
-
-
-        plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year),dpi=300)
-
-        print('fig saved to {:}-{:}-{:}-{:}-{:}-dccp-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
-
-
-    # else:
-
-
-
-    # # year_doctype_cnclas_dccp = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
-    # year_dccp = defaultdict(list)
-    # doctype_dccp = defaultdict(list)
-    # cnclas_dccp = defaultdict(list)
-
-    # doctype_year_dccp = defaultdict(lambda:defaultdict(list))
-    # cnclas_year_dccp = defaultdict(lambda:defaultdict(list))
-
-    # logging.info('stating dccp ...')
-    # progress=0
-    # for _id in _id_dccp.keys():
-    #     _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-    #     dccp = _id_dccp[_id]
-    #     ## 领域
-    #     if field!='ALL' and field not in _top_sujects:
-    #         continue
-
-    #     ## 年份
-    #     if int(_year) < start_year or int(_year) > end_year:
-    #         continue
-
-    #     ## doctype
-    #     if doctype_!='ALL' and doctype_!=_doctype:
-    #         continue
-
-
-    #     progress+=1
-
-    #     if progress%100000==1:
-    #         logging.info('progress {:} ...'.format(progress))
-
-    #     for i,_cn in enumerate(_cn_clas):
-
-    #         if _cn==1:
-    #             cnclas_dccp[i].append(dccp)
-    #             cnclas_year_dccp[i][int(_year)].append(dccp)
-
-    #     doctype_dccp[_doctype].append(dccp)
-
-    #     year_dccp[int(_year)].append(dccp)
-
-    #     doctype_year_dccp[_doctype][int(_year)].append(dccp)
-
-
-    # logging.info('plotting data ....')
-    # fig,axes = plt.subplots(2,2,figsize=(8,7))
-
-    # ax0 = axes[0,0]
-    # ## 画出所有的citation num的dccp分布
-    # xs = []
-    # ys = []
-    # for _cn in cnclas_dccp.keys():
-
-    #     dccp = cnclas_dccp[_cn]
-
-    #     percent = np.sum(dccp)/float(len(dccp))
-
-    #     xs.append(_cn)
-
-    #     ys.append(percent)
-
-    # logging.info('xs:{:}'.format(xs))
-    # logging.info('ys:{:}'.format(ys))
-
-    # ax0.bar(xs,ys)
-    # ax0.set_xticks(xs)
-    # ax0.set_xticklabels(labels)
-
-    # ax0.set_xlabel('number of citation range')
-    # ax0.set_ylabel('percetage of DCCP')
-
-    # ## 画出doctype的
-    # ax1 = axes[0,1]
-    # xs = []
-    # ys = []
-    # for doctype in top10_doctypes:
-
-    #     dccp = doctype_dccp[doctype]
-
-    #     percent = np.sum(dccp)/float(len(dccp))
-
-    #     xs.append(doctype)
-
-    #     ys.append(percent)
-
-    # ax1.bar(range(len(xs)),ys)
-    # ax1.set_xticks(range(len(xs)))
-    # ax1.set_xticklabels(xs,rotation=-60)
-
-    # ax1.set_xlabel('doctype')
-    # ax1.set_ylabel('percetage of DCCP')
-
-    # ## 画出year的关系
-    # ax2 = axes[1,0]
-
-    # for cnclas in cnclas_year_dccp.keys():
-    #     year_dccp = cnclas_year_dccp[cnclas]
-    #     xs = []
-    #     ys = []
-    #     for year in sorted(year_dccp.keys()):
-    #         xs.append(year)
-    #         dccp = year_dccp[year]
-
-    #         percent = np.sum(dccp)/float(len(dccp))
-    #         ys.append(percent)
-
-    #     ax2.plot(xs,ys,label=labels[cnclas])
-
-    # ax2.set_xlabel("year")
-    # ax2.set_ylabel('percentage of DCCP')
-    # ax2.legend()
-
-    # ## 画出year的关系
-    # ax3 = axes[1,1]
-
-    # for doctype in top10_doctypes:
-    #     year_dccp = doctype_year_dccp[doctype]
-    #     xs = []
-    #     ys = []
-    #     for year in sorted(year_dccp.keys()):
-    #         xs.append(year)
-    #         dccp = year_dccp[year]
-
-    #         percent = np.sum(dccp)/float(len(dccp))
-    #         ys.append(percent)
-
-    #     ax3.plot(xs,ys,label=doctype)
-
-    # ax3.set_xlabel("year")
-    # ax3.set_ylabel('percentage of DCCP')
-    # ax3.legend()
-
-    # plt.tight_layout()
-
-    # plt.savefig('fig/{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year),dpi=400)
-
-    # logging.info('fig saved to fig/{:}'.format('{:}_{:}_{:}_{:}_dccp.png'.format(field,doctype_,start_year,end_year)))
-
-
-def size_of_subcascade_on_facets():
-
-    pass
-
-
-def num_of_comp_on_facets():
-
-    pass
-
-### 不同学科、不同引用次数、不同类型的common motif
-def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doctype_,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,cn_t,_t='point'):
-    logging.info('stating common motif of field {:}, from year {:} to year {:} with interval {:} and doctype {:}'.format(field,start_year,end_year,interval,doctype_))
-
-    ## 如果是point
-    logging.info('stating dccp ...')
-    progress=0
-
-    ## 统计subcascade的属性
-
-    ## size的分布
-    subcas_sizes = []
-    ## num分布
-    subcas_nums = []
-    ## subcascade id
-    subcas_freq_ids  = []
-
-
-    for _id in paper_size_id.keys():
-        _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-        # dccp = _id_dccp[_id]
-
-         ## 领域
-        if field!='ALL' and field not in _top_sujects:
-            continue
-
-        ## 年份
-        if int(_year) < start_year or int(_year) > end_year:
-            continue
-
-        ## doctype
-        if doctype_!='ALL' and doctype_!=_doctype:
-            continue
-
-        if _cn_clas[cn_t]!=1:
-            continue
-
-        progress+=1
-
-        if progress%100000==1:
-            logging.info('progress {:} ...'.format(progress))
-
-        all_subcas_ids = []
-        all_subcas_sizes = []
-        all_subcas_num = 0
-        for size in paper_size_id[_id].keys():
-            subcas_ids = paper_size_id[_id][size]
-
-            for subcasid in subcas_ids:
-                all_subcas_sizes.append(size)
-
-                all_subcas_num+=1
-
-            all_subcas_ids.extend(subcas_ids)
-
-        all_subcas_ids = list(set([subcas_id for subcas_id in all_subcas_ids if subcas_id!=-999]))
-
-        subcas_freq_ids.extend(all_subcas_ids)
-        subcas_nums.extend(all_subcas_sizes)
-        subcas_sizes.append(all_subcas_num)
-
-    if start_year!=end_year:
-        year='ALL'
-    else:
-        year=  start_year
-
-
-    ## 保存freq的subcasde pattern
-    subcas_counter = Counter(subcas_freq_ids)
-
-    top_10_freq_ids = sorted(subcas_counter.keys(),key=lambda x:subcas_counter[x],reverse=True)[:10]
-
-    ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
-    readme = open('README.md','a')
-    lines = ['\n### Type:{:} - {:} - {:} - {:}-{:}'.format(field,doctype_,labels[cn_t],start_year,end_year)]
-
-    logging.info('doctype:{:}'.format(doctype_))
-    lines.append('#### doctype:{:}'.format(doctype_))
-    lines.append('|order|motif|frequency|')
-    lines.append('|:----:|:-----:|:----:|')
-
-    for i,_id in enumerate(top_10_freq_ids):
-
-        lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i+1,_id,subcas_counter[_id]))
-
-    readme.write('\n'.join(lines))
-
-    readme.close()
-
-    ## 保存size distribution 以及 num distribution
-
-    subcas_sizes_counter = Counter(subcas_sizes)
-
-    xs = []
-    ys = []
-
-    for size in sorted(subcas_sizes_counter.keys()):
-
-        xs.append(size)
-        ys.append(subcas_sizes_counter[size])
-
-    plt.figure(figsize=(4,3))
-
-    plt.plot(xs,ys)
-
-    plt.xscale('log')
-    plt.yscale('log')
-
-    plt.xlabel('size of subcascade')
-    plt.ylabel('number of papers')
-
-    plt.tight_layout()
-
-    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-size-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
-
-    subcas_nums_counter = Counter(subcas_nums)
-
-    xs = []
-    ys = []
-
-    for size in sorted(subcas_nums_counter.keys()):
-
-        xs.append(size)
-        ys.append(subcas_nums_counter[size])
-
-    plt.figure(figsize=(4,3))
-
-    plt.plot(xs,ys)
-
-    plt.xscale('log')
-    plt.yscale('log')
-
-    plt.xlabel('number of subcascade')
-    plt.ylabel('number of papers')
-
-    plt.tight_layout()
-
-    plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
-
-
-# <<<<<<< HEAD
-
-
-# =======
-# >>>>>>> 14619d74bc0ec2b001d15b3790fd5cd62fe8aa79
-def parse_args(pathObj):
-    parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
-
-    ## 领域选择
-    parser.add_argument('-f','--field',dest='field',default=0,type=int,choices=[0,1,2,3,4,5,6],help='field code dict %s' % str(field_dict))
-    ## 数据开始时间
-    parser.add_argument('-s','--start_year',dest='start_year',default=1980,type=int,help='start year of papers used in analyzing.')
-    ## 数据结束时间
-    parser.add_argument('-e','--end_year',dest='end_year',default=2015,type=int,help='end year of papers used in analyzing.')
-    ## 数据的时间间隔
-    parser.add_argument('-i','--interval',dest='interval',default=1,type=int,help='interval of data.')
-
-    ## citation range
-    parser.add_argument('-c','--citation_range',dest='citation_range',default=0,type=int,choices=[0,1,2,3,4,5,6,7],help='interval of data.')
-
-    ## 文章类型
-    parser.add_argument('-d','--doctypeid',dest='doctypeid',default='ALL',type=str,choices=['ALL','0','1','2','3','4','5','6','7','8','9'],help='doctype used, ALL means top 10.')
-
-    parser.add_argument('-t','--optype',dest='optype',default='point',type=str,choices=['point','temporal'],help='op type:point or temporal')
-
-    ## 操作类型
-    parser.add_argument('-p','--operation',dest='operation',default='dccp',type=str,choices=['dccp','subcas_num','subcas_size','motif'],help='select operations')
-
-    arg = parser.parse_args()
-
-    field = arg.field
-
-    field_name = field_dict[field]
-
-    start_year = arg.start_year
-
-    end_year = arg.end_year
-
-    doctype_id = arg.doctypeid
-
-    interval = arg.interval
-
-    operation = arg.operation
-
-# <<<<<<< HEAD
-
-
-    citation_range = arg.citation_range
-
-    _t = arg.optype
-
-# =======
-    # citation_range = arg.citation_range
-
-    # _t = arg.optype
-# >>>>>>> 14619d74bc0ec2b001d15b3790fd5cd62fe8aa79
-
-    # print('top 10 doctype: ',top10_doctypes)
-
-    if doctype_id!='ALL':
-        doctype= top10_doctypes[int(doctype_id)]
-    else:
-        doctype='ALL'
-
-    logging.info('-----doctype:',doctype)
-
-    if operation=='dccp':
-        ## 加载DCCP的数据
-        logging.info('loading dccp data ...')
-        _id_dccp=json.loads(open(pathObj.dccp_path).read())
-        dccp_on_facets(_id_dccp,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
-
-    elif operation=='motif':
-        logging.info('loading paper subcascades  ...')
-        paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
-        common_motif_on_facets(paper_size_id,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
-    else:
-        print 'no such action.'
-
-def run_all(pathObj):
-    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
-    start_year = 1980
-    end_year = 2015
-    interval = 1
-    logging.info('loading dccp data ...')
-    _id_dccp=json.loads(open(pathObj.dccp_path).read())
-    logging.info('loading paper subcascades  ...')
-    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
-
-    for field_name in field_dict.values():
-
-        for doctype in top10_doctypes:
-
-            for citation_range in range(8):
-
-                _t = 'point'
-
-                dccp_on_facets(_id_dccp,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
-                common_motif_on_facets(paper_size_id,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
-
 def plot_dccp(pathObj):
 
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+
+    top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
     start_year = 1980
     end_year = 2016
     interval = 1
     logging.info('loading dccp data ...')
     _id_dccp=json.loads(open(pathObj.dccp_path).read())
+    sciento_ids = [l.strip() for l in open('scientometrics.txt')]
     # logging.info('loading paper subcascades  ...')
     # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
-    dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes)
+    dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,sciento_ids)
 
 def stat_subcascades(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
@@ -822,7 +354,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-
+        
         progress+=1
 
         if progress%1000000==0:
@@ -851,7 +383,7 @@ def stat_subcascades(pathObj):
                         field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
                         field_subcascade_df[subj][sub_id].append(_cc_ix)
                         field_ccbin_num[subj][_cc_ix]+=1
-
+            
             field_num_dict[subj][num]+=1
             # field_total_num[subj]+=1
 
@@ -876,7 +408,7 @@ def plot_subcascade_data():
         ys = []
 
         ax = axes[i/3,i%3]
-
+        
         for size in sorted(field_size_dict[subj].keys(),key=lambda x:int(x)):
 
             xs.append(int(size))
@@ -1017,8 +549,8 @@ if __name__ == '__main__':
     # run_all(paths)
     # dccp_of_paper(paths)
     plot_dccp(paths)
-    stat_subcascades(paths)
-    plot_subcascade_data()
+    # stat_subcascades(paths)
+    # plot_subcascade_data()
     logging.info('Done')
 
 
