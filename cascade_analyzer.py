@@ -27,7 +27,7 @@ doctype_dict = {
 
 }
 
-labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf'] 
+labels = ['1-inf','5-inf','10-inf','20-inf','50-inf','100-inf','500-inf','1000-inf']
 
 
 ## 所有论文的dccp
@@ -281,7 +281,7 @@ def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subj
 
     # ## 画出year的关系
     # ax2 = axes[1,0]
-    
+
     # for cnclas in cnclas_year_dccp.keys():
     #     year_dccp = cnclas_year_dccp[cnclas]
     #     xs = []
@@ -301,7 +301,7 @@ def dccp_on_facets(_id_dccp,field,start_year,end_year,interval,doctype_,_id_subj
 
     # ## 画出year的关系
     # ax3 = axes[1,1]
-    
+
     # for doctype in top10_doctypes:
     #     year_dccp = doctype_year_dccp[doctype]
     #     xs = []
@@ -409,7 +409,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
 
     ### 把一个学科的 不同类型 不同次数的最频繁的10个subcascade画出来
     readme = open('README.md','a')
-    lines = ['### Type:{:} - {:} - {:} - {:}-{:}'.format(field,doctype_,labels[cn_t],start_year,end_year)]
+    lines = ['\n### Type:{:} - {:} - {:} - {:}-{:}'.format(field,doctype_,labels[cn_t],start_year,end_year)]
 
     logging.info('doctype:{:}'.format(doctype_))
     lines.append('#### doctype:{:}'.format(doctype_))
@@ -419,7 +419,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
     for i,_id in enumerate(top_10_freq_ids):
 
         lines.append('|{:}|![subcascade](subcascade/fig/subcas_{:}.jpg)|{:}|'.format(i+1,_id,subcas_counter[_id]))
-    
+
     readme.write('\n'.join(lines))
 
     readme.close()
@@ -475,7 +475,7 @@ def common_motif_on_facets(paper_size_id,field,start_year,end_year,interval,doct
     plt.savefig('fig/{:}-{:}-{:}-{:}-{:}-subcas-num-point.png'.format(field.replace(' ','_').replace('&','and'),doctype_,labels[cn_t],start_year,end_year))
 
 
-    
+
 
 def parse_args(pathObj):
     parser = argparse.ArgumentParser(usage='python %(prog)s [options]')
@@ -516,12 +516,12 @@ def parse_args(pathObj):
 
     operation = arg.operation
 
-    
+
 
     citation_range = arg.citation_range
 
     _t = arg.optype
-    
+
 
     # print('top 10 doctype: ',top10_doctypes)
 
@@ -538,7 +538,7 @@ def parse_args(pathObj):
         logging.info('loading dccp data ...')
         _id_dccp=json.loads(open(pathObj.dccp_path).read())
         dccp_on_facets(_id_dccp,field_name,start_year,end_year,interval,doctype,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,citation_range,_t)
-    
+
     elif operation=='motif':
         logging.info('loading paper subcascades  ...')
         paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
