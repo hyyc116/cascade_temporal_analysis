@@ -563,7 +563,7 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    stat_dccp(paths)
+    # stat_dccp(paths)
     plot_dccps()
 
     # stat_subcascades(paths)
