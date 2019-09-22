@@ -136,8 +136,8 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         if _id in SCIENTO_IDS:
 
-            field_doctype_dccps['SCIENTOMETRICS'][_doctype].append(_id_dccp[_id][0])
-            field_doctype_eins['SCIENTOMETRICS'][_doctype].append(_id_dccp[_id][1]/float(_cn))
+            # field_doctype_dccps['SCIENTOMETRICS'][_doctype].append(_id_dccp[_id][0])
+            # field_doctype_eins['SCIENTOMETRICS'][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
             field_year_dccps['SCIENTOMETRICS'][_year].append(_id_dccp[_id][0])
             field_year_eins['SCIENTOMETRICS'][_year].append(_id_dccp[_id][1]/float(_cn))
@@ -564,7 +564,7 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    # stat_dccp(paths)
+    stat_dccp(paths)
     plot_dccps()
 
     # stat_subcascades(paths)
