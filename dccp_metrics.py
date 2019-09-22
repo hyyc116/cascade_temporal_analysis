@@ -197,11 +197,34 @@ def plot_dccps():
         ax.set_xlim(1,1000)
         lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
+
+
+        ## dccp与时间之间的关系
+        ax2 = axes[1]
+        xs = []
+        ys = []
+        for year in sorted(field_year_dccps[field].keys()):
+            dccps = field_year_dccps[field][year]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            xs.append(year)
+            ys.append(p_of_dccp)
+        ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
+
+        ax2.set_xlabel('Year')
+        ax2.set_ylabel('$p$')
+
+
         ## dccp与doctype的关系
+        if field=='SCIENTOMETRICS':
+            continue
+
         ax1 = axes[2]
         xs = []
         ys = []
         for doctype in top10_doctypes:
+
             dccps = field_doctype_dccps[field][doctype]
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
@@ -223,22 +246,6 @@ def plot_dccps():
 
 
         ax1.legend()
-
-        ## dccp与时间之间的关系
-        ax2 = axes[1]
-        xs = []
-        ys = []
-        for year in sorted(field_year_dccps[field].keys()):
-            dccps = field_year_dccps[field][year]
-            ## dccp 在这个的比例
-            p_of_dccp = np.sum(dccps)/float(len(dccps))
-
-            xs.append(year)
-            ys.append(p_of_dccp)
-        ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
-
-        ax2.set_xlabel('Year')
-        ax2.set_ylabel('$p$')
 
         # ax2.legend()
 
@@ -273,6 +280,29 @@ def plot_dccps():
         ax.set_ylabel('$e_{i-norm}$')
         lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
+
+
+
+
+        ## dccp与时间之间的关系
+        ax2 = axes[1]
+        xs = []
+        ys = []
+        for year in sorted(field_year_eins[field].keys()):
+            dccps = field_year_eins[field][year]
+            ## dccp 在这个的比例
+            p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            xs.append(year)
+            ys.append(p_of_dccp)
+        ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
+
+        ax2.set_xlabel('Year')
+        ax2.set_ylabel('$e_{i-norm}$')
+
+
+        if field == 'SCIENTOMETRICS':
+            continue
         ## dccp与doctype的关系
         ax1 = axes[2]
         xs = []
@@ -300,22 +330,6 @@ def plot_dccps():
 
 
         ax1.legend()
-
-        ## dccp与时间之间的关系
-        ax2 = axes[1]
-        xs = []
-        ys = []
-        for year in sorted(field_year_eins[field].keys()):
-            dccps = field_year_eins[field][year]
-            ## dccp 在这个的比例
-            p_of_dccp = np.sum(dccps)/float(len(dccps))
-
-            xs.append(year)
-            ys.append(p_of_dccp)
-        ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
-
-        ax2.set_xlabel('Year')
-        ax2.set_ylabel('$e_{i-norm}$')
 
         # ax2.legend()
 
