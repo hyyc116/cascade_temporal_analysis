@@ -256,7 +256,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
         ## dccp与doctype的关系
-        ax1 = axes[1]
+        ax1 = axes[2]
         xs = []
         ys = []
         for doctype in top10_doctypes:
@@ -283,10 +283,10 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax1.set_ylabel('$e_{i-norm}$')
 
 
-        # ax1.legend()
+        ax1.legend()
 
         ## dccp与时间之间的关系
-        ax2 = axes[2]
+        ax2 = axes[1]
         xs = []
         ys = []
         for year in sorted(field_year_eins[field].keys()):
