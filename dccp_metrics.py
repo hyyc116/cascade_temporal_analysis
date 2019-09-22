@@ -157,7 +157,10 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
     logging.info('data saved.')
 
-def plot_dccps(top10_doctypes):
+def plot_dccps():
+
+    top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
 
     field_cc_dccps = json.loads(open('data/field_cc_dccps.json').read())
     field_ccbin_eins = json.loads(open('data/field_ccbin_eins.json').read())
@@ -231,12 +234,6 @@ def plot_dccps(top10_doctypes):
             dccps = field_year_dccps[field][year]
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
-
-            if year>end_year:
-                continue
-
-            if year<start_year:
-                continue
 
             xs.append(year)
             ys.append(p_of_dccp)
@@ -316,12 +313,6 @@ def plot_dccps(top10_doctypes):
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
-            if year>end_year:
-                continue
-
-            if year<start_year:
-                continue
-
             xs.append(year)
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
@@ -354,7 +345,6 @@ def stat_dccp(pathObj):
     # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,sciento_ids)
     logging.info('plotting')
-    plot_dccps(top10_doctypes)
 
 def stat_subcascades(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
@@ -574,8 +564,9 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    stat_dccp(paths)
-    # plot_dccps(paths)
+    # stat_dccp(paths)
+    plot_dccps()
+
     # stat_subcascades(paths)
     # plot_subcascade_data()
     # logging.info('Done')
