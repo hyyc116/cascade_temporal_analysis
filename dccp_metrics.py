@@ -181,12 +181,12 @@ def plot_dccps():
         ax = axes[0]
         xs = []
         ys = []
-        for cc in sorted(field_cc_dccps[field].keys()):
+        for cc in sorted(field_cc_dccps[field].keys(),key=lambda x:int(x)):
             dccps  = field_cc_dccps[field][cc]
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
-            xs.append(cc)
+            xs.append(int(cc))
             ys.append(p_of_dccp)
 
         ax.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
@@ -203,12 +203,12 @@ def plot_dccps():
         ax2 = axes[1]
         xs = []
         ys = []
-        for year in sorted(field_year_dccps[field].keys()):
+        for year in sorted(field_year_dccps[field].keys(),key=lambda x:int(x)):
             dccps = field_year_dccps[field][year]
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
-            xs.append(year)
+            xs.append(int(year))
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
 
@@ -234,9 +234,9 @@ def plot_dccps():
 
         # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
-        width = 0.05
+        width = 0.1
         bi = fi-3
-        bias = bi*0.05
+        bias = bi*width
         ax1.bar(np.arange(len(top10_doctypes))+bias,ys,width=width,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
@@ -263,12 +263,12 @@ def plot_dccps():
         ax = axes[0]
         xs = []
         ys = []
-        for cc in sorted(field_ccbin_eins[field].keys()):
+        for cc in sorted(field_ccbin_eins[field].keys(),key=lambda x:int(x)):
             dccps  = field_ccbin_eins[field][cc]
             ## dccp 在这个的比例
             p_of_dccp = np.mean(dccps)
 
-            xs.append(cc)
+            xs.append(int(cc))
             ys.append(p_of_dccp)
 
         ax.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
@@ -288,12 +288,12 @@ def plot_dccps():
         ax2 = axes[1]
         xs = []
         ys = []
-        for year in sorted(field_year_eins[field].keys()):
+        for year in sorted(field_year_eins[field].keys(),key=lambda x:int(x)):
             dccps = field_year_eins[field][year]
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
-            xs.append(year)
+            xs.append(int(year))
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
 
@@ -318,9 +318,9 @@ def plot_dccps():
 
         # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
-        width = 0.05
+        width = 0.1
         bi = fi-3
-        bias = bi*0.05
+        bias = bi*width
         ax1.bar(np.arange(len(top10_doctypes))+bias,ys,width=width,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
