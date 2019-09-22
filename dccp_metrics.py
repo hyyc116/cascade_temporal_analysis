@@ -191,7 +191,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         if bi>=0:
             bi+=1
         bias = bi*width/8
-        ax1.bar(range(len(top10_doctypes))+bias,ys,label='{}'.format(field))
+        ax1.bar(np.arange(len(top10_doctypes))+bias,ys,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes,rotation=-90)
@@ -275,7 +275,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         if bi>=0:
             bi+=1
         bias = bi*width/8
-        ax1.bar(range(len(top10_doctypes))+bias,ys,label='{}'.format(field))
+        ax1.bar(np.arange(len(top10_doctypes))+bias,ys,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes,rotation=-90)
