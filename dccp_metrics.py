@@ -84,7 +84,7 @@ def load_attrs(pathObj):
 
     return _id_subjects,_id_cn,_id_doctype,_id_pubyear,top10_doctypes
 
-markers = ['o','>','^','s','.','*']
+markers = ['o','>','^','s','.','*','-','<']
 ### 不同的field为一条线，然后分别描述dccp与citation count， dccp与doctype，dccp与时间之间的相互变化关系
 def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,SCIENTO_IDS):
 
