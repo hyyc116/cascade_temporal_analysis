@@ -211,12 +211,10 @@ def plot_dccps():
 
         # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
-        width = 0.24
-        bi = fi-4
-        if bi>=0:
-            bi+=1
-        bias = bi*width/8
-        ax1.bar(np.arange(len(top10_doctypes))+bias,ys,label='{}'.format(field))
+        width = 0.05
+        bi = fi-3
+        bias = bi*0.05
+        ax1.bar(np.arange(len(top10_doctypes))+bias,ys,width=width,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes,rotation=-90)
@@ -247,6 +245,7 @@ def plot_dccps():
     plt.tight_layout()
     plt.savefig('fig/dccp_total.png',dpi=300,additional_artists=[lgd],
     bbox_inches="tight")
+    logging.info('fig saved to fig/dccp_total.png.')
 
 
     fig,axes = plt.subplots(1,3,figsize=(18,5))
@@ -289,12 +288,10 @@ def plot_dccps():
 
         # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
-        width = 0.24
-        bi = fi-4
-        if bi>=0:
-            bi+=1
-        bias = bi*width/8
-        ax1.bar(np.arange(len(top10_doctypes))+bias,ys,label='{}'.format(field))
+        width = 0.05
+        bi = fi-3
+        bias = bi*0.05
+        ax1.bar(np.arange(len(top10_doctypes))+bias,ys,width=width,label='{}'.format(field))
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes,rotation=-90)
@@ -325,6 +322,8 @@ def plot_dccps():
     plt.tight_layout()
     plt.savefig('fig/eins_total.png',dpi=300,additional_artists=[lgd],
     bbox_inches="tight")
+    logging.info('fig saved to fig/eins_total.png.')
+
 
     logging.info('Done')
 
