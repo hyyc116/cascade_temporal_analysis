@@ -147,6 +147,28 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
                 if _cc_cl==1:
                     field_ccbin_eins['SCIENTOMETRICS'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
 
+
+    open('data/field_cc_dccps.json','w').write(json.dumps(field_cc_dccps))
+    open('data/field_ccbin_eins.json','w').write(json.dumps(field_ccbin_eins))
+    open('data/field_year_dccps.json','w').write(json.dumps(field_year_dccps))
+    open('data/field_year_eins.json','w').write(json.dumps(field_year_eins))
+    open('data/field_doctype_dccps.json','w').write(json.dumps(field_doctype_dccps))
+    open('data/field_doctype_eins.json','w').write(json.dumps(field_doctype_eins))
+
+    logging.info('data saved.')
+
+def plot_dccps(top10_doctypes):
+
+    field_cc_dccps = json.loads(open('data/field_cc_dccps.json').read())
+    field_ccbin_eins = json.loads(open('data/field_ccbin_eins.json').read())
+
+    field_year_dccps = json.loads(open('data/field_year_dccps.json').read())
+    field_year_eins = json.loads(open('data/field_year_eins.json').read())
+
+    field_doctype_dccps = json.loads(open('data/field_doctype_dccps.json').read())
+    field_doctype_eins = json.loads(open('data/field_doctype_eins.json').read())
+
+
     logging.info('startting to plotting ....')
     fig,axes = plt.subplots(1,3,figsize=(20,5))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
@@ -173,7 +195,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
         ## dccp与doctype的关系
-        ax1 = axes[1]
+        ax1 = axes[2]
         xs = []
         ys = []
         for doctype in top10_doctypes:
@@ -186,7 +208,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
-        width = 0.8
+        width = 0.24
         bi = fi-4
         if bi>=0:
             bi+=1
@@ -199,10 +221,10 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         ax1.set_ylabel('$p$')
 
 
-        # ax1.legend()
+        ax1.legend()
 
         ## dccp与时间之间的关系
-        ax2 = axes[2]
+        ax2 = axes[1]
         xs = []
         ys = []
         for year in sorted(field_year_dccps[field].keys()):
@@ -270,7 +292,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         # ax1.plot(range(len(top10_doctypes)),ys,label='{}'.format(field),marker=markers[fi])
 
-        width = 0.8
+        width = 0.24
         bi = fi-4
         if bi>=0:
             bi+=1
@@ -316,7 +338,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     logging.info('Done')
 
 
-def plot_dccp(pathObj):
+def stat_dccp(pathObj):
 
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
 
@@ -331,6 +353,8 @@ def plot_dccp(pathObj):
     # logging.info('loading paper subcascades  ...')
     # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,sciento_ids)
+    logging.info('plotting')
+    plot_dccps(top10_doctypes)
 
 def stat_subcascades(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
@@ -550,7 +574,8 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    plot_dccp(paths)
+    stat_dccp(paths)
+    # plot_dccps(paths)
     # stat_subcascades(paths)
     # plot_subcascade_data()
     logging.info('Done')
