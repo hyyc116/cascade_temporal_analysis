@@ -592,7 +592,7 @@ def plot_subcascade_data():
         ax.set_xscale('log')
         ax.set_yscale('log')
 
-        ax.set_title('{}'.format(subj))
+        # ax.set_title('{}'.format(subj))
         lgd = ax.legend(loc=9,bbox_to_anchor=(1.3, 0.8), ncol=1)
 
     plt.tight_layout()
@@ -638,9 +638,9 @@ def plot_subcascade_data():
         ax.set_ylabel('percentage')
         ax.set_xscale('log')
         ax.set_yscale('log')
-        ax.set_title('size distribuion over year')
+        ax.set_title('{}'.format(subj))
 
-        ax.text(0,0,'{}'.format(subj))
+        # ax.text(0,0,'{}'.format(subj))
 
         ax.legend()
 
@@ -664,7 +664,7 @@ def plot_subcascade_data():
         ax.set_ylabel('percentage')
         ax.set_xscale('log')
         ax.set_yscale('log')
-        ax.set_title('num distribution over year')
+        ax.set_title('{}'.format(subj))
         ax.legend()
 
         if subj=='SCIENTOMETRICS':
@@ -692,7 +692,7 @@ def plot_subcascade_data():
         ax.set_ylabel('percentage')
         ax.set_xscale('log')
         ax.set_yscale('log')
-        ax.set_title('num distribution over doctype')
+        ax.set_title('{}'.format(subj))
         ax.legend()
 
 
@@ -716,7 +716,7 @@ def plot_subcascade_data():
         ax.set_ylabel('percentage')
         ax.set_xscale('log')
         ax.set_yscale('log')
-        ax.set_title('num distribution over year')
+        ax.set_title('{}'.format(subj))
         ax.legend()
 
     plt.tight_layout()
