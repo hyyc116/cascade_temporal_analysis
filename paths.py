@@ -69,4 +69,5 @@ class PATHS:
         self._fd_slice_distribution_path = 'subcascade/fig/data/slice_distribution_{:}.json'.format(self.name)
 
 
-        ## 
+        ## SCIENTOMETRICS
+        self._scientometrics_path = 'scientometrics.txt'

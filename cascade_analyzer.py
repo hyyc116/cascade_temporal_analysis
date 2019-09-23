@@ -9,8 +9,6 @@
 ## task 1
 
 from basic_config import *
-
-
 import argparse
 
 field_dict = {

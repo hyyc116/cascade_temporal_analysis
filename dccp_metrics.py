@@ -372,6 +372,9 @@ def stat_subcascades(pathObj):
     logging.info('loading paper subcascades  ...')
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
 
+    ## scientometrics
+    sciento_ids = set([l.strip() for l in open(self._scientometrics_path)])
+
     logging.info('{} paper size dict loaded.'.format(len(paper_size_id)))
     ## 各个field对应的size以及num distribution
     field_size_dict = defaultdict(lambda:defaultdict(int))
@@ -419,6 +422,55 @@ def stat_subcascades(pathObj):
 
             field_num_dict[subj][num]+=1
             # field_total_num[subj]+=1
+
+        ## ALL
+        subj = 'WOS_ALL'
+        num = 0
+        all_ids = []
+        for size in size_id.keys():
+            ids = size_id[size]
+            num+=len(ids)
+            field_size_dict[subj][size]+=len(ids)
+
+            all_ids.extend(ids)
+
+        for _cc_ix,_cc_cl in enumerate(_cn_clas):
+            if _cc_cl==1:
+                for sub_id in set(all_ids):
+
+                    if sub_id==-999:
+                        continue
+
+                    field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
+                    field_subcascade_df[subj][sub_id].append(_cc_ix)
+                    field_ccbin_num[subj][_cc_ix]+=1
+
+        field_num_dict[subj][num]+=1
+
+        ## SCIENTOMETRICS
+        if _id in sciento_ids:
+            num = 0
+            all_ids = []
+            for size in size_id.keys():
+                ids = size_id[size]
+                num+=len(ids)
+                field_size_dict[subj][size]+=len(ids)
+
+                all_ids.extend(ids)
+
+            for _cc_ix,_cc_cl in enumerate(_cn_clas):
+                if _cc_cl==1:
+                    for sub_id in set(all_ids):
+
+                        if sub_id==-999:
+                            continue
+
+                        field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
+                        field_subcascade_df[subj][sub_id].append(_cc_ix)
+                        field_ccbin_num[subj][_cc_ix]+=1
+
+            field_num_dict[subj][num]+=1
+            
 
     open('data/field_num_dict_all.json','w').write(json.dumps(field_num_dict))
     open('data/field_size_dict_all.json','w').write(json.dumps(field_size_dict))
@@ -582,10 +634,10 @@ if __name__ == '__main__':
     # run_all(paths)
     # dccp_of_paper(paths)
     # stat_dccp(paths)
-    plot_dccps()
+    # plot_dccps()
 
-    # stat_subcascades(paths)
-    # plot_subcascade_data()
+    stat_subcascades(paths)
+    plot_subcascade_data()
     # logging.info('Done')
 
 
