@@ -363,6 +363,12 @@ def stat_dccp(pathObj):
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,sciento_ids)
     logging.info('plotting')
 
+def year_bin(year):
+
+    return int((year-1900)/20)
+
+year_bins = ['1920','1940','1960','1980','2000','2016']
+
 def stat_subcascades(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
     start_year = 1900
@@ -379,6 +385,12 @@ def stat_subcascades(pathObj):
     ## 各个field对应的size以及num distribution
     field_size_dict = defaultdict(lambda:defaultdict(int))
     field_num_dict = defaultdict(lambda:defaultdict(int))
+    field_doctype_size_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+    field_year_size_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
+    field_doctype_num_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+    field_year_num_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
     ## field中不同citation count对应的subcascade的频次
     field_cnbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     ## 记录subcascade的DF
@@ -390,7 +402,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-
+        _year_b = year_bins(_year)
         progress+=1
 
         if progress%1000000==0:
@@ -407,6 +419,10 @@ def stat_subcascades(pathObj):
                 num+=len(ids)
                 field_size_dict[subj][size]+=len(ids)
 
+                field_year_size_dict[subj][_year_b][size]+=len(ids)
+
+                field_doctype_size_dict[subj][_doctype][size]+=len(ids)
+
                 all_ids.extend(ids)
 
             for _cc_ix,_cc_cl in enumerate(_cn_clas):
@@ -421,6 +437,9 @@ def stat_subcascades(pathObj):
                         field_ccbin_num[subj][_cc_ix]+=1
 
             field_num_dict[subj][num]+=1
+
+            field_year_num_dict[subj][_year_b][num]+=1
+            field_doctype_num_dict[subj][_doctype][num]+=1
             # field_total_num[subj]+=1
 
         ## ALL
@@ -431,7 +450,8 @@ def stat_subcascades(pathObj):
             ids = size_id[size]
             num+=len(ids)
             field_size_dict[subj][size]+=len(ids)
-
+            field_year_size_dict[subj][_year_b][size]+=len(ids)
+            field_doctype_size_dict[subj][_doctype][size]+=len(ids)
             all_ids.extend(ids)
 
         for _cc_ix,_cc_cl in enumerate(_cn_clas):
@@ -446,7 +466,8 @@ def stat_subcascades(pathObj):
                     field_ccbin_num[subj][_cc_ix]+=1
 
         field_num_dict[subj][num]+=1
-
+        field_year_num_dict[subj][_year_b][num]+=1
+        field_doctype_num_dict[subj][_doctype][num]+=1
         ## SCIENTOMETRICS
         if _id in sciento_ids:
             subj = 'SCIENTOMETRICS'
@@ -457,6 +478,7 @@ def stat_subcascades(pathObj):
                 ids = size_id[size]
                 num+=len(ids)
                 field_size_dict[subj][size]+=len(ids)
+                field_year_size_dict[subj][_year_b][size]+=len(ids)
 
                 all_ids.extend(ids)
 
@@ -472,10 +494,17 @@ def stat_subcascades(pathObj):
                         field_ccbin_num[subj][_cc_ix]+=1
 
             field_num_dict[subj][num]+=1
+            field_year_num_dict[subj][_year_b][num]+=1
             
 
     open('data/field_num_dict_all.json','w').write(json.dumps(field_num_dict))
     open('data/field_size_dict_all.json','w').write(json.dumps(field_size_dict))
+
+    open('data/field_year_size_dict_all.json','w').write(json.dumps(field_year_size_dict))
+    open('data/field_doctype_size_dict_all.json','w').write(json.dumps(field_doctype_size_dict))
+
+    open('data/field_year_num_dict_all.json','w').write(json.dumps(field_year_num_dict))
+    open('data/field_doctype_num_dict_all.json','w').write(json.dumps(field_doctype_num_dict))
 
     ## ===
     open('data/field_cnbin_subcascade_all.json','w').write(json.dumps(field_cnbin_subcascade))
@@ -570,6 +599,28 @@ def plot_subcascade_data():
     plt.savefig('fig/field_subcas_num_dis.png',dpi=400,additional_artists=[lgd],
     bbox_inches="tight")
     logging.info('Size distribution saved to fig/field_subcas_num_dis.png.')
+
+    ## 每一个subject两张图，分别对size和num随着doctype以及时间的变化进行描述
+    fig,axes = plt.subplots(8,1,figsize=(10,24))
+    for subj in sorted(field_year_size_dict.keys()):
+
+        year_size_dict = field_year_size_dict[subj]
+
+        ## 每一年的distribution
+        for year in sorted(year_size_dict.keys(),key=lambda x:int(x)):
+
+            year_label = year_bins[int(year)]
+            xs = []
+            ys = []
+            for size in sorted(year_size_dict[year].keys(),key=lambda x:int(x)):
+
+                xs.append(size)
+                ys.append(year_size_dict[year][size])
+
+            xs,ys = cdf(xs,ys)
+
+
+
     return
     ## ===
     field_cnbin_subcascade = json.loads(open('data/field_cnbin_subcascade_all.json').read())
@@ -662,7 +713,7 @@ if __name__ == '__main__':
     # stat_dccp(paths)
     # plot_dccps()
 
-    # stat_subcascades(paths)
-    plot_subcascade_data()
+    stat_subcascades(paths)
+    # plot_subcascade_data()
     # logging.info('Done')
 
