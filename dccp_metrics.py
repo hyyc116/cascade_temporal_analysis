@@ -627,7 +627,7 @@ def plot_subcascade_data():
             ys = []
             for size in sorted(year_size_dict[year].keys(),key=lambda x:int(x)):
 
-                xs.append(size)
+                xs.append(int(size))
                 ys.append(year_size_dict[year][size])
 
             xs,ys = cdf(xs,ys)
@@ -653,7 +653,7 @@ def plot_subcascade_data():
             ys = []
             for size in sorted(year_num_dict[year].keys(),key=lambda x:int(x)):
 
-                xs.append(size)
+                xs.append(int(size))
                 ys.append(year_num_dict[year][size])
 
             xs,ys = cdf(xs,ys)
@@ -681,12 +681,12 @@ def plot_subcascade_data():
             ys = []
             for size in sorted(doctype_size_dict[doctype].keys(),key=lambda x:int(x)):
 
-                xs.append(size)
+                xs.append(int(size))
                 ys.append(doctype_size_dict[doctype][size])
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=year_label)
+            ax.plot(xs,ys,marker=markers[j],label=doctype)
 
         ax.set_xlabel('size of subcascade')
         ax.set_ylabel('percentage')
@@ -705,12 +705,12 @@ def plot_subcascade_data():
             ys = []
             for size in sorted(doctype_num_dict[doctype].keys(),key=lambda x:int(x)):
 
-                xs.append(size)
+                xs.append(int(size))
                 ys.append(doctype_num_dict[doctype][size])
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=year_label)
+            ax.plot(xs,ys,marker=markers[j],label=doctype)
 
         ax.set_xlabel('number of components')
         ax.set_ylabel('percentage')
