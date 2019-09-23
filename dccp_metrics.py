@@ -501,7 +501,7 @@ def cdf(xs,ys):
 def plot_subcascade_data():
 
     field_size_dict = json.loads(open('data/field_size_dict_all.json').read())
-    fig,axes = plt.subplots(1,3,figsize=(12,3))
+    fig,axes = plt.subplots(1,2,figsize=(10,4))
     ax = axes[0]
     for i,subj in enumerate(sorted(field_size_dict.keys())):
 
@@ -537,8 +537,8 @@ def plot_subcascade_data():
 
     field_num_dict = json.loads(open('data/field_num_dict_all.json').read())
     ## 不同field对应的num distribution
-    fig,axes = plt.subplots(1,3,figsize=(12,3))
-    ax = axes[0]
+    # fig,axes = plt.subplots(1,3,figsize=(12,3))
+    ax = axes[1]
     for i,subj in enumerate(sorted(field_num_dict.keys())):
 
         xs = []
@@ -568,7 +568,7 @@ def plot_subcascade_data():
     plt.savefig('fig/field_subcas_num_dis.png',dpi=400,additional_artists=[lgd],
     bbox_inches="tight")
     logging.info('Size distribution saved to fig/field_subcas_num_dis.png.')
-
+    return
     ## ===
     field_cnbin_subcascade = json.loads(open('data/field_cnbin_subcascade_all.json').read())
     field_subcascade_df = json.loads(open('data/field_subcascade_df_all.json').read())
