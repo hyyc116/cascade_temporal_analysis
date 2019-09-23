@@ -640,6 +640,8 @@ def plot_subcascade_data():
         ax.set_yscale('log')
         ax.set_title('size distribuion over year')
 
+        ax.text(0,0,'{}'.format(subj))
+
         ax.legend()
 
         ax = axes[i,1]
