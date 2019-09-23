@@ -451,6 +451,7 @@ def stat_subcascades(pathObj):
         if _id in sciento_ids:
             subj = 'SCIENTOMETRICS'
             num = 0
+
             all_ids = []
             for size in size_id.keys():
                 ids = size_id[size]
