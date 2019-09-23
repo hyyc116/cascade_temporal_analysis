@@ -527,9 +527,9 @@ def plot_subcascade_data():
 
         ax.set_title('{}'.format(subj))
 
-        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=2)
 
-    plt.tight_layout()
+    # plt.tight_layout()
 
     # plt.savefig('fig/field_subcas_size_dis.png',dpi=400,additional_artists=[lgd],
     # bbox_inches="tight")
@@ -561,7 +561,7 @@ def plot_subcascade_data():
         ax.set_yscale('log')
 
         ax.set_title('{}'.format(subj))
-        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=2)
 
     plt.tight_layout()
 
