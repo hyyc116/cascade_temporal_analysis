@@ -236,6 +236,8 @@ def plot_dccps():
 
         width = 0.1
         bi = fi-3
+        if bi>2:
+            bi = bi-1
         bias = bi*width
         ax1.bar(np.arange(len(top10_doctypes))+bias,ys,width=width,label='{}'.format(field))
 
@@ -320,6 +322,8 @@ def plot_dccps():
 
         width = 0.1
         bi = fi-3
+        if bi>2:
+            bi = bi-1
         bias = bi*width
         ax1.bar(np.arange(len(top10_doctypes))+bias,ys,width=width,label='{}'.format(field))
 
