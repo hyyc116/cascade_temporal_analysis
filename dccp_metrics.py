@@ -482,25 +482,42 @@ def stat_subcascades(pathObj):
 
     logging.info("subcascade data saved.")
 
+
+def cdf(xs,ys):
+    total = np.sum(ys)
+    cdf_xs = []
+    cdf_ys = []
+    for i,x in enumerate(xs):
+
+        cd = np.sum(ys[:i+1])
+
+        cdf = cd/float(total)
+
+        cdf_xs.append(x)
+        cdf_ys.append(cdf)
+
+    return cdf_xs,cdf_ys
+
 def plot_subcascade_data():
 
     field_size_dict = json.loads(open('data/field_size_dict_all.json').read())
-    fig,axes = plt.subplots(2,3,figsize=(12,6))
-
+    fig,axes = plt.subplots(1,3,figsize=(12,3))
+    ax = axes[0]
     for i,subj in enumerate(sorted(field_size_dict.keys())):
 
         xs = []
         ys = []
 
-        ax = axes[i/3,i%3]
+        # ax = axes[i/3,i%3]
 
         for size in sorted(field_size_dict[subj].keys(),key=lambda x:int(x)):
 
             xs.append(int(size))
             ys.append(field_size_dict[subj][size])
 
+        xs,ys = cdf(xs,ys)
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
-        ax.plot(xs,ys,'o',fillstyle='none')
+        ax.plot(xs,ys,marker = markers[i])
 
         ax.set_xlabel('size of subcascade')
         ax.set_ylabel('number of subcascade')
@@ -510,27 +527,32 @@ def plot_subcascade_data():
 
         ax.set_title('{}'.format(subj))
 
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
+
     plt.tight_layout()
 
-    plt.savefig('fig/field_subcas_size_dis.png',dpi=400)
+    plt.savefig('fig/field_subcas_size_dis.png',dpi=400,additional_artists=[lgd],
+    bbox_inches="tight")
     logging.info('Size distribution saved to fig/field_subcas_size_dis.png.')
 
     field_num_dict = json.loads(open('data/field_num_dict_all.json').read())
     ## 不同field对应的num distribution
-    fig,axes = plt.subplots(2,3,figsize=(12,6))
-
+    fig,axes = plt.subplots(1,3,figsize=(12,3))
+    ax = axes[0]
     for i,subj in enumerate(sorted(field_num_dict.keys())):
 
         xs = []
         ys = []
 
-        ax = axes[i/3,i%3]
+        # ax = axes[i/3,i%3]
         for num in sorted(field_num_dict[subj].keys(),key=lambda x:int(x)):
 
             xs.append(int(num))
             ys.append(field_num_dict[subj][num])
 
-        ax.plot(xs,ys,'o',fillstyle='none')
+        # ax.plot(xs,ys,'o',fillstyle='none')
+        xs,ys = cdf(xs,ys)
+        ax.plot(xs,ys,marker=markers[i])
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.set_xlabel('number of components')
         ax.set_ylabel('number of papers')
@@ -539,10 +561,12 @@ def plot_subcascade_data():
         ax.set_yscale('log')
 
         ax.set_title('{}'.format(subj))
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     plt.tight_layout()
 
-    plt.savefig('fig/field_subcas_num_dis.png',dpi=400)
+    plt.savefig('fig/field_subcas_num_dis.png',dpi=400,additional_artists=[lgd],
+    bbox_inches="tight")
     logging.info('Size distribution saved to fig/field_subcas_num_dis.png.')
 
     ## ===
@@ -639,6 +663,4 @@ if __name__ == '__main__':
     stat_subcascades(paths)
     plot_subcascade_data()
     # logging.info('Done')
-
-
 
