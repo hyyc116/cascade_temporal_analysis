@@ -531,9 +531,9 @@ def plot_subcascade_data():
 
     plt.tight_layout()
 
-    plt.savefig('fig/field_subcas_size_dis.png',dpi=400,additional_artists=[lgd],
-    bbox_inches="tight")
-    logging.info('Size distribution saved to fig/field_subcas_size_dis.png.')
+    # plt.savefig('fig/field_subcas_size_dis.png',dpi=400,additional_artists=[lgd],
+    # bbox_inches="tight")
+    # logging.info('Size distribution saved to fig/field_subcas_size_dis.png.')
 
     field_num_dict = json.loads(open('data/field_num_dict_all.json').read())
     ## 不同field对应的num distribution
