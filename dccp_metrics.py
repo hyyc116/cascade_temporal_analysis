@@ -517,7 +517,7 @@ def plot_subcascade_data():
 
         xs,ys = cdf(xs,ys)
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
-        ax.plot(xs,ys,marker = markers[i])
+        ax.plot(xs,ys,marker = markers[i],label='{}'.format(subj))
 
         ax.set_xlabel('size of subcascade')
         ax.set_ylabel('number of subcascade')
@@ -552,7 +552,7 @@ def plot_subcascade_data():
 
         # ax.plot(xs,ys,'o',fillstyle='none')
         xs,ys = cdf(xs,ys)
-        ax.plot(xs,ys,marker=markers[i])
+        ax.plot(xs,ys,marker=markers[i],label='{}'.format(subj))
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.set_xlabel('number of components')
         ax.set_ylabel('number of papers')
