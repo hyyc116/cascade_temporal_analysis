@@ -561,7 +561,7 @@ def plot_subcascade_data():
         ax.set_yscale('log')
 
         ax.set_title('{}'.format(subj))
-        lgd = ax.legend(loc=9,bbox_to_anchor=(1.4, 0.8), ncol=1)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(1.3, 0.8), ncol=1)
 
     plt.tight_layout()
 
