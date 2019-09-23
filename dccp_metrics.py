@@ -616,8 +616,7 @@ def plot_subcascade_data():
         year_size_dict = field_year_size_dict[subj]
         year_num_dict = field_year_num_dict[subj]
 
-        doctype_size_dict = field_doctype_size_dict[subj]
-        doctype_num_dict = field_doctype_num_dict[subj]
+        
 
         ax = axes[i,0]
         ## 每一年的distribution
@@ -669,6 +668,8 @@ def plot_subcascade_data():
         if subj=='SCIENTOMETRICS':
             continue
 
+        doctype_size_dict = field_doctype_size_dict[subj]
+        doctype_num_dict = field_doctype_num_dict[subj]
         ax = axes[i,2]
         ## 每一年的distribution
         doctype_size_dict = field_doctype_size_dict[subj]
