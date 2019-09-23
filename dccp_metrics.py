@@ -373,7 +373,7 @@ def stat_subcascades(pathObj):
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
 
     ## scientometrics
-    sciento_ids = set([l.strip() for l in open(self._scientometrics_path)])
+    sciento_ids = set([l.strip() for l in open(pathObj._scientometrics_path)])
 
     logging.info('{} paper size dict loaded.'.format(len(paper_size_id)))
     ## 各个field对应的size以及num distribution
