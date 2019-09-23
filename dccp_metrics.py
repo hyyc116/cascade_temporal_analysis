@@ -402,7 +402,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-        _year_b = year_bins(_year)
+        _year_b = year_bin(_year)
         progress+=1
 
         if progress%1000000==0:
@@ -530,6 +530,7 @@ def cdf(xs,ys):
     return cdf_xs,cdf_ys
 
 def plot_subcascade_data():
+    top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
 
     field_size_dict = json.loads(open('data/field_size_dict_all.json').read())
     fig,axes = plt.subplots(1,2,figsize=(13,4))
@@ -600,14 +601,27 @@ def plot_subcascade_data():
     bbox_inches="tight")
     logging.info('Size distribution saved to fig/field_subcas_num_dis.png.')
 
+
+    field_year_size_dict = json.loads(open('data/field_year_size_dict_all.json').read())
+    field_doctype_size_dict = json.loads(open('data/field_doctype_size_dict_all.json').read())
+
+    field_year_num_dict = json.loads(open('data/field_year_num_dict_all.json').read())
+    field_doctype_num_dict = json.loads(open('data/field_doctype_num_dict_all.json').read())
+
+
     ## 每一个subject两张图，分别对size和num随着doctype以及时间的变化进行描述
-    fig,axes = plt.subplots(8,1,figsize=(10,24))
-    for subj in sorted(field_year_size_dict.keys()):
+    fig,axes = plt.subplots(8,4,figsize=(20,24))
+    for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
         year_size_dict = field_year_size_dict[subj]
+        year_num_dict = field_year_num_dict[subj]
 
+        doctype_size_dict = field_doctype_size_dict[subj]
+        doctype_num_dict = field_doctype_num_dict[subj]
+
+        ax = axes[i,0]
         ## 每一年的distribution
-        for year in sorted(year_size_dict.keys(),key=lambda x:int(x)):
+        for j,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))):
 
             year_label = year_bins[int(year)]
             xs = []
@@ -619,7 +633,92 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
+            ax.plot(xs,ys,marker=markers[j],label=year_label)
 
+        ax.set_xlabel('size of subcascade')
+        ax.set_ylabel('percentage')
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_title('size distribuion over year')
+
+        ax.legend()
+
+        ax = axes[i,1]
+        ## 每一年的distribution
+        for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
+
+            year_label = year_bins[int(year)]
+            xs = []
+            ys = []
+            for size in sorted(year_num_dict[year].keys(),key=lambda x:int(x)):
+
+                xs.append(size)
+                ys.append(year_num_dict[year][size])
+
+            xs,ys = cdf(xs,ys)
+
+            ax.plot(xs,ys,marker=markers[j],label=year_label)
+
+        ax.set_xlabel('number of components')
+        ax.set_ylabel('percentage')
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_title('num distribution over year')
+        ax.legend()
+
+        if subj=='SCIENTOMETRICS':
+            continue
+
+        ax = axes[i,2]
+        ## 每一年的distribution
+        doctype_size_dict = field_doctype_size_dict[subj]
+        for j,doctype in enumerate(sorted(top10_doctypes)):
+
+            xs = []
+            ys = []
+            for size in sorted(doctype_size_dict[doctype].keys(),key=lambda x:int(x)):
+
+                xs.append(size)
+                ys.append(doctype_size_dict[doctype][size])
+
+            xs,ys = cdf(xs,ys)
+
+            ax.plot(xs,ys,marker=markers[j],label=year_label)
+
+        ax.set_xlabel('size of subcascade')
+        ax.set_ylabel('percentage')
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_title('num distribution over doctype')
+        ax.legend()
+
+
+        ax = axes[i,3]
+        ## 每一年的distribution
+        doctype_num_dict = field_doctype_num_dict[subj]
+        for j,doctype in enumerate(sorted(top10_doctypes)):
+
+            xs = []
+            ys = []
+            for size in sorted(doctype_num_dict[doctype].keys(),key=lambda x:int(x)):
+
+                xs.append(size)
+                ys.append(doctype_num_dict[doctype][size])
+
+            xs,ys = cdf(xs,ys)
+
+            ax.plot(xs,ys,marker=markers[j],label=year_label)
+
+        ax.set_xlabel('number of components')
+        ax.set_ylabel('percentage')
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_title('num distribution over year')
+        ax.legend()
+
+    plt.tight_layout()
+
+    plt.savefig('fig/dccp_year_size_num_dis.png',dpi=400)
 
     return
     ## ===
