@@ -489,7 +489,7 @@ def cdf(xs,ys):
     cdf_ys = []
     for i,x in enumerate(xs):
 
-        cd = np.sum(ys[:i+1])
+        cd = np.sum(ys[i:])
 
         cdf = cd/float(total)
 
