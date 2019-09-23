@@ -501,7 +501,7 @@ def cdf(xs,ys):
 def plot_subcascade_data():
 
     field_size_dict = json.loads(open('data/field_size_dict_all.json').read())
-    fig,axes = plt.subplots(1,2,figsize=(11,4))
+    fig,axes = plt.subplots(1,2,figsize=(13,4))
     ax = axes[0]
     for i,subj in enumerate(sorted(field_size_dict.keys())):
 
@@ -561,7 +561,7 @@ def plot_subcascade_data():
         ax.set_yscale('log')
 
         ax.set_title('{}'.format(subj))
-        lgd = ax.legend(loc=9,bbox_to_anchor=(1.1, 0.8), ncol=1)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(1.4, 0.8), ncol=1)
 
     plt.tight_layout()
 
