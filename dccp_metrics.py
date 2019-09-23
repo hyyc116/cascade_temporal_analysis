@@ -722,6 +722,7 @@ def plot_subcascade_data():
     plt.tight_layout()
 
     plt.savefig('fig/dccp_year_size_num_dis.png',dpi=400)
+    logging.info('saved to fig/dccp_year_size_num_dis.png.')
 
     return
     ## ===
