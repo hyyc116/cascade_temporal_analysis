@@ -84,6 +84,7 @@ def load_attrs(pathObj):
 
     return _id_subjects,_id_cn,_id_doctype,_id_pubyear,top10_doctypes
 
+
 markers = ['o','>','^','s','.','*','D','<']
 ### 不同的field为一条线，然后分别描述dccp与citation count， dccp与doctype，dccp与时间之间的相互变化关系
 def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,SCIENTO_IDS):
@@ -344,6 +345,109 @@ def plot_dccps():
 
 
     logging.info('Done')
+
+
+
+## 统计性描述
+def stat_citation_dis(pathObj):
+    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+    top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+    _id_dccp=json.loads(open(pathObj.dccp_path).read())
+    sciento_ids = set([l.strip() for l in open('scientometrics.txt')])
+
+
+    field_cn_dis = defaultdict(lambda:defaultdict(int))
+    field_year_num = defaultdict(lambda:defaultdict(int))
+    field_num = defaultdict(int)
+    doctype_num = defaultdict(int)
+
+    logging.info('stating id cn ....')
+    for _id in _id_dccp.keys():
+        _cn = int(_id_cn[_id])
+        _year = int(_id_year[_id])
+        _doctype = _id_doctype[_id]
+
+        _top_subjects = _id_subjects[_id]
+
+        for subj in _top_subjects:
+
+            field_cn_dis[subj][_cn]+=1
+
+            field_year_num[subj][_year]+=1
+
+            field_num[field]+=1
+
+        doctype_num[doctype]+=1
+        field_cn_dis['WOS_ALL'][_cn]+=1
+        field_year_num['WOS_ALL'][_year]+=1
+        field_num['WOS_ALL']+=1
+
+        if _id in sciento_ids:
+            field_cn_dis['SCIENTOMETRICS'][_cn]+=1
+            field_year_num['SCIENTOMETRICS'][_year]+=1
+            field_num['SCIENTOMETRICS']+=1
+
+    ## 画出citation distribution
+    plt.figure(figsize=(5,3))
+    for i,subj in enumerate(sorted(field_cn_dis.keys())):
+
+        cn_dis = field_cn_dis[subj]
+
+        xs = []
+        ys = []
+
+        for _cn in sorted(cn_dis.keys(),key=lambda x:int(x)):
+
+            xs.append(int(_cn))
+            ys.append(cn_dis[_cn])
+
+        xs,ys = cdf(xs,ys)
+
+        plt.plot(xs,ys,marker=markers[i],label=subj)
+
+
+    plt.xlabel('number of citations')
+    plt.ylabel('percentage')
+
+    plt.xscale('log')
+    plt.yscale('log')
+
+    plt.savefig('fig/field_cit_dis.png',dpi=400)
+    logging.info('fig saved to fig/field_cit_dis.png')
+
+    ## 画出year distribution
+    plt.figure(figsize=(5,3))
+    for i,subj in enumerate(sorted(field_year_num.keys())):
+
+        year_num = field_year_num[subj]
+
+        xs = []
+        ys = []
+
+        for _cn in sorted(year_num.keys(),key=lambda x:int(x)):
+
+            xs.append(int(_cn))
+            ys.append(year_num[_cn])
+
+        # xs,ys = cdf(xs,ys)
+
+        plt.plot(xs,ys,marker=markers[i],label=subj)
+
+
+    plt.xlabel('year')
+    plt.ylabel('number of papers')
+
+    # plt.xscale('log')
+    plt.yscale('log')
+    plt.savefig('fig/field_year_num_dis.png',dpi=400)
+    logging.info('fig saved to fig/field_year_num_dis.png')
+
+
+
+def stat_year_dis():
+
+    pass
+
 
 
 def stat_dccp(pathObj):
@@ -846,6 +950,8 @@ if __name__ == '__main__':
     # plot_dccps()
 
     # stat_subcascades(paths)
-    plot_subcascade_data()
+    # plot_subcascade_data()
     # logging.info('Done')
+
+    stat_citation_dis(paths)
 
