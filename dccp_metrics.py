@@ -389,7 +389,7 @@ def stat_citation_dis(pathObj):
             field_num['SCIENTOMETRICS']+=1
 
     ## 画出citation distribution
-    plt.figure(figsize=(5,3))
+    plt.figure(figsize=(6,4))
     for i,subj in enumerate(sorted(field_cn_dis.keys())):
 
         cn_dis = field_cn_dis[subj]
@@ -415,12 +415,13 @@ def stat_citation_dis(pathObj):
 
     plt.legend()
     
+    plt.tight_layout()
 
     plt.savefig('fig/field_cit_dis.png',dpi=400)
     logging.info('fig saved to fig/field_cit_dis.png')
 
     ## 画出year distribution
-    plt.figure(figsize=(5,3))
+    plt.figure(figsize=(6,4))
     for i,subj in enumerate(sorted(field_year_num.keys())):
 
         year_num = field_year_num[subj]
