@@ -413,6 +413,9 @@ def stat_citation_dis(pathObj):
     plt.xscale('log')
     plt.yscale('log')
 
+    plt.legend()
+    
+
     plt.savefig('fig/field_cit_dis.png',dpi=400)
     logging.info('fig saved to fig/field_cit_dis.png')
 
@@ -425,10 +428,13 @@ def stat_citation_dis(pathObj):
         xs = []
         ys = []
 
-        for _cn in sorted(year_num.keys(),key=lambda x:int(x)):
+        for _year in sorted(year_num.keys(),key=lambda x:int(x)):
 
-            xs.append(int(_cn))
-            ys.append(year_num[_cn])
+            if int(_year)>2016:
+                continue
+
+            xs.append(int(_year))
+            ys.append(year_num[_year])
 
         # xs,ys = cdf(xs,ys)
 
@@ -438,8 +444,11 @@ def stat_citation_dis(pathObj):
     plt.xlabel('year')
     plt.ylabel('number of papers')
 
+    plt.legend()
+
     # plt.xscale('log')
     plt.yscale('log')
+    plt.tight_layout()
     plt.savefig('fig/field_year_num_dis.png',dpi=400)
     logging.info('fig saved to fig/field_year_num_dis.png')
 
