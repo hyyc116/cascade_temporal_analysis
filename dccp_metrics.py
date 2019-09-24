@@ -610,17 +610,19 @@ def plot_subcascade_data():
 
 
     ## 每一个subject两张图，分别对size和num随着doctype以及时间的变化进行描述
-    fig,axes = plt.subplots(8,4,figsize=(20,24))
+    fig,axes = plt.subplots(2,3,figsize=(15,6))
     for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
         year_size_dict = field_year_size_dict[subj]
-        year_num_dict = field_year_num_dict[subj]
 
-        
+        if subj=='SCIENTOMETRICS':
+            continue
 
-        ax = axes[i,0]
+        # ax = axes[i,0]
         ## 每一年的distribution
         for j,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))):
+
+            ax =axes[int(j/3),int(j%3)]
 
             year_label = year_bins[int(year)]
             xs = []
@@ -632,21 +634,32 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=year_label)
+            ax.plot(xs,ys,marker=markers[j],label=subj)
 
-        ax.set_xlabel('size of subcascade')
-        ax.set_ylabel('percentage')
-        ax.set_xscale('log')
-        ax.set_yscale('log')
-        ax.set_title('{}'.format(subj))
+            ax.set_xlabel('size of subcascade')
+            ax.set_ylabel('percentage')
+            ax.set_xscale('log')
+            ax.set_yscale('log')
+            ax.set_title('{}'.format(year_label))
 
         # ax.text(0,0,'{}'.format(subj))
 
-        ax.legend()
+            ax.legend()
+    plt.tight_layout()
 
-        ax = axes[i,1]
+    plt.savefig('fig/year_size_dis.png',dpi=400)
+    logging.info('saved to fig/year_size_dis.png.')
+    
+
+    fig,axes = plt.subplots(2,3,figsize=(15,6))
+    for i,subj in enumerate(sorted(field_year_num_dict.keys())):
+
+        year_num_dict = field_year_num_dict[subj]
+
+        # ax = axes[i,1]
         ## 每一年的distribution
         for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
+            ax =axes[int(j/3),int(j%3)]
 
             year_label = year_bins[int(year)]
             xs = []
@@ -658,24 +671,33 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=year_label)
+            ax.plot(xs,ys,marker=markers[j],label=subj)
 
-        ax.set_xlabel('number of components')
-        ax.set_ylabel('percentage')
-        ax.set_xscale('log')
-        ax.set_yscale('log')
-        ax.set_title('{}'.format(subj))
-        ax.legend()
+            ax.set_xlabel('number of components')
+            ax.set_ylabel('percentage')
+            ax.set_xscale('log')
+            ax.set_yscale('log')
+            ax.set_title('{}'.format(year_label))
+            ax.legend()
 
-        if subj=='SCIENTOMETRICS':
-            continue
+            # ax.legend()
+
+    plt.tight_layout()
+
+    plt.savefig('fig/year_num_dis.png',dpi=400)
+    logging.info('saved to fig/year_num_dis.png.')
+
+
+    fig,axes = plt.subplots(2,3,figsize=(15,6))
+    for i,subj in enumerate(sorted(field_doctype_size_dict.keys())):
 
         doctype_size_dict = field_doctype_size_dict[subj]
-        doctype_num_dict = field_doctype_num_dict[subj]
-        ax = axes[i,2]
+
         ## 每一年的distribution
-        doctype_size_dict = field_doctype_size_dict[subj]
         for j,doctype in enumerate(sorted(top10_doctypes)):
+
+            ax =axes[int(j/3),int(j%3)]
+
 
             xs = []
             ys = []
@@ -686,20 +708,27 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=doctype)
+            ax.plot(xs,ys,marker=markers[j],label=subj)
 
-        ax.set_xlabel('size of subcascade')
-        ax.set_ylabel('percentage')
-        ax.set_xscale('log')
-        ax.set_yscale('log')
-        ax.set_title('{}'.format(subj))
-        ax.legend()
+            ax.set_xlabel('size of subcascade')
+            ax.set_ylabel('percentage')
+            ax.set_xscale('log')
+            ax.set_yscale('log')
+            ax.set_title('{}'.format(doctype))
+            ax.legend()
+
+    plt.tight_layout()
+
+    plt.savefig('fig/doctype_size_dis.png',dpi=400)
+    logging.info('saved to fig/doctype_size_dis.png.')
 
 
-        ax = axes[i,3]
+    fig,axes = plt.subplots(2,3,figsize=(15,6))
+    for i,subj in enumerate(sorted(field_doctype_num_dict.keys())):
         ## 每一年的distribution
         doctype_num_dict = field_doctype_num_dict[subj]
         for j,doctype in enumerate(sorted(top10_doctypes)):
+            ax =axes[int(j/3),int(j%3)]
 
             xs = []
             ys = []
@@ -710,19 +739,19 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=doctype)
+            ax.plot(xs,ys,marker=markers[j],label=subj)
 
-        ax.set_xlabel('number of components')
-        ax.set_ylabel('percentage')
-        ax.set_xscale('log')
-        ax.set_yscale('log')
-        ax.set_title('{}'.format(subj))
-        ax.legend()
+            ax.set_xlabel('number of components')
+            ax.set_ylabel('percentage')
+            ax.set_xscale('log')
+            ax.set_yscale('log')
+            ax.set_title('{}'.format(doctype))
+            ax.legend()
 
     plt.tight_layout()
 
-    plt.savefig('fig/dccp_year_size_num_dis.png',dpi=400)
-    logging.info('saved to fig/dccp_year_size_num_dis.png.')
+    plt.savefig('fig/doctype_num_dis.png',dpi=400)
+    logging.info('saved to fig/doctype_num_dis.png.')
 
     return
     ## ===
