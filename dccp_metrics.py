@@ -622,7 +622,7 @@ def plot_subcascade_data():
         ## 每一年的distribution
         for j,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))):
 
-            ax =axes[int(j/3),int(j%3)]
+            ax =axes[int(int(year)/3),int(int(year)%3)]
 
             year_label = year_bins[int(year)]
             xs = []
@@ -659,7 +659,7 @@ def plot_subcascade_data():
         # ax = axes[i,1]
         ## 每一年的distribution
         for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
-            ax =axes[int(j/3),int(j%3)]
+            ax =axes[int(int(year)/3),int(int(year)%3)]
 
             year_label = year_bins[int(year)]
             xs = []
