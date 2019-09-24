@@ -375,7 +375,7 @@ def stat_citation_dis(pathObj):
 
             field_year_num[subj][_year]+=1
 
-            field_num[field]+=1
+            field_num[subj]+=1
 
         if _doctype in top10_doctypes:
             doctype_num[_doctype]+=1
