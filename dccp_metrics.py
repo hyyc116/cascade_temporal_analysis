@@ -452,6 +452,18 @@ def stat_citation_dis(pathObj):
     plt.savefig('fig/field_year_num_dis.png',dpi=400)
     logging.info('fig saved to fig/field_year_num_dis.png')
 
+    ## 各个学科的文章数量以及不同文章类型的文章数量
+    logging.info('Subject Num Dis')
+    for subj in field_num.keys():
+
+        logging.info('{},{}'.format(subj,field_num[subj]))
+
+    logging.info('Doctype num Dis')
+    for doctype in doctype_num.keys():
+
+        logging.info('{},{}'.format(doctype,doctype_num[doctype]))
+
+
 
 
 def stat_year_dis():
