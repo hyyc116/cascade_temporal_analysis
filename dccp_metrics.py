@@ -615,8 +615,8 @@ def plot_subcascade_data():
 
         year_size_dict = field_year_size_dict[subj]
 
-        if subj=='SCIENTOMETRICS':
-            continue
+        # if subj=='SCIENTOMETRICS':
+        #     continue
 
         # ax = axes[i,0]
         ## 每一年的distribution
@@ -634,7 +634,7 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=subj)
+            ax.plot(xs,ys,marker=markers[i],label=subj)
 
             ax.set_xlabel('size of subcascade')
             ax.set_ylabel('percentage')
@@ -671,7 +671,7 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=subj)
+            ax.plot(xs,ys,marker=markers[i],label=subj)
 
             ax.set_xlabel('number of components')
             ax.set_ylabel('percentage')
@@ -708,7 +708,7 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=subj)
+            ax.plot(xs,ys,marker=markers[i],label=subj)
 
             ax.set_xlabel('size of subcascade')
             ax.set_ylabel('percentage')
@@ -739,7 +739,7 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[j],label=subj)
+            ax.plot(xs,ys,marker=markers[i],label=subj)
 
             ax.set_xlabel('number of components')
             ax.set_ylabel('percentage')
