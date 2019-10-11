@@ -1094,8 +1094,10 @@ if __name__ == '__main__':
     # stat_dccp(paths)
     # plot_dccps()
 
-    stat_subcascades(paths)
+    # stat_subcascades(paths)
     # plot_subcascade_data()
+    output_motif_table()
+
     # logging.info('Done')
 
     # stat_citation_dis(paths)
