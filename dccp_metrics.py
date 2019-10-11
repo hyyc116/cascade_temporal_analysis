@@ -1138,7 +1138,7 @@ def output_motif_table():
         for yearbin in sorted(yearbin_motif_dict.keys()):
             motif_dict = yearbin_motif_dict[yearbin]
             # print motif_dict
-            cc_line = ['{}|'.format(year_label[int(yearbin)])]
+            cc_line = ['{}|'.format(year_label(int(yearbin)))]
             cc_line.append('subcascade|tf')
 
             _10_line = []
