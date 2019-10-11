@@ -1122,7 +1122,7 @@ def output_motif_table():
                 # motif_dict[sub_id]['tfidf'] = tfidf
 
             ## 对于改bin下的top motif进行输出
-            subj_yearbin_motif_dict[subj][cc_bin]= motif_dict
+            subj_yearbin_motif_dict[subj][year_bin]= motif_dict
 
     ## 分别对每一个subject下不同的ccbin的motif进行计算
     lines = ['## Subject vs. Year\n']
