@@ -916,39 +916,46 @@ def plot_subcascade_data():
     plt.savefig('fig/doctype_num_dis.png',dpi=400)
     logging.info('saved to fig/doctype_num_dis.png.')
 
-    return
+    # return
+
+def output_motif_table():
     ## ===
     field_cnbin_subcascade = json.loads(open('data/field_cnbin_subcascade_all.json').read())
-    field_subcascade_df = json.loads(open('data/field_subcascade_df_all.json').read())
+
+    field_yearbin_subcascade = json.loads(open('data/field_yearbin_subcascade_all.json').read())
+
+    doctype_cnbin_subcascade = json.loads(open('data/doctype_cnbin_subcascade_all.json').read())
+
+    # field_subcascade_df = json.loads(open('data/field_subcascade_df_all.json').read())
     field_ccbin_num = json.loads(open('data/field_ccbin_num_all.json').read())
 
     ## 不同field中不同ccbin对应的common motif,以tf/df进行排序，找出个ccbin对应的独特的motif
     subj_ccbin_motif_dict = defaultdict(lambda:defaultdict(dict))
     for subj in sorted(field_cnbin_subcascade.keys()):
-        subcas_df = field_subcascade_df[subj]
-        logging.info("subj of subcascade {},length of subcascade {}".format(subj,len(subcas_df)))
+        # subcas_df = field_subcascade_df[subj]
+        # logging.info("subj of subcascade {},length of subcascade {}".format(subj,len(subcas_df)))
 
         for cc_bin in sorted(field_cnbin_subcascade[subj].keys()):
 
             subcas_num_dict = field_cnbin_subcascade[subj][cc_bin]
 
-            subcas_num_total = field_ccbin_num[subj][cc_bin]
+            # subcas_num_total = field_ccbin_num[subj][cc_bin]
 
             motif_dict = defaultdict(dict)
 
             for sub_id in subcas_num_dict.keys():
 
-                df = len(set(subcas_df[sub_id]))
+                # df = len(set(subcas_df[sub_id]))
 
                 tf = subcas_num_dict[sub_id]
 
-                norm_tf = tf/float(subcas_num_total)
+                # norm_tf = tf/float(subcas_num_total)
 
-                tfidf = norm_tf*(np.log(len(labels)/df))
+                # tfidf = norm_tf*(np.log(len(labels)/df))
 
                 motif_dict[sub_id]['tf'] = tf
-                motif_dict[sub_id]['norm_tf'] = norm_tf
-                motif_dict[sub_id]['tfidf'] = tfidf
+                # motif_dict[sub_id]['norm_tf'] = norm_tf
+                # motif_dict[sub_id]['tfidf'] = tfidf
 
             ## 对于改bin下的top motif进行输出
             subj_ccbin_motif_dict[subj][cc_bin]= motif_dict
@@ -956,9 +963,9 @@ def plot_subcascade_data():
     ## 分别对每一个subject下不同的ccbin的motif进行计算
     lines = []
     for subj in sorted(subj_ccbin_motif_dict.keys()):
-        line = '#### Subject:{}'.format(subj)
-        header = "|"+'|'.join(['0']*25)+"|"
-        pos = "|"+'|'.join([':--------:']*25)+"|"
+        line = '##Subject vs. Citation Count\n#### Subject:{}'.format(subj)
+        header = "|"+'|'.join(['0']*17)+"|"
+        pos = "|"+'|'.join([':--------:']*17)+"|"
         lines.append(line)
         lines.append(header)
         lines.append(pos)
@@ -968,11 +975,86 @@ def plot_subcascade_data():
             motif_dict = ccbin_motif_dict[ccbin]
             # print motif_dict
             cc_line = ['{}||'.format(labels[int(ccbin)])]
-            cc_line.append('subcascade|tf|tfidf')
-            for ix,motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tfidf'],reverse=True)[:10]):
+            cc_line.append('subcascade|tf')
+            for ix,motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tf'],reverse=True)[:10]):
                 tf = motif_dict[motif]['tf']
-                tfidf = motif_dict[motif]['tfidf']
-                line = '![subcascade](subcascade/fig/subcas_{:}.jpg)|{}|{}'.format(motif,tf,tfidf)
+                # tfidf = motif_dict[motif]['tfidf']
+                line = '![subcascade](subcascade/fig/subcas_{:}.jpg)|{}'.format(motif,tf)
+                # print line
+                cc_line.append(line)
+
+            cc_lines.append(cc_line)
+
+        # print cc_lines[0]
+
+        for ix,line in enumerate(zip(*cc_lines)):
+            # print line
+
+            if line[0].startswith('!'):
+                ix = ix-1
+            else:
+                ix = 0
+
+            line= "|{}|".format(ix)+'|'.join(line)+"|"
+            print line
+            lines.append(line)
+
+    f = open("README.md",'w')
+
+    f.write('\n'.join(lines)+'\n')
+
+    ### doctype bin
+    ## 不同field中不同ccbin对应的common motif,以tf/df进行排序，找出个ccbin对应的独特的motif
+    doctype_ccbin_motif_dict = defaultdict(lambda:defaultdict(dict))
+    for subj in sorted(doctype_cnbin_subcascade.keys()):
+        # subcas_df = field_subcascade_df[subj]
+        # logging.info("subj of subcascade {},length of subcascade {}".format(subj,len(subcas_df)))
+
+        for cc_bin in sorted(doctype_cnbin_subcascade[subj].keys()):
+
+            subcas_num_dict = doctype_cnbin_subcascade[subj][cc_bin]
+
+            # subcas_num_total = field_ccbin_num[subj][cc_bin]
+
+            motif_dict = defaultdict(dict)
+
+            for sub_id in subcas_num_dict.keys():
+
+                # df = len(set(subcas_df[sub_id]))
+
+                tf = subcas_num_dict[sub_id]
+
+                # norm_tf = tf/float(subcas_num_total)
+
+                # tfidf = norm_tf*(np.log(len(labels)/df))
+
+                motif_dict[sub_id]['tf'] = tf
+                # motif_dict[sub_id]['norm_tf'] = norm_tf
+                # motif_dict[sub_id]['tfidf'] = tfidf
+
+            ## 对于改bin下的top motif进行输出
+            doctype_ccbin_motif_dict[subj][cc_bin]= motif_dict
+
+    ## 分别对每一个subject下不同的ccbin的motif进行计算
+    lines = []
+    for subj in sorted(doctype_ccbin_motif_dict.keys()):
+        line = '##Doctype vs. Citation Count\n#### Doctype:{}'.format(subj)
+        header = "|"+'|'.join(['0']*17)+"|"
+        pos = "|"+'|'.join([':--------:']*17)+"|"
+        lines.append(line)
+        lines.append(header)
+        lines.append(pos)
+        ccbin_motif_dict = doctype_ccbin_motif_dict[subj]
+        cc_lines = []
+        for ccbin in sorted(ccbin_motif_dict.keys()):
+            motif_dict = ccbin_motif_dict[ccbin]
+            # print motif_dict
+            cc_line = ['{}||'.format(labels[int(ccbin)])]
+            cc_line.append('subcascade|tf')
+            for ix,motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tf'],reverse=True)[:10]):
+                tf = motif_dict[motif]['tf']
+                # tfidf = motif_dict[motif]['tfidf']
+                line = '![subcascade](subcascade/fig/subcas_{:}.jpg)|{}'.format(motif,tf)
                 # print line
                 cc_line.append(line)
 
@@ -993,8 +1075,12 @@ def plot_subcascade_data():
             print line
             lines.append(line)
 
-    open("README.md",'w').write('\n'.join(lines)+'\n')
+    f.write('\n'.join(lines)+'\n')
+    
     logging.info('saved to README.md')
+
+
+
 
 
 
