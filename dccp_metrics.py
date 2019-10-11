@@ -358,8 +358,10 @@ def stat_citation_dis(pathObj):
 
     field_cn_dis = defaultdict(lambda:defaultdict(int))
     field_year_num = defaultdict(lambda:defaultdict(int))
-    field_num = defaultdict(int)
-    doctype_num = defaultdict(int)
+    # field_num = defaultdict(int)
+    # doctype_num = defaultdict(int)
+
+    field_doctype_num = defaultdict(lambda:defaultdict(int))
 
     logging.info('stating id cn ....')
     for _id in _id_dccp.keys():
@@ -375,18 +377,29 @@ def stat_citation_dis(pathObj):
 
             field_year_num[subj][_year]+=1
 
-            field_num[subj]+=1
+            # field_num[subj]+=1
 
-        if _doctype in top10_doctypes:
-            doctype_num[_doctype]+=1
+            if _doctype in top10_doctypes:
+                # doctype_num[_doctype]+=1
+                field_doctype_num[subj][_doctype]+=1
+
+            field_doctype_num[subj]['ALL']+=1
+
+
+
         field_cn_dis['WOS_ALL'][_cn]+=1
         field_year_num['WOS_ALL'][_year]+=1
-        field_num['WOS_ALL']+=1
+
+        field_doctype_num['WOS_ALL']['ALL']+=1
+        if _doctype in top10_doctypes:
+            # doctype_num[_doctype]+=1
+            field_doctype_num[subj][_doctype]+=1
 
         if _id in sciento_ids:
             field_cn_dis['SCIENTOMETRICS'][_cn]+=1
             field_year_num['SCIENTOMETRICS'][_year]+=1
-            field_num['SCIENTOMETRICS']+=1
+            field_doctype_num['SCIENTOMETRICS']['ALL']+=1
+            field_doctype_num['SCIENTOMETRICS'][_doctype]+=1
 
     ## 画出citation distribution
     plt.figure(figsize=(6,4))
@@ -443,7 +456,7 @@ def stat_citation_dis(pathObj):
 
 
     plt.xlabel('year')
-    plt.ylabel('number of papers')
+    plt.ylabel('number of publications')
 
     plt.legend()
 
@@ -453,23 +466,25 @@ def stat_citation_dis(pathObj):
     plt.savefig('fig/field_year_num_dis.png',dpi=400)
     logging.info('fig saved to fig/field_year_num_dis.png')
 
-    ## 各个学科的文章数量以及不同文章类型的文章数量
-    logging.info('Subject Num Dis')
-    for subj in field_num.keys():
+    ## 各个学科的文章综述以及各类型文章的数量
 
-        logging.info('{},{}'.format(subj,field_num[subj]))
+    all_doctypes = ['ALL']
+    all_doctypes.extend(top10_doctypes)
+    logging.info('Subject doctype Num Dis')
+    lines = ['field,{}'.format(','.join(all_doctypes))]
+    for subj in sorted(field_doctype_num.keys()):
 
-    logging.info('Doctype num Dis')
-    for doctype in doctype_num.keys():
+        line = [subj]
+        for doctype in sorted(all_doctypes):
 
-        logging.info('{},{}'.format(doctype,doctype_num[doctype]))
+            num = field_doctype_num[subj].get(doctype,0)
 
+            line.append(str(num))
 
+        lines.append(','.join(line))
 
-
-def stat_year_dis():
-
-    pass
+    open('data/field_doctype_num.csv','w').write('\n'.join(lines))
+    logging.info('data saved to data/field_doctype_num.csv')
 
 
 
