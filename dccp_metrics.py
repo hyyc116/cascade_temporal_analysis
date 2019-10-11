@@ -1170,7 +1170,7 @@ def output_motif_table():
             print line
             lines.append(line)
 
-    f = open("README.md",'w')
+    # f = open("README.md",'w')
 
     f.write('\n'.join(lines)+'\n')
     
