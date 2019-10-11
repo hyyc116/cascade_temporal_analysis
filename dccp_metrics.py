@@ -1037,7 +1037,8 @@ def output_motif_table():
 
     ## 分别对每一个subject下不同的ccbin的motif进行计算
     lines = ['## Doctype vs. Citation Count\n']
-    for subj in sorted(doctype_ccbin_motif_dict.keys()):
+    top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+    for subj in sorted(top10_doctypes):
         line = '#### Doctype:{}'.format(subj)
         header = "|"+'|'.join(['0']*17)+"|"
         pos = "|"+'|'.join([':--------:']*17)+"|"
