@@ -961,9 +961,9 @@ def output_motif_table():
             subj_ccbin_motif_dict[subj][cc_bin]= motif_dict
 
     ## 分别对每一个subject下不同的ccbin的motif进行计算
-    lines = []
+    lines = ['## Subject vs. Citation Count\n']
     for subj in sorted(subj_ccbin_motif_dict.keys()):
-        line = '##Subject vs. Citation Count\n#### Subject:{}'.format(subj)
+        line = '#### Subject:{}'.format(subj)
         header = "|"+'|'.join(['0']*17)+"|"
         pos = "|"+'|'.join([':--------:']*17)+"|"
         lines.append(line)
@@ -1036,9 +1036,9 @@ def output_motif_table():
             doctype_ccbin_motif_dict[subj][cc_bin]= motif_dict
 
     ## 分别对每一个subject下不同的ccbin的motif进行计算
-    lines = []
+    lines = ['## Doctype vs. Citation Count\n']
     for subj in sorted(doctype_ccbin_motif_dict.keys()):
-        line = '##Doctype vs. Citation Count\n#### Doctype:{}'.format(subj)
+        line = '#### Doctype:{}'.format(subj)
         header = "|"+'|'.join(['0']*17)+"|"
         pos = "|"+'|'.join([':--------:']*17)+"|"
         lines.append(line)
