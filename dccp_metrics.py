@@ -1090,6 +1090,89 @@ def output_motif_table():
             lines.append(line)
 
     f.write('\n'.join(lines)+'\n')
+
+
+    ## subject yearbin
+    ## 不同field中不同ccbin对应的common motif,以tf/df进行排序，找出个ccbin对应的独特的motif
+    subj_yearbin_motif_dict = defaultdict(lambda:defaultdict(dict))
+    for subj in sorted(field_yearbin_subcascade.keys()):
+        # subcas_df = field_subcascade_df[subj]
+        # logging.info("subj of subcascade {},length of subcascade {}".format(subj,len(subcas_df)))
+
+        for year_bin in sorted(field_yearbin_subcascade[subj].keys()):
+
+            subcas_num_dict = field_yearbin_subcascade[subj][year_bin]
+
+            # subcas_num_total = field_ccbin_num[subj][cc_bin]
+
+            motif_dict = defaultdict(dict)
+
+            for sub_id in subcas_num_dict.keys():
+
+                # df = len(set(subcas_df[sub_id]))
+
+                tf = subcas_num_dict[sub_id]
+
+                # norm_tf = tf/float(subcas_num_total)
+
+                # tfidf = norm_tf*(np.log(len(labels)/df))
+
+                motif_dict[sub_id]['tf'] = tf
+                # motif_dict[sub_id]['norm_tf'] = norm_tf
+                # motif_dict[sub_id]['tfidf'] = tfidf
+
+            ## 对于改bin下的top motif进行输出
+            subj_yearbin_motif_dict[subj][cc_bin]= motif_dict
+
+    ## 分别对每一个subject下不同的ccbin的motif进行计算
+    lines = ['## Subject vs. Year\n']
+    for subj in sorted(subj_yearbin_motif_dict.keys()):
+        line = '#### Subject:{}'.format(subj)
+        header = "|"+'|'.join(['0']*25)+"|"
+        pos = "|"+'|'.join([':--------:']*25)+"|"
+        lines.append(line)
+        lines.append(header)
+        lines.append(pos)
+        yearbin_motif_dict = subj_yearbin_motif_dict[subj]
+        cc_lines = []
+        for yearbin in sorted(yearbin_motif_dict.keys()):
+            motif_dict = yearbin_motif_dict[yearbin]
+            # print motif_dict
+            cc_line = ['{}|'.format(year_label[int(yearbin)])]
+            cc_line.append('subcascade|tf')
+
+            _10_line = []
+            for ix,motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tf'],reverse=True)[:10]):
+                tf = motif_dict[motif]['tf']
+                # tfidf = motif_dict[motif]['tfidf']
+                line = '![subcascade](subcascade/fig/subcas_{:}.jpg)|{}'.format(motif,tf)
+                # print line
+                _10_line.append(line)
+
+            if len(_10_line)!=10:
+
+                _10_line.extend(['|']*(10-len(_10_line)))
+
+            cc_line.extend(_10_line)
+            cc_lines.append(cc_line)
+
+        # print cc_lines[0]
+
+        for ix,line in enumerate(zip(*cc_lines)):
+            # print line
+
+            if line[0].startswith('!'):
+                ix = ix-1
+            else:
+                ix = 0
+
+            line= "|{}|".format(ix)+'|'.join(line)+"|"
+            print line
+            lines.append(line)
+
+    f = open("README.md",'w')
+
+    f.write('\n'.join(lines)+'\n')
     
     logging.info('saved to README.md')
 
