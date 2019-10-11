@@ -1128,8 +1128,8 @@ def output_motif_table():
     lines = ['## Subject vs. Year\n']
     for subj in sorted(subj_yearbin_motif_dict.keys()):
         line = '#### Subject:{}'.format(subj)
-        header = "|"+'|'.join(['0']*25)+"|"
-        pos = "|"+'|'.join([':--------:']*25)+"|"
+        header = "|"+'|'.join(['0']*29)+"|"
+        pos = "|"+'|'.join([':--------:']*29)+"|"
         lines.append(line)
         lines.append(header)
         lines.append(pos)
