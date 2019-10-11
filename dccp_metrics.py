@@ -974,15 +974,22 @@ def output_motif_table():
         for ccbin in sorted(ccbin_motif_dict.keys()):
             motif_dict = ccbin_motif_dict[ccbin]
             # print motif_dict
-            cc_line = ['{}||'.format(labels[int(ccbin)])]
+            cc_line = ['{}|'.format(labels[int(ccbin)])]
             cc_line.append('subcascade|tf')
+
+            _10_line = []
             for ix,motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tf'],reverse=True)[:10]):
                 tf = motif_dict[motif]['tf']
                 # tfidf = motif_dict[motif]['tfidf']
                 line = '![subcascade](subcascade/fig/subcas_{:}.jpg)|{}'.format(motif,tf)
                 # print line
-                cc_line.append(line)
+                _10_line.append(line)
 
+            if len(_10_line)!=10:
+
+                _10_line.extend(['|']*(10-len(_10_line)))
+
+            cc_line.extend(_10_line)
             cc_lines.append(cc_line)
 
         # print cc_lines[0]
@@ -1050,16 +1057,22 @@ def output_motif_table():
         for ccbin in sorted(ccbin_motif_dict.keys()):
             motif_dict = ccbin_motif_dict[ccbin]
             # print motif_dict
-            cc_line = ['{}||'.format(labels[int(ccbin)])]
+            cc_line = ['{}|'.format(labels[int(ccbin)])]
             cc_line.append('subcascade|tf')
+
+            _10_line = []
             for ix,motif in enumerate(sorted(motif_dict.keys(),key = lambda x:motif_dict[x]['tf'],reverse=True)[:10]):
                 tf = motif_dict[motif]['tf']
                 # tfidf = motif_dict[motif]['tfidf']
                 line = '![subcascade](subcascade/fig/subcas_{:}.jpg)|{}'.format(motif,tf)
                 # print line
-                cc_line.append(line)
+                # cc_line.append(line)
+                _10_line.append(line)
 
+            if len(_10_line)!=10:
+                _10_line.extend(['|']*(10-len(_10_line)))
 
+            cc_line.extend(_10_line)
             cc_lines.append(cc_line)
 
         # print cc_lines[0]
