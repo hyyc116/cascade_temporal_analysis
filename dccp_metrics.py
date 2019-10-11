@@ -506,10 +506,11 @@ def stat_dccp(pathObj):
     logging.info('plotting')
 
 def year_bin(year):
+    return int((year-1900)/10)
 
-    return int((year-1900)/20)
-
-year_bins = ['1920','1940','1960','1980','2000','2016']
+# year_bins = ['1910','1920','1930','1940','1950','1960','19','1980','2000','2016']
+def year_label(i):
+    return '{:}-{:}'.format(1900+i*10,1900+(i+1)*10)
 
 def stat_subcascades(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
@@ -535,15 +536,25 @@ def stat_subcascades(pathObj):
 
     ## field中不同citation count对应的subcascade的频次
     field_cnbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
+    ## doctype对应不同citation count的subcascade的频次
+    doctype_cnbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
+    ## 每个领域对应时间的变化
+    field_yearbin_subcascade = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
     ## 记录subcascade的DF
-    field_subcascade_df = defaultdict(lambda:defaultdict(list))
+    # field_subcascade_df = defaultdict(lambda:defaultdict(list))
     ## 每一个field对应的文章数量
-    field_ccbin_num = defaultdict(lambda:defaultdict(int))
+    # field_ccbin_num = defaultdict(lambda:defaultdict(int))
+
 
     progress =0
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+        
+        _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
         progress+=1
 
@@ -575,8 +586,12 @@ def stat_subcascades(pathObj):
                             continue
 
                         field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
-                        field_subcascade_df[subj][sub_id].append(_cc_ix)
-                        field_ccbin_num[subj][_cc_ix]+=1
+
+                        doctype_cnbin_subcascade[_doctype][_cc_ix][sub_id]+=1
+
+                        field_yearbin_subcascade[subj][_year_bin][sub_id]+=1
+                        # field_subcascade_df[subj][sub_id].append(_cc_ix)
+                        # field_ccbin_num[subj][_cc_ix]+=1
 
             field_num_dict[subj][num]+=1
 
@@ -604,8 +619,10 @@ def stat_subcascades(pathObj):
                         continue
 
                     field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
-                    field_subcascade_df[subj][sub_id].append(_cc_ix)
-                    field_ccbin_num[subj][_cc_ix]+=1
+                    doctype_cnbin_subcascade[_doctype][_cc_ix][sub_id]+=1
+                    field_yearbin_subcascade[subj][_year_bin][sub_id]+=1
+                    # field_subcascade_df[subj][sub_id].append(_cc_ix)
+                    # field_ccbin_num[subj][_cc_ix]+=1
 
         field_num_dict[subj][num]+=1
         field_year_num_dict[subj][_year_b][num]+=1
@@ -632,8 +649,10 @@ def stat_subcascades(pathObj):
                             continue
 
                         field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
-                        field_subcascade_df[subj][sub_id].append(_cc_ix)
-                        field_ccbin_num[subj][_cc_ix]+=1
+                        doctype_cnbin_subcascade[_doctype][_cc_ix][sub_id]+=1
+                        field_yearbin_subcascade[subj][_year_bin][sub_id]+=1
+                        # field_subcascade_df[subj][sub_id].append(_cc_ix)
+                        # field_ccbin_num[subj][_cc_ix]+=1
 
             field_num_dict[subj][num]+=1
             field_year_num_dict[subj][_year_b][num]+=1
@@ -650,8 +669,10 @@ def stat_subcascades(pathObj):
 
     ## ===
     open('data/field_cnbin_subcascade_all.json','w').write(json.dumps(field_cnbin_subcascade))
-    open('data/field_subcascade_df_all.json','w').write(json.dumps(field_subcascade_df))
-    open('data/field_ccbin_num_all.json','w').write(json.dumps(field_ccbin_num))
+    open('data/field_yearbin_subcascade_all.json','w').write(json.dumps(field_yearbin_subcascade))
+    open('data/doctype_cnbin_subcascade_all.json','w').write(json.dumps(doctype_cnbin_subcascade))
+    # open('data/field_subcascade_df_all.json','w').write(json.dumps(field_subcascade_df))
+    # open('data/field_ccbin_num_all.json','w').write(json.dumps(field_ccbin_num))
 
     logging.info("subcascade data saved.")
 
@@ -987,9 +1008,9 @@ if __name__ == '__main__':
     # stat_dccp(paths)
     # plot_dccps()
 
-    # stat_subcascades(paths)
+    stat_subcascades(paths)
     # plot_subcascade_data()
     # logging.info('Done')
 
-    stat_citation_dis(paths)
+    # stat_citation_dis(paths)
 
