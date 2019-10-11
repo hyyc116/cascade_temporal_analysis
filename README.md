@@ -1,4 +1,5 @@
-##Subject vs. Citation Count
+## Subject vs. Citation Count
+
 #### Subject:Arts & Humanities
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -11,7 +12,6 @@
 |5|![subcascade](subcascade/fig/subcas_2.jpg)|6207|![subcascade](subcascade/fig/subcas_2.jpg)|4908|![subcascade](subcascade/fig/subcas_1.jpg)|2942|![subcascade](subcascade/fig/subcas_2.jpg)|1444|![subcascade](subcascade/fig/subcas_2.jpg)|486|![subcascade](subcascade/fig/subcas_2.jpg)|171|![subcascade](subcascade/fig/subcas_2.jpg)|11|![subcascade](subcascade/fig/subcas_6.jpg)|2|
 |6|![subcascade](subcascade/fig/subcas_1.jpg)|4756|![subcascade](subcascade/fig/subcas_1.jpg)|4568|![subcascade](subcascade/fig/subcas_6.jpg)|2877|![subcascade](subcascade/fig/subcas_6.jpg)|1378|![subcascade](subcascade/fig/subcas_1.jpg)|421|![subcascade](subcascade/fig/subcas_1.jpg)|150|![subcascade](subcascade/fig/subcas_6.jpg)|7|![subcascade](subcascade/fig/subcas_8.jpg)|2|
 |7|![subcascade](subcascade/fig/subcas_6.jpg)|4658|![subcascade](subcascade/fig/subcas_6.jpg)|4427|![subcascade](subcascade/fig/subcas_2.jpg)|2848|![subcascade](subcascade/fig/subcas_1.jpg)|1377|![subcascade](subcascade/fig/subcas_6.jpg)|389|![subcascade](subcascade/fig/subcas_6.jpg)|138|![subcascade](subcascade/fig/subcas_1.jpg)|5|![subcascade](subcascade/fig/subcas_50.jpg)|1|
-##Subject vs. Citation Count
 #### Subject:Clinical, Pre-Clinical & Health
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -27,7 +27,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|90827|![subcascade](subcascade/fig/subcas_33.jpg)|87621|![subcascade](subcascade/fig/subcas_33.jpg)|70724|![subcascade](subcascade/fig/subcas_33.jpg)|44769|![subcascade](subcascade/fig/subcas_33.jpg)|17504|![subcascade](subcascade/fig/subcas_33.jpg)|7175|![subcascade](subcascade/fig/subcas_33.jpg)|508|![subcascade](subcascade/fig/subcas_33.jpg)|107|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|89553|![subcascade](subcascade/fig/subcas_22.jpg)|86950|![subcascade](subcascade/fig/subcas_22.jpg)|64585|![subcascade](subcascade/fig/subcas_22.jpg)|39492|![subcascade](subcascade/fig/subcas_22.jpg)|15979|![subcascade](subcascade/fig/subcas_22.jpg)|6758|![subcascade](subcascade/fig/subcas_22.jpg)|433|![subcascade](subcascade/fig/subcas_22.jpg)|103|
 |10|![subcascade](subcascade/fig/subcas_20.jpg)|41065|![subcascade](subcascade/fig/subcas_20.jpg)|41065|![subcascade](subcascade/fig/subcas_20.jpg)|33282|![subcascade](subcascade/fig/subcas_20.jpg)|18458|![subcascade](subcascade/fig/subcas_18.jpg)|6168|![subcascade](subcascade/fig/subcas_18.jpg)|2537|![subcascade](subcascade/fig/subcas_18.jpg)|182|![subcascade](subcascade/fig/subcas_18.jpg)|40|
-##Subject vs. Citation Count
 #### Subject:Engineering & Technology
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -43,7 +42,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|100537|![subcascade](subcascade/fig/subcas_22.jpg)|95859|![subcascade](subcascade/fig/subcas_22.jpg)|70349|![subcascade](subcascade/fig/subcas_22.jpg)|42742|![subcascade](subcascade/fig/subcas_22.jpg)|17489|![subcascade](subcascade/fig/subcas_22.jpg)|7707|![subcascade](subcascade/fig/subcas_22.jpg)|774|![subcascade](subcascade/fig/subcas_22.jpg)|198|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|83181|![subcascade](subcascade/fig/subcas_33.jpg)|80964|![subcascade](subcascade/fig/subcas_33.jpg)|64161|![subcascade](subcascade/fig/subcas_33.jpg)|40591|![subcascade](subcascade/fig/subcas_33.jpg)|16282|![subcascade](subcascade/fig/subcas_33.jpg)|6899|![subcascade](subcascade/fig/subcas_33.jpg)|660|![subcascade](subcascade/fig/subcas_33.jpg)|186|
 |10|![subcascade](subcascade/fig/subcas_58.jpg)|40037|![subcascade](subcascade/fig/subcas_58.jpg)|40037|![subcascade](subcascade/fig/subcas_58.jpg)|31948|![subcascade](subcascade/fig/subcas_58.jpg)|19238|![subcascade](subcascade/fig/subcas_58.jpg)|7149|![subcascade](subcascade/fig/subcas_58.jpg)|2914|![subcascade](subcascade/fig/subcas_28.jpg)|290|![subcascade](subcascade/fig/subcas_28.jpg)|90|
-##Subject vs. Citation Count
 #### Subject:Life Sciences
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -59,7 +57,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|161108|![subcascade](subcascade/fig/subcas_22.jpg)|155136|![subcascade](subcascade/fig/subcas_22.jpg)|118984|![subcascade](subcascade/fig/subcas_33.jpg)|76930|![subcascade](subcascade/fig/subcas_22.jpg)|32341|![subcascade](subcascade/fig/subcas_22.jpg)|13958|![subcascade](subcascade/fig/subcas_22.jpg)|1090|![subcascade](subcascade/fig/subcas_33.jpg)|266|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|146471|![subcascade](subcascade/fig/subcas_33.jpg)|143435|![subcascade](subcascade/fig/subcas_33.jpg)|117373|![subcascade](subcascade/fig/subcas_22.jpg)|75548|![subcascade](subcascade/fig/subcas_33.jpg)|31976|![subcascade](subcascade/fig/subcas_33.jpg)|13605|![subcascade](subcascade/fig/subcas_33.jpg)|1068|![subcascade](subcascade/fig/subcas_22.jpg)|250|
 |10|![subcascade](subcascade/fig/subcas_20.jpg)|59364|![subcascade](subcascade/fig/subcas_20.jpg)|59364|![subcascade](subcascade/fig/subcas_20.jpg)|48320|![subcascade](subcascade/fig/subcas_20.jpg)|28033|![subcascade](subcascade/fig/subcas_18.jpg)|11188|![subcascade](subcascade/fig/subcas_18.jpg)|4813|![subcascade](subcascade/fig/subcas_18.jpg)|417|![subcascade](subcascade/fig/subcas_17.jpg)|114|
-##Subject vs. Citation Count
 #### Subject:Physical Sciences
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -75,7 +72,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|155532|![subcascade](subcascade/fig/subcas_22.jpg)|146571|![subcascade](subcascade/fig/subcas_22.jpg)|102321|![subcascade](subcascade/fig/subcas_22.jpg)|59865|![subcascade](subcascade/fig/subcas_22.jpg)|23430|![subcascade](subcascade/fig/subcas_22.jpg)|10135|![subcascade](subcascade/fig/subcas_1.jpg)|896|![subcascade](subcascade/fig/subcas_1.jpg)|207|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|116060|![subcascade](subcascade/fig/subcas_33.jpg)|112102|![subcascade](subcascade/fig/subcas_33.jpg)|84507|![subcascade](subcascade/fig/subcas_33.jpg)|51064|![subcascade](subcascade/fig/subcas_33.jpg)|19799|![subcascade](subcascade/fig/subcas_33.jpg)|8346|![subcascade](subcascade/fig/subcas_33.jpg)|790|![subcascade](subcascade/fig/subcas_33.jpg)|194|
 |10|![subcascade](subcascade/fig/subcas_24.jpg)|50885|![subcascade](subcascade/fig/subcas_20.jpg)|46990|![subcascade](subcascade/fig/subcas_20.jpg)|35019|![subcascade](subcascade/fig/subcas_24.jpg)|20069|![subcascade](subcascade/fig/subcas_24.jpg)|8602|![subcascade](subcascade/fig/subcas_24.jpg)|3910|![subcascade](subcascade/fig/subcas_24.jpg)|388|![subcascade](subcascade/fig/subcas_24.jpg)|102|
-##Subject vs. Citation Count
 #### Subject:SCIENTOMETRICS
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -83,7 +79,6 @@
 |0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
 |1|![subcascade](subcascade/fig/subcas_0.jpg)|4620|![subcascade](subcascade/fig/subcas_0.jpg)|4029|![subcascade](subcascade/fig/subcas_0.jpg)|2938|![subcascade](subcascade/fig/subcas_0.jpg)|1687|![subcascade](subcascade/fig/subcas_0.jpg)|546|![subcascade](subcascade/fig/subcas_0.jpg)|158|![subcascade](subcascade/fig/subcas_0.jpg)|2|
 |2|![subcascade](subcascade/fig/subcas_3.jpg)|1021|![subcascade](subcascade/fig/subcas_3.jpg)|955|![subcascade](subcascade/fig/subcas_3.jpg)|732|![subcascade](subcascade/fig/subcas_3.jpg)|423|![subcascade](subcascade/fig/subcas_3.jpg)|150|![subcascade](subcascade/fig/subcas_3.jpg)|55|![subcascade](subcascade/fig/subcas_3.jpg)|1|
-##Subject vs. Citation Count
 #### Subject:Social Sciences
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -99,7 +94,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|33523|![subcascade](subcascade/fig/subcas_22.jpg)|32068|![subcascade](subcascade/fig/subcas_33.jpg)|25556|![subcascade](subcascade/fig/subcas_33.jpg)|16333|![subcascade](subcascade/fig/subcas_33.jpg)|6637|![subcascade](subcascade/fig/subcas_33.jpg)|2792|![subcascade](subcascade/fig/subcas_22.jpg)|210|![subcascade](subcascade/fig/subcas_22.jpg)|45|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|32613|![subcascade](subcascade/fig/subcas_33.jpg)|31865|![subcascade](subcascade/fig/subcas_22.jpg)|23616|![subcascade](subcascade/fig/subcas_22.jpg)|14509|![subcascade](subcascade/fig/subcas_22.jpg)|5933|![subcascade](subcascade/fig/subcas_22.jpg)|2566|![subcascade](subcascade/fig/subcas_33.jpg)|196|![subcascade](subcascade/fig/subcas_33.jpg)|39|
 |10|![subcascade](subcascade/fig/subcas_20.jpg)|15428|![subcascade](subcascade/fig/subcas_20.jpg)|15428|![subcascade](subcascade/fig/subcas_20.jpg)|12779|![subcascade](subcascade/fig/subcas_58.jpg)|7563|![subcascade](subcascade/fig/subcas_58.jpg)|2834|![subcascade](subcascade/fig/subcas_58.jpg)|1142|![subcascade](subcascade/fig/subcas_58.jpg)|83|![subcascade](subcascade/fig/subcas_58.jpg)|18|
-##Subject vs. Citation Count
 #### Subject:WOS_ALL
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -115,23 +109,8 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|417300|![subcascade](subcascade/fig/subcas_22.jpg)|397318|![subcascade](subcascade/fig/subcas_22.jpg)|289193|![subcascade](subcascade/fig/subcas_22.jpg)|175231|![subcascade](subcascade/fig/subcas_22.jpg)|71582|![subcascade](subcascade/fig/subcas_22.jpg)|31003|![subcascade](subcascade/fig/subcas_22.jpg)|2628|![subcascade](subcascade/fig/subcas_22.jpg)|626|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|358006|![subcascade](subcascade/fig/subcas_33.jpg)|348537|![subcascade](subcascade/fig/subcas_33.jpg)|274609|![subcascade](subcascade/fig/subcas_33.jpg)|172516|![subcascade](subcascade/fig/subcas_33.jpg)|69177|![subcascade](subcascade/fig/subcas_33.jpg)|29273|![subcascade](subcascade/fig/subcas_33.jpg)|2449|![subcascade](subcascade/fig/subcas_33.jpg)|601|
 |10|![subcascade](subcascade/fig/subcas_20.jpg)|153701|![subcascade](subcascade/fig/subcas_20.jpg)|153701|![subcascade](subcascade/fig/subcas_20.jpg)|121123|![subcascade](subcascade/fig/subcas_20.jpg)|67377|![subcascade](subcascade/fig/subcas_18.jpg)|24936|![subcascade](subcascade/fig/subcas_18.jpg)|10691|![subcascade](subcascade/fig/subcas_28.jpg)|933|![subcascade](subcascade/fig/subcas_28.jpg)|247|
-##Doctype vs. Citation Count
-#### Doctype:Abstract of Published Item
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|438|![subcascade](subcascade/fig/subcas_0.jpg)|193|![subcascade](subcascade/fig/subcas_0.jpg)|69|![subcascade](subcascade/fig/subcas_0.jpg)|15|![subcascade](subcascade/fig/subcas_3.jpg)|7|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|65|![subcascade](subcascade/fig/subcas_3.jpg)|33|![subcascade](subcascade/fig/subcas_3.jpg)|13|![subcascade](subcascade/fig/subcas_3.jpg)|7|![subcascade](subcascade/fig/subcas_0.jpg)|5|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|51|![subcascade](subcascade/fig/subcas_2.jpg)|27|![subcascade](subcascade/fig/subcas_2.jpg)|9|![subcascade](subcascade/fig/subcas_9.jpg)|2|![subcascade](subcascade/fig/subcas_9.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Art Exhibit Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|61|![subcascade](subcascade/fig/subcas_0.jpg)|24|![subcascade](subcascade/fig/subcas_0.jpg)|16|![subcascade](subcascade/fig/subcas_0.jpg)|6|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
+## Doctype vs. Citation Count
+
 #### Doctype:Article
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -147,64 +126,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|824482|![subcascade](subcascade/fig/subcas_22.jpg)|791677|![subcascade](subcascade/fig/subcas_22.jpg)|583694|![subcascade](subcascade/fig/subcas_22.jpg)|347988|![subcascade](subcascade/fig/subcas_22.jpg)|132373|![subcascade](subcascade/fig/subcas_22.jpg)|52638|![subcascade](subcascade/fig/subcas_22.jpg)|3817|![subcascade](subcascade/fig/subcas_22.jpg)|904|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|706329|![subcascade](subcascade/fig/subcas_33.jpg)|690467|![subcascade](subcascade/fig/subcas_33.jpg)|548105|![subcascade](subcascade/fig/subcas_33.jpg)|337503|![subcascade](subcascade/fig/subcas_33.jpg)|124872|![subcascade](subcascade/fig/subcas_33.jpg)|47890|![subcascade](subcascade/fig/subcas_33.jpg)|3431|![subcascade](subcascade/fig/subcas_33.jpg)|837|
 |10|![subcascade](subcascade/fig/subcas_20.jpg)|307576|![subcascade](subcascade/fig/subcas_20.jpg)|307576|![subcascade](subcascade/fig/subcas_20.jpg)|245297|![subcascade](subcascade/fig/subcas_20.jpg)|133595|![subcascade](subcascade/fig/subcas_58.jpg)|44957|![subcascade](subcascade/fig/subcas_18.jpg)|17527|![subcascade](subcascade/fig/subcas_28.jpg)|1374|![subcascade](subcascade/fig/subcas_17.jpg)|386|
-##Doctype vs. Citation Count
-#### Doctype:Bibliography
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|766|![subcascade](subcascade/fig/subcas_0.jpg)|558|![subcascade](subcascade/fig/subcas_0.jpg)|360|![subcascade](subcascade/fig/subcas_0.jpg)|221|![subcascade](subcascade/fig/subcas_0.jpg)|95|![subcascade](subcascade/fig/subcas_0.jpg)|32|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|166|![subcascade](subcascade/fig/subcas_3.jpg)|137|![subcascade](subcascade/fig/subcas_3.jpg)|96|![subcascade](subcascade/fig/subcas_3.jpg)|67|![subcascade](subcascade/fig/subcas_3.jpg)|36|![subcascade](subcascade/fig/subcas_3.jpg)|12|
-|3|![subcascade](subcascade/fig/subcas_4.jpg)|63|![subcascade](subcascade/fig/subcas_8.jpg)|58|![subcascade](subcascade/fig/subcas_8.jpg)|47|![subcascade](subcascade/fig/subcas_8.jpg)|32|![subcascade](subcascade/fig/subcas_2.jpg)|18|![subcascade](subcascade/fig/subcas_33.jpg)|7|
-|4|![subcascade](subcascade/fig/subcas_2.jpg)|61|![subcascade](subcascade/fig/subcas_4.jpg)|51|![subcascade](subcascade/fig/subcas_4.jpg)|40|![subcascade](subcascade/fig/subcas_4.jpg)|27|![subcascade](subcascade/fig/subcas_4.jpg)|12|![subcascade](subcascade/fig/subcas_2.jpg)|6|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|61|![subcascade](subcascade/fig/subcas_2.jpg)|46|![subcascade](subcascade/fig/subcas_2.jpg)|28|![subcascade](subcascade/fig/subcas_2.jpg)|23|![subcascade](subcascade/fig/subcas_33.jpg)|12|![subcascade](subcascade/fig/subcas_58.jpg)|5|
-|6|![subcascade](subcascade/fig/subcas_22.jpg)|32|![subcascade](subcascade/fig/subcas_1.jpg)|27|![subcascade](subcascade/fig/subcas_1.jpg)|25|![subcascade](subcascade/fig/subcas_1.jpg)|20|![subcascade](subcascade/fig/subcas_8.jpg)|10|![subcascade](subcascade/fig/subcas_8.jpg)|5|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|29|![subcascade](subcascade/fig/subcas_22.jpg)|25|![subcascade](subcascade/fig/subcas_6.jpg)|22|![subcascade](subcascade/fig/subcas_33.jpg)|14|![subcascade](subcascade/fig/subcas_1.jpg)|8|![subcascade](subcascade/fig/subcas_18.jpg)|3|
-|8|![subcascade](subcascade/fig/subcas_6.jpg)|26|![subcascade](subcascade/fig/subcas_6.jpg)|24|![subcascade](subcascade/fig/subcas_33.jpg)|16|![subcascade](subcascade/fig/subcas_6.jpg)|12|![subcascade](subcascade/fig/subcas_6.jpg)|7|![subcascade](subcascade/fig/subcas_28.jpg)|3|
-|9|![subcascade](subcascade/fig/subcas_28.jpg)|20|![subcascade](subcascade/fig/subcas_28.jpg)|20|![subcascade](subcascade/fig/subcas_22.jpg)|15|![subcascade](subcascade/fig/subcas_22.jpg)|9|![subcascade](subcascade/fig/subcas_58.jpg)|7|![subcascade](subcascade/fig/subcas_4.jpg)|3|
-|10|![subcascade](subcascade/fig/subcas_33.jpg)|16|![subcascade](subcascade/fig/subcas_33.jpg)|16|![subcascade](subcascade/fig/subcas_58.jpg)|9|![subcascade](subcascade/fig/subcas_58.jpg)|7|![subcascade](subcascade/fig/subcas_18.jpg)|5|![subcascade](subcascade/fig/subcas_30.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Biographical-Item
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|2532|![subcascade](subcascade/fig/subcas_0.jpg)|1209|![subcascade](subcascade/fig/subcas_0.jpg)|523|![subcascade](subcascade/fig/subcas_0.jpg)|184|![subcascade](subcascade/fig/subcas_0.jpg)|37|![subcascade](subcascade/fig/subcas_0.jpg)|9|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|319|![subcascade](subcascade/fig/subcas_3.jpg)|224|![subcascade](subcascade/fig/subcas_3.jpg)|119|![subcascade](subcascade/fig/subcas_3.jpg)|50|![subcascade](subcascade/fig/subcas_3.jpg)|17|![subcascade](subcascade/fig/subcas_3.jpg)|5|
-|3|![subcascade](subcascade/fig/subcas_4.jpg)|159|![subcascade](subcascade/fig/subcas_4.jpg)|117|![subcascade](subcascade/fig/subcas_4.jpg)|52|![subcascade](subcascade/fig/subcas_4.jpg)|25|![subcascade](subcascade/fig/subcas_8.jpg)|6|![subcascade](subcascade/fig/subcas_39.jpg)|3|
-|4|![subcascade](subcascade/fig/subcas_2.jpg)|146|![subcascade](subcascade/fig/subcas_8.jpg)|88|![subcascade](subcascade/fig/subcas_8.jpg)|49|![subcascade](subcascade/fig/subcas_2.jpg)|15|![subcascade](subcascade/fig/subcas_39.jpg)|3|![subcascade](subcascade/fig/subcas_44.jpg)|2|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|104|![subcascade](subcascade/fig/subcas_6.jpg)|77|![subcascade](subcascade/fig/subcas_6.jpg)|47|![subcascade](subcascade/fig/subcas_6.jpg)|15|![subcascade](subcascade/fig/subcas_127.jpg)|3|![subcascade](subcascade/fig/subcas_133.jpg)|2|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|80|![subcascade](subcascade/fig/subcas_2.jpg)|74|![subcascade](subcascade/fig/subcas_2.jpg)|27|![subcascade](subcascade/fig/subcas_8.jpg)|11|![subcascade](subcascade/fig/subcas_24.jpg)|2|![subcascade](subcascade/fig/subcas_6.jpg)|2|
-|7|![subcascade](subcascade/fig/subcas_33.jpg)|45|![subcascade](subcascade/fig/subcas_33.jpg)|38|![subcascade](subcascade/fig/subcas_1.jpg)|23|![subcascade](subcascade/fig/subcas_33.jpg)|10|![subcascade](subcascade/fig/subcas_22.jpg)|2|![subcascade](subcascade/fig/subcas_8.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Book
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|35979|![subcascade](subcascade/fig/subcas_0.jpg)|34130|![subcascade](subcascade/fig/subcas_0.jpg)|28846|![subcascade](subcascade/fig/subcas_0.jpg)|19933|![subcascade](subcascade/fig/subcas_0.jpg)|8169|![subcascade](subcascade/fig/subcas_0.jpg)|3077|![subcascade](subcascade/fig/subcas_0.jpg)|112|![subcascade](subcascade/fig/subcas_0.jpg)|22|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|8564|![subcascade](subcascade/fig/subcas_3.jpg)|8436|![subcascade](subcascade/fig/subcas_3.jpg)|7840|![subcascade](subcascade/fig/subcas_3.jpg)|6275|![subcascade](subcascade/fig/subcas_3.jpg)|3428|![subcascade](subcascade/fig/subcas_3.jpg)|1712|![subcascade](subcascade/fig/subcas_3.jpg)|87|![subcascade](subcascade/fig/subcas_2.jpg)|20|
-|3|![subcascade](subcascade/fig/subcas_4.jpg)|4425|![subcascade](subcascade/fig/subcas_4.jpg)|4348|![subcascade](subcascade/fig/subcas_4.jpg)|4075|![subcascade](subcascade/fig/subcas_4.jpg)|3355|![subcascade](subcascade/fig/subcas_4.jpg)|1860|![subcascade](subcascade/fig/subcas_4.jpg)|1001|![subcascade](subcascade/fig/subcas_4.jpg)|86|![subcascade](subcascade/fig/subcas_4.jpg)|20|
-|4|![subcascade](subcascade/fig/subcas_2.jpg)|3008|![subcascade](subcascade/fig/subcas_8.jpg)|2968|![subcascade](subcascade/fig/subcas_8.jpg)|2758|![subcascade](subcascade/fig/subcas_8.jpg)|2309|![subcascade](subcascade/fig/subcas_2.jpg)|1344|![subcascade](subcascade/fig/subcas_2.jpg)|765|![subcascade](subcascade/fig/subcas_2.jpg)|82|![subcascade](subcascade/fig/subcas_3.jpg)|18|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|2981|![subcascade](subcascade/fig/subcas_2.jpg)|2923|![subcascade](subcascade/fig/subcas_2.jpg)|2635|![subcascade](subcascade/fig/subcas_2.jpg)|2181|![subcascade](subcascade/fig/subcas_8.jpg)|1326|![subcascade](subcascade/fig/subcas_8.jpg)|682|![subcascade](subcascade/fig/subcas_8.jpg)|69|![subcascade](subcascade/fig/subcas_1.jpg)|17|
-|6|![subcascade](subcascade/fig/subcas_1.jpg)|2017|![subcascade](subcascade/fig/subcas_1.jpg)|2013|![subcascade](subcascade/fig/subcas_1.jpg)|1929|![subcascade](subcascade/fig/subcas_1.jpg)|1635|![subcascade](subcascade/fig/subcas_1.jpg)|997|![subcascade](subcascade/fig/subcas_1.jpg)|514|![subcascade](subcascade/fig/subcas_1.jpg)|41|![subcascade](subcascade/fig/subcas_8.jpg)|15|
-|7|![subcascade](subcascade/fig/subcas_6.jpg)|1909|![subcascade](subcascade/fig/subcas_6.jpg)|1905|![subcascade](subcascade/fig/subcas_6.jpg)|1834|![subcascade](subcascade/fig/subcas_6.jpg)|1528|![subcascade](subcascade/fig/subcas_6.jpg)|867|![subcascade](subcascade/fig/subcas_6.jpg)|436|![subcascade](subcascade/fig/subcas_6.jpg)|41|![subcascade](subcascade/fig/subcas_33.jpg)|14|
-|8|![subcascade](subcascade/fig/subcas_33.jpg)|1042|![subcascade](subcascade/fig/subcas_33.jpg)|1037|![subcascade](subcascade/fig/subcas_33.jpg)|1001|![subcascade](subcascade/fig/subcas_33.jpg)|869|![subcascade](subcascade/fig/subcas_33.jpg)|514|![subcascade](subcascade/fig/subcas_33.jpg)|271|![subcascade](subcascade/fig/subcas_22.jpg)|24|![subcascade](subcascade/fig/subcas_6.jpg)|11|
-|9|![subcascade](subcascade/fig/subcas_22.jpg)|861|![subcascade](subcascade/fig/subcas_22.jpg)|859|![subcascade](subcascade/fig/subcas_22.jpg)|812|![subcascade](subcascade/fig/subcas_22.jpg)|677|![subcascade](subcascade/fig/subcas_22.jpg)|393|![subcascade](subcascade/fig/subcas_22.jpg)|211|![subcascade](subcascade/fig/subcas_33.jpg)|24|![subcascade](subcascade/fig/subcas_22.jpg)|10|
-|10|![subcascade](subcascade/fig/subcas_20.jpg)|560|![subcascade](subcascade/fig/subcas_20.jpg)|560|![subcascade](subcascade/fig/subcas_20.jpg)|543|![subcascade](subcascade/fig/subcas_20.jpg)|479|![subcascade](subcascade/fig/subcas_20.jpg)|310|![subcascade](subcascade/fig/subcas_20.jpg)|151|![subcascade](subcascade/fig/subcas_28.jpg)|14|![subcascade](subcascade/fig/subcas_7.jpg)|5|
-##Doctype vs. Citation Count
-#### Doctype:Book Chapter
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|45|![subcascade](subcascade/fig/subcas_0.jpg)|29|![subcascade](subcascade/fig/subcas_0.jpg)|19|![subcascade](subcascade/fig/subcas_0.jpg)|11|![subcascade](subcascade/fig/subcas_0.jpg)|6|![subcascade](subcascade/fig/subcas_0.jpg)|4|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|13|![subcascade](subcascade/fig/subcas_3.jpg)|13|![subcascade](subcascade/fig/subcas_3.jpg)|10|![subcascade](subcascade/fig/subcas_3.jpg)|6|![subcascade](subcascade/fig/subcas_3.jpg)|6|![subcascade](subcascade/fig/subcas_3.jpg)|4|
-|3|![subcascade](subcascade/fig/subcas_4.jpg)|10|![subcascade](subcascade/fig/subcas_4.jpg)|8|![subcascade](subcascade/fig/subcas_4.jpg)|6|![subcascade](subcascade/fig/subcas_4.jpg)|4|![subcascade](subcascade/fig/subcas_4.jpg)|4|![subcascade](subcascade/fig/subcas_55.jpg)|2|
-|4|![subcascade](subcascade/fig/subcas_8.jpg)|5|![subcascade](subcascade/fig/subcas_8.jpg)|5|![subcascade](subcascade/fig/subcas_63.jpg)|3|![subcascade](subcascade/fig/subcas_63.jpg)|3|![subcascade](subcascade/fig/subcas_55.jpg)|2|![subcascade](subcascade/fig/subcas_6.jpg)|2|
-|5|![subcascade](subcascade/fig/subcas_63.jpg)|3|![subcascade](subcascade/fig/subcas_63.jpg)|3|![subcascade](subcascade/fig/subcas_8.jpg)|3|![subcascade](subcascade/fig/subcas_55.jpg)|2|![subcascade](subcascade/fig/subcas_6.jpg)|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|
-|6|![subcascade](subcascade/fig/subcas_55.jpg)|2|![subcascade](subcascade/fig/subcas_55.jpg)|2|![subcascade](subcascade/fig/subcas_55.jpg)|2|![subcascade](subcascade/fig/subcas_70.jpg)|2|![subcascade](subcascade/fig/subcas_70.jpg)|2|![subcascade](subcascade/fig/subcas_70.jpg)|2|
-##Doctype vs. Citation Count
 #### Doctype:Book Review
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -218,82 +139,6 @@
 |6|![subcascade](subcascade/fig/subcas_6.jpg)|315|![subcascade](subcascade/fig/subcas_6.jpg)|262|![subcascade](subcascade/fig/subcas_6.jpg)|111|![subcascade](subcascade/fig/subcas_1.jpg)|47|![subcascade](subcascade/fig/subcas_2.jpg)|11|![subcascade](subcascade/fig/subcas_11.jpg)|3|
 |7|![subcascade](subcascade/fig/subcas_1.jpg)|253|![subcascade](subcascade/fig/subcas_1.jpg)|234|![subcascade](subcascade/fig/subcas_1.jpg)|103|![subcascade](subcascade/fig/subcas_6.jpg)|37|![subcascade](subcascade/fig/subcas_6.jpg)|11|![subcascade](subcascade/fig/subcas_28.jpg)|2|
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|183|![subcascade](subcascade/fig/subcas_22.jpg)|153|![subcascade](subcascade/fig/subcas_33.jpg)|58|![subcascade](subcascade/fig/subcas_33.jpg)|34|![subcascade](subcascade/fig/subcas_1.jpg)|10|![subcascade](subcascade/fig/subcas_1.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Chronology
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|34|![subcascade](subcascade/fig/subcas_0.jpg)|17|![subcascade](subcascade/fig/subcas_0.jpg)|8|![subcascade](subcascade/fig/subcas_0.jpg)|4|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Correction
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|16645|![subcascade](subcascade/fig/subcas_0.jpg)|7511|![subcascade](subcascade/fig/subcas_0.jpg)|3737|![subcascade](subcascade/fig/subcas_0.jpg)|1790|![subcascade](subcascade/fig/subcas_0.jpg)|506|![subcascade](subcascade/fig/subcas_0.jpg)|167|![subcascade](subcascade/fig/subcas_0.jpg)|5|![subcascade](subcascade/fig/subcas_24.jpg)|3|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|2664|![subcascade](subcascade/fig/subcas_3.jpg)|1746|![subcascade](subcascade/fig/subcas_3.jpg)|805|![subcascade](subcascade/fig/subcas_3.jpg)|428|![subcascade](subcascade/fig/subcas_3.jpg)|169|![subcascade](subcascade/fig/subcas_3.jpg)|66|![subcascade](subcascade/fig/subcas_24.jpg)|3|![subcascade](subcascade/fig/subcas_1.jpg)|3|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|1638|![subcascade](subcascade/fig/subcas_2.jpg)|879|![subcascade](subcascade/fig/subcas_2.jpg)|398|![subcascade](subcascade/fig/subcas_2.jpg)|203|![subcascade](subcascade/fig/subcas_2.jpg)|68|![subcascade](subcascade/fig/subcas_4.jpg)|32|![subcascade](subcascade/fig/subcas_1.jpg)|3|![subcascade](subcascade/fig/subcas_0.jpg)|3|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|1064|![subcascade](subcascade/fig/subcas_8.jpg)|635|![subcascade](subcascade/fig/subcas_4.jpg)|322|![subcascade](subcascade/fig/subcas_4.jpg)|167|![subcascade](subcascade/fig/subcas_4.jpg)|57|![subcascade](subcascade/fig/subcas_2.jpg)|25|![subcascade](subcascade/fig/subcas_3.jpg)|3|![subcascade](subcascade/fig/subcas_3.jpg)|3|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|976|![subcascade](subcascade/fig/subcas_4.jpg)|627|![subcascade](subcascade/fig/subcas_8.jpg)|321|![subcascade](subcascade/fig/subcas_8.jpg)|161|![subcascade](subcascade/fig/subcas_8.jpg)|53|![subcascade](subcascade/fig/subcas_8.jpg)|20|![subcascade](subcascade/fig/subcas_2.jpg)|3|![subcascade](subcascade/fig/subcas_2.jpg)|3|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|504|![subcascade](subcascade/fig/subcas_6.jpg)|422|![subcascade](subcascade/fig/subcas_6.jpg)|187|![subcascade](subcascade/fig/subcas_6.jpg)|80|![subcascade](subcascade/fig/subcas_1.jpg)|47|![subcascade](subcascade/fig/subcas_1.jpg)|18|![subcascade](subcascade/fig/subcas_4.jpg)|3|![subcascade](subcascade/fig/subcas_4.jpg)|3|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|433|![subcascade](subcascade/fig/subcas_1.jpg)|342|![subcascade](subcascade/fig/subcas_1.jpg)|178|![subcascade](subcascade/fig/subcas_1.jpg)|80|![subcascade](subcascade/fig/subcas_6.jpg)|29|![subcascade](subcascade/fig/subcas_6.jpg)|15|![subcascade](subcascade/fig/subcas_8.jpg)|3|![subcascade](subcascade/fig/subcas_8.jpg)|3|
-##Doctype vs. Citation Count
-#### Doctype:Correction, Addition
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|11575|![subcascade](subcascade/fig/subcas_0.jpg)|5498|![subcascade](subcascade/fig/subcas_0.jpg)|2919|![subcascade](subcascade/fig/subcas_0.jpg)|1376|![subcascade](subcascade/fig/subcas_0.jpg)|416|![subcascade](subcascade/fig/subcas_0.jpg)|165|![subcascade](subcascade/fig/subcas_0.jpg)|14|![subcascade](subcascade/fig/subcas_11.jpg)|2|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|2129|![subcascade](subcascade/fig/subcas_3.jpg)|1344|![subcascade](subcascade/fig/subcas_3.jpg)|662|![subcascade](subcascade/fig/subcas_3.jpg)|307|![subcascade](subcascade/fig/subcas_3.jpg)|110|![subcascade](subcascade/fig/subcas_2.jpg)|61|![subcascade](subcascade/fig/subcas_2.jpg)|14|![subcascade](subcascade/fig/subcas_14.jpg)|2|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|1459|![subcascade](subcascade/fig/subcas_2.jpg)|802|![subcascade](subcascade/fig/subcas_2.jpg)|403|![subcascade](subcascade/fig/subcas_2.jpg)|212|![subcascade](subcascade/fig/subcas_2.jpg)|91|![subcascade](subcascade/fig/subcas_3.jpg)|55|![subcascade](subcascade/fig/subcas_3.jpg)|10|![subcascade](subcascade/fig/subcas_35.jpg)|2|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|867|![subcascade](subcascade/fig/subcas_4.jpg)|540|![subcascade](subcascade/fig/subcas_4.jpg)|266|![subcascade](subcascade/fig/subcas_4.jpg)|133|![subcascade](subcascade/fig/subcas_8.jpg)|59|![subcascade](subcascade/fig/subcas_8.jpg)|31|![subcascade](subcascade/fig/subcas_4.jpg)|10|![subcascade](subcascade/fig/subcas_1.jpg)|2|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|791|![subcascade](subcascade/fig/subcas_8.jpg)|508|![subcascade](subcascade/fig/subcas_8.jpg)|264|![subcascade](subcascade/fig/subcas_8.jpg)|132|![subcascade](subcascade/fig/subcas_4.jpg)|41|![subcascade](subcascade/fig/subcas_4.jpg)|22|![subcascade](subcascade/fig/subcas_1.jpg)|6|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|455|![subcascade](subcascade/fig/subcas_6.jpg)|359|![subcascade](subcascade/fig/subcas_6.jpg)|170|![subcascade](subcascade/fig/subcas_6.jpg)|73|![subcascade](subcascade/fig/subcas_1.jpg)|33|![subcascade](subcascade/fig/subcas_6.jpg)|17|![subcascade](subcascade/fig/subcas_28.jpg)|4|![subcascade](subcascade/fig/subcas_3.jpg)|2|
-|7|![subcascade](subcascade/fig/subcas_22.jpg)|389|![subcascade](subcascade/fig/subcas_22.jpg)|282|![subcascade](subcascade/fig/subcas_1.jpg)|122|![subcascade](subcascade/fig/subcas_1.jpg)|53|![subcascade](subcascade/fig/subcas_6.jpg)|27|![subcascade](subcascade/fig/subcas_28.jpg)|16|![subcascade](subcascade/fig/subcas_6.jpg)|4|![subcascade](subcascade/fig/subcas_63.jpg)|2|
-|8|![subcascade](subcascade/fig/subcas_1.jpg)|313|![subcascade](subcascade/fig/subcas_1.jpg)|255|![subcascade](subcascade/fig/subcas_22.jpg)|109|![subcascade](subcascade/fig/subcas_33.jpg)|51|![subcascade](subcascade/fig/subcas_28.jpg)|18|![subcascade](subcascade/fig/subcas_1.jpg)|14|![subcascade](subcascade/fig/subcas_159.jpg)|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|
-|9|![subcascade](subcascade/fig/subcas_33.jpg)|277|![subcascade](subcascade/fig/subcas_33.jpg)|238|![subcascade](subcascade/fig/subcas_33.jpg)|90|![subcascade](subcascade/fig/subcas_22.jpg)|41|![subcascade](subcascade/fig/subcas_24.jpg)|13|![subcascade](subcascade/fig/subcas_22.jpg)|7|![subcascade](subcascade/fig/subcas_63.jpg)|2|![subcascade](subcascade/fig/subcas_6.jpg)|2|
-|10|![subcascade](subcascade/fig/subcas_24.jpg)|186|![subcascade](subcascade/fig/subcas_16.jpg)|141|![subcascade](subcascade/fig/subcas_28.jpg)|61|![subcascade](subcascade/fig/subcas_28.jpg)|31|![subcascade](subcascade/fig/subcas_22.jpg)|13|![subcascade](subcascade/fig/subcas_24.jpg)|6|![subcascade](subcascade/fig/subcas_24.jpg)|2|![subcascade](subcascade/fig/subcas_2.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Dance Performance Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|38|![subcascade](subcascade/fig/subcas_0.jpg)|26|![subcascade](subcascade/fig/subcas_0.jpg)|18|![subcascade](subcascade/fig/subcas_0.jpg)|10|![subcascade](subcascade/fig/subcas_0.jpg)|8|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|4|![subcascade](subcascade/fig/subcas_3.jpg)|4|![subcascade](subcascade/fig/subcas_11.jpg)|2|![subcascade](subcascade/fig/subcas_11.jpg)|2|![subcascade](subcascade/fig/subcas_11.jpg)|2|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|4|![subcascade](subcascade/fig/subcas_2.jpg)|4|![subcascade](subcascade/fig/subcas_44.jpg)|2|![subcascade](subcascade/fig/subcas_44.jpg)|2|![subcascade](subcascade/fig/subcas_44.jpg)|2|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|4|![subcascade](subcascade/fig/subcas_11.jpg)|2|![subcascade](subcascade/fig/subcas_1.jpg)|2|![subcascade](subcascade/fig/subcas_1.jpg)|2|![subcascade](subcascade/fig/subcas_1.jpg)|2|
-|5|![subcascade](subcascade/fig/subcas_11.jpg)|2|![subcascade](subcascade/fig/subcas_44.jpg)|2|![subcascade](subcascade/fig/subcas_3.jpg)|2|![subcascade](subcascade/fig/subcas_3.jpg)|2|![subcascade](subcascade/fig/subcas_3.jpg)|2|
-|6|![subcascade](subcascade/fig/subcas_44.jpg)|2|![subcascade](subcascade/fig/subcas_1.jpg)|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|![subcascade](subcascade/fig/subcas_6.jpg)|2|![subcascade](subcascade/fig/subcas_6.jpg)|2|![subcascade](subcascade/fig/subcas_6.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Database Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|161|![subcascade](subcascade/fig/subcas_0.jpg)|132|![subcascade](subcascade/fig/subcas_0.jpg)|116|![subcascade](subcascade/fig/subcas_0.jpg)|85|![subcascade](subcascade/fig/subcas_0.jpg)|38|![subcascade](subcascade/fig/subcas_0.jpg)|16|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|41|![subcascade](subcascade/fig/subcas_3.jpg)|39|![subcascade](subcascade/fig/subcas_3.jpg)|28|![subcascade](subcascade/fig/subcas_3.jpg)|24|![subcascade](subcascade/fig/subcas_3.jpg)|16|![subcascade](subcascade/fig/subcas_2.jpg)|4|![subcascade](subcascade/fig/subcas_3.jpg)|2|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|25|![subcascade](subcascade/fig/subcas_2.jpg)|22|![subcascade](subcascade/fig/subcas_2.jpg)|20|![subcascade](subcascade/fig/subcas_2.jpg)|18|![subcascade](subcascade/fig/subcas_4.jpg)|5|![subcascade](subcascade/fig/subcas_24.jpg)|2|![subcascade](subcascade/fig/subcas_22.jpg)|2|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|19|![subcascade](subcascade/fig/subcas_4.jpg)|19|![subcascade](subcascade/fig/subcas_4.jpg)|14|![subcascade](subcascade/fig/subcas_4.jpg)|14|![subcascade](subcascade/fig/subcas_2.jpg)|4|![subcascade](subcascade/fig/subcas_17.jpg)|2|![subcascade](subcascade/fig/subcas_103.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Discussion
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|10380|![subcascade](subcascade/fig/subcas_0.jpg)|5838|![subcascade](subcascade/fig/subcas_0.jpg)|3365|![subcascade](subcascade/fig/subcas_0.jpg)|1936|![subcascade](subcascade/fig/subcas_0.jpg)|839|![subcascade](subcascade/fig/subcas_0.jpg)|388|![subcascade](subcascade/fig/subcas_0.jpg)|33|![subcascade](subcascade/fig/subcas_0.jpg)|4|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|2105|![subcascade](subcascade/fig/subcas_3.jpg)|1575|![subcascade](subcascade/fig/subcas_3.jpg)|959|![subcascade](subcascade/fig/subcas_3.jpg)|587|![subcascade](subcascade/fig/subcas_3.jpg)|293|![subcascade](subcascade/fig/subcas_3.jpg)|167|![subcascade](subcascade/fig/subcas_3.jpg)|21|![subcascade](subcascade/fig/subcas_3.jpg)|4|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|1055|![subcascade](subcascade/fig/subcas_2.jpg)|650|![subcascade](subcascade/fig/subcas_8.jpg)|388|![subcascade](subcascade/fig/subcas_8.jpg)|267|![subcascade](subcascade/fig/subcas_2.jpg)|152|![subcascade](subcascade/fig/subcas_2.jpg)|93|![subcascade](subcascade/fig/subcas_2.jpg)|19|![subcascade](subcascade/fig/subcas_11.jpg)|2|
-|4|![subcascade](subcascade/fig/subcas_8.jpg)|866|![subcascade](subcascade/fig/subcas_8.jpg)|630|![subcascade](subcascade/fig/subcas_4.jpg)|377|![subcascade](subcascade/fig/subcas_2.jpg)|254|![subcascade](subcascade/fig/subcas_8.jpg)|146|![subcascade](subcascade/fig/subcas_4.jpg)|82|![subcascade](subcascade/fig/subcas_8.jpg)|13|![subcascade](subcascade/fig/subcas_13.jpg)|2|
-|5|![subcascade](subcascade/fig/subcas_4.jpg)|788|![subcascade](subcascade/fig/subcas_4.jpg)|574|![subcascade](subcascade/fig/subcas_2.jpg)|377|![subcascade](subcascade/fig/subcas_4.jpg)|247|![subcascade](subcascade/fig/subcas_4.jpg)|142|![subcascade](subcascade/fig/subcas_8.jpg)|76|![subcascade](subcascade/fig/subcas_4.jpg)|10|![subcascade](subcascade/fig/subcas_58.jpg)|2|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|446|![subcascade](subcascade/fig/subcas_6.jpg)|392|![subcascade](subcascade/fig/subcas_6.jpg)|217|![subcascade](subcascade/fig/subcas_6.jpg)|124|![subcascade](subcascade/fig/subcas_6.jpg)|86|![subcascade](subcascade/fig/subcas_6.jpg)|54|![subcascade](subcascade/fig/subcas_22.jpg)|9|![subcascade](subcascade/fig/subcas_33.jpg)|2|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|365|![subcascade](subcascade/fig/subcas_1.jpg)|317|![subcascade](subcascade/fig/subcas_1.jpg)|186|![subcascade](subcascade/fig/subcas_1.jpg)|106|![subcascade](subcascade/fig/subcas_1.jpg)|65|![subcascade](subcascade/fig/subcas_1.jpg)|32|![subcascade](subcascade/fig/subcas_33.jpg)|9|![subcascade](subcascade/fig/subcas_18.jpg)|2|
-|8|![subcascade](subcascade/fig/subcas_22.jpg)|335|![subcascade](subcascade/fig/subcas_22.jpg)|286|![subcascade](subcascade/fig/subcas_22.jpg)|150|![subcascade](subcascade/fig/subcas_33.jpg)|86|![subcascade](subcascade/fig/subcas_33.jpg)|52|![subcascade](subcascade/fig/subcas_33.jpg)|27|![subcascade](subcascade/fig/subcas_6.jpg)|6|![subcascade](subcascade/fig/subcas_57.jpg)|2|
-|9|![subcascade](subcascade/fig/subcas_33.jpg)|268|![subcascade](subcascade/fig/subcas_33.jpg)|233|![subcascade](subcascade/fig/subcas_33.jpg)|132|![subcascade](subcascade/fig/subcas_22.jpg)|84|![subcascade](subcascade/fig/subcas_22.jpg)|40|![subcascade](subcascade/fig/subcas_22.jpg)|25|![subcascade](subcascade/fig/subcas_28.jpg)|4|![subcascade](subcascade/fig/subcas_28.jpg)|2|
-|10|![subcascade](subcascade/fig/subcas_28.jpg)|113|![subcascade](subcascade/fig/subcas_16.jpg)|107|![subcascade](subcascade/fig/subcas_18.jpg)|64|![subcascade](subcascade/fig/subcas_18.jpg)|33|![subcascade](subcascade/fig/subcas_18.jpg)|19|![subcascade](subcascade/fig/subcas_18.jpg)|12|![subcascade](subcascade/fig/subcas_1.jpg)|4|![subcascade](subcascade/fig/subcas_50.jpg)|2|
-##Doctype vs. Citation Count
 #### Doctype:Editorial Material
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -309,52 +154,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|13459|![subcascade](subcascade/fig/subcas_22.jpg)|12528|![subcascade](subcascade/fig/subcas_33.jpg)|9293|![subcascade](subcascade/fig/subcas_33.jpg)|5897|![subcascade](subcascade/fig/subcas_33.jpg)|2505|![subcascade](subcascade/fig/subcas_33.jpg)|1195|![subcascade](subcascade/fig/subcas_1.jpg)|87|![subcascade](subcascade/fig/subcas_33.jpg)|23|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|12605|![subcascade](subcascade/fig/subcas_33.jpg)|12177|![subcascade](subcascade/fig/subcas_22.jpg)|8602|![subcascade](subcascade/fig/subcas_22.jpg)|5096|![subcascade](subcascade/fig/subcas_22.jpg)|2247|![subcascade](subcascade/fig/subcas_22.jpg)|1036|![subcascade](subcascade/fig/subcas_33.jpg)|80|![subcascade](subcascade/fig/subcas_6.jpg)|17|
 |10|![subcascade](subcascade/fig/subcas_58.jpg)|5694|![subcascade](subcascade/fig/subcas_58.jpg)|5694|![subcascade](subcascade/fig/subcas_58.jpg)|4420|![subcascade](subcascade/fig/subcas_58.jpg)|2605|![subcascade](subcascade/fig/subcas_58.jpg)|1023|![subcascade](subcascade/fig/subcas_58.jpg)|451|![subcascade](subcascade/fig/subcas_58.jpg)|46|![subcascade](subcascade/fig/subcas_17.jpg)|11|
-##Doctype vs. Citation Count
-#### Doctype:Excerpt
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|36|![subcascade](subcascade/fig/subcas_0.jpg)|20|![subcascade](subcascade/fig/subcas_0.jpg)|20|![subcascade](subcascade/fig/subcas_0.jpg)|8|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-|2|![subcascade](subcascade/fig/subcas_2.jpg)|6|![subcascade](subcascade/fig/subcas_2.jpg)|4|![subcascade](subcascade/fig/subcas_2.jpg)|4|![subcascade](subcascade/fig/subcas_3.jpg)|2|![subcascade](subcascade/fig/subcas_8.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Fiction, Creative Prose
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|92|![subcascade](subcascade/fig/subcas_0.jpg)|35|![subcascade](subcascade/fig/subcas_0.jpg)|18|![subcascade](subcascade/fig/subcas_0.jpg)|8|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Film Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|228|![subcascade](subcascade/fig/subcas_0.jpg)|86|![subcascade](subcascade/fig/subcas_0.jpg)|42|![subcascade](subcascade/fig/subcas_0.jpg)|8|![subcascade](subcascade/fig/subcas_0.jpg)|2|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Hardware Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|84|![subcascade](subcascade/fig/subcas_0.jpg)|59|![subcascade](subcascade/fig/subcas_0.jpg)|43|![subcascade](subcascade/fig/subcas_0.jpg)|29|![subcascade](subcascade/fig/subcas_0.jpg)|12|![subcascade](subcascade/fig/subcas_0.jpg)|4|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|31|![subcascade](subcascade/fig/subcas_3.jpg)|22|![subcascade](subcascade/fig/subcas_3.jpg)|12|![subcascade](subcascade/fig/subcas_8.jpg)|10|![subcascade](subcascade/fig/subcas_3.jpg)|6|![subcascade](subcascade/fig/subcas_3.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Item About an Individual
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|2434|![subcascade](subcascade/fig/subcas_0.jpg)|1120|![subcascade](subcascade/fig/subcas_0.jpg)|425|![subcascade](subcascade/fig/subcas_0.jpg)|125|![subcascade](subcascade/fig/subcas_0.jpg)|20|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|359|![subcascade](subcascade/fig/subcas_3.jpg)|236|![subcascade](subcascade/fig/subcas_3.jpg)|93|![subcascade](subcascade/fig/subcas_3.jpg)|45|![subcascade](subcascade/fig/subcas_3.jpg)|8|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|167|![subcascade](subcascade/fig/subcas_8.jpg)|111|![subcascade](subcascade/fig/subcas_2.jpg)|47|![subcascade](subcascade/fig/subcas_2.jpg)|17|![subcascade](subcascade/fig/subcas_4.jpg)|5|
-|4|![subcascade](subcascade/fig/subcas_8.jpg)|166|![subcascade](subcascade/fig/subcas_2.jpg)|109|![subcascade](subcascade/fig/subcas_6.jpg)|38|![subcascade](subcascade/fig/subcas_4.jpg)|12|![subcascade](subcascade/fig/subcas_6.jpg)|4|
-|5|![subcascade](subcascade/fig/subcas_4.jpg)|123|![subcascade](subcascade/fig/subcas_4.jpg)|89|![subcascade](subcascade/fig/subcas_4.jpg)|31|![subcascade](subcascade/fig/subcas_6.jpg)|8|![subcascade](subcascade/fig/subcas_2.jpg)|4|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|72|![subcascade](subcascade/fig/subcas_6.jpg)|66|![subcascade](subcascade/fig/subcas_8.jpg)|29|![subcascade](subcascade/fig/subcas_33.jpg)|7|![subcascade](subcascade/fig/subcas_248.jpg)|3|
-|7|![subcascade](subcascade/fig/subcas_33.jpg)|57|![subcascade](subcascade/fig/subcas_33.jpg)|50|![subcascade](subcascade/fig/subcas_1.jpg)|23|![subcascade](subcascade/fig/subcas_1.jpg)|6|![subcascade](subcascade/fig/subcas_10.jpg)|2|
-|8|![subcascade](subcascade/fig/subcas_1.jpg)|46|![subcascade](subcascade/fig/subcas_1.jpg)|41|![subcascade](subcascade/fig/subcas_33.jpg)|11|![subcascade](subcascade/fig/subcas_8.jpg)|6|![subcascade](subcascade/fig/subcas_67.jpg)|2|
-|9|![subcascade](subcascade/fig/subcas_22.jpg)|25|![subcascade](subcascade/fig/subcas_22.jpg)|22|![subcascade](subcascade/fig/subcas_18.jpg)|11|![subcascade](subcascade/fig/subcas_18.jpg)|5|![subcascade](subcascade/fig/subcas_8.jpg)|2|
-##Doctype vs. Citation Count
 #### Doctype:Letter
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -370,92 +169,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|15492|![subcascade](subcascade/fig/subcas_22.jpg)|13208|![subcascade](subcascade/fig/subcas_22.jpg)|5695|![subcascade](subcascade/fig/subcas_22.jpg)|2403|![subcascade](subcascade/fig/subcas_1.jpg)|799|![subcascade](subcascade/fig/subcas_33.jpg)|313|![subcascade](subcascade/fig/subcas_1.jpg)|32|![subcascade](subcascade/fig/subcas_1.jpg)|6|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|11524|![subcascade](subcascade/fig/subcas_33.jpg)|10391|![subcascade](subcascade/fig/subcas_33.jpg)|5300|![subcascade](subcascade/fig/subcas_33.jpg)|2296|![subcascade](subcascade/fig/subcas_33.jpg)|763|![subcascade](subcascade/fig/subcas_1.jpg)|309|![subcascade](subcascade/fig/subcas_22.jpg)|31|![subcascade](subcascade/fig/subcas_17.jpg)|6|
 |10|![subcascade](subcascade/fig/subcas_16.jpg)|5036|![subcascade](subcascade/fig/subcas_16.jpg)|5036|![subcascade](subcascade/fig/subcas_58.jpg)|2486|![subcascade](subcascade/fig/subcas_58.jpg)|855|![subcascade](subcascade/fig/subcas_18.jpg)|316|![subcascade](subcascade/fig/subcas_18.jpg)|139|![subcascade](subcascade/fig/subcas_17.jpg)|16|![subcascade](subcascade/fig/subcas_49.jpg)|4|
-##Doctype vs. Citation Count
-#### Doctype:Meeting Abstract
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|344612|![subcascade](subcascade/fig/subcas_0.jpg)|106374|![subcascade](subcascade/fig/subcas_0.jpg)|41540|![subcascade](subcascade/fig/subcas_0.jpg)|15918|![subcascade](subcascade/fig/subcas_0.jpg)|4204|![subcascade](subcascade/fig/subcas_0.jpg)|1320|![subcascade](subcascade/fig/subcas_0.jpg)|39|![subcascade](subcascade/fig/subcas_0.jpg)|7|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|59144|![subcascade](subcascade/fig/subcas_3.jpg)|28836|![subcascade](subcascade/fig/subcas_3.jpg)|9544|![subcascade](subcascade/fig/subcas_3.jpg)|3526|![subcascade](subcascade/fig/subcas_3.jpg)|990|![subcascade](subcascade/fig/subcas_3.jpg)|379|![subcascade](subcascade/fig/subcas_2.jpg)|26|![subcascade](subcascade/fig/subcas_4.jpg)|7|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|29633|![subcascade](subcascade/fig/subcas_4.jpg)|11449|![subcascade](subcascade/fig/subcas_8.jpg)|3869|![subcascade](subcascade/fig/subcas_2.jpg)|1532|![subcascade](subcascade/fig/subcas_2.jpg)|530|![subcascade](subcascade/fig/subcas_2.jpg)|219|![subcascade](subcascade/fig/subcas_3.jpg)|22|![subcascade](subcascade/fig/subcas_8.jpg)|7|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|22953|![subcascade](subcascade/fig/subcas_2.jpg)|11333|![subcascade](subcascade/fig/subcas_4.jpg)|3866|![subcascade](subcascade/fig/subcas_8.jpg)|1495|![subcascade](subcascade/fig/subcas_8.jpg)|518|![subcascade](subcascade/fig/subcas_8.jpg)|182|![subcascade](subcascade/fig/subcas_8.jpg)|21|![subcascade](subcascade/fig/subcas_22.jpg)|5|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|20012|![subcascade](subcascade/fig/subcas_8.jpg)|10414|![subcascade](subcascade/fig/subcas_2.jpg)|3547|![subcascade](subcascade/fig/subcas_4.jpg)|1432|![subcascade](subcascade/fig/subcas_4.jpg)|421|![subcascade](subcascade/fig/subcas_4.jpg)|167|![subcascade](subcascade/fig/subcas_4.jpg)|20|![subcascade](subcascade/fig/subcas_18.jpg)|5|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|11673|![subcascade](subcascade/fig/subcas_6.jpg)|8466|![subcascade](subcascade/fig/subcas_6.jpg)|2335|![subcascade](subcascade/fig/subcas_6.jpg)|695|![subcascade](subcascade/fig/subcas_6.jpg)|178|![subcascade](subcascade/fig/subcas_1.jpg)|67|![subcascade](subcascade/fig/subcas_22.jpg)|9|![subcascade](subcascade/fig/subcas_3.jpg)|4|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|10065|![subcascade](subcascade/fig/subcas_1.jpg)|7517|![subcascade](subcascade/fig/subcas_1.jpg)|2135|![subcascade](subcascade/fig/subcas_1.jpg)|639|![subcascade](subcascade/fig/subcas_1.jpg)|163|![subcascade](subcascade/fig/subcas_22.jpg)|62|![subcascade](subcascade/fig/subcas_18.jpg)|7|![subcascade](subcascade/fig/subcas_2.jpg)|4|
-|8|![subcascade](subcascade/fig/subcas_22.jpg)|9609|![subcascade](subcascade/fig/subcas_22.jpg)|6135|![subcascade](subcascade/fig/subcas_22.jpg)|1475|![subcascade](subcascade/fig/subcas_33.jpg)|475|![subcascade](subcascade/fig/subcas_33.jpg)|148|![subcascade](subcascade/fig/subcas_6.jpg)|62|![subcascade](subcascade/fig/subcas_1.jpg)|6|![subcascade](subcascade/fig/subcas_16.jpg)|2|
-|9|![subcascade](subcascade/fig/subcas_33.jpg)|6006|![subcascade](subcascade/fig/subcas_33.jpg)|4551|![subcascade](subcascade/fig/subcas_33.jpg)|1379|![subcascade](subcascade/fig/subcas_22.jpg)|440|![subcascade](subcascade/fig/subcas_22.jpg)|143|![subcascade](subcascade/fig/subcas_33.jpg)|50|![subcascade](subcascade/fig/subcas_6.jpg)|6|![subcascade](subcascade/fig/subcas_33.jpg)|2|
-|10|![subcascade](subcascade/fig/subcas_28.jpg)|2932|![subcascade](subcascade/fig/subcas_58.jpg)|2862|![subcascade](subcascade/fig/subcas_20.jpg)|779|![subcascade](subcascade/fig/subcas_20.jpg)|208|![subcascade](subcascade/fig/subcas_18.jpg)|65|![subcascade](subcascade/fig/subcas_18.jpg)|32|![subcascade](subcascade/fig/subcas_16.jpg)|6|![subcascade](subcascade/fig/subcas_28.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Music Performance Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|18|![subcascade](subcascade/fig/subcas_0.jpg)|8|![subcascade](subcascade/fig/subcas_0.jpg)|6|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Music Score
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||
-|0|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|2|![subcascade](subcascade/fig/subcas_2.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Music Score Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||
-|0|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|22|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:News Item
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|23706|![subcascade](subcascade/fig/subcas_0.jpg)|16110|![subcascade](subcascade/fig/subcas_0.jpg)|9844|![subcascade](subcascade/fig/subcas_0.jpg)|5208|![subcascade](subcascade/fig/subcas_0.jpg)|1487|![subcascade](subcascade/fig/subcas_0.jpg)|513|![subcascade](subcascade/fig/subcas_0.jpg)|32|![subcascade](subcascade/fig/subcas_0.jpg)|6|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|4797|![subcascade](subcascade/fig/subcas_3.jpg)|4143|![subcascade](subcascade/fig/subcas_3.jpg)|2844|![subcascade](subcascade/fig/subcas_3.jpg)|1730|![subcascade](subcascade/fig/subcas_3.jpg)|592|![subcascade](subcascade/fig/subcas_3.jpg)|272|![subcascade](subcascade/fig/subcas_3.jpg)|24|![subcascade](subcascade/fig/subcas_3.jpg)|6|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|2080|![subcascade](subcascade/fig/subcas_2.jpg)|1687|![subcascade](subcascade/fig/subcas_2.jpg)|1143|![subcascade](subcascade/fig/subcas_8.jpg)|746|![subcascade](subcascade/fig/subcas_8.jpg)|312|![subcascade](subcascade/fig/subcas_8.jpg)|154|![subcascade](subcascade/fig/subcas_4.jpg)|19|![subcascade](subcascade/fig/subcas_2.jpg)|6|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|1803|![subcascade](subcascade/fig/subcas_4.jpg)|1545|![subcascade](subcascade/fig/subcas_8.jpg)|1097|![subcascade](subcascade/fig/subcas_2.jpg)|711|![subcascade](subcascade/fig/subcas_4.jpg)|264|![subcascade](subcascade/fig/subcas_4.jpg)|134|![subcascade](subcascade/fig/subcas_2.jpg)|14|![subcascade](subcascade/fig/subcas_203.jpg)|4|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|1733|![subcascade](subcascade/fig/subcas_8.jpg)|1489|![subcascade](subcascade/fig/subcas_4.jpg)|1053|![subcascade](subcascade/fig/subcas_4.jpg)|646|![subcascade](subcascade/fig/subcas_2.jpg)|250|![subcascade](subcascade/fig/subcas_2.jpg)|125|![subcascade](subcascade/fig/subcas_8.jpg)|13|![subcascade](subcascade/fig/subcas_21.jpg)|4|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|964|![subcascade](subcascade/fig/subcas_6.jpg)|903|![subcascade](subcascade/fig/subcas_6.jpg)|638|![subcascade](subcascade/fig/subcas_6.jpg)|404|![subcascade](subcascade/fig/subcas_6.jpg)|136|![subcascade](subcascade/fig/subcas_6.jpg)|78|![subcascade](subcascade/fig/subcas_33.jpg)|10|![subcascade](subcascade/fig/subcas_33.jpg)|4|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|781|![subcascade](subcascade/fig/subcas_1.jpg)|741|![subcascade](subcascade/fig/subcas_1.jpg)|533|![subcascade](subcascade/fig/subcas_1.jpg)|294|![subcascade](subcascade/fig/subcas_1.jpg)|102|![subcascade](subcascade/fig/subcas_22.jpg)|50|![subcascade](subcascade/fig/subcas_6.jpg)|10|![subcascade](subcascade/fig/subcas_28.jpg)|4|
-|8|![subcascade](subcascade/fig/subcas_22.jpg)|629|![subcascade](subcascade/fig/subcas_22.jpg)|577|![subcascade](subcascade/fig/subcas_22.jpg)|398|![subcascade](subcascade/fig/subcas_33.jpg)|258|![subcascade](subcascade/fig/subcas_22.jpg)|101|![subcascade](subcascade/fig/subcas_33.jpg)|47|![subcascade](subcascade/fig/subcas_28.jpg)|7|![subcascade](subcascade/fig/subcas_4.jpg)|4|
-|9|![subcascade](subcascade/fig/subcas_33.jpg)|588|![subcascade](subcascade/fig/subcas_33.jpg)|552|![subcascade](subcascade/fig/subcas_33.jpg)|396|![subcascade](subcascade/fig/subcas_22.jpg)|245|![subcascade](subcascade/fig/subcas_33.jpg)|92|![subcascade](subcascade/fig/subcas_1.jpg)|35|![subcascade](subcascade/fig/subcas_203.jpg)|4|![subcascade](subcascade/fig/subcas_6.jpg)|4|
-|10|![subcascade](subcascade/fig/subcas_58.jpg)|272|![subcascade](subcascade/fig/subcas_58.jpg)|272|![subcascade](subcascade/fig/subcas_58.jpg)|205|![subcascade](subcascade/fig/subcas_58.jpg)|118|![subcascade](subcascade/fig/subcas_58.jpg)|57|![subcascade](subcascade/fig/subcas_58.jpg)|24|![subcascade](subcascade/fig/subcas_21.jpg)|4|![subcascade](subcascade/fig/subcas_8.jpg)|4|
-##Doctype vs. Citation Count
-#### Doctype:Note
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|704124|![subcascade](subcascade/fig/subcas_0.jpg)|545028|![subcascade](subcascade/fig/subcas_0.jpg)|372140|![subcascade](subcascade/fig/subcas_0.jpg)|212516|![subcascade](subcascade/fig/subcas_0.jpg)|73348|![subcascade](subcascade/fig/subcas_0.jpg)|25724|![subcascade](subcascade/fig/subcas_0.jpg)|903|![subcascade](subcascade/fig/subcas_0.jpg)|133|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|139452|![subcascade](subcascade/fig/subcas_3.jpg)|119532|![subcascade](subcascade/fig/subcas_3.jpg)|78058|![subcascade](subcascade/fig/subcas_3.jpg)|42423|![subcascade](subcascade/fig/subcas_3.jpg)|15360|![subcascade](subcascade/fig/subcas_3.jpg)|6094|![subcascade](subcascade/fig/subcas_3.jpg)|384|![subcascade](subcascade/fig/subcas_3.jpg)|73|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|77745|![subcascade](subcascade/fig/subcas_2.jpg)|64308|![subcascade](subcascade/fig/subcas_2.jpg)|41142|![subcascade](subcascade/fig/subcas_2.jpg)|23377|![subcascade](subcascade/fig/subcas_2.jpg)|9151|![subcascade](subcascade/fig/subcas_2.jpg)|3848|![subcascade](subcascade/fig/subcas_2.jpg)|279|![subcascade](subcascade/fig/subcas_2.jpg)|59|
-|4|![subcascade](subcascade/fig/subcas_8.jpg)|60555|![subcascade](subcascade/fig/subcas_8.jpg)|52734|![subcascade](subcascade/fig/subcas_8.jpg)|35093|![subcascade](subcascade/fig/subcas_8.jpg)|19161|![subcascade](subcascade/fig/subcas_8.jpg)|6998|![subcascade](subcascade/fig/subcas_8.jpg)|2839|![subcascade](subcascade/fig/subcas_8.jpg)|235|![subcascade](subcascade/fig/subcas_8.jpg)|48|
-|5|![subcascade](subcascade/fig/subcas_4.jpg)|59785|![subcascade](subcascade/fig/subcas_4.jpg)|50806|![subcascade](subcascade/fig/subcas_4.jpg)|32069|![subcascade](subcascade/fig/subcas_4.jpg)|16683|![subcascade](subcascade/fig/subcas_4.jpg)|5923|![subcascade](subcascade/fig/subcas_4.jpg)|2496|![subcascade](subcascade/fig/subcas_4.jpg)|214|![subcascade](subcascade/fig/subcas_4.jpg)|43|
-|6|![subcascade](subcascade/fig/subcas_1.jpg)|28757|![subcascade](subcascade/fig/subcas_1.jpg)|26831|![subcascade](subcascade/fig/subcas_6.jpg)|16343|![subcascade](subcascade/fig/subcas_6.jpg)|7812|![subcascade](subcascade/fig/subcas_6.jpg)|2568|![subcascade](subcascade/fig/subcas_6.jpg)|1072|![subcascade](subcascade/fig/subcas_1.jpg)|96|![subcascade](subcascade/fig/subcas_22.jpg)|26|
-|7|![subcascade](subcascade/fig/subcas_6.jpg)|27614|![subcascade](subcascade/fig/subcas_6.jpg)|25957|![subcascade](subcascade/fig/subcas_1.jpg)|15864|![subcascade](subcascade/fig/subcas_1.jpg)|7138|![subcascade](subcascade/fig/subcas_22.jpg)|2459|![subcascade](subcascade/fig/subcas_22.jpg)|1005|![subcascade](subcascade/fig/subcas_22.jpg)|84|![subcascade](subcascade/fig/subcas_1.jpg)|25|
-|8|![subcascade](subcascade/fig/subcas_22.jpg)|25324|![subcascade](subcascade/fig/subcas_22.jpg)|23109|![subcascade](subcascade/fig/subcas_22.jpg)|13524|![subcascade](subcascade/fig/subcas_22.jpg)|6598|![subcascade](subcascade/fig/subcas_1.jpg)|2134|![subcascade](subcascade/fig/subcas_1.jpg)|869|![subcascade](subcascade/fig/subcas_6.jpg)|76|![subcascade](subcascade/fig/subcas_33.jpg)|24|
-|9|![subcascade](subcascade/fig/subcas_33.jpg)|19106|![subcascade](subcascade/fig/subcas_33.jpg)|18046|![subcascade](subcascade/fig/subcas_33.jpg)|11451|![subcascade](subcascade/fig/subcas_33.jpg)|5514|![subcascade](subcascade/fig/subcas_33.jpg)|1798|![subcascade](subcascade/fig/subcas_33.jpg)|781|![subcascade](subcascade/fig/subcas_33.jpg)|75|![subcascade](subcascade/fig/subcas_6.jpg)|21|
-|10|![subcascade](subcascade/fig/subcas_17.jpg)|8153|![subcascade](subcascade/fig/subcas_17.jpg)|7430|![subcascade](subcascade/fig/subcas_17.jpg)|4334|![subcascade](subcascade/fig/subcas_18.jpg)|2209|![subcascade](subcascade/fig/subcas_24.jpg)|839|![subcascade](subcascade/fig/subcas_24.jpg)|419|![subcascade](subcascade/fig/subcas_24.jpg)|41|![subcascade](subcascade/fig/subcas_24.jpg)|14|
-##Doctype vs. Citation Count
-#### Doctype:Poetry
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|332|![subcascade](subcascade/fig/subcas_0.jpg)|190|![subcascade](subcascade/fig/subcas_0.jpg)|114|![subcascade](subcascade/fig/subcas_0.jpg)|60|![subcascade](subcascade/fig/subcas_0.jpg)|18|![subcascade](subcascade/fig/subcas_1.jpg)|2|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|46|![subcascade](subcascade/fig/subcas_3.jpg)|38|![subcascade](subcascade/fig/subcas_3.jpg)|22|![subcascade](subcascade/fig/subcas_3.jpg)|14|![subcascade](subcascade/fig/subcas_1.jpg)|6|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Press Digest
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||
-|0|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|4|![subcascade](subcascade/fig/subcas_0.jpg)|4|
-|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|![subcascade](subcascade/fig/subcas_4.jpg)|2|
-##Doctype vs. Citation Count
 #### Doctype:Proceedings Paper
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -471,36 +184,6 @@
 |8|![subcascade](subcascade/fig/subcas_22.jpg)|16516|![subcascade](subcascade/fig/subcas_22.jpg)|13832|![subcascade](subcascade/fig/subcas_22.jpg)|6280|![subcascade](subcascade/fig/subcas_33.jpg)|2754|![subcascade](subcascade/fig/subcas_33.jpg)|814|![subcascade](subcascade/fig/subcas_33.jpg)|329|![subcascade](subcascade/fig/subcas_22.jpg)|26|![subcascade](subcascade/fig/subcas_20.jpg)|9|
 |9|![subcascade](subcascade/fig/subcas_33.jpg)|11954|![subcascade](subcascade/fig/subcas_33.jpg)|10830|![subcascade](subcascade/fig/subcas_33.jpg)|6030|![subcascade](subcascade/fig/subcas_22.jpg)|2564|![subcascade](subcascade/fig/subcas_22.jpg)|703|![subcascade](subcascade/fig/subcas_22.jpg)|231|![subcascade](subcascade/fig/subcas_33.jpg)|22|![subcascade](subcascade/fig/subcas_1.jpg)|8|
 |10|![subcascade](subcascade/fig/subcas_58.jpg)|7544|![subcascade](subcascade/fig/subcas_58.jpg)|7544|![subcascade](subcascade/fig/subcas_58.jpg)|4225|![subcascade](subcascade/fig/subcas_58.jpg)|1848|![subcascade](subcascade/fig/subcas_58.jpg)|510|![subcascade](subcascade/fig/subcas_20.jpg)|193|![subcascade](subcascade/fig/subcas_20.jpg)|19|![subcascade](subcascade/fig/subcas_18.jpg)|7|
-##Doctype vs. Citation Count
-#### Doctype:Record Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|29|![subcascade](subcascade/fig/subcas_0.jpg)|9|![subcascade](subcascade/fig/subcas_0.jpg)|9|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Reprint
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||1000-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|4408|![subcascade](subcascade/fig/subcas_0.jpg)|3563|![subcascade](subcascade/fig/subcas_0.jpg)|2597|![subcascade](subcascade/fig/subcas_0.jpg)|1655|![subcascade](subcascade/fig/subcas_0.jpg)|704|![subcascade](subcascade/fig/subcas_0.jpg)|264|![subcascade](subcascade/fig/subcas_0.jpg)|11|![subcascade](subcascade/fig/subcas_22.jpg)|2|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|1052|![subcascade](subcascade/fig/subcas_3.jpg)|966|![subcascade](subcascade/fig/subcas_3.jpg)|785|![subcascade](subcascade/fig/subcas_3.jpg)|581|![subcascade](subcascade/fig/subcas_3.jpg)|308|![subcascade](subcascade/fig/subcas_3.jpg)|156|![subcascade](subcascade/fig/subcas_3.jpg)|8|![subcascade](subcascade/fig/subcas_33.jpg)|2|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|454|![subcascade](subcascade/fig/subcas_2.jpg)|424|![subcascade](subcascade/fig/subcas_2.jpg)|345|![subcascade](subcascade/fig/subcas_2.jpg)|265|![subcascade](subcascade/fig/subcas_2.jpg)|173|![subcascade](subcascade/fig/subcas_2.jpg)|108|![subcascade](subcascade/fig/subcas_2.jpg)|8|![subcascade](subcascade/fig/subcas_1.jpg)|2|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|367|![subcascade](subcascade/fig/subcas_4.jpg)|341|![subcascade](subcascade/fig/subcas_4.jpg)|291|![subcascade](subcascade/fig/subcas_4.jpg)|209|![subcascade](subcascade/fig/subcas_4.jpg)|139|![subcascade](subcascade/fig/subcas_4.jpg)|73|![subcascade](subcascade/fig/subcas_4.jpg)|5|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|299|![subcascade](subcascade/fig/subcas_8.jpg)|287|![subcascade](subcascade/fig/subcas_8.jpg)|243|![subcascade](subcascade/fig/subcas_8.jpg)|191|![subcascade](subcascade/fig/subcas_8.jpg)|108|![subcascade](subcascade/fig/subcas_8.jpg)|65|![subcascade](subcascade/fig/subcas_8.jpg)|5|![subcascade](subcascade/fig/subcas_3.jpg)|2|
-|6|![subcascade](subcascade/fig/subcas_6.jpg)|188|![subcascade](subcascade/fig/subcas_6.jpg)|186|![subcascade](subcascade/fig/subcas_6.jpg)|138|![subcascade](subcascade/fig/subcas_6.jpg)|111|![subcascade](subcascade/fig/subcas_6.jpg)|62|![subcascade](subcascade/fig/subcas_6.jpg)|47|![subcascade](subcascade/fig/subcas_17.jpg)|3|![subcascade](subcascade/fig/subcas_2.jpg)|2|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|157|![subcascade](subcascade/fig/subcas_1.jpg)|155|![subcascade](subcascade/fig/subcas_1.jpg)|134|![subcascade](subcascade/fig/subcas_1.jpg)|88|![subcascade](subcascade/fig/subcas_33.jpg)|47|![subcascade](subcascade/fig/subcas_22.jpg)|24|![subcascade](subcascade/fig/subcas_49.jpg)|3|![subcascade](subcascade/fig/subcas_4.jpg)|2|
-|8|![subcascade](subcascade/fig/subcas_33.jpg)|152|![subcascade](subcascade/fig/subcas_33.jpg)|148|![subcascade](subcascade/fig/subcas_33.jpg)|128|![subcascade](subcascade/fig/subcas_33.jpg)|82|![subcascade](subcascade/fig/subcas_1.jpg)|45|![subcascade](subcascade/fig/subcas_1.jpg)|24|![subcascade](subcascade/fig/subcas_54.jpg)|3|![subcascade](subcascade/fig/subcas_69.jpg)|2|
-|9|![subcascade](subcascade/fig/subcas_22.jpg)|139|![subcascade](subcascade/fig/subcas_22.jpg)|132|![subcascade](subcascade/fig/subcas_22.jpg)|108|![subcascade](subcascade/fig/subcas_22.jpg)|69|![subcascade](subcascade/fig/subcas_22.jpg)|43|![subcascade](subcascade/fig/subcas_39.jpg)|18|![subcascade](subcascade/fig/subcas_44.jpg)|3|![subcascade](subcascade/fig/subcas_8.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Retraction
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|6|![subcascade](subcascade/fig/subcas_129.jpg)|5|![subcascade](subcascade/fig/subcas_39.jpg)|3|![subcascade](subcascade/fig/subcas_39.jpg)|3|
-##Doctype vs. Citation Count
 #### Doctype:Review
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
 |:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
@@ -516,48 +199,3 @@
 |8|![subcascade](subcascade/fig/subcas_33.jpg)|57855|![subcascade](subcascade/fig/subcas_33.jpg)|57664|![subcascade](subcascade/fig/subcas_33.jpg)|54954|![subcascade](subcascade/fig/subcas_33.jpg)|47073|![subcascade](subcascade/fig/subcas_33.jpg)|29936|![subcascade](subcascade/fig/subcas_33.jpg)|17228|![subcascade](subcascade/fig/subcas_22.jpg)|2002|![subcascade](subcascade/fig/subcas_33.jpg)|475|
 |9|![subcascade](subcascade/fig/subcas_22.jpg)|53175|![subcascade](subcascade/fig/subcas_22.jpg)|52861|![subcascade](subcascade/fig/subcas_22.jpg)|49284|![subcascade](subcascade/fig/subcas_22.jpg)|41681|![subcascade](subcascade/fig/subcas_22.jpg)|27532|![subcascade](subcascade/fig/subcas_22.jpg)|16525|![subcascade](subcascade/fig/subcas_33.jpg)|1972|![subcascade](subcascade/fig/subcas_22.jpg)|451|
 |10|![subcascade](subcascade/fig/subcas_20.jpg)|22555|![subcascade](subcascade/fig/subcas_20.jpg)|22555|![subcascade](subcascade/fig/subcas_20.jpg)|21379|![subcascade](subcascade/fig/subcas_20.jpg)|17418|![subcascade](subcascade/fig/subcas_18.jpg)|10437|![subcascade](subcascade/fig/subcas_18.jpg)|6085|![subcascade](subcascade/fig/subcas_28.jpg)|727|![subcascade](subcascade/fig/subcas_28.jpg)|201|
-##Doctype vs. Citation Count
-#### Doctype:Script
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||
-|0|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|6|
-|2|![subcascade](subcascade/fig/subcas_4.jpg)|4|
-##Doctype vs. Citation Count
-#### Doctype:Software Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||50-inf|||100-inf|||500-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|1201|![subcascade](subcascade/fig/subcas_0.jpg)|847|![subcascade](subcascade/fig/subcas_0.jpg)|593|![subcascade](subcascade/fig/subcas_0.jpg)|403|![subcascade](subcascade/fig/subcas_0.jpg)|207|![subcascade](subcascade/fig/subcas_0.jpg)|95|![subcascade](subcascade/fig/subcas_0.jpg)|14|
-|2|![subcascade](subcascade/fig/subcas_3.jpg)|256|![subcascade](subcascade/fig/subcas_3.jpg)|218|![subcascade](subcascade/fig/subcas_3.jpg)|157|![subcascade](subcascade/fig/subcas_3.jpg)|124|![subcascade](subcascade/fig/subcas_3.jpg)|89|![subcascade](subcascade/fig/subcas_3.jpg)|54|![subcascade](subcascade/fig/subcas_2.jpg)|12|
-|3|![subcascade](subcascade/fig/subcas_2.jpg)|157|![subcascade](subcascade/fig/subcas_2.jpg)|141|![subcascade](subcascade/fig/subcas_4.jpg)|110|![subcascade](subcascade/fig/subcas_4.jpg)|91|![subcascade](subcascade/fig/subcas_4.jpg)|75|![subcascade](subcascade/fig/subcas_4.jpg)|52|![subcascade](subcascade/fig/subcas_4.jpg)|12|
-|4|![subcascade](subcascade/fig/subcas_4.jpg)|145|![subcascade](subcascade/fig/subcas_4.jpg)|132|![subcascade](subcascade/fig/subcas_2.jpg)|106|![subcascade](subcascade/fig/subcas_2.jpg)|88|![subcascade](subcascade/fig/subcas_2.jpg)|72|![subcascade](subcascade/fig/subcas_2.jpg)|49|![subcascade](subcascade/fig/subcas_3.jpg)|10|
-|5|![subcascade](subcascade/fig/subcas_8.jpg)|102|![subcascade](subcascade/fig/subcas_8.jpg)|92|![subcascade](subcascade/fig/subcas_8.jpg)|77|![subcascade](subcascade/fig/subcas_8.jpg)|73|![subcascade](subcascade/fig/subcas_8.jpg)|51|![subcascade](subcascade/fig/subcas_8.jpg)|32|![subcascade](subcascade/fig/subcas_8.jpg)|10|
-|6|![subcascade](subcascade/fig/subcas_22.jpg)|61|![subcascade](subcascade/fig/subcas_1.jpg)|56|![subcascade](subcascade/fig/subcas_1.jpg)|47|![subcascade](subcascade/fig/subcas_1.jpg)|26|![subcascade](subcascade/fig/subcas_6.jpg)|18|![subcascade](subcascade/fig/subcas_22.jpg)|14|![subcascade](subcascade/fig/subcas_26.jpg)|4|
-|7|![subcascade](subcascade/fig/subcas_1.jpg)|56|![subcascade](subcascade/fig/subcas_22.jpg)|52|![subcascade](subcascade/fig/subcas_6.jpg)|29|![subcascade](subcascade/fig/subcas_6.jpg)|24|![subcascade](subcascade/fig/subcas_22.jpg)|17|![subcascade](subcascade/fig/subcas_6.jpg)|11|![subcascade](subcascade/fig/subcas_22.jpg)|4|
-|8|![subcascade](subcascade/fig/subcas_6.jpg)|47|![subcascade](subcascade/fig/subcas_6.jpg)|45|![subcascade](subcascade/fig/subcas_22.jpg)|27|![subcascade](subcascade/fig/subcas_22.jpg)|21|![subcascade](subcascade/fig/subcas_1.jpg)|16|![subcascade](subcascade/fig/subcas_1.jpg)|10|![subcascade](subcascade/fig/subcas_7.jpg)|4|
-|9|![subcascade](subcascade/fig/subcas_24.jpg)|31|![subcascade](subcascade/fig/subcas_24.jpg)|29|![subcascade](subcascade/fig/subcas_33.jpg)|21|![subcascade](subcascade/fig/subcas_24.jpg)|16|![subcascade](subcascade/fig/subcas_11.jpg)|14|![subcascade](subcascade/fig/subcas_7.jpg)|9|![subcascade](subcascade/fig/subcas_160.jpg)|4|
-|10|![subcascade](subcascade/fig/subcas_33.jpg)|24|![subcascade](subcascade/fig/subcas_33.jpg)|24|![subcascade](subcascade/fig/subcas_11.jpg)|19|![subcascade](subcascade/fig/subcas_11.jpg)|16|![subcascade](subcascade/fig/subcas_24.jpg)|12|![subcascade](subcascade/fig/subcas_24.jpg)|8|![subcascade](subcascade/fig/subcas_61.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:TV Review, Radio Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|4|![subcascade](subcascade/fig/subcas_0.jpg)|4|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:TV Review, Radio Review, Video
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|15|![subcascade](subcascade/fig/subcas_0.jpg)|4|![subcascade](subcascade/fig/subcas_0.jpg)|4|![subcascade](subcascade/fig/subcas_0.jpg)|2|
-##Doctype vs. Citation Count
-#### Doctype:Theater Review
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|0|1-inf|||5-inf|||10-inf|||20-inf|||
-|0|subcascade|tf|subcascade|tf|subcascade|tf|subcascade|tf|
-|1|![subcascade](subcascade/fig/subcas_0.jpg)|39|![subcascade](subcascade/fig/subcas_0.jpg)|13|![subcascade](subcascade/fig/subcas_0.jpg)|6|![subcascade](subcascade/fig/subcas_0.jpg)|4|
