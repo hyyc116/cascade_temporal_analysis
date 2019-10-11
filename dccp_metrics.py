@@ -349,7 +349,7 @@ def plot_dccps():
 
 
 ## 统计性描述
-def stat_citation_dis(pathObj):
+def  stat_citation_dis(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
     top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
     _id_dccp=json.loads(open(pathObj.dccp_path).read())
@@ -393,7 +393,7 @@ def stat_citation_dis(pathObj):
         field_doctype_num['WOS_ALL']['ALL']+=1
         if _doctype in top10_doctypes:
             # doctype_num[_doctype]+=1
-            field_doctype_num[subj][_doctype]+=1
+            field_doctype_num['WOS_ALL'][_doctype]+=1
 
         if _id in sciento_ids:
             field_cn_dis['SCIENTOMETRICS'][_cn]+=1
