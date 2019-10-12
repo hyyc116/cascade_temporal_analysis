@@ -13,6 +13,8 @@ def cascade_role(pathObj):
     owner_count = 0
     pid_role_dict = defaultdict(dict)
 
+    pid_node_role = defaultdict(lambda:defaultdict(list))
+
     for line in open(cc_path):
 
         line = line.strip()
@@ -54,11 +56,17 @@ def cascade_role(pathObj):
                     if ind==0 and od==1:
                         ie_count+=1
 
+                        pid_node_role[pid][nid].append('ie')
+
                     if od>1:
                         le_count+=1
+                        pid_node_role[pid][nid].append('le')
+
 
                     if ind>0 and od>0:
                         connector_count+=1
+                        pid_node_role[pid][nid].append('c')
+
 
             pc = connector_count/float(node_count)
             ple = le_count/float(node_count)
@@ -68,7 +76,10 @@ def cascade_role(pathObj):
             pid_role_dict[pid]['ple'] = ple
             pid_role_dict[pid]['pie'] = pie
 
-    open(pathObj._node_role_dict_path,'w').write(json.dumps(pid_role_dict))
+    open(pathObj._node_role_stat_path,'w').write(json.dumps(pid_role_dict))
+    logging.info('data saved to {}.'.format(pathObj._node_role_stat_path))
+
+    open(pathObj._node_role_dict_path,'w').write(json.dumps(pid_node_role))
     logging.info('data saved to {}.'.format(pathObj._node_role_dict_path))
 
 

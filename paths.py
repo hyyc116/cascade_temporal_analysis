@@ -74,5 +74,6 @@ class PATHS:
 
 
         ## node role
-
+        self._node_role_stat_path = 'data/cascade_node_role_stat_{:}.json'.format(self.name)
         self._node_role_dict_path = 'data/cascade_node_role_dict_{:}.json'.format(self.name)
+
