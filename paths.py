@@ -71,3 +71,8 @@ class PATHS:
 
         ## SCIENTOMETRICS
         self._scientometrics_path = 'scientometrics.txt'
+
+
+        ## node role
+
+        self._node_role_dict_path = 'data/cascade_node_role_dict_{:}.json'.format(self.name)
