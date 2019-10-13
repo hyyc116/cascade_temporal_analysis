@@ -175,6 +175,7 @@ def general_node_role_dis(pathObj):
     ax.legend()
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$P(c)$')
+    ax.set_xscale('log')
 
     ax = axes[1]
     ## subj cn ple
@@ -192,6 +193,8 @@ def general_node_role_dis(pathObj):
     ax.legend()
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$p(le)$')
+    ax.set_xscale('log')
+
 
     ax = axes[2]
     # subj cn pie
@@ -207,6 +210,8 @@ def general_node_role_dis(pathObj):
         ax.plot(xs,ys,label='{}'.format(subj),marker = markers[i])
 
     ax.legend()
+    ax.set_xscale('log')
+
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$p(ie)$')
     plt.tight_layout()
@@ -216,7 +221,7 @@ def general_node_role_dis(pathObj):
 
 
     logging.info('start to plot subj year ps ...')
-    fig,axes = plt.subplots(4,2,figsize=(20,8))
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
     ## 分为八个字图，每个三条线随着时间的变化
     for i,subj in enumerate(sorted(subj_year_pcs.keys())):
 
