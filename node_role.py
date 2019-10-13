@@ -41,7 +41,7 @@ def cascade_role(pathObj):
                 continue
 
             ## 根据出度以及入度对结点的角色进行分析
-            node_count = 0 
+            node_count = 0
             connector_count = 0
             le_count = 0
             ie_count = 0
@@ -54,7 +54,7 @@ def cascade_role(pathObj):
                     node_count+=1
                     ## 如果大于0，表示是endoser的一种
                     ind = dig.in_degree(nid)
-                    
+
                     if ind==0 and od==1:
                         ie_count+=1
 
@@ -92,7 +92,7 @@ def general_node_role_dis(pathObj):
     kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
 
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes =load_attrs(pathObj)
-    
+
     pid_role_dict = json.loads(open(pathObj._node_role_stat_path).read())
 
     sciento_ids = set([l.strip() for l in open('scientometrics.txt')])
@@ -118,7 +118,7 @@ def general_node_role_dis(pathObj):
 
         pc = pid_role_dict[pid]['pc']
         ple = pid_role_dict[pid]['ple']
-        pie  pid_role_dict[pid]['pie']
+        pie = pid_role_dict[pid]['pie']
 
         _cn = int(_id_cn[pid])
         _subjs = _id_subjects[pid]
