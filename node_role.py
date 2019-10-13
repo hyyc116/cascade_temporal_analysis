@@ -250,12 +250,12 @@ def general_node_role_dis(pathObj):
         ax.set_ylabel('$p$')
 
     plt.tight_layout()
-    plt.savefig('data/general_subj_year_ps.png',dpi=300)
-    logging.info('fig saved to data/general_subj_year_ps.png ...')
+    plt.savefig('fig/general_subj_year_ps.png',dpi=300)
+    logging.info('fig saved to fig/general_subj_year_ps.png ...')
 
     logging.info('start to plot doctype ps ...')
     ## 分为三个子图
-    fig,axes = plt.subplots(15,4)
+    fig,axes = plt.subplots(1,3, figsize=(15,4))
 
     ax = axes[0]
     xs = []
