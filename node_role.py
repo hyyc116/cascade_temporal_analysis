@@ -304,6 +304,13 @@ def general_node_role_dis(pathObj):
     plt.savefig('fig/general_doctype_ps.png',dpi=300)
     logging.info('fig saved to fig/general_doctype_ps.png ...')
 
+def parallel_linking():
+
+    pass
+
+
+
+
 
 
 if __name__ == '__main__':
