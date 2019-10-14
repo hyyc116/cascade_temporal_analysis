@@ -304,13 +304,69 @@ def general_node_role_dis(pathObj):
     plt.savefig('fig/general_doctype_ps.png',dpi=300)
     logging.info('fig saved to fig/general_doctype_ps.png ...')
 
-def parallel_linking():
+def parallel_linking_data(pathObj):
 
+    kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
+    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes =load_attrs(pathObj)
+
+    pid_role_dict = json.loads(open(pathObj._node_role_dict_path).read())
+
+    role_subj1_subj2 = defaultdict(lambda:defaultdict(int))
+
+    role_dt1_dt2 = defaultdict(lambda:defaultdict(int))
+    # ple_subj1_subj2 = defaultdict(lambda:defaultdict(int))
+    # pie_subj1_subj2 = defaultdict(lambda:defaultdict(int))
+
+    _year_role_subj1_subj2 = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
+
+    progress = 0
+
+    ## 统计每个subject对另一个subject的作用
+    for pid in pid_role_dict.keys():
+
+        progress+=1
+
+        if progress%1000000==1:
+            logging.info('progress {} ...'.format(progress))
+
+        nid_roles = pid_role_dict[pid]
+        subj2s = _id_subjects[pid]
+
+        dt2 = _id_doctype[pid]
+
+        for nid in nid_roles.keys():
+            roles = pid_role_dict[pid][nid]
+            subj1s = _id_subjects[nid] 
+
+            dt1 = _id_doctype[nid]
+            year = int(_id_year[nid])
+
+            for role in roles:
+                for subj1 in subj1s:
+                    for subj2 in subj2s:
+                        role_subj1_subj2[role][subj1][subj2]+=1
+
+                        _year_role_subj1_subj2[year][role][subj1][subj2]+=1
+
+                role_dt1_dt2[dt1][dt2]+=1
+
+
+    open('data/role_dt1_dt2.json','w').write(json.dumps(role_dt1_dt2))
+    logging.info('data saved to data/role_dt1_dt2.json.')
+
+    open('data/role_subj1_subj2.json','w').write(json.dumps(role_subj1_subj2))
+    logging.info('data saved to data/role_subj1_subj2.json.')
+
+    open('data/year_role_subj1_subj2.json','w').write(json.dumps(year_role_subj1_subj2))
+    logging.info('data saved to data/year_role_subj1_subj2.json.')
+
+
+def plot_role_data():
+
+    ## 对于不同的role的subject进行分析
     pass
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -318,7 +374,10 @@ if __name__ == '__main__':
     paths = PATHS(field)
     # cascade_role(paths)
 
-    general_node_role_dis(paths)
+    # general_node_role_dis(paths)
+
+    ## 平行链接数据
+    parallel_linking_data(paths)
 
 
 
