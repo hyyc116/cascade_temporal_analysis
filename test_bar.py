@@ -10,7 +10,7 @@
 
 # from basic_config import *
 
-import plotly.plotly as py
+import chart_studio.plotly as py
 import plotly
 
 data = dict(
