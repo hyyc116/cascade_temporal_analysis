@@ -427,7 +427,7 @@ def  stat_citation_dis(pathObj):
     plt.yscale('log')
 
     plt.legend()
-    
+
     plt.tight_layout()
 
     plt.savefig('fig/field_cit_dis.png',dpi=400)
@@ -553,7 +553,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
-        
+
         _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
         progress+=1
@@ -656,7 +656,7 @@ def stat_subcascades(pathObj):
 
             field_num_dict[subj][num]+=1
             field_year_num_dict[subj][_year_b][num]+=1
-            
+
 
     open('data/field_num_dict_all.json','w').write(json.dumps(field_num_dict))
     open('data/field_size_dict_all.json','w').write(json.dumps(field_size_dict))
@@ -812,7 +812,7 @@ def plot_subcascade_data():
 
     plt.savefig('fig/year_size_dis.png',dpi=400)
     logging.info('saved to fig/year_size_dis.png.')
-    
+
 
     fig,axes = plt.subplots(2,3,figsize=(15,6))
     for i,subj in enumerate(sorted(field_year_num_dict.keys())):
@@ -1173,7 +1173,7 @@ def output_motif_table():
     # f = open("README.md",'w')
 
     f.write('\n'.join(lines)+'\n')
-    
+
     logging.info('saved to README.md')
 
 
@@ -1197,5 +1197,5 @@ if __name__ == '__main__':
 
     # logging.info('Done')
 
-    # stat_citation_dis(paths)
+    stat_citation_dis(paths)
 

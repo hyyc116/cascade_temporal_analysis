@@ -312,13 +312,13 @@ def parallel_linking_data(pathObj):
 
     pid_role_dict = json.loads(open(pathObj._node_role_dict_path).read())
 
-    role_subj1_subj2 = defaultdict(lambda:defaultdict(int))
+    role_subj1_subj2 = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
 
-    role_dt1_dt2 = defaultdict(lambda:defaultdict(int))
+    role_dt1_dt2 = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     # ple_subj1_subj2 = defaultdict(lambda:defaultdict(int))
     # pie_subj1_subj2 = defaultdict(lambda:defaultdict(int))
 
-    _year_role_subj1_subj2 = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+    _year_role_subj1_subj2 = defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:defaultdict(int))))
 
 
     progress = 0
@@ -338,7 +338,7 @@ def parallel_linking_data(pathObj):
 
         for nid in nid_roles.keys():
             roles = pid_role_dict[pid][nid]
-            subj1s = _id_subjects[nid] 
+            subj1s = _id_subjects[nid]
 
             dt1 = _id_doctype[nid]
             year = int(_id_year[nid])
