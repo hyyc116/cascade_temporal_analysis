@@ -81,7 +81,8 @@ def cascade_role(pathObj):
     open(pathObj._node_role_stat_path,'w').write(json.dumps(pid_role_dict))
     logging.info('data saved to {}.'.format(pathObj._node_role_stat_path))
 
-    open(pathObj._node_role_dict_path,'w').write(json.dumps(pid_node_role))
+    open(pathObj._node_role_dict_path,'w').write(json.dumps(
+        ))
     logging.info('data saved to {}.'.format(pathObj._node_role_dict_path))
 
 
@@ -350,7 +351,7 @@ def parallel_linking_data(pathObj):
 
                         _year_role_subj1_subj2[year][role][subj1][subj2]+=1
 
-                role_dt1_dt2[dt1][dt2]+=1
+                role_dt1_dt2[role][dt1][dt2]+=1
 
 
     open('data/role_dt1_dt2.json','w').write(json.dumps(role_dt1_dt2))
