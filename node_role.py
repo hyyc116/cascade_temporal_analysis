@@ -366,14 +366,113 @@ def parallel_linking_data(pathObj):
     open('data/role_subj1_subj2.json','w').write(json.dumps(role_subj1_subj2))
     logging.info('data saved to data/role_subj1_subj2.json.')
 
-    open('data/year_role_subj1_subj2.json','w').write(json.dumps(year_role_subj1_subj2))
+    open('data/year_role_subj1_subj2.json','w').write(json.dumps(_year_role_subj1_subj2))
     logging.info('data saved to data/year_role_subj1_subj2.json.')
 
+
+
+## gen link
+def gen_link_data(left_right):
+
+    lines = []
+    for left in left_right.keys():
+
+        for right in left_right[left].keys():
+
+            num = left_right[left][right]
+
+            line = "['{}','{}',{},{}]".format(left,right,num,num)
+
+            lines.append(line)
+
+
+    return '['+','.join(lines)+'];'
+
+
+def gen_doc_data(left_right):
+
+    kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
+    lines = []
+    for left in left_right.keys():
+
+        if left not in kept_doctypes:
+            continue
+
+        for right in left_right[left].keys():
+
+            if right not in kept_doctypes:
+                continue
+
+            num = left_right[left][right]
+
+            line = "['{}','{}',{},{}]".format(left,right,num,num)
+
+            lines.append(line)
+
+
+    return '['+','.join(lines)+'];'
 
 def plot_role_data():
 
     ## 对于不同的role的subject进行分析
-    pass
+    colors = ["#3366CC","#DC3912","#FF9900","#109618","#990099","#0099C6"]
+
+    kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
+    subj_colors = []
+
+    for i,subj in enumerate(role_subj1_subj2['c'].keys()):
+
+        subj_colors.append("'{}':'{}'".format(subj,colors[i]))
+
+    subj_color_js = 'var subj_color = {'+','.join(subj_colors)+"};"
+
+
+    doc_colors = []
+
+    for i,doc in enumerate(kept_doctypes):
+
+        doc_colors.append("'{}':'{}'".format(doc,colors[i]))
+
+    doc_color_js = 'var doc_color = {'+','.join(doc_colors)+"};"
+
+
+
+
+    js_scirpts = []
+
+    js_scirpts.append(subj_color_js)
+    js_scirpts.append(doc_color_js)
+
+
+    ## 三种不同的角色生成三种不同的图
+    role_subj1_subj2 = json.loads(open('data/role_subj1_subj2.json').read())
+
+
+    c_js = 'var c_subj_data ='+gen_link_data(role_subj1_subj2['c'])
+    le_js = 'var le_subj_data ='+gen_link_data(role_subj1_subj2['le'])
+    ie_js = 'var ie_subj_data ='+gen_link_data(role_subj1_subj2['ie'])
+
+    js_scirpts.append(c_js)
+    js_scirpts.append(le_js)
+    js_scirpts.append(ie_js)
+
+    role_dt1_dt2 = json.loads(open('data/role_dt1_dt2.json').read())
+
+    c_js = 'var c_doc_data ='+gen_doc_data(role_dt1_dt2['c'])
+    le_js = 'var le_doc_data ='+gen_doc_data(role_dt1_dt2['le'])
+    ie_js = 'var ie_doc_data ='+gen_doc_data(role_dt1_dt2['ie'])
+
+    js_scirpts.append(c_js)
+    js_scirpts.append(le_js)
+    js_scirpts.append(ie_js)
+
+    open('js/data.js','w').write('\n'.join(js_scirpts))
+
+    logging.info('data saved to js/data.js')
+
+
 
 
 if __name__ == '__main__':
@@ -384,7 +483,9 @@ if __name__ == '__main__':
     # general_node_role_dis(paths)
 
     ## 平行链接数据
-    parallel_linking_data(paths)
+    # parallel_linking_data(paths)
+
+    plot_role_data()
 
 
 
