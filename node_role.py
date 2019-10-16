@@ -415,6 +415,10 @@ def gen_doc_data(left_right):
 
 def plot_role_data():
 
+    role_subj1_subj2 = json.loads(open('data/role_subj1_subj2.json').read())
+    role_dt1_dt2 = json.loads(open('data/role_dt1_dt2.json').read())
+
+
     ## 对于不同的role的subject进行分析
     colors = ["#3366CC","#DC3912","#FF9900","#109618","#990099","#0099C6"]
 
@@ -447,7 +451,6 @@ def plot_role_data():
 
 
     ## 三种不同的角色生成三种不同的图
-    role_subj1_subj2 = json.loads(open('data/role_subj1_subj2.json').read())
 
 
     c_js = 'var c_subj_data ='+gen_link_data(role_subj1_subj2['c'])
@@ -458,7 +461,6 @@ def plot_role_data():
     js_scirpts.append(le_js)
     js_scirpts.append(ie_js)
 
-    role_dt1_dt2 = json.loads(open('data/role_dt1_dt2.json').read())
 
     c_js = 'var c_doc_data ='+gen_doc_data(role_dt1_dt2['c'])
     le_js = 'var le_doc_data ='+gen_doc_data(role_dt1_dt2['le'])
