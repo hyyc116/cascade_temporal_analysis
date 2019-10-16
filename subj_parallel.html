@@ -42,47 +42,45 @@ line{
 <script src="js/data.js"></script>
 
 <script>
-var svg = d3.select("div#SUBJ").append("svg").attr("width", 1600).attr("height", 800);
+var svg = d3.select("div#SUBJ").append("svg").attr("width", 1800).attr("height", 800);
 
-svg.append("text").attr("x",250).attr("y",70)
+svg.append("text").attr("x",250).attr("y",20)
     .attr("class","header").text("Connector");
 
-svg.append("text").attr("x",750).attr("y",70)
+svg.append("text").attr("x",800).attr("y",20)
     .attr("class","header").text("Late Endorser");
 
-    svg.append("text").attr("x",1250).attr("y",70)
+    svg.append("text").attr("x",1380).attr("y",20)
     .attr("class","header").text("Isolate Endorser");
 
-var g =[svg.append("g").attr("transform","translate(150,100)")
-        ,svg.append("g").attr("transform","translate(650,100)")
-        ,svg.append("g").attr("transform","translate(1150,100)")];
+var g =[svg.append("g").attr("transform","translate(150,50)")
+        ,svg.append("g").attr("transform","translate(700,50)")
+        ,svg.append("g").attr("transform","translate(1300,50)")];
 
 var bp=[ viz.bP()
-        .data(data)
+        .data(c_subj_data)
         .min(12)
         .pad(1)
         .height(600)
         .width(200)
         .barSize(35)
-        .fill(d=>color[d.primary])
-    ,viz.bP()
-        .data(data)
-        .value(d=>d[3])
-        .min(12)
-        .pad(1)
-        .height(600)
-        .width(200)
-        .barSize(35)
-        .fill(d=>color[d.primary])
+        .fill(d=>subj_color[d.primary])
         ,viz.bP()
-        .data(data)
-        .value(d=>d[2])
+        .data(le_subj_data)
         .min(12)
         .pad(1)
         .height(600)
         .width(200)
         .barSize(35)
-        .fill(d=>color[d.primary])
+        .fill(d=>subj_color[d.primary])
+        ,viz.bP()
+        .data(ie_subj_data)
+        .min(12)
+        .pad(1)
+        .height(600)
+        .width(200)
+        .barSize(35)
+        .fill(d=>subj_color[d.primary])
 ];
 
 [0,1,2].forEach(function(i){
@@ -109,8 +107,8 @@ var bp=[ viz.bP()
 
     g[i].selectAll(".mainBars").append("text").attr("class","perc")
         .attr("x",d=>(d.part=="primary"? -100: 80))
-        .attr("y",d=>+6)
-        .text(function(d){ return d3.format("0.0%")(d.percent)})
+        .attr("y",d=>+20)
+        .text(function(d){ return d3.format("0.00%")(d.percent)})
         .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
 });
 
