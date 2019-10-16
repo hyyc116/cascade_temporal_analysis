@@ -82,8 +82,8 @@ var bp=[ viz.bP()
 [0,1,2].forEach(function(i){
     g[i].call(bp[i])
 
-    g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("Citing Subject");
-    g[i].append("text").attr("x", 250).attr("y",-8).style("text-anchor","middle").text("Cited Subject");
+    g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("Citing Doctype");
+    g[i].append("text").attr("x", 250).attr("y",-8).style("text-anchor","middle").text("Cited Doctype");
 
     g[i].append("line").attr("x1",-100).attr("x2",0);
     g[i].append("line").attr("x1",200).attr("x2",300);
