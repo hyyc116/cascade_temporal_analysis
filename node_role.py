@@ -333,13 +333,19 @@ def parallel_linking_data(pathObj):
             logging.info('progress {} ...'.format(progress))
 
         nid_roles = pid_role_dict[pid]
-        subj2s = _id_subjects[pid]
+        subj2s = _id_subjects.get(pid,None)
+
+        if subj2s is None:
+            continue
 
         dt2 = _id_doctype[pid]
 
         for nid in nid_roles.keys():
             roles = pid_role_dict[pid][nid]
-            subj1s = _id_subjects[nid]
+            subj1s = _id_subjects.get(nid,None)
+
+            if subj1s is None:
+                continue
 
             dt1 = _id_doctype[nid]
             year = int(_id_year[nid])
