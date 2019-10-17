@@ -93,7 +93,7 @@ def get_top_cascade(pathObj):
 
             progress+=1
 
-            if progress%100000==0:
+            if progress%1000000==0:
                 logging.info('progress report {:}, selected cascades size {} ...'.format(progress,len(selected_cascades)))
 
             if pid in id_set:
