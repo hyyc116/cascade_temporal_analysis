@@ -144,8 +144,6 @@ def temporal_dccp(pathObj):
             citing_year = int(_id_year[nid])
 
             if od!=0:
-                total_count+=1
-
                 if od>1:
                     pid_year_role[pid][citing_year].append('le')
 
