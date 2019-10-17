@@ -100,7 +100,7 @@ def get_top_cascade(pathObj):
 
                 selected_cascades[pid] = citation_cascade[pid]
 
-    open('data/selected_high_cascades.json','w').write(selected_cascades)
+    open('data/selected_high_cascades.json','w').write(json.dumps(selected_cascades))
 
     logging.info('data saved to data/selected_high_cascades.json')
 
