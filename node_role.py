@@ -81,8 +81,7 @@ def cascade_role(pathObj):
     open(pathObj._node_role_stat_path,'w').write(json.dumps(pid_role_dict))
     logging.info('data saved to {}.'.format(pathObj._node_role_stat_path))
 
-    open(pathObj._node_role_dict_path,'w').write(json.dumps(
-        ))
+    open(pathObj._node_role_dict_path,'w').write(json.dumps(pid_node_role))
     logging.info('data saved to {}.'.format(pathObj._node_role_dict_path))
 
 
