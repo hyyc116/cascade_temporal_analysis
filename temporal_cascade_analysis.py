@@ -105,6 +105,57 @@ def get_top_cascade(pathObj):
     logging.info('data saved to data/selected_high_cascades.json')
 
 
+def temporal_dccp(pathObj):
+
+    logging.info('loading data ...')
+
+    selected_cascades = json.loads(open('data/selected_high_cascades.json').read())
+    ## 加载时间
+    logging.info('loading _id_pubyear ...')
+    _id_year = json.loads(open(pathObj.paper_year_path).read())
+
+    pid_year_role = defaultdict(lambda:defaultdict(list))
+
+    ## 这个
+    progress = 0
+    for pid in selected_cascades.keys():
+
+        progress+=1
+        if progress%100000==0:
+            logging.info('progress {} ...'.format(progress))
+
+        ## pid
+
+        _year = int(_id_year[pid])
+
+        edges = selected_cascades[pid]
+
+        ## 创建graph
+        dig  = nx.DiGraph()
+        dig.add_edges_from(edges)
+
+        # if citation cascade is not acyclic graph
+        if not nx.is_directed_acyclic_graph(dig):
+            continue
+
+        ## 出度进行计算
+        for nid,od in dig.out_degree():
+
+            citing_year = int(_id_year[nid])
+
+            if od!=0:
+                total_count+=1
+
+                if od>1:
+                    pid_year_role[pid][citing_year].append('le')
+
+                if od==1:
+                    pid_year_role[pid][citing_year].append('ie')
+
+
+    open('data/selected_pid_year_role.json','w').write(json.dumps(pid_year_role))
+
+    logging.info('data saved to data/selected_pid_year_role.json.')
 
 if __name__ == '__main__':
     field = 'ALL'
@@ -112,7 +163,9 @@ if __name__ == '__main__':
 
     # top_1_percent_papers(paths)
 
-    get_top_cascade(paths)
+    # get_top_cascade(paths)
+
+    temporal_dccp(paths)
 
 
 
