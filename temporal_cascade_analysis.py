@@ -64,9 +64,9 @@ def get_top_cascade(pathObj):
 
     for subj in top10subjids:
 
-        id_cn = top10subjids[subj]
+        _id_cn = top10subjids[subj]
 
-        num = len(id_cn)
+        num = len(_id_cn)
         logging.info('subject {} has {} papers.'.format(subj,num))
 
         for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num/10]:
