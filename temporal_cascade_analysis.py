@@ -23,6 +23,11 @@ def top_1_percent_papers(pathObj):
     for _id in _id_subjects.keys():
 
         _subjs = _id_subjects[_id]
+
+
+        if _id_cn.get(_id,None) is None:
+            continue
+
         _cn = int(_id_cn[_id])
 
         for _subj in _subjs:
