@@ -56,11 +56,63 @@ def top_1_percent_papers(pathObj):
     logging.info('data saved to data/subject_id_cn_top1.json.')
 
 
+def get_top_cascade(pathObj):
+
+    top10subjids = json.loads(open('data/subject_id_cn_top1.json').read())
+
+    id_set = []
+
+    for subj in top10subjids:
+
+        id_cn = top10subjids[subj]
+
+        num = len(id_cn)
+        logging.info('subject {} has {} papers.',format(subj,len(id_cn)))
+
+        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num/10]:
+
+            id_set.append(_id)
+
+    id_set = set(id_set)
+
+    logging.info('Number of ids is {}.'.format(len(id_set)))
+
+
+    cc_path = pathObj.cascade_path
+    progress = 0
+
+    selected_cascades = {}
+
+    for line in open(cc_path):
+
+        line = line.strip()
+
+        citation_cascade = json.loads(line)
+
+        for pid in citation_cascade.keys():
+
+            progress+=1
+
+            if progress%100000==0:
+                logging.info('progress report {:}, selected cascades size {} ...'.format(progress,len(selected_cascades)))
+
+            if pid in id_set:
+
+                selected_cascades[pid] = citation_cascade[pid]
+
+    open('data/selected_high_cascades.json','w').write(selected_cascades)
+
+    logging.info('data saved to data/selected_high_cascades.json')
+
+
+
 if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
 
-    top_1_percent_papers(paths)
+    # top_1_percent_papers(paths)
+
+    get_top_cascade(paths)
 
 
 
