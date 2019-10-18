@@ -155,6 +155,50 @@ def temporal_dccp(pathObj):
 
     logging.info('data saved to data/selected_pid_year_role.json.')
 
+
+## 每一个subject选取10篇，看出和year以及获得的citation数量之间的关系
+def plot_temporal_dccp(pathObj):
+
+    selected_pid_year_role = json.loads(open('data/selected_pid_year_role.json').read())
+
+    #首先把所有的进行一起刻画
+
+    lines = ['pid,index,year_index,year,p_cit_num,t_cit_num,le,ie']
+    for pid in selected_pid_year_role.keys():
+
+        total_cit_num = 0
+
+        year_role = selected_pid_year_role[pid]
+
+        first_year = None
+        for ix,year in enumerate(sorted(year_role.keys(),key=lambda x:int(x),reverse=True)):
+            _year = int(year)
+
+            if ix==0:
+
+                first_year=_year
+
+            year_ix = _year-first_year
+
+            roles = year_role[year]
+
+            cit_num = len(roles)
+
+            total_cit_num+=cit_num
+
+            le_num = len([r for r in roles if r=='le'])
+
+            ie_num = len([r for r in role if r=='ie'])
+
+            line = '{},{},{},{},{},{},{},{}'.format(pid,ix,year_ix,_year,cit_num,total_cit_num,le_num,ie_num)
+
+            lines.append(line)
+
+    open('data/temporal_data.csv','w').write('\n'.join(lines))
+
+    logging.info('data saved to data/temporal_data.csv.')
+
+
 if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
@@ -163,7 +207,9 @@ if __name__ == '__main__':
 
     # get_top_cascade(paths)
 
-    temporal_dccp(paths)
+    # temporal_dccp(paths)
+
+    plot_temporal_dccp(paths)
 
 
 
