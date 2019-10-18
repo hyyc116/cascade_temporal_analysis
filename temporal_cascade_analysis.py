@@ -171,7 +171,7 @@ def plot_temporal_dccp(pathObj):
         year_role = selected_pid_year_role[pid]
 
         first_year = None
-        for ix,year in enumerate(sorted(year_role.keys(),key=lambda x:int(x),reverse=True)):
+        for ix,year in enumerate(sorted(year_role.keys(),key=lambda x:int(x))):
             _year = int(year)
 
             if ix==0:
