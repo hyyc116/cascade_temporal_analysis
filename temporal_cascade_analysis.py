@@ -188,7 +188,7 @@ def plot_temporal_dccp(pathObj):
 
             le_num = len([r for r in roles if r=='le'])
 
-            ie_num = len([r for r in role if r=='ie'])
+            ie_num = len([r for r in roles if r=='ie'])
 
             line = '{},{},{},{},{},{},{},{}'.format(pid,ix,year_ix,_year,cit_num,total_cit_num,le_num,ie_num)
 
