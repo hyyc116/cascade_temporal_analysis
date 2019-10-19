@@ -199,6 +199,113 @@ def plot_temporal_dccp(pathObj):
     logging.info('data saved to data/temporal_data.csv.')
 
 
+
+def plot_temporal_data():
+
+    top10subjids = json.loads(open('data/subject_id_cn_top1.json').read())
+
+    id_set = []
+
+    subj_ids = defaultdict(list)
+    for subj in top10subjids:
+
+        _id_cn = top10subjids[subj]
+
+        num = len(_id_cn)
+        logging.info('subject {} has {} papers.'.format(subj,num))
+
+        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:10]:
+
+            id_set.append(_id)
+
+            subj_ids[subj].append(_id)
+
+    id_set = set(id_set)
+
+
+    pid_attrs = defaultdict(list)
+    ## 加载数据
+    for line in open('data/temporal_data.csv'):
+
+        line = line.strip()
+
+        if line.startswith('pid'):
+            continue
+
+        splits = line.split(',')
+
+        pid = splits[0]
+        attrs = splits[1:]
+
+        if pid in id_set:
+
+            pid_attrs[pid].append(attrs)
+
+
+    ## 画出几个学科图
+
+    for subj in subj_ids:
+
+        ## 每一个学科1张图
+        fig,axes = plt.subplots(10,4,figsize=(20,40))
+
+        for i,_id in enumerate(subj_ids[subj]):
+
+            attrs = zip(*pid_attrs[pid])
+
+            year_ixs = attrs[1]
+
+            p_cit_nums = attrs[3]
+            t_cit_nums = attrs[4]
+
+            le_nums = attrs[5]
+            t_le_nums = [np.sum(le_nums[:i+1] for i in range(len(le_nums)))]
+            ie_nums = attrs[6]
+            t_le_nums = [np.sum(ie_nums[:i+1] for i in range(len(ie_nums)))]
+
+
+            ## 每一篇论文四个子图
+            ## 第一个子图随着时间citation数量 le ie的数量变化
+            ax0 = axes[i,0]
+
+            ax0.plot(year_ixs,p_cit_nums,label='citation per year')
+            ax0.plot(year_ixs,ie_nums,label='direct citation')
+            ax0.plot(year_ixs,le_nums,label='indirect citation')
+
+            ax0.set_xlabel('publication year')
+            ax0.set_ylabel('number of citations per year')
+
+
+            ax1 = axes[i,1]
+
+            ax1.plot(year_ixs,t_cit_nums,label='citation per year')
+            ax1.plot(year_ixs,t_ie_nums,label='direct citation')
+            ax1.plot(year_ixs,t_le_nums,label='indirect citation')
+
+            ax1.set_xlabel('publication year')
+            ax1.set_ylabel('number of citations')
+
+
+            ax2 = axes[i,2]
+            ax2.plot(t_cit_nums,le_nums,label='citation per year')
+            ax2.plot(t_cit_nums,ie_nums,label='direct citation')
+
+            ax2.set_xlabel('publication year')
+            ax2.set_ylabel('number of citations per year')
+
+            ax3 = axes[i,3]
+            ax3.plot(t_cit_nums,t_le_nums,label='citation per year')
+            ax3.plot(t_cit_nums,t_ie_nums,label='direct citation')
+
+            ax3.set_xlabel('publication year')
+            ax3.set_ylabel('number of citations')
+
+        plt.tight_layout()
+
+        plt.savefig('fig/{}_temporal.png'.format(subj[:3]))
+
+        logging.info('{} fig saved.'.format(subj))
+
 if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
@@ -209,7 +316,9 @@ if __name__ == '__main__':
 
     # temporal_dccp(paths)
 
-    plot_temporal_dccp(paths)
+    # plot_temporal_dccp(paths)
+
+    plot_temporal_data(paths)
 
 
 
