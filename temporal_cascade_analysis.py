@@ -235,7 +235,7 @@ def plot_temporal_data():
         splits = line.split(',')
 
         pid = splits[0]
-        attrs = splits[1:]
+        attrs = [int(i) for i in splits[1:]]
 
         if pid in id_set:
 
@@ -252,6 +252,8 @@ def plot_temporal_data():
         for i,_id in enumerate(subj_ids[subj]):
 
             attrs = zip(*pid_attrs[_id])
+
+            logging.info('{}'.format(len(attrs)))
 
             year_ixs = attrs[1]
 
