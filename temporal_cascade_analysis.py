@@ -242,6 +242,8 @@ def plot_temporal_data():
             pid_attrs[pid].append(attrs)
 
 
+    logging.info('size of pid_attrs is {}'.format(len(pid_attrs)))
+
     ## 画出几个学科图
 
     for subj in subj_ids:
