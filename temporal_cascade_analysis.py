@@ -258,7 +258,7 @@ def plot_temporal_data():
 
             attrs = zip(*pid_attrs[_id])
 
-            logging.info('{}'.format(len(attrs)))
+            # logging.info('{}'.format(len(attrs)))
 
             year_ixs = attrs[1]
 
@@ -266,9 +266,9 @@ def plot_temporal_data():
             t_cit_nums = attrs[4]
 
             le_nums = attrs[5]
-            t_le_nums = [np.sum(le_nums[:i+1]) for i in range(len(le_nums))]
+            t_le_nums = [np.sum(le_nums[:ix+1]) for ix in range(len(le_nums))]
             ie_nums = attrs[6]
-            t_le_nums = [np.sum(ie_nums[:i+1]) for i in range(len(ie_nums))]
+            t_le_nums = [np.sum(ie_nums[:ix+1]) for ix in range(len(ie_nums))]
 
 
             ## 每一篇论文四个子图
