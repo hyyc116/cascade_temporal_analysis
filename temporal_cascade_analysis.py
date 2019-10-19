@@ -135,8 +135,8 @@ def temporal_dccp(pathObj):
         dig.add_edges_from(edges)
 
         # if citation cascade is not acyclic graph
-        if not nx.is_directed_acyclic_graph(dig):
-            continue
+        # if not nx.is_directed_acyclic_graph(dig):
+        #     continue
 
         ## 出度进行计算
         for nid,od in dig.out_degree():
@@ -321,9 +321,8 @@ if __name__ == '__main__':
 
     # get_top_cascade(paths)
 
-    # temporal_dccp(paths)
-
-    # plot_temporal_dccp(paths)
+    temporal_dccp(paths)
+    plot_temporal_dccp(paths)
 
     plot_temporal_data()
 
