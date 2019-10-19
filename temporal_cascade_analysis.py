@@ -222,6 +222,8 @@ def plot_temporal_data():
 
     id_set = set(id_set)
 
+    logging.info('size of id set {}'.format(len(id_set)))
+
 
     pid_attrs = defaultdict(list)
     ## 加载数据
@@ -236,6 +238,7 @@ def plot_temporal_data():
 
         pid = splits[0]
         attrs = [int(i) for i in splits[1:]]
+
 
         if pid in id_set:
 
