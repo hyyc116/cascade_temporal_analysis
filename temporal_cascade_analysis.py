@@ -239,7 +239,7 @@ def plot_temporal_data():
         pid = splits[0]
         attrs = [int(i) for i in splits[1:]]
 
-
+        print pid
         if pid in id_set:
 
             pid_attrs[pid].append(attrs)
