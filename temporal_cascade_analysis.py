@@ -268,7 +268,7 @@ def plot_temporal_data():
             le_nums = attrs[5]
             t_le_nums = [np.sum(le_nums[:ix+1]) for ix in range(len(le_nums))]
             ie_nums = attrs[6]
-            t_le_nums = [np.sum(ie_nums[:ix+1]) for ix in range(len(ie_nums))]
+            t_ie_nums = [np.sum(ie_nums[:ix+1]) for ix in range(len(ie_nums))]
 
 
             ## 每一篇论文四个子图
