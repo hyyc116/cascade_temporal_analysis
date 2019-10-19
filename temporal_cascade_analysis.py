@@ -214,7 +214,7 @@ def plot_temporal_data():
         num = len(_id_cn)
         logging.info('subject {} has {} papers.'.format(subj,num))
 
-        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:100]:
+        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:10]:
 
             id_set.append(_id)
 
@@ -254,7 +254,7 @@ def plot_temporal_data():
         ## 每一个学科1张图
         fig,axes = plt.subplots(10,4,figsize=(20,40))
 
-        for i,_id in enumerate(subj_ids[subj][:10]):
+        for i,_id in enumerate(subj_ids[subj]):
 
             attrs = zip(*pid_attrs[_id])
 
