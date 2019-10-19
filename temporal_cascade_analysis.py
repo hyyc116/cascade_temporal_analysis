@@ -318,7 +318,7 @@ if __name__ == '__main__':
 
     # plot_temporal_dccp(paths)
 
-    plot_temporal_data(paths)
+    plot_temporal_data()
 
 
 
