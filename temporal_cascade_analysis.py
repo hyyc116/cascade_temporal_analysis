@@ -251,7 +251,7 @@ def plot_temporal_data():
 
         for i,_id in enumerate(subj_ids[subj]):
 
-            attrs = zip(*pid_attrs[pid])
+            attrs = zip(*pid_attrs[_id])
 
             year_ixs = attrs[1]
 
