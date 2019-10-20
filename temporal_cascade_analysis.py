@@ -237,7 +237,7 @@ def plot_temporal_data():
         splits = line.split(',')
 
         pid = splits[0]
-        attrs = [int(i) for i in splits[1:]]
+        attrs = [float(i) for i in splits[1:]]
 
         # print pid
         if pid in id_set:
