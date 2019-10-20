@@ -275,41 +275,63 @@ def plot_temporal_data():
             ## 第一个子图随着时间citation数量 le ie的数量变化
             ax0 = axes[i,0]
 
-            ax0.plot(year_ixs,p_cit_nums,label='citation per year')
+            ax0.plot(year_ixs,p_cit_nums,label='total citation')
             ax0.plot(year_ixs,ie_nums,label='direct citation')
             ax0.plot(year_ixs,le_nums,label='indirect citation')
 
             ax0.set_xlabel('publication year')
             ax0.set_ylabel('number of citations per year')
 
+            ax0.set_title('Number distribution')
+
+            ax0.legend()
+
 
             ax1 = axes[i,1]
 
-            ax1.plot(year_ixs,t_cit_nums,label='citation per year')
-            ax1.plot(year_ixs,t_ie_nums,label='direct citation')
-            ax1.plot(year_ixs,t_le_nums,label='indirect citation')
+            # ax1.plot(year_ixs,t_cit_nums,label='citation per year')
+            ax1.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='direct citation')
+            ax1.plot(year_ixs,np.array(t_le_nums)/np.array(t_cit_nums),label='indirect citation')
 
             ax1.set_xlabel('publication year')
             ax1.set_ylabel('number of citations')
 
+            ax1.set_title('total percentage')
+
+
+            ax1.legend()
+
+
 
             ax2 = axes[i,2]
-            ax2.plot(t_cit_nums,le_nums,label='citation per year')
-            ax2.plot(t_cit_nums,ie_nums,label='direct citation')
+            ax2.plot(t_cit_nums,np.array(le_nums)/np.array(cit_nums),label='indirect citation')
+            ax2.plot(t_cit_nums,np.array(ie_nums)/np.array(cit_nums),label='direct citation')
 
             ax2.set_xlabel('publication year')
             ax2.set_ylabel('number of citations per year')
 
+            ax2.set_title('year percentage')
+
+
+            ax2.legend()
+
+
             ax3 = axes[i,3]
-            ax3.plot(t_cit_nums,t_le_nums,label='citation per year')
-            ax3.plot(t_cit_nums,t_ie_nums,label='direct citation')
+            ax3.plot(t_cit_nums,np.array(t_ie_nums)/np.array(t_cit_nums),label='citation per year')
+            ax3.plot(t_cit_nums,np.array(t_le_nums)/np.array(t_cit_nums),label='direct citation')
 
             ax3.set_xlabel('publication year')
             ax3.set_ylabel('number of citations')
 
+            ax2.set_title('total percentage')
+
+
+            ax3.legend()
+
+
         plt.tight_layout()
 
-        plt.savefig('fig/{}_temporal.png'.format(subj[:3]))
+        plt.savefig('fig/temporal_{}.png'.format(subj[:3]))
 
         logging.info('{} fig saved.'.format(subj))
 
