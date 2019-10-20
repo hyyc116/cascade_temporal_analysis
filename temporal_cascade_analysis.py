@@ -252,7 +252,7 @@ def plot_temporal_data():
     for subj in subj_ids:
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(10,4,figsize=(20,40))
+        fig,axes = plt.subplots(10,5,figsize=(25,40))
 
         for i,_id in enumerate(subj_ids[subj]):
 
@@ -286,8 +286,22 @@ def plot_temporal_data():
 
             ax0.legend()
 
-
             ax1 = axes[i,1]
+
+            # ax1.plot(year_ixs,t_cit_nums,label='citation per year')
+            ax1.plot(year_ixs,np.array(ie_nums)/np.array(p_cit_nums),label='direct citation')
+            ax1.plot(year_ixs,np.array(le_nums)/np.array(p_cit_nums),label='indirect citation')
+
+            ax1.set_xlabel('publication year')
+            ax1.set_ylabel('number of citations')
+
+            ax1.set_title('year percentage')
+
+
+            ax1.legend()
+
+
+            ax1 = axes[i,2]
 
             # ax1.plot(year_ixs,t_cit_nums,label='citation per year')
             ax1.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='direct citation')
@@ -303,7 +317,7 @@ def plot_temporal_data():
 
 
 
-            ax2 = axes[i,2]
+            ax2 = axes[i,3]
             ax2.plot(t_cit_nums,np.array(le_nums)/np.array(p_cit_nums),label='indirect citation')
             ax2.plot(t_cit_nums,np.array(ie_nums)/np.array(p_cit_nums),label='direct citation')
 
@@ -316,7 +330,7 @@ def plot_temporal_data():
             ax2.legend()
 
 
-            ax3 = axes[i,3]
+            ax3 = axes[i,4]
             ax3.plot(t_cit_nums,np.array(t_ie_nums)/np.array(t_cit_nums),label='citation per year')
             ax3.plot(t_cit_nums,np.array(t_le_nums)/np.array(t_cit_nums),label='direct citation')
 
