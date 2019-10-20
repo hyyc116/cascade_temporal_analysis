@@ -304,8 +304,8 @@ def plot_temporal_data():
 
 
             ax2 = axes[i,2]
-            ax2.plot(t_cit_nums,np.array(le_nums)/np.array(cit_nums),label='indirect citation')
-            ax2.plot(t_cit_nums,np.array(ie_nums)/np.array(cit_nums),label='direct citation')
+            ax2.plot(t_cit_nums,np.array(le_nums)/np.array(p_cit_nums),label='indirect citation')
+            ax2.plot(t_cit_nums,np.array(ie_nums)/np.array(p_cit_nums),label='direct citation')
 
             ax2.set_xlabel('publication year')
             ax2.set_ylabel('number of citations per year')
