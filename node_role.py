@@ -363,9 +363,37 @@ def parallel_linking_data(pathObj):
     logging.info('data saved to data/year_role_subj1_subj2.json.')
 
 
-def plot_role_data():
 
+def gen_data(dict):
+
+    data_lines = {}
+    for role in role_subj1_subj2.keys():
+
+        lines = []
+        for subj1 in role_subj1_subj2[role].keys():
+
+            subj2 = role_subj1_subj2[role][subj1]
+
+            num = role_subj1_subj2[role][subj1][subj2]
+
+            line= "[{},{},{},{}]".format(subj1,subj2,num,num)
+
+            lines.append(line)
+
+        data_lines[role] = lines
+
+
+
+
+
+
+def plot_role_data(pathObj):
     ## 对于不同的role的subject进行分析
+    role_subj1_subj2 = json.loads(open('data/role_subj1_subj2.json').read())
+
+
+
+
     pass
 
 
