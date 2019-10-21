@@ -312,13 +312,13 @@ def parallel_linking_data(pathObj):
 
     pid_role_dict = json.loads(open(pathObj._node_role_dict_path).read())
 
-    role_subj1_subj2 = defaultdict(lambda:defaultdict(int))
+    role_subj1_subj2 = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
 
-    role_dt1_dt2 = defaultdict(lambda:defaultdict(int))
+    role_dt1_dt2 = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     # ple_subj1_subj2 = defaultdict(lambda:defaultdict(int))
     # pie_subj1_subj2 = defaultdict(lambda:defaultdict(int))
 
-    _year_role_subj1_subj2 = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+    _year_role_subj1_subj2 = defaultdict(lambda:defaultdict(lambda:defaultdict(lambda:defaultdict(int))))
 
 
     progress = 0
@@ -332,13 +332,19 @@ def parallel_linking_data(pathObj):
             logging.info('progress {} ...'.format(progress))
 
         nid_roles = pid_role_dict[pid]
-        subj2s = _id_subjects[pid]
+        subj2s = _id_subjects.get(pid,None)
+
+        if subj2s is None:
+            continue
 
         dt2 = _id_doctype[pid]
 
         for nid in nid_roles.keys():
             roles = pid_role_dict[pid][nid]
-            subj1s = _id_subjects[nid] 
+            subj1s = _id_subjects.get(nid,None)
+
+            if subj1s is None:
+                continue
 
             dt1 = _id_doctype[nid]
             year = int(_id_year[nid])
@@ -350,7 +356,7 @@ def parallel_linking_data(pathObj):
 
                         _year_role_subj1_subj2[year][role][subj1][subj2]+=1
 
-                role_dt1_dt2[dt1][dt2]+=1
+                role_dt1_dt2[role][dt1][dt2]+=1
 
 
     open('data/role_dt1_dt2.json','w').write(json.dumps(role_dt1_dt2))
@@ -359,7 +365,7 @@ def parallel_linking_data(pathObj):
     open('data/role_subj1_subj2.json','w').write(json.dumps(role_subj1_subj2))
     logging.info('data saved to data/role_subj1_subj2.json.')
 
-    open('data/year_role_subj1_subj2.json','w').write(json.dumps(year_role_subj1_subj2))
+    open('data/year_role_subj1_subj2.json','w').write(json.dumps(_year_role_subj1_subj2))
     logging.info('data saved to data/year_role_subj1_subj2.json.')
 
 
@@ -396,6 +402,110 @@ def plot_role_data(pathObj):
 
     pass
 
+## gen link
+def gen_link_data(left_right):
+
+    lines = []
+    for left in left_right.keys():
+
+        for right in left_right[left].keys():
+
+            num = left_right[left][right]
+
+            line = "['{}','{}',{},{}]".format(left,right,num,num)
+
+            lines.append(line)
+
+
+    return '['+','.join(lines)+'];'
+
+
+def gen_doc_data(left_right):
+
+    kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
+    lines = []
+    for left in left_right.keys():
+
+        if left not in kept_doctypes:
+            continue
+
+        for right in left_right[left].keys():
+
+            if right not in kept_doctypes:
+                continue
+
+            num = left_right[left][right]
+
+            line = "['{}','{}',{},{}]".format(left,right,num,num)
+
+            lines.append(line)
+
+
+    return '['+','.join(lines)+'];'
+
+def plot_role_data():
+
+    role_subj1_subj2 = json.loads(open('data/role_subj1_subj2.json').read())
+    role_dt1_dt2 = json.loads(open('data/role_dt1_dt2.json').read())
+
+
+    ## 对于不同的role的subject进行分析
+    colors = ["#3366CC","#DC3912","#FF9900","#109618","#990099","#0099C6"]
+
+    kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
+    subj_colors = []
+
+    for i,subj in enumerate(role_subj1_subj2['c'].keys()):
+
+        subj_colors.append("'{}':'{}'".format(subj,colors[i]))
+
+    subj_color_js = 'var subj_color = {'+','.join(subj_colors)+"};"
+
+
+    doc_colors = []
+
+    for i,doc in enumerate(kept_doctypes):
+
+        doc_colors.append("'{}':'{}'".format(doc,colors[i]))
+
+    doc_color_js = 'var doc_color = {'+','.join(doc_colors)+"};"
+
+
+
+
+    js_scirpts = []
+
+    js_scirpts.append(subj_color_js)
+    js_scirpts.append(doc_color_js)
+
+
+    ## 三种不同的角色生成三种不同的图
+
+
+    c_js = 'var c_subj_data ='+gen_link_data(role_subj1_subj2['c'])
+    le_js = 'var le_subj_data ='+gen_link_data(role_subj1_subj2['le'])
+    ie_js = 'var ie_subj_data ='+gen_link_data(role_subj1_subj2['ie'])
+
+    js_scirpts.append(c_js)
+    js_scirpts.append(le_js)
+    js_scirpts.append(ie_js)
+
+
+    c_js = 'var c_doc_data ='+gen_doc_data(role_dt1_dt2['c'])
+    le_js = 'var le_doc_data ='+gen_doc_data(role_dt1_dt2['le'])
+    ie_js = 'var ie_doc_data ='+gen_doc_data(role_dt1_dt2['ie'])
+
+    js_scirpts.append(c_js)
+    js_scirpts.append(le_js)
+    js_scirpts.append(ie_js)
+
+    open('js/data.js','w').write('\n'.join(js_scirpts))
+
+    logging.info('data saved to js/data.js')
+
+
 
 if __name__ == '__main__':
     field = 'ALL'
@@ -406,6 +516,8 @@ if __name__ == '__main__':
 
     ## 平行链接数据
     parallel_linking_data(paths)
+
+    # plot_role_data()
 
 
 
