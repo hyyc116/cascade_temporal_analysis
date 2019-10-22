@@ -27,72 +27,63 @@ line{
 }
 </style>
 <body>
+
+<div id='SUBJ'>
+    <p>Late Endorser</p>
+
+</div>
+
+<div id='DOC'>
+
+</div>
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+<script src="js/temp_data.js"></script>
+
 <script>
+var svg = d3.select("div#SUBJ").append("svg").attr("width", 3600).attr("height", 1600);
 
-var data=[['Lite','Lite',1,1],
-['Lite','Small',3,3],
-['Lite','Medium',6,6],
-['Lite','Plus',0,0],
-['Lite','Grand',0,0],
-['Lite','Elite',0,0],
-['Small','Lite',1,1],
-['Small','Small',3,3],
-['Small','Medium',6,6],
-['Small','Plus',0,0],
-['Small','Grand',0,0],
-['Small','Elite',0,0],
-['Medium','Lite',1,1],
-['Medium','Small',3,3],
-['Medium','Medium',6,6],
-['Medium','Plus',0,0],
-['Medium','Grand',0,0],
-['Medium','Elite',0,0],
-];
-var color ={Elite:"#3366CC", Grand:"#DC3912",  Lite:"#FF9900", Medium:"#109618", Plus:"#990099", Small:"#0099C6"};
-var svg = d3.select("body").append("svg").attr("width", 960).attr("height", 800);
+var bp = new Array();
+var g = new Array();
+var ix = new Array();
+for(var k=0;k<le_temp_data.length;k++)
+{   
 
-svg.append("text").attr("x",250).attr("y",70)
-    .attr("class","header").text("Sales Attempt");
-    
-svg.append("text").attr("x",750).attr("y",70)
-    .attr("class","header").text("Sales");
+    var m = parseInt(k/6);
+    var n = k%6;
 
-var g =[svg.append("g").attr("transform","translate(150,100)")
-        ,svg.append("g").attr("transform","translate(650,100)")];
 
-var bp=[ viz.bP()
-        .data(data)
+    svg.append("text").attr("x",(350+570*n)).attr("y",20+m*800)
+    .attr("class","header").text(year_labels[k]);
+    g.push(svg.append("g").attr("transform","translate("+(250+570*n)+","+(50+800*m)+")"));
+
+    ix.push(k);
+
+    bp.push(viz.bP()
+        .data(le_temp_data[k])
         .min(12)
         .pad(1)
         .height(600)
         .width(200)
         .barSize(35)
-        .fill(d=>color[d.primary])      
-    ,viz.bP()
-        .data(data)
-        .value(d=>d[3])
-        .min(12)
-        .pad(1)
-        .height(600)
-        .width(200)
-        .barSize(35)
-        .fill(d=>color[d.primary])
-];
-        
-[0,1].forEach(function(i){
+        .fill(d=>subj_color[d.primary]));
+
+}
+
+
+ix.forEach(function(i){
     g[i].call(bp[i])
-    
-    g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("Channel");
-    g[i].append("text").attr("x", 250).attr("y",-8).style("text-anchor","middle").text("State");
-    
+
+    g[i].append("text").attr("x",-50).attr("y",-8).style("text-anchor","middle").text("Citing Subject");
+    g[i].append("text").attr("x", 250).attr("y",-8).style("text-anchor","middle").text("Cited Subject");
+
     g[i].append("line").attr("x1",-100).attr("x2",0);
     g[i].append("line").attr("x1",200).attr("x2",300);
-    
+
     g[i].append("line").attr("y1",610).attr("y2",610).attr("x1",-100).attr("x2",0);
     g[i].append("line").attr("y1",610).attr("y2",610).attr("x1",200).attr("x2",300);
-    
+
     g[i].selectAll(".mainBars")
         .on("mouseover",mouseover)
         .on("mouseout",mouseout);
@@ -102,31 +93,34 @@ var bp=[ viz.bP()
         .attr("y",d=>+6)
         .text(d=>d.key)
         .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
-    
+
     g[i].selectAll(".mainBars").append("text").attr("class","perc")
         .attr("x",d=>(d.part=="primary"? -100: 80))
-        .attr("y",d=>+6)
-        .text(function(d){ return d3.format("0.0%")(d.percent)})
+        .attr("y",d=>+20)
+        .text(function(d){ return d3.format("0.00%")(d.percent)})
         .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
 });
 
 function mouseover(d){
-    [0,1].forEach(function(i){
+    ix.forEach(function(i){
         bp[i].mouseover(d);
-        
+
         g[i].selectAll(".mainBars").select(".perc")
         .text(function(d){ return d3.format("0.0%")(d.percent)});
     });
 }
 function mouseout(d){
-    [0,1].forEach(function(i){
+    ix.forEach(function(i){
         bp[i].mouseout(d);
-        
+
         g[i].selectAll(".mainBars").select(".perc")
         .text(function(d){ return d3.format("0.0%")(d.percent)});
     });
 }
 d3.select(self.frameElement).style("height", "800px");
 </script>
+
+
+
 </body>
 </html>
