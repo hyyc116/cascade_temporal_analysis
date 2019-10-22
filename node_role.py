@@ -389,18 +389,79 @@ def gen_data(dict):
         data_lines[role] = lines
 
 
+def year_bin(year):
+    return int((year-1900)/10)
+
+# year_bins = ['1910','1920','1930','1940','1950','1960','19','1980','2000','2016']
+def year_label(i):
+    return '{:}-{:}'.format(1900+i*10,1900+(i+1)*10)
 
 
 
 
-def plot_role_data(pathObj):
+def gen_temporal_role_data(pathObj):
     ## 对于不同的role的subject进行分析
+    logging.info('generating data ....')
+    year_role_subj1_subj2 = json.loads(open('data/year_role_subj1_subj2.json').read())
+
+    type_yearbin_data = defaultdict(lambda:defaultdict(dict))
+
+    _yearbins = []
+    for _year in year_role_subj1_subj2.keys():
+
+
+        _yearbin = year_bin(int(_year))
+
+        _yearbins.append(_yearbin)
+
+        for role in year_role_subj1_subj2[_year]:
+
+            subj1_subj2 = year_role_subj1_subj2[_year][role]
+
+            type_yearbin_data[role][_yearbin].update(subj1_subj2)
+
+
+    _yearbins = list(sorted(list(set(_yearbins))))
+
+    _yearlabels = [year_label[yb] for yb in _yearbins]
+
+    year_label_js = 'var year_labels=['+','.join(_yearlabels)+'];'
+
     role_subj1_subj2 = json.loads(open('data/role_subj1_subj2.json').read())
 
+    colors = ["#3366CC","#DC3912","#FF9900","#109618","#990099","#0099C6"]
+    subj_colors = []
+    for i,subj in enumerate(role_subj1_subj2['c'].keys()):
+        subj_colors.append("'{}':'{}'".format(subj,colors[i]))
+    subj_color_js = 'var subj_color = {'+','.join(subj_colors)+"};"
+    logging.info('generating JS....')
+
+    ## 不同类型的数据生成js,每一种类型的每一年生成数据
+    jses= []
+
+    jses.append(subj_color_js)
+
+    jses.append(year_label_js)
+
+    for role in type_yearbin_data.keys():
+
+        role_js = 'var {}_temp_data=['.format(role)
+
+        data = []
+        for _yearbin in sorte(type_yearbin_data[role].keys()):
+
+            data.append(gen_link_data(type_yearbin_data[role][_yearbin]))
+
+        role_js +=','.join(data)+'];'
+
+        jses.append(role_js)
 
 
+    open('js/temp_data.js','w').write('\n'.join(jses))
 
-    pass
+    logging.info('Data saved to js/temp_data.js.')
+
+
 
 ## gen link
 def gen_link_data(left_right):
@@ -417,7 +478,7 @@ def gen_link_data(left_right):
             lines.append(line)
 
 
-    return '['+','.join(lines)+'];'
+    return '['+','.join(lines)+']'
 
 
 def gen_doc_data(left_right):
@@ -484,9 +545,9 @@ def plot_role_data():
     ## 三种不同的角色生成三种不同的图
 
 
-    c_js = 'var c_subj_data ='+gen_link_data(role_subj1_subj2['c'])
-    le_js = 'var le_subj_data ='+gen_link_data(role_subj1_subj2['le'])
-    ie_js = 'var ie_subj_data ='+gen_link_data(role_subj1_subj2['ie'])
+    c_js = 'var c_subj_data ='+gen_link_data(role_subj1_subj2['c'])+';'
+    le_js = 'var le_subj_data ='+gen_link_data(role_subj1_subj2['le'])+';'
+    ie_js = 'var ie_subj_data ='+gen_link_data(role_subj1_subj2['ie'])+';'
 
     js_scirpts.append(c_js)
     js_scirpts.append(le_js)
