@@ -576,9 +576,11 @@ if __name__ == '__main__':
     # general_node_role_dis(paths)
 
     ## 平行链接数据
-    parallel_linking_data(paths)
+    # parallel_linking_data(paths)
 
     # plot_role_data()
+
+    gen_temporal_role_data(paths)
 
 
 
