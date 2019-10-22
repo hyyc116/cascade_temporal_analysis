@@ -448,7 +448,7 @@ def gen_temporal_role_data(pathObj):
         role_js = 'var {}_temp_data=['.format(role)
 
         data = []
-        for _yearbin in sorte(type_yearbin_data[role].keys()):
+        for _yearbin in sorted(type_yearbin_data[role].keys()):
 
             data.append(gen_link_data(type_yearbin_data[role][_yearbin]))
 
