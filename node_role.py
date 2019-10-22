@@ -423,7 +423,7 @@ def gen_temporal_role_data(pathObj):
 
     _yearbins = list(sorted(list(set(_yearbins))))
 
-    _yearlabels = [year_label[yb] for yb in _yearbins]
+    _yearlabels = [year_label(yb) for yb in _yearbins]
 
     year_label_js = 'var year_labels=['+','.join(_yearlabels)+'];'
 
