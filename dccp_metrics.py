@@ -190,7 +190,7 @@ def plot_dccps():
             xs.append(int(cc))
             ys.append(p_of_dccp)
 
-            if int(cc)==10 & field=='WOS_ALL':
+            if int(cc)==10 and field=='WOS_ALL':
                 logging.info('P(e>n|C=n) is {} when citation number is 10.'.format(p_of_dccp))
 
 
