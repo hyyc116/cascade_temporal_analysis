@@ -194,7 +194,7 @@ def plot_dccps():
                 logging.info('P(e>n|C=n) is {} when citation number is 10.'.format(p_of_dccp))
 
 
-        ax.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
+        ax.plot(xs,ys,label='{}'.format(field))
         ax.set_xscale('log')
 
         ax.set_xlabel('number of citations')
@@ -309,7 +309,7 @@ def plot_dccps():
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$e_{i-norm}$')
 
-        lgd2 = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.1), ncol=2)
+        lgd2 = ax2.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=2)
 
 
         if field == 'SCIENTOMETRICS':
