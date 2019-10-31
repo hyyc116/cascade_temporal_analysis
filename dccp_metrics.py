@@ -795,7 +795,7 @@ def plot_subcascade_data():
 
             ax =axes[int(int(year)/3),int(int(year)%3)]
 
-            year_label = year_bins(int(year))
+            year_label = year_label(int(year))
             xs = []
             ys = []
             for size in sorted(year_size_dict[year].keys(),key=lambda x:int(x)):
