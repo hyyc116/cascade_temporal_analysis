@@ -720,7 +720,7 @@ def plot_subcascade_data():
 
         xs,ys = cdf(xs,ys)
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
-        ax.plot(xs,ys,marker = markers[i],label='{}'.format(subj))
+        ax.plot(xs,ys,label='{}'.format(subj))
 
         ax.set_xlabel('size of subcascade')
         ax.set_ylabel('number of subcascade')
@@ -755,7 +755,7 @@ def plot_subcascade_data():
 
         # ax.plot(xs,ys,'o',fillstyle='none')
         xs,ys = cdf(xs,ys)
-        ax.plot(xs,ys,marker=markers[i],label='{}'.format(subj))
+        ax.plot(xs,ys,label='{}'.format(subj))
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.set_xlabel('number of components')
         ax.set_ylabel('number of papers')
@@ -805,7 +805,7 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[i],label=subj)
+            ax.plot(xs,ys,label=subj)
 
             ax.set_xlabel('size of subcascade')
             ax.set_ylabel('percentage')
@@ -842,14 +842,14 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[i],label=subj)
+            ax.plot(xs,ys,label=subj)
 
             ax.set_xlabel('number of components')
             ax.set_ylabel('percentage')
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(year_label))
-            ax.legend()
+            ax.legend(prop={size:6})
 
             # ax.legend()
 
@@ -879,7 +879,7 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[i],label=subj)
+            ax.plot(xs,ys,label=subj)
 
             ax.set_xlabel('size of subcascade')
             ax.set_ylabel('percentage')
@@ -910,7 +910,7 @@ def plot_subcascade_data():
 
             xs,ys = cdf(xs,ys)
 
-            ax.plot(xs,ys,marker=markers[i],label=subj)
+            ax.plot(xs,ys,label=subj)
 
             ax.set_xlabel('number of components')
             ax.set_ylabel('percentage')
@@ -1197,13 +1197,13 @@ if __name__ == '__main__':
     # run_all(paths)
     # dccp_of_paper(paths)
     # stat_dccp(paths)
-    plot_dccps()
+    # plot_dccps()
 
     # stat_subcascades(paths)
-    # plot_subcascade_data()
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
 
-    stat_citation_dis(paths)
+    # stat_citation_dis(paths)
 
