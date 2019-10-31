@@ -728,7 +728,9 @@ def plot_subcascade_data():
         ax.set_xscale('log')
         ax.set_yscale('log')
 
-        ax.set_title('{}'.format(subj))
+        # ax.set_title('{}'.format(subj))
+
+    ax.legend(prop={'size':6})
 
         # lgd = ax.legend(loc=9,bbox_to_anchor=(-0.2, 0.5), ncol=1)
 
@@ -763,13 +765,15 @@ def plot_subcascade_data():
         ax.set_xscale('log')
         ax.set_yscale('log')
 
+
         # ax.set_title('{}'.format(subj))
-        lgd = ax.legend(loc=9,bbox_to_anchor=(1.3, 0.8), ncol=1)
+        # lgd = ax.legend(loc=9,bbox_to_anchor=(1.3, 0.8), ncol=1)
+    ax.legend(prop={'size':6})
+
 
     plt.tight_layout()
 
-    plt.savefig('fig/field_subcas_num_dis.png',dpi=400,additional_artists=[lgd],
-    bbox_inches="tight")
+    plt.savefig('fig/field_subcas_num_dis.png',dpi=400)
     logging.info('Size distribution saved to fig/field_subcas_num_dis.png.')
 
 
