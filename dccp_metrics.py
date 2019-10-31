@@ -815,7 +815,7 @@ def plot_subcascade_data():
 
         # ax.text(0,0,'{}'.format(subj))
 
-            ax.legend(prop={size:6})
+            ax.legend(prop={'size':6})
     plt.tight_layout()
 
     plt.savefig('fig/year_size_dis.png',dpi=400)
@@ -849,9 +849,9 @@ def plot_subcascade_data():
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(year_l))
-            ax.legend(prop={size:6})
+            ax.legend(prop={'size':6})
 
-            # ax.legend(prop={size:6})
+            # ax.legend(prop={'size':6})
 
     plt.tight_layout()
 
@@ -886,7 +886,7 @@ def plot_subcascade_data():
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(doctype))
-            ax.legend(prop={size:6})
+            ax.legend(prop={'size':6})
 
     plt.tight_layout()
 
@@ -917,7 +917,7 @@ def plot_subcascade_data():
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(doctype))
-            ax.legend(prop={size:6})
+            ax.legend(prop={'size':6})
 
     plt.tight_layout()
 
