@@ -170,9 +170,11 @@ def general_node_role_dis(pathObj):
             xs.append(_cn)
             ys.append(np.mean(_cn_pcs[_cn]))
 
-        ax.plot(xs,ys,label='{}'.format(subj),marker = markers[i])
+        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-    ax.legend()
+        ax.plot(xs,zs,label='{}'.format(subj),marker = markers[i])
+
+    ax.legend(prop={'size':6})
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$P(c)$')
     ax.set_xscale('log')
@@ -188,9 +190,11 @@ def general_node_role_dis(pathObj):
             xs.append(_cn)
             ys.append(np.mean(_cn_ples[_cn]))
 
-        ax.plot(xs,ys,label='{}'.format(subj),marker = markers[i])
+        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-    ax.legend()
+        ax.plot(xs,zs,label='{}'.format(subj),marker = markers[i])
+
+    ax.legend(prop={'size':6})
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$p(le)$')
     ax.set_xscale('log')
@@ -207,9 +211,11 @@ def general_node_role_dis(pathObj):
             xs.append(_cn)
             ys.append(np.mean(_cn_pies[_cn]))
 
-        ax.plot(xs,ys,label='{}'.format(subj),marker = markers[i])
+        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-    ax.legend()
+        ax.plot(xs,zs,label='{}'.format(subj),marker = markers[i])
+
+    ax.legend(prop={'size':6})
     ax.set_xscale('log')
 
     ax.set_xlabel('number of citations')
@@ -241,13 +247,14 @@ def general_node_role_dis(pathObj):
             ples.append(np.mean(_year_ples[_year]))
             pies.append(np.mean(_year_pies[_year]))
 
-        ax.plot(xs,pcs,label='p(c)',marker = markers[0])
-        ax.plot(xs,ples,label='p(le)',marker = markers[1])
-        ax.plot(xs,pies,label='p(ie)',marker = markers[1])
+        ax.plot(xs,pcs,label='p(c)')
+        ax.plot(xs,ples,label='p(le)')
+        ax.plot(xs,pies,label='p(ie)')
 
         ax.legend()
         ax.set_xlabel('publication year')
         ax.set_ylabel('$p$')
+        ax.set_title('{}'.format(subj))
 
     plt.tight_layout()
     plt.savefig('fig/general_subj_year_ps.png',dpi=300)
@@ -255,9 +262,10 @@ def general_node_role_dis(pathObj):
 
     logging.info('start to plot doctype ps ...')
     ## 分为三个子图
-    fig,axes = plt.subplots(1,3, figsize=(15,4))
+    fig,ax = plt.subplots(1,1, figsize=(5,4))
 
-    ax = axes[0]
+    width = 0.5
+
     xs = []
     ys = []
     for i,doctype in enumerate(kept_doctypes):
@@ -265,13 +273,8 @@ def general_node_role_dis(pathObj):
         xs.append(i)
         ys.append(np.mean(pcs))
 
-    ax.bar(xs,ys)
-    ax.set_xticks(xs)
-    ax.set_xticklabels(kept_doctypes)
-    ax.set_xlabel('doctype')
-    ax.set_ylabel('$p(c)$')
+    ax.bar(np.arange(len(xs))-width,ys,width=width,label='{}'.format('p(c)'))
 
-    ax = axes[1]
     xs = []
     ys = []
     for i,doctype in enumerate(kept_doctypes):
@@ -279,13 +282,9 @@ def general_node_role_dis(pathObj):
         xs.append(i)
         ys.append(np.mean(ples))
 
-    ax.bar(xs,ys)
-    ax.set_xticks(xs)
-    ax.set_xticklabels(kept_doctypes)
-    ax.set_xlabel('doctype')
-    ax.set_ylabel('$p(le)$')
+    ax.bar(np.arange(len(xs)),ys,width=width,label='{}'.format('p(le)'))
 
-    ax = axes[2]
+
     xs = []
     ys = []
     for i,doctype in enumerate(kept_doctypes):
@@ -293,11 +292,12 @@ def general_node_role_dis(pathObj):
         xs.append(i)
         ys.append(np.mean(pies))
 
-    ax.bar(xs,ys)
+    ax.bar(np.arange(len(xs)),ys,width=width,label='{}'.format('p(ie)'))
+
     ax.set_xticks(xs)
-    ax.set_xticklabels(kept_doctypes)
+    ax.set_xticklabels(kept_doctypes,rotation=-90)
     ax.set_xlabel('doctype')
-    ax.set_ylabel('$p(ie)$')
+    ax.set_ylabel('$percentage$')
 
     plt.tight_layout()
 
@@ -573,14 +573,14 @@ if __name__ == '__main__':
     paths = PATHS(field)
     # cascade_role(paths)
 
-    # general_node_role_dis(paths)
+    general_node_role_dis(paths)
 
     ## 平行链接数据
     # parallel_linking_data(paths)
 
     # plot_role_data()
 
-    gen_temporal_role_data(paths)
+    # gen_temporal_role_data(paths)
 
 
 
