@@ -832,7 +832,7 @@ def plot_subcascade_data():
         for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
             ax =axes[int(int(year)/3),int(int(year)%3)]
 
-            year_label = year_bins[int(year)]
+            year_l = year_label(int(year))
             xs = []
             ys = []
             for size in sorted(year_num_dict[year].keys(),key=lambda x:int(x)):
@@ -848,7 +848,7 @@ def plot_subcascade_data():
             ax.set_ylabel('percentage')
             ax.set_xscale('log')
             ax.set_yscale('log')
-            ax.set_title('{}'.format(year_label))
+            ax.set_title('{}'.format(year_l))
             ax.legend(prop={size:6})
 
             # ax.legend()
