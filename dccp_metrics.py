@@ -781,7 +781,7 @@ def plot_subcascade_data():
 
 
     ## 每一个subject两张图，分别对size和num随着doctype以及时间的变化进行描述
-    fig,axes = plt.subplots(2,3,figsize=(15,6))
+    fig,axes = plt.subplots(4,3,figsize=(15,12))
     for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
         year_size_dict = field_year_size_dict[subj]
@@ -815,14 +815,14 @@ def plot_subcascade_data():
 
         # ax.text(0,0,'{}'.format(subj))
 
-            ax.legend()
+            ax.legend(prop={size:6})
     plt.tight_layout()
 
     plt.savefig('fig/year_size_dis.png',dpi=400)
     logging.info('saved to fig/year_size_dis.png.')
 
 
-    fig,axes = plt.subplots(2,3,figsize=(15,6))
+    fig,axes = plt.subplots(4,3,figsize=(15,12))
     for i,subj in enumerate(sorted(field_year_num_dict.keys())):
 
         year_num_dict = field_year_num_dict[subj]
@@ -851,7 +851,7 @@ def plot_subcascade_data():
             ax.set_title('{}'.format(year_l))
             ax.legend(prop={size:6})
 
-            # ax.legend()
+            # ax.legend(prop={size:6})
 
     plt.tight_layout()
 
@@ -886,7 +886,7 @@ def plot_subcascade_data():
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(doctype))
-            ax.legend()
+            ax.legend(prop={size:6})
 
     plt.tight_layout()
 
@@ -917,7 +917,7 @@ def plot_subcascade_data():
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(doctype))
-            ax.legend()
+            ax.legend(prop={size:6})
 
     plt.tight_layout()
 
