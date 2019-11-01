@@ -172,7 +172,7 @@ def general_node_role_dis(pathObj):
 
         zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-        ax.plot(xs,zs,label='{}'.format(subj),marker = markers[i])
+        ax.plot(xs,zs,label='{}'.format(subj))
 
     ax.legend(prop={'size':6})
     ax.set_xlabel('number of citations')
@@ -192,7 +192,7 @@ def general_node_role_dis(pathObj):
 
         zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-        ax.plot(xs,zs,label='{}'.format(subj),marker = markers[i])
+        ax.plot(xs,zs,label='{}'.format(subj))
 
     ax.legend(prop={'size':6})
     ax.set_xlabel('number of citations')
