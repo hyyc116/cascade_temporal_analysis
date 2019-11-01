@@ -298,6 +298,7 @@ def general_node_role_dis(pathObj):
     ax.set_xticklabels(kept_doctypes,rotation=-90)
     ax.set_xlabel('doctype')
     ax.set_ylabel('$percentage$')
+    ax.legend()
 
     plt.tight_layout()
 
