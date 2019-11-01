@@ -211,7 +211,7 @@ def general_node_role_dis(pathObj):
             xs.append(_cn)
             ys.append(np.mean(_cn_pies[_cn]))
 
-        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
+        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.01,it=1,is_sorted =True))[1]]
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
@@ -264,7 +264,7 @@ def general_node_role_dis(pathObj):
     ## 分为三个子图
     fig,ax = plt.subplots(1,1, figsize=(5,4))
 
-    width = 0.5
+    width = 0.3
 
     xs = []
     ys = []
@@ -292,7 +292,7 @@ def general_node_role_dis(pathObj):
         xs.append(i)
         ys.append(np.mean(pies))
 
-    ax.bar(np.arange(len(xs)),ys,width=width,label='{}'.format('p(ie)'))
+    ax.bar(np.arange(len(xs))+width,ys,width=width,label='{}'.format('p(ie)'))
 
     ax.set_xticks(xs)
     ax.set_xticklabels(kept_doctypes,rotation=-90)
