@@ -87,6 +87,19 @@ def cascade_role(pathObj):
 
 markers = ['o','>','^','s','.','*','D','<']
 
+def moving_average(ys,win=10):
+
+    avgs = []
+    for i,y in enumerate(ys):
+
+        start = i-10 if i>=10 else 0
+
+        avgs.append(np.mean(ys[start:i+1]))
+
+    return avgs
+
+
+
 def general_node_role_dis(pathObj):
 
     kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
@@ -157,6 +170,21 @@ def general_node_role_dis(pathObj):
             doctype_ples[_doctype].append(ple)
             doctype_pies[_doctype].append(pie)
 
+
+    open('data/subj_cn_pcs.json','w').write(json.dumps(subj_cn_pcs))
+    open('data/subj_cn_ples.json','w').write(json.dumps(subj_cn_ples))
+    open('data/subj_cn_pies.json','w').write(json.dumps(subj_cn_pies))
+    open('data/subject_year_pcs.json','w').write(json.dumps(subject_year_pcs))
+    open('data/doctype_pcs.json','w').write(json.dumps(doctype_pcs))
+    open('data/doctype_ples.json','w').write(json.dumps(doctype_ples))
+    open('data/doctype_pies.json','w').write(json.dumps(doctype_pies))
+    logging.info('data saved')
+
+def plot_node_dis():
+    kept_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
+    subj_cn_pcs = json.loads(open('data/subj_cn_pcs.json').read())
+
     logging.info('start to plot subj cn ps ...')
     ## 画图 subj cn pc
     fig,axes = plt.subplots(1,3,figsize=(15,4))
@@ -170,7 +198,7 @@ def general_node_role_dis(pathObj):
             xs.append(_cn)
             ys.append(np.mean(_cn_pcs[_cn]))
 
-        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
+        zs = moving_average(ys,5)
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
@@ -178,6 +206,9 @@ def general_node_role_dis(pathObj):
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$P(c)$')
     ax.set_xscale('log')
+
+
+    subj_cn_ples = json.loads(open('data/subj_cn_ples.json').read())
 
     ax = axes[1]
     ## subj cn ple
@@ -190,7 +221,10 @@ def general_node_role_dis(pathObj):
             xs.append(_cn)
             ys.append(np.mean(_cn_ples[_cn]))
 
-        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
+        # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
+
+        zs = moving_average(ys,5)
+
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
@@ -198,6 +232,9 @@ def general_node_role_dis(pathObj):
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$p(le)$')
     ax.set_xscale('log')
+
+
+    subj_cn_pies = json.loads(open('data/subj_cn_pies.json').read())
 
 
     ax = axes[2]
@@ -211,7 +248,10 @@ def general_node_role_dis(pathObj):
             xs.append(_cn)
             ys.append(np.mean(_cn_pies[_cn]))
 
-        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.01,it=1,is_sorted =True))[1]]
+        # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.01,it=1,is_sorted =True))[1]]
+
+        zs = moving_average(ys,5)
+
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
@@ -225,6 +265,8 @@ def general_node_role_dis(pathObj):
     logging.info('fig saved to fig/general_subj_cc_ps.png ...')
 
 
+
+    subject_year_pcs = json.loads(open('data/subject_year_pcs.json').read())
 
     logging.info('start to plot subj year ps ...')
     fig,axes = plt.subplots(2,4,figsize=(20,8))
@@ -259,6 +301,18 @@ def general_node_role_dis(pathObj):
     plt.tight_layout()
     plt.savefig('fig/general_subj_year_ps.png',dpi=300)
     logging.info('fig saved to fig/general_subj_year_ps.png ...')
+
+
+
+    doctype_pcs = json.loads(open('data/doctype_pcs.json').read())
+
+
+
+    doctype_ples = json.loads(open('data/doctype_ples.json').read())
+
+
+
+    doctype_pies = json.loads(open('data/doctype_pies.json').read())
 
     logging.info('start to plot doctype ps ...')
     ## 分为三个子图
@@ -575,6 +629,7 @@ if __name__ == '__main__':
     # cascade_role(paths)
 
     general_node_role_dis(paths)
+    plot_node_dis()
 
     ## 平行链接数据
     # parallel_linking_data(paths)
