@@ -198,7 +198,7 @@ def plot_node_dis():
 
         xs = []
         ys = []
-        for _cn in sorted(_cn_pcs.keys()):
+        for _cn in sorted(_cn_pcs.keys(),key=lambda x:int(x)):
             xs.append(_cn)
             ys.append(np.mean(_cn_pcs[_cn]))
 
@@ -216,7 +216,7 @@ def plot_node_dis():
 
     ax = axes[1]
     ## subj cn ple
-    for i,subj in enumerate(sorted(subj_cn_ples.keys())):
+    for i,subj in enumerate(sorted(subj_cn_ples.keys(),key=lambda x:int(x))):
         _cn_ples = subj_cn_ples[subj]
 
         xs = []
@@ -243,7 +243,7 @@ def plot_node_dis():
 
     ax = axes[2]
     # subj cn pie
-    for i,subj in enumerate(sorted(subj_cn_pies.keys())):
+    for i,subj in enumerate(sorted(subj_cn_pies.keys(),key=lambda x:int(x))):
         _cn_pies = subj_cn_pies[subj]
 
         xs = []
@@ -291,7 +291,7 @@ def plot_node_dis():
         pcs = []
         ples = []
         pies = []
-        for _year in sorted(_year_pcs.keys()):
+        for _year in sorted(_year_pcs.keys(),key=lambda x:int(x)):
             xs.append(_year)
             pcs.append(np.mean(_year_pcs[_year]))
             ples.append(np.mean(_year_ples[_year]))
@@ -636,7 +636,7 @@ if __name__ == '__main__':
     paths = PATHS(field)
     # cascade_role(paths)
 
-    general_node_role_dis(paths)
+    # general_node_role_dis(paths)
     plot_node_dis()
 
     ## 平行链接数据
