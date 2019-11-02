@@ -174,7 +174,11 @@ def general_node_role_dis(pathObj):
     open('data/subj_cn_pcs.json','w').write(json.dumps(subj_cn_pcs))
     open('data/subj_cn_ples.json','w').write(json.dumps(subj_cn_ples))
     open('data/subj_cn_pies.json','w').write(json.dumps(subj_cn_pies))
-    open('data/subject_year_pcs.json','w').write(json.dumps(subject_year_pcs))
+    open('data/subj_year_pcs.json','w').write(json.dumps(subj_year_pcs))
+    open('data/subj_year_ples.json','w').write(json.dumps(subj_year_ples))
+
+    open('data/subj_year_pies.json','w').write(json.dumps(subj_year_pies))
+
     open('data/doctype_pcs.json','w').write(json.dumps(doctype_pcs))
     open('data/doctype_ples.json','w').write(json.dumps(doctype_ples))
     open('data/doctype_pies.json','w').write(json.dumps(doctype_pies))
@@ -266,7 +270,11 @@ def plot_node_dis():
 
 
 
-    subject_year_pcs = json.loads(open('data/subject_year_pcs.json').read())
+    subj_year_pcs = json.loads(open('data/subj_year_pcs.json').read())
+    subj_year_ples = json.loads(open('data/subj_year_ples.json').read())
+
+    subj_year_pies = json.loads(open('data/subj_year_pies.json').read())
+
 
     logging.info('start to plot subj year ps ...')
     fig,axes = plt.subplots(2,4,figsize=(20,8))
