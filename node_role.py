@@ -243,12 +243,12 @@ def plot_node_dis():
 
     ax = axes[2]
     # subj cn pie
-    for i,subj in enumerate(sorted(subj_cn_pies.keys(),key=lambda x:int(x))):
+    for i,subj in enumerate(sorted(subj_cn_pies.keys())):
         _cn_pies = subj_cn_pies[subj]
 
         xs = []
         ys = []
-        for _cn in sorted(_cn_pies.keys()):
+        for _cn in sorted(_cn_pies.keys(),key=lambda x:int(x)):
             xs.append(_cn)
             ys.append(np.mean(_cn_pies[_cn]))
 
