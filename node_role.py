@@ -199,10 +199,10 @@ def plot_node_dis():
         xs = []
         ys = []
         for _cn in sorted(_cn_pcs.keys(),key=lambda x:int(x)):
-            xs.append(_cn)
+            xs.append(int(_cn))
             ys.append(np.mean(_cn_pcs[_cn]))
 
-        zs = moving_average(ys,5)
+        zs = moving_average(ys,50)
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
@@ -222,12 +222,12 @@ def plot_node_dis():
         xs = []
         ys = []
         for _cn in sorted(_cn_ples.keys(),key=lambda x:int(x)):
-            xs.append(_cn)
+            xs.append(int(_cn))
             ys.append(np.mean(_cn_ples[_cn]))
 
         # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-        zs = moving_average(ys,5)
+        zs = moving_average(ys,50)
 
 
         ax.plot(xs,zs,label='{}'.format(subj))
@@ -249,12 +249,12 @@ def plot_node_dis():
         xs = []
         ys = []
         for _cn in sorted(_cn_pies.keys(),key=lambda x:int(x)):
-            xs.append(_cn)
+            xs.append(int(_cn))
             ys.append(np.mean(_cn_pies[_cn]))
 
         # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.01,it=1,is_sorted =True))[1]]
 
-        zs = moving_average(ys,5)
+        zs = moving_average(ys,50)
 
 
         ax.plot(xs,zs,label='{}'.format(subj))
@@ -292,7 +292,7 @@ def plot_node_dis():
         ples = []
         pies = []
         for _year in sorted(_year_pcs.keys(),key=lambda x:int(x)):
-            xs.append(_year)
+            xs.append(int(_year))
             pcs.append(np.mean(_year_pcs[_year]))
             ples.append(np.mean(_year_ples[_year]))
             pies.append(np.mean(_year_pies[_year]))
