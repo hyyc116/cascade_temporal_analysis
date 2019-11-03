@@ -93,6 +93,8 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     field_cc_dccps = defaultdict(lambda:defaultdict(list))
     field_ccbin_eins = defaultdict(lambda:defaultdict(list))
 
+    field_cc_eins = defaultdict(lambda:defaultdict(list))
+
     ## 领域 时间 dccps
     field_year_dccps = defaultdict(lambda:defaultdict(list))
     field_year_eins = defaultdict(lambda:defaultdict(list))
@@ -114,6 +116,8 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         for subj in _top_sujects:
 
             field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
+
+            field_cc_eins[subj][_cn].append(_id_dccp[_id][1])
             for cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
                     field_ccbin_eins[subj][cc_ix].append(_id_dccp[_id][1]/float(_cn))
@@ -131,6 +135,8 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         field_year_eins['WOS_ALL'][_year].append(_id_dccp[_id][1]/float(_cn))
 
         field_cc_dccps['WOS_ALL'][_cn].append(_id_dccp[_id][0])
+        field_cc_eins['WOS_ALL'][_cn].append(_id_dccp[_id][1])
+
         for cc_ix,_cc_cl in enumerate(_cn_clas):
             if _cc_cl==1:
                 field_ccbin_eins['WOS_ALL'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
@@ -144,12 +150,16 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             field_year_eins['SCIENTOMETRICS'][_year].append(_id_dccp[_id][1]/float(_cn))
 
             field_cc_dccps['SCIENTOMETRICS'][_cn].append(_id_dccp[_id][0])
+            field_cc_eins['SCIENTOMETRICS'][_cn].append(_id_dccp[_id][1])
+
             for cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
                     field_ccbin_eins['SCIENTOMETRICS'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
 
 
     open('data/field_cc_dccps.json','w').write(json.dumps(field_cc_dccps))
+
+    open('data/field_cc_eins.json','w').write(json.dumps(field_cc_eins))
     open('data/field_ccbin_eins.json','w').write(json.dumps(field_ccbin_eins))
     open('data/field_year_dccps.json','w').write(json.dumps(field_year_dccps))
     open('data/field_year_eins.json','w').write(json.dumps(field_year_eins))
@@ -157,6 +167,60 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     open('data/field_doctype_eins.json','w').write(json.dumps(field_doctype_eins))
 
     logging.info('data saved.')
+
+    boxplot()
+
+def boxplot():
+    field_cc_eins = json.loads(open('data/field_cc_eins.json').read())
+    field_CLS_dccps = defaultdict(lambda:defaultdict(list))
+
+    for fi,field in enumerate(sorted(field_cc_eins.keys())):
+
+        ## dccp随着citation count的变化
+        ax = axes[0]
+        xs = []
+        ys = []
+        for cc in sorted(field_cc_eins[field].keys(),key=lambda x:int(x)):
+
+            if int(cc)<36:
+                CLS = 0
+            elif int(cc)<120:
+                CLS = 1
+            else:
+                CLS = 2
+
+            dccps  = field_cc_eins[field][cc]
+
+            field_CLS_dccps[field][CLS].extend(dccps)
+
+    ## file CLs DCCPS box plots
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    for i,subj in enumerate(sorted(field_CLS_dccps.keys())):
+        logging.info('field {} ...'.format(subj))
+        data = []
+        for CLS in sorted(field_CLS_dccps[subj].keys()):
+            logging.info('CLS:{}'.format(CLS))
+            # logging.info('num of dccps:{}'.format())
+            data.append(field_CLS_dccps[subj][CLS])
+
+        print('length of data {}'.format(len(data)))
+
+        ax = axes[i/4,i%4]
+
+        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+
+        ax.set_xlabel('Paper Impact Level')
+        ax.set_ylabel('$e_{i-norm}$')
+        ax.set_yscale('log')
+        ax.set_title('{}'.format(subj))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/boxplot_wos_all.png',dpi=300)
+
+    logging.info('fig saved to fig/boxplot_wos_all.png.')
+
+
 
 def plot_dccps():
 
@@ -277,7 +341,6 @@ def plot_dccps():
     fig,axes = plt.subplots(1,3,figsize=(18,5))
     ## 分不同的领域查看ein随着citation count, doctype, 时间之间的变化
 
-    field_CLS_dccps = defaultdict(lambda:defaultdict(list))
 
 
 
@@ -386,32 +449,7 @@ def plot_dccps():
     # logging.info('Done')
 
 
-    ## file CLs DCCPS box plots
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
-    for i,subj in enumerate(sorted(field_CLS_dccps.keys())):
-        logging.info('field {} ...'.format(subj))
-        data = []
-        for CLS in sorted(field_CLS_dccps[subj].keys()):
-            logging.info('CLS:{}'.format(CLS))
-            # logging.info('num of dccps:{}'.format())
-            data.append(field_CLS_dccps[subj][CLS])
 
-        print('length of data {}'.format(len(data)))
-
-        ax = axes[i/4,i%4]
-
-        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
-
-        ax.set_xlabel('Paper Impact Level')
-        ax.set_ylabel('$e_{i-norm}$')
-        ax.set_yscale('log')
-        ax.set_title('{}'.format(subj))
-
-    plt.tight_layout()
-
-    plt.savefig('fig/boxplot_wos_all.png',dpi=300)
-
-    logging.info('fig saved to fig/boxplot_wos_all.png.')
 
     return
 
