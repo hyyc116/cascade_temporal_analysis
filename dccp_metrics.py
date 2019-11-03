@@ -365,7 +365,11 @@ def plot_dccps():
     plt.figure(figsize=(5,4))
     for subj in sorted(subj_eins.keys()):
 
+
         eins = [float('{:.2f}'.format(ein)) for ein in subj_eins[subj]]
+
+        logging.info('subj:{},len:{}'.format(subj,len(eins)))
+
 
         eins_counter = Counter(eins)
         xs = []
@@ -382,6 +386,7 @@ def plot_dccps():
 
     plt.xlabel('$e_{i-norm}$')
     plt.ylabel('$P(X>e_{i-norm})$')
+    plt.legend(prop={'size':6})
 
     plt.xscale('log')
 
