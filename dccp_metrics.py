@@ -358,14 +358,14 @@ def plot_dccps():
     logging.info('fig saved to fig/eins_total.png.')
 
 
-    logging.info('Done')
+    # logging.info('Done')
 
 
     ## eins的ccdf
     plt.figure(figsize=(5,4))
     for subj in sorted(subj_eins.keys()):
 
-        eins = subj_eins[subj]
+        eins = [float('{:.2f}'.format(ein)) for ein in subj_eins[subj]]
 
         eins_counter = Counter(eins)
         xs = []
