@@ -266,6 +266,9 @@ def plot_dccps():
 
     fig,axes = plt.subplots(1,3,figsize=(18,5))
     ## 分不同的领域查看ein随着citation count, doctype, 时间之间的变化
+
+    ## 统计不同学科的e_i-norm的list
+    subj_eins = defaultdict(list)
     for fi,field in enumerate(sorted(field_ccbin_eins.keys())):
 
         ## dccp随着citation count的变化
@@ -274,6 +277,9 @@ def plot_dccps():
         ys = []
         for cc in sorted(field_ccbin_eins[field].keys(),key=lambda x:int(x)):
             dccps  = field_ccbin_eins[field][cc]
+
+            subj_eins[field].extend(dccps)
+
             ## dccp 在这个的比例
             p_of_dccp = np.mean(dccps)
 
@@ -353,6 +359,37 @@ def plot_dccps():
 
 
     logging.info('Done')
+
+
+    ## eins的ccdf
+    plt.figure(figsize=(5,4))
+    for subj in sroted(subj_eins.keys()):
+
+        eins = subj_eins[subj]
+
+        eins_counter = Counter(eins)
+        xs = []
+        ys = []
+
+        for x in sorted(eins_counter.keys()):
+
+            xs.append(x)
+            ys.append(eins_counter[x])
+
+        xs,ys = cdf(xs,ys)
+
+        plt.plot(xs,ys,label='{}'.format(subj))
+
+    plt.xlabel('$e_{i-norm}$')
+    plt.ylabel('$P(X>e_{i-norm})$')
+
+    plt.xscale('log')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/eins-ccdf.png',dpi=300)
+    logging.info('e_i-norm ccdf saved to fig/eins-ccdf.png.')
+
 
 
 
@@ -1201,10 +1238,10 @@ if __name__ == '__main__':
     # run_all(paths)
     # dccp_of_paper(paths)
     # stat_dccp(paths)
-    # plot_dccps()
+    plot_dccps()
 
     # stat_subcascades(paths)
-    plot_subcascade_data()
+    # plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')

@@ -310,16 +310,8 @@ def plot_node_dis():
     plt.savefig('fig/general_subj_year_ps.png',dpi=300)
     logging.info('fig saved to fig/general_subj_year_ps.png ...')
 
-
-
     doctype_pcs = json.loads(open('data/doctype_pcs.json').read())
-
-
-
     doctype_ples = json.loads(open('data/doctype_ples.json').read())
-
-
-
     doctype_pies = json.loads(open('data/doctype_pies.json').read())
 
     logging.info('start to plot doctype ps ...')
