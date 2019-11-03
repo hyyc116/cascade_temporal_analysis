@@ -297,6 +297,7 @@ def plot_dccps():
                 CLS = 1
             else:
                 CLS = 2
+
             dccps  = field_ccbin_eins[field][cc]
 
             field_CLS_dccps[field][CLS].extend(dccps)
@@ -394,7 +395,7 @@ def plot_dccps():
             # logging.info('num of dccps:{}'.format())
             data.append(field_CLS_dccps[subj][CLS])
 
-        print('length of data {}'.format(data))
+        print('length of data {}'.format(len(data)))
 
         ax = axes[i/4,i%4]
 
