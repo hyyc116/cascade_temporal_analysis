@@ -173,7 +173,8 @@ def plot_dccps():
     field_doctype_eins = json.loads(open('data/field_doctype_eins.json').read())
 
 
-    field_CLS_dccps = defaultdict(lambda:defaultdict(list))
+
+
 
     logging.info('startting to plotting ....')
     fig,axes = plt.subplots(1,3,figsize=(20,5))
@@ -186,18 +187,12 @@ def plot_dccps():
         ys = []
         for cc in sorted(field_cc_dccps[field].keys(),key=lambda x:int(x)):
 
-            if int(cc)<36:
-                CLS = 0
-            elif int(cc)<120:
-                CLS = 1
-            else:
-                CLS = 2
+
 
 
 
             dccps  = field_cc_dccps[field][cc]
 
-            field_CLS_dccps[field][CLS].extend(dccps)
 
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
@@ -282,6 +277,10 @@ def plot_dccps():
     fig,axes = plt.subplots(1,3,figsize=(18,5))
     ## 分不同的领域查看ein随着citation count, doctype, 时间之间的变化
 
+    field_CLS_dccps = defaultdict(lambda:defaultdict(list))
+
+
+
     ## 统计不同学科的e_i-norm的list
     subj_eins = defaultdict(list)
     for fi,field in enumerate(sorted(field_ccbin_eins.keys())):
@@ -291,7 +290,17 @@ def plot_dccps():
         xs = []
         ys = []
         for cc in sorted(field_ccbin_eins[field].keys(),key=lambda x:int(x)):
+
+            if int(cc)<36:
+                CLS = 0
+            elif int(cc)<120:
+                CLS = 1
+            else:
+                CLS = 2
             dccps  = field_ccbin_eins[field][cc]
+
+            field_CLS_dccps[field][CLS].extend(dccps)
+
 
             subj_eins[field].extend(dccps)
 
@@ -382,6 +391,7 @@ def plot_dccps():
         logging.info('field {} ...'.format(subj))
         data = []
         for CLS in sorted(field_CLS_dccps[subj].keys()):
+            logging.info('num of dccps:{}'.format())
             data.append(field_CLS_dccps[subj][CLS])
 
         ax = axes[i/4,i%4]
