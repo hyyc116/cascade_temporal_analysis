@@ -363,7 +363,7 @@ def plot_dccps():
 
     ## eins的ccdf
     plt.figure(figsize=(5,4))
-    for subj in sroted(subj_eins.keys()):
+    for subj in sorted(subj_eins.keys()):
 
         eins = subj_eins[subj]
 
