@@ -392,6 +392,7 @@ def plot_dccps():
         logging.info('field {} ...'.format(subj))
         data = []
         for CLS in sorted(field_CLS_dccps[subj].keys()):
+            logging.info('CLS:{}'.format(CLS))
             # logging.info('num of dccps:{}'.format())
             data.append(field_CLS_dccps[subj][CLS])
 
