@@ -173,6 +173,8 @@ def plot_dccps():
     field_doctype_eins = json.loads(open('data/field_doctype_eins.json').read())
 
 
+    field_CLS_dccps = defaultdict(lambda:defaultdict(list))
+
     logging.info('startting to plotting ....')
     fig,axes = plt.subplots(1,3,figsize=(20,5))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
@@ -183,7 +185,20 @@ def plot_dccps():
         xs = []
         ys = []
         for cc in sorted(field_cc_dccps[field].keys(),key=lambda x:int(x)):
+
+            if int(cc)<36:
+                CLS = 0
+            elif int(cc)<120:
+                CLS = 1
+            else:
+                CLS = 2
+
+
+
             dccps  = field_cc_dccps[field][cc]
+
+            field_CLS_dccps[field][CLS].extend(dccps)
+
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
@@ -361,6 +376,32 @@ def plot_dccps():
     # logging.info('Done')
 
 
+    ## file CLs DCCPS box plots
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    for i,subj in enumerate(sorted(field_CLS_dccps.keys())):
+        logging.info('field {} ...'.format(subj))
+        data = []
+        for CLS in sorted(field_CLS_dccps[subj].keys()):
+            data.append(field_CLS_dccps[subj][CLS])
+
+        ax = axes[i]
+
+        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+
+        ax.set_xlabel('Paper Impact Level')
+        ax.set_ylabel('$e_{i-norm}$')
+        ax.set_yscale('log')
+        ax.set_title('{}'.format(subj))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/boxplot_wos_all.png',dpi=300)
+
+    logging.info('fig saved to fig/boxplot_wos_all.png.')
+
+    return
+
+
     ## eins的ccdf
     plt.figure(figsize=(5,4))
     for subj in sorted(subj_eins.keys()):
@@ -394,6 +435,8 @@ def plot_dccps():
 
     plt.savefig('fig/eins-ccdf.png',dpi=300)
     logging.info('e_i-norm ccdf saved to fig/eins-ccdf.png.')
+
+
 
 
 
