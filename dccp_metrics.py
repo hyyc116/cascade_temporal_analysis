@@ -366,7 +366,7 @@ def plot_dccps():
     for subj in sorted(subj_eins.keys()):
 
 
-        eins = [float('{:.2f}'.format(ein)) for ein in subj_eins[subj]]
+        eins = [f for f in [float('{:.2f}'.format(ein)) for ein in subj_eins[subj]] if f>0]
 
         logging.info('subj:{},len:{}'.format(subj,len(eins)))
 
