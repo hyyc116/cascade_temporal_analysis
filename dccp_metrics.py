@@ -394,6 +394,8 @@ def plot_dccps():
             # logging.info('num of dccps:{}'.format())
             data.append(field_CLS_dccps[subj][CLS])
 
+        print('length of data {}'.format(data))
+
         ax = axes[i/4,i%4]
 
         ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
