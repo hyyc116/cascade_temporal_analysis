@@ -188,7 +188,7 @@ def boxplot():
             else:
                 CLS = 2
 
-            dccps  = field_cc_eins[field][cc]
+            dccps  = [float(f) for f in field_cc_eins[field][cc] if float(f)>0]
 
             field_CLS_dccps[field][CLS].extend(dccps)
 
