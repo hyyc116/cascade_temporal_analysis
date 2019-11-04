@@ -168,7 +168,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
     logging.info('data saved.')
 
-    boxplot()
+    # boxplot()
 
 def boxplot():
     field_cc_eins = json.loads(open('data/field_cc_eins.json').read())
@@ -177,7 +177,6 @@ def boxplot():
     for fi,field in enumerate(sorted(field_cc_eins.keys())):
 
         ## dccp随着citation count的变化
-        ax = axes[0]
         xs = []
         ys = []
         for cc in sorted(field_cc_eins[field].keys(),key=lambda x:int(x)):
@@ -1337,7 +1336,8 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    stat_dccp(paths)
+    # stat_dccp(paths)
+    boxplot()
     # plot_dccps()
 
     # stat_subcascades(paths)
