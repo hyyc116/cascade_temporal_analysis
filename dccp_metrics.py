@@ -210,7 +210,7 @@ def boxplot():
 
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('$e_{i-norm}$')
-        # ax.set_yscale('log')
+        ax.set_yscale('log')
         ax.set_title('{}'.format(subj))
 
     plt.tight_layout()
