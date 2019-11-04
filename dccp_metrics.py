@@ -117,7 +117,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
             field_cc_dccps[subj][_cn].append(_id_dccp[_id][0])
 
-            field_cc_eins[subj][_cn].append(_id_dccp[_id][1])
+            field_cc_eins[subj][_cn].append(_id_dccp[_id][1]/float(_cn))
             for cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
                     field_ccbin_eins[subj][cc_ix].append(_id_dccp[_id][1]/float(_cn))
@@ -135,7 +135,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         field_year_eins['WOS_ALL'][_year].append(_id_dccp[_id][1]/float(_cn))
 
         field_cc_dccps['WOS_ALL'][_cn].append(_id_dccp[_id][0])
-        field_cc_eins['WOS_ALL'][_cn].append(_id_dccp[_id][1])
+        field_cc_eins['WOS_ALL'][_cn].append(_id_dccp[_id][1]/float(_cn))
 
         for cc_ix,_cc_cl in enumerate(_cn_clas):
             if _cc_cl==1:
@@ -150,7 +150,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             field_year_eins['SCIENTOMETRICS'][_year].append(_id_dccp[_id][1]/float(_cn))
 
             field_cc_dccps['SCIENTOMETRICS'][_cn].append(_id_dccp[_id][0])
-            field_cc_eins['SCIENTOMETRICS'][_cn].append(_id_dccp[_id][1])
+            field_cc_eins['SCIENTOMETRICS'][_cn].append(_id_dccp[_id][1]/float(_cn))
 
             for cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
