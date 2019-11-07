@@ -700,7 +700,7 @@ def stat_subcascades(pathObj):
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
-        _cn = _id_cn[_id]
+        cc = _id_cn[_id]
 
         _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
