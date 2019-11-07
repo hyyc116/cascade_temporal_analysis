@@ -675,6 +675,8 @@ def stat_subcascades(pathObj):
     field_doctype_size_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     field_year_size_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
 
+    field_cc_size_int = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
     field_doctype_num_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     field_year_num_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
 
@@ -698,6 +700,8 @@ def stat_subcascades(pathObj):
     for _id in paper_size_id.keys():
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
+        _cn = _id_cn[_id]
+
         _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
         progress+=1
@@ -708,6 +712,8 @@ def stat_subcascades(pathObj):
         size_id = paper_size_id[_id]
         ## 对每一篇论文所属的field进行统计
         for subj in _top_subjects:
+
+
             ## size
             num = 0
             all_ids = []
@@ -719,6 +725,8 @@ def stat_subcascades(pathObj):
                 field_year_size_dict[subj][_year_b][size]+=len(ids)
 
                 field_doctype_size_dict[subj][_doctype][size]+=len(ids)
+
+                field_cc_size[subj][cc][size]+=len(ids)
 
                 all_ids.extend(ids)
 
@@ -753,6 +761,8 @@ def stat_subcascades(pathObj):
             field_size_dict[subj][size]+=len(ids)
             field_year_size_dict[subj][_year_b][size]+=len(ids)
             field_doctype_size_dict[subj][_doctype][size]+=len(ids)
+            field_cc_size[subj][cc][size]+=len(ids)
+
             all_ids.extend(ids)
 
         for _cc_ix,_cc_cl in enumerate(_cn_clas):
@@ -782,6 +792,8 @@ def stat_subcascades(pathObj):
                 num+=len(ids)
                 field_size_dict[subj][size]+=len(ids)
                 field_year_size_dict[subj][_year_b][size]+=len(ids)
+                field_cc_size[subj][cc][size]+=len(ids)
+
 
                 all_ids.extend(ids)
 
@@ -806,6 +818,8 @@ def stat_subcascades(pathObj):
     open('data/field_size_dict_all.json','w').write(json.dumps(field_size_dict))
 
     open('data/field_year_size_dict_all.json','w').write(json.dumps(field_year_size_dict))
+    open('data/field_cc_size_dict_all.json','w').write(json.dumps(field_cc_size_dict))
+
     open('data/field_doctype_size_dict_all.json','w').write(json.dumps(field_doctype_size_dict))
 
     open('data/field_year_num_dict_all.json','w').write(json.dumps(field_year_num_dict))
@@ -1336,11 +1350,11 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    stat_dccp(paths)
-    boxplot()
+    # stat_dccp(paths)
+    # boxplot()
     # plot_dccps()
 
-    # stat_subcascades(paths)
+    stat_subcascades(paths)
     # plot_subcascade_data()
     # output_motif_table()
 
