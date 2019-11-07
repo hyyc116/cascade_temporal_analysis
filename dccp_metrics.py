@@ -726,7 +726,7 @@ def stat_subcascades(pathObj):
 
                 field_doctype_size_dict[subj][_doctype][size]+=len(ids)
 
-                field_cc_size[subj][cc][size]+=len(ids)
+                field_cc_size_int[subj][cc][size]+=len(ids)
 
                 all_ids.extend(ids)
 
@@ -761,7 +761,7 @@ def stat_subcascades(pathObj):
             field_size_dict[subj][size]+=len(ids)
             field_year_size_dict[subj][_year_b][size]+=len(ids)
             field_doctype_size_dict[subj][_doctype][size]+=len(ids)
-            field_cc_size[subj][cc][size]+=len(ids)
+            field_cc_size_int[subj][cc][size]+=len(ids)
 
             all_ids.extend(ids)
 
@@ -792,7 +792,7 @@ def stat_subcascades(pathObj):
                 num+=len(ids)
                 field_size_dict[subj][size]+=len(ids)
                 field_year_size_dict[subj][_year_b][size]+=len(ids)
-                field_cc_size[subj][cc][size]+=len(ids)
+                field_cc_size_int[subj][cc][size]+=len(ids)
 
 
                 all_ids.extend(ids)
