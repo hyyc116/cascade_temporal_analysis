@@ -1020,7 +1020,7 @@ def plot_subcascade_data():
         year_num_dict = field_year_size_dict[subj]
 
         ## 每一年的distribution
-        ax =axes[i/4,i%4]
+        # ax =axes[i/4,i%4]
         xs = []
         ys = []
         for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
