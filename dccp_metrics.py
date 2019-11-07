@@ -818,7 +818,7 @@ def stat_subcascades(pathObj):
     open('data/field_size_dict_all.json','w').write(json.dumps(field_size_dict))
 
     open('data/field_year_size_dict_all.json','w').write(json.dumps(field_year_size_dict))
-    open('data/field_cc_size_dict_all.json','w').write(json.dumps(field_cc_size_dict))
+    open('data/field_cc_size_dict_all.json','w').write(json.dumps(field_cc_size_int))
 
     open('data/field_doctype_size_dict_all.json','w').write(json.dumps(field_doctype_size_dict))
 
