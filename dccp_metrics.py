@@ -704,7 +704,7 @@ def stat_subcascades(pathObj):
 
         cc = _id_cn[_id]
 
-        # _year_bin = year_bin(_year)
+        _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
         progress+=1
 
@@ -1457,7 +1457,7 @@ if __name__ == '__main__':
     # boxplot()
     # plot_dccps()
 
-    stat_subcascades(paths)
+    # stat_subcascades(paths)
     plot_subcascade_data()
     # output_motif_table()
 
