@@ -1013,6 +1013,95 @@ def plot_subcascade_data():
     logging.info('saved to fig/year_num_dis.png.')
 
 
+    # fig,axes = plt.subplots(2,4,figsize=(20,8))
+    plt.figure(figsize=(5,4))
+    for i,subj in enumerate(sorted(field_year_size_dict.keys())):
+
+        year_num_dict = field_year_size_dict[subj]
+
+        ## 每一年的distribution
+        ax =axes[i/4,i%4]
+        xs = []
+        ys = []
+        for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
+
+            xs.append(int(year))
+            y = []
+            for size in sorted(year_num_dict[year].keys(),key=lambda x:int(x)):
+
+                y.extend([int(size)]*year_num_dict[year][size])
+
+            ys.append(np.mean(y))
+
+
+        plt.plot(xs,ys,label=subj)
+
+    plt.xlabel('year')
+    plt.ylabel('size of components')
+    plt.legend(prop={'size':6})
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_year_size_dis.png',dpi=400)
+    logging.info('saved to fig/field_year_size_dis.png.')
+
+    ## field cc size int
+    field_cc_size_int = json.loads(open('data/field_cc_size_dict_all.json').read())
+
+    field_CLS_size = defaultdict(lambda:defaultdict(list))
+
+    for field in sorted(field_cc_size_int.keys()):
+
+        for cc in sorted(field_cc_size_int[field].keys(),key = lambda x:int(x)):
+
+            # cc = int(cc)
+
+            if int(cc)<36:
+                CLS = 0
+            elif int(cc)<120:
+                CLS = 1
+            else:
+                CLS = 2
+
+            y = []
+            for size in field_cc_size_int[field][cc].keys():
+
+                y.extend([int(size)]*field_cc_size_int[field][cc][size])
+
+            field_CLS_size[field][CLS].append(np.mean(y))
+
+    ## hua
+
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    for i,subj in enumerate(sorted(field_CLS_size.keys())):
+        logging.info('field {} ...'.format(subj))
+        data = []
+        for CLS in sorted(field_CLS_size[subj].keys()):
+            logging.info('CLS:{}'.format(CLS))
+            # logging.info('num of dccps:{}'.format())
+            data.append(field_CLS_size[subj][CLS])
+
+        print('length of data {}'.format(len(data)))
+
+        ax = axes[i/4,i%4]
+
+        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+
+        ax.set_xlabel('Paper Impact Level')
+        ax.set_ylabel('$size of components$')
+        ax.set_yscale('log')
+        ax.set_title('{}'.format(subj))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/boxplot_size_wos_all.png',dpi=300)
+
+    logging.info('fig saved to fig/boxplot_size_wos_all.png.')
+
+
+
+
+
     fig,axes = plt.subplots(2,3,figsize=(15,6))
     for i,subj in enumerate(sorted(field_doctype_size_dict.keys())):
 
@@ -1354,8 +1443,8 @@ if __name__ == '__main__':
     # boxplot()
     # plot_dccps()
 
-    stat_subcascades(paths)
-    # plot_subcascade_data()
+    # stat_subcascades(paths)
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
