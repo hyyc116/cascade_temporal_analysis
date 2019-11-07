@@ -674,6 +674,8 @@ def stat_subcascades(pathObj):
     field_num_dict = defaultdict(lambda:defaultdict(int))
     field_doctype_size_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     field_year_size_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+    field_yearb_size_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+
 
     field_cc_size_int = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
 
@@ -702,7 +704,7 @@ def stat_subcascades(pathObj):
 
         cc = _id_cn[_id]
 
-        _year_bin = year_bin(_year)
+        # _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
         progress+=1
 
@@ -723,6 +725,8 @@ def stat_subcascades(pathObj):
                 field_size_dict[subj][size]+=len(ids)
 
                 field_year_size_dict[subj][_year_b][size]+=len(ids)
+
+                field_yearb_size_dict[subj][_year][size]+=len(ids)
 
                 field_doctype_size_dict[subj][_doctype][size]+=len(ids)
 
@@ -760,6 +764,8 @@ def stat_subcascades(pathObj):
             num+=len(ids)
             field_size_dict[subj][size]+=len(ids)
             field_year_size_dict[subj][_year_b][size]+=len(ids)
+            field_yearb_size_dict[subj][_year][size]+=len(ids)
+
             field_doctype_size_dict[subj][_doctype][size]+=len(ids)
             field_cc_size_int[subj][cc][size]+=len(ids)
 
@@ -792,6 +798,8 @@ def stat_subcascades(pathObj):
                 num+=len(ids)
                 field_size_dict[subj][size]+=len(ids)
                 field_year_size_dict[subj][_year_b][size]+=len(ids)
+                field_yearb_size_dict[subj][_year][size]+=len(ids)
+
                 field_cc_size_int[subj][cc][size]+=len(ids)
 
 
@@ -818,6 +826,9 @@ def stat_subcascades(pathObj):
     open('data/field_size_dict_all.json','w').write(json.dumps(field_size_dict))
 
     open('data/field_year_size_dict_all.json','w').write(json.dumps(field_year_size_dict))
+    open('data/field_yearb_size_dict_all.json','w').write(json.dumps(field_yearb_size_dict))
+
+
     open('data/field_cc_size_dict_all.json','w').write(json.dumps(field_cc_size_int))
 
     open('data/field_doctype_size_dict_all.json','w').write(json.dumps(field_doctype_size_dict))
@@ -1014,10 +1025,13 @@ def plot_subcascade_data():
 
 
     # fig,axes = plt.subplots(2,4,figsize=(20,8))
-    plt.figure(figsize=(5,4))
-    for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
-        year_num_dict = field_year_size_dict[subj]
+    field_yearb_size_dict = json.loads(open('data/field_yearb_size_dict_all.json').read())
+
+    plt.figure(figsize=(5,4))
+    for i,subj in enumerate(sorted(field_yearb_size_dict.keys())):
+
+        year_num_dict = field_yearb_size_dict[subj]
 
         ## 每一年的distribution
         # ax =axes[i/4,i%4]
@@ -1443,7 +1457,7 @@ if __name__ == '__main__':
     # boxplot()
     # plot_dccps()
 
-    # stat_subcascades(paths)
+    stat_subcascades(paths)
     plot_subcascade_data()
     # output_motif_table()
 
