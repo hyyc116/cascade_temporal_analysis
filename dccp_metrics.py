@@ -1065,6 +1065,10 @@ def plot_subcascade_data():
     field_CLS_size = defaultdict(lambda:defaultdict(list))
 
     field_cc_size = defaultdict(lambda:defaultdict(list))
+
+    ##
+
+
     for field in sorted(field_cc_size_int.keys()):
 
         for cc in sorted(field_cc_size_int[field].keys(),key = lambda x:int(x)):
@@ -1086,6 +1090,34 @@ def plot_subcascade_data():
 
             field_CLS_size[field][CLS].append(np.mean(y))
             field_cc_size[field][int(cc)].append(np.mean(y))
+
+    lines = ['Displines,Citation impact,Max,Avg,Median,Gini']
+
+    for field in sorted(field_CLS_size.keys()):
+
+        for CLS in sorted(field_CLS_size[field].keys()):
+
+            data = field_CLS_size[field][CLS]
+
+            if CLS ==0:
+                TAG = 'L'
+            elif CLS ==1:
+                TAG = 'M'
+            else:
+                TAG = 'H'
+
+            max_ = np.max(data)
+            mean = np.mean(data)
+            median = np.mean(data)
+            gini_score = gini(np.array(data))
+
+            line = '{},{},{},{},{}'.format(field,TAG,max_,mean,median,gini_score)
+
+            lines.append(line)
+
+    open('data/field_CLS_table.csv','w').write('\n'.join(lines))
+    logging.info('data saved to data/field_CLS_table.csv.')
+
 
     ## hua
 
@@ -1152,8 +1184,6 @@ def plot_subcascade_data():
     plt.savefig('fig/field_cc_size.png',dpi=300)
 
     logging.info('fig saved to fig/field_cc_size.png.')
-
-
 
 
 
