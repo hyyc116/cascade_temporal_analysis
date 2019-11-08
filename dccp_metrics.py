@@ -1064,6 +1064,7 @@ def plot_subcascade_data():
 
     field_CLS_size = defaultdict(lambda:defaultdict(list))
 
+    field_cc_size = defaultdict(lambda:defaultdict(list))
     for field in sorted(field_cc_size_int.keys()):
 
         for cc in sorted(field_cc_size_int[field].keys(),key = lambda x:int(x)):
@@ -1082,7 +1083,9 @@ def plot_subcascade_data():
 
                 y.extend([int(size)]*field_cc_size_int[field][cc][size])
 
+
             field_CLS_size[field][CLS].append(np.mean(y))
+            field_cc_size[field][int(cc)].append(np.mean(y))
 
     ## hua
 
@@ -1102,7 +1105,7 @@ def plot_subcascade_data():
         ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
 
         ax.set_xlabel('Paper Impact Level')
-        ax.set_ylabel('$size of components$')
+        ax.set_ylabel('size of components')
         ax.set_yscale('log')
         ax.set_title('{}'.format(subj))
 
@@ -1111,6 +1114,42 @@ def plot_subcascade_data():
     plt.savefig('fig/boxplot_size_wos_all.png',dpi=300)
 
     logging.info('fig saved to fig/boxplot_size_wos_all.png.')
+
+    # fig,axes = plt.subplots(2,4,figsize=(20,8))
+    plt.figure(figsize=(5,4))
+    for i,subj in enumerate(sorted(field_cc_size.keys())):
+        logging.info('field {} ...'.format(subj))
+        # data = []
+        xs = []
+        ys = []
+        for cc in sorted(field_cc_size[subj].keys()):
+            # logging.info('cc:{}'.format(cc))
+            # logging.info('num of dccps:{}'.format())
+            # data.append(field_cc_size[subj][cc])
+
+            xs.append(cc)
+            ys.append(np.mean(field_cc_size[subj][cc]))
+
+        # print('length of data {}'.format(len(data)))
+
+        # ax = axes[i/4,i%4]
+        plt.plot(xs,ys,label='{}'.format(subj))
+
+        # ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+
+    plt.xlabel('number of citations')
+    plt.ylabel('size of components')
+    plt.yscale('log')
+    plt.xscale('log')
+
+    plt.legend(prop={'size':6})
+
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_cc_size.png',dpi=300)
+
+    logging.info('fig saved to fig/field_cc_size.png.')
 
 
 
