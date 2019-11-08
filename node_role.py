@@ -228,7 +228,7 @@ def plot_node_dis():
 
         # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-        zs = moving_average(ys,50)
+        zs = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
 
         ax.plot(xs,zs,label='{}'.format(subj))
@@ -255,7 +255,7 @@ def plot_node_dis():
 
         # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.01,it=1,is_sorted =True))[1]]
 
-        zs = moving_average(ys,50)
+        zs = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
 
         ax.plot(xs,zs,label='{}'.format(subj))
