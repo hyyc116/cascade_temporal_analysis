@@ -202,7 +202,8 @@ def plot_node_dis():
             xs.append(int(_cn))
             ys.append(np.mean(_cn_pcs[_cn]))
 
-        zs = moving_average(ys,50)
+        # zs = moving_average(ys,50)
+        zs = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
