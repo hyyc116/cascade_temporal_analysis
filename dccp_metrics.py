@@ -1028,6 +1028,8 @@ def plot_subcascade_data():
 
     field_yearb_size_dict = json.loads(open('data/field_yearb_size_dict_all.json').read())
 
+    fieldnum_xsys = {}
+
     plt.figure(figsize=(5,4))
     for i,subj in enumerate(sorted(field_yearb_size_dict.keys())):
 
@@ -1037,15 +1039,23 @@ def plot_subcascade_data():
         # ax =axes[i/4,i%4]
         xs = []
         ys = []
+        num_ys = []
         for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
 
             xs.append(int(year))
             y = []
+            num = 0
             for size in sorted(year_num_dict[year].keys(),key=lambda x:int(x)):
 
                 y.extend([int(size)]*year_num_dict[year][size])
 
+                num+=year_num_dict[year][size]
+
+            num_ys.append(num)
+
             ys.append(np.mean(y))
+
+        fieldnum_xsys[subj]=[xs,ys]
 
 
         plt.plot(xs,ys,label=subj)
@@ -1059,6 +1069,26 @@ def plot_subcascade_data():
     plt.savefig('fig/field_year_size_dis.png',dpi=400)
     logging.info('saved to fig/field_year_size_dis.png.')
 
+
+    plt.figure(figsize=(5,4))
+
+    for field in sorted(fieldnum_xsys.keys()):
+
+        xs,ys = fieldnum_xsys[field]
+
+        plt.plot(xs,ys,label='{}'.format(field))
+
+    plt.xlabel('year')
+    plt.ylabel('number of components')
+    plt.legend(prop={'size':6})
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_year_num_cas_dis.png',dpi=400)
+    logging.info('saved to fig/field_year_num_cas_dis.png.')
+
+
+
     ## field cc size int
     field_cc_size_int = json.loads(open('data/field_cc_size_dict_all.json').read())
 
@@ -1066,6 +1096,9 @@ def plot_subcascade_data():
 
     field_cc_size = defaultdict(lambda:defaultdict(list))
 
+
+    field_CLS_num = defaultdict(lambda:defaultdict(list))
+    field_cc_num = defaultdict(lambda:defaultdict(list))
     ##
 
 
@@ -1083,9 +1116,15 @@ def plot_subcascade_data():
                 CLS = 2
 
             y = []
+            num = 0
             for size in field_cc_size_int[field][cc].keys():
 
                 y.extend([int(size)]*field_cc_size_int[field][cc][size])
+
+                num+=field_cc_size_int[field][cc][size]
+
+            field_CLS_num[field][CLS].append(num)
+            field_cc_num[field][int(cc)].append(num)
 
 
             field_CLS_size[field][CLS].append(np.mean(y))
@@ -1147,6 +1186,32 @@ def plot_subcascade_data():
 
     logging.info('fig saved to fig/boxplot_size_wos_all.png.')
 
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    for i,subj in enumerate(sorted(field_CLS_num.keys())):
+        logging.info('field {} ...'.format(subj))
+        data = []
+        for CLS in sorted(field_CLS_num[subj].keys()):
+            logging.info('CLS:{}'.format(CLS))
+            # logging.info('num of dccps:{}'.format())
+            data.append(field_CLS_num[subj][CLS])
+
+        print('length of data {}'.format(len(data)))
+
+        ax = axes[i/4,i%4]
+
+        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+
+        ax.set_xlabel('Paper Impact Level')
+        ax.set_ylabel('number of components')
+        ax.set_yscale('log')
+        ax.set_title('{}'.format(subj))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/boxplot_num_wos_all.png',dpi=300)
+
+    logging.info('fig saved to fig/boxplot_num_wos_all.png.')
+
     # fig,axes = plt.subplots(2,4,figsize=(20,8))
     plt.figure(figsize=(5,4))
     for i,subj in enumerate(sorted(field_cc_size.keys())):
@@ -1184,6 +1249,44 @@ def plot_subcascade_data():
     plt.savefig('fig/field_cc_size.png',dpi=300)
 
     logging.info('fig saved to fig/field_cc_size.png.')
+
+
+    plt.figure(figsize=(5,4))
+    for i,subj in enumerate(sorted(field_cc_num.keys())):
+        logging.info('field {} ...'.format(subj))
+        # data = []
+        xs = []
+        ys = []
+        for cc in sorted(field_cc_num[subj].keys()):
+            # logging.info('cc:{}'.format(cc))
+            # logging.info('num of dccps:{}'.format())
+            # data.append(field_cc_num[subj][cc])
+
+            xs.append(cc)
+            ys.append(np.mean(field_cc_num[subj][cc]))
+
+        ys = [ np.mean(ys[:i+1]) for i in range(len(ys))]
+
+        # print('length of data {}'.format(len(data)))
+
+        # ax = axes[i/4,i%4]
+        plt.plot(xs,ys,label='{}'.format(subj))
+
+        # ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+
+    plt.xlabel('number of citations')
+    plt.ylabel('number of components')
+    plt.yscale('log')
+    plt.xscale('log')
+
+    plt.legend(prop={'size':6})
+
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_cc_num_cas.png',dpi=300)
+
+    logging.info('fig saved to fig/field_cc_num_cas.png.')
 
 
 
