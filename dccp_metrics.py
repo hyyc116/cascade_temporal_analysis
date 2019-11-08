@@ -1091,7 +1091,7 @@ def plot_subcascade_data():
             field_CLS_size[field][CLS].append(np.mean(y))
             field_cc_size[field][int(cc)].append(np.mean(y))
 
-    lines = ['Displines,Citation impact,Max,Avg,Median,Gini']
+    lines = ['Displines=Citation impact=Max=Avg=Median=Gini']
 
     for field in sorted(field_CLS_size.keys()):
 
@@ -1111,7 +1111,7 @@ def plot_subcascade_data():
             median = np.mean(data)
             gini_score = gini(np.array(data))
 
-            line = '{}=={}=={}=={}=={}'.format(field,TAG,max_,mean,median,gini_score)
+            line = '{}={}={}={}={}={}'.format(field,TAG,max_,mean,median,gini_score)
 
             lines.append(line)
 
