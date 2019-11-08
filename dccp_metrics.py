@@ -1111,7 +1111,7 @@ def plot_subcascade_data():
             median = np.mean(data)
             gini_score = gini(np.array(data))
 
-            line = '{},{},{},{},{}'.format(field,TAG,max_,mean,median,gini_score)
+            line = '{}=={}=={}=={}=={}'.format(field,TAG,max_,mean,median,gini_score)
 
             lines.append(line)
 
