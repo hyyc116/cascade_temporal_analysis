@@ -1130,7 +1130,7 @@ def plot_subcascade_data():
             xs.append(cc)
             ys.append(np.mean(field_cc_size[subj][cc]))
 
-        ys = [np.mean(ys[:i+1]) for i in range(len(y))]
+        ys = [ np.mean(ys[:i+1]) for i in range(len(ys))]
 
         # print('length of data {}'.format(len(data)))
 
