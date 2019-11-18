@@ -1116,15 +1116,15 @@ def plot_subcascade_data():
                 CLS = 2
 
             y = []
-            num = 0
+            nums = []
             for size in field_cc_size_int[field][cc].keys():
 
                 y.extend([int(size)]*field_cc_size_int[field][cc][size])
 
-                num+=field_cc_size_int[field][cc][size]
+                nums.append(field_cc_size_int[field][cc][size])
 
-            field_CLS_num[field][CLS].append(num)
-            field_cc_num[field][int(cc)].append(num)
+            field_CLS_num[field][CLS].append(np.mean(nums))
+            field_cc_num[field][int(cc)].append(np.mean(nums))
 
 
             field_CLS_size[field][CLS].append(np.mean(y))

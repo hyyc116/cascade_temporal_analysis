@@ -22,7 +22,7 @@ def same_journal():
 
         progress+=1
 
-        if progress%1000000==0:
+        if progress%100000==0:
             logging.info("progress {}, {} ids journal vol found.".format(progress,len(pid_jvol)))
 
         if wos_id in existing_ids:
