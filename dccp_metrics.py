@@ -580,7 +580,7 @@ def plot_field_year_num(pathObj):
 
     logging.info('start to print fieldnum dis ..')
     print('number of labels,number of publications')
-    _5+ = 0
+    _5_p = 0
     for fieldnum in sorted(fieldnum_dis.keys()):
 
         if fieldnum<5:
@@ -590,10 +590,10 @@ def plot_field_year_num(pathObj):
             print line
 
         else:
-            _5+=fieldnum
+            _5_p+=fieldnum
 
 
-    line = '{},{}({:.2%})'.format(fieldnum,_5+,_5+/total)
+    line = '{},{}({:.2%})'.format(fieldnum,_5_p,_5_p/total)
 
     print line
 
