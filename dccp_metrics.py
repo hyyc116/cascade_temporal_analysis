@@ -488,8 +488,150 @@ def plot_dccps():
     logging.info('e_i-norm ccdf saved to fig/eins-ccdf.png.')
 
 
+##画出各个领域的数据分析
+def plot_field_year_num(pathObj):
+
+    ## field_year_num
+    _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
+    top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
+
+    sciento_ids = set([l.strip() for l in open(pathObj._scientometrics_path)])
 
 
+    ## 各个领域的论文数量随时间的变化
+    field_year_num = defaultdict(lambda:defaultdict(list))
+    ## 各个领域的文献总量
+    field_num = defaultdict(int)
+    ## 每篇论文的field数量分布
+    fieldnum_dis = defaultdict(int)
+
+    ## 领域内的各文献类型分布
+    field_doctype_num = defaultdict(lambda:defaultdict(int))
+
+
+    for pid in _id_subjects.keys():
+
+        subjs = _id_subjects[pid]
+
+        fieldnum = len(subjs)
+
+        _year = int(_id_year[pid])
+
+        fieldnum_dis[fieldnum]+=1
+
+        doctype = _id_doctype[pid]
+
+
+        for subj in subjs:
+
+            field_year_num[subj][_year]+=1
+
+            field_num[subj]+=1
+
+            field_doctype_num[subj][doctype]+=1
+
+        field_num['WOS_ALL']+=1
+
+        field_year_num['WOS_ALL'][_year]+=1
+
+        field_doctype_num['WOS_ALL'][doctype]+=1
+
+        if pid in sciento_ids:
+            field_year_num['SCIENTOMETRICS'][_year]+=1
+
+
+    ## 画出上面的field_year_num,以及两个数据
+    logging.info('plotting field year num png ...')
+    plt.figure(figsize=(5,4))
+    for subj in sorted(field_year_num.keys()):
+
+        xs = []
+        ys = []
+        for year in sorted(field_year_num[subj].keys()):
+
+            if year >2016:
+                continue
+
+            xs.append(year)
+            ys.append(field_year_num[subj][year])
+
+        plt.plot(xs,ys,label='{}'.format(subj))
+
+    plt.xlabel("year")
+    plt.ylabel('number of publications')
+    plt.yscale('log')
+
+    plt.legend(prop={'size':5})
+    plt.tight_layout()
+
+    plt.savefig('fig/field_year_num_dis.png',dpi=400)
+
+    logging.info('fig saved to fig/field_year_num_dis.png.')
+
+    logging.info('start to print field num..')
+    total =float(field_num['WOS_ALL'])
+    print('Macro-level discipline,Number of publications (%)')
+    for subj in sorted(field_num.keys()):
+
+        line = '{},{}({:.2%})'.format(subj,field_num[subj],field_num[subj]/total)
+
+        print(line)
+
+
+    logging.info('start to print fieldnum dis ..')
+    print('number of labels,number of publications')
+    _5+ = 0
+    for fieldnum in sorted(fieldnum_dis.keys()):
+
+        if fieldnum<5:
+
+            line = '{},{}({:.2%})'.format(fieldnum,fieldnum_dis[fieldnum],fieldnum_dis[fieldnum]/total)
+
+            print line
+
+        else:
+            _5+=fieldnum
+
+
+    line = '{},{}({:.2%})'.format(fieldnum,_5+,_5+/total)
+
+    print line
+
+    ## 各领域的doctype分布柱状图
+    ## 每一个subj一个图
+
+    print()
+    logging.info('start to plot ..')
+    plt.figure(figsize=(10,4))
+    width = 0.4
+    for i,subj in enumerate(sorted(field_doctype_num.keys())):
+
+        ys = []
+        for j,doctype in enumerate(top10_doctypes):
+
+            num = field_doctype_num[subj][doctype]
+
+            ys.append(num)
+
+        xs = np.arange(len(xs))+(j-3)*width
+
+        plt.bar(xs,ys,label='{}'.format(subj))
+
+    plt.xlabel('doctype')
+
+    plt.ylabel('number of publications')
+
+    plt.yscale('log')
+
+    plt.legend()
+
+
+    plt.tight_layout()
+
+
+    plt.savefig('fig/field_doctype_num_bar.png',dpi=400)
+
+    logging.info('fig saved to fig/field_doctype_num_bar.png.')
 
 
 ## 统计性描述
@@ -1632,10 +1774,13 @@ if __name__ == '__main__':
     # plot_dccps()
 
     # stat_subcascades(paths)
-    plot_subcascade_data()
+    # plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
 
     # stat_citation_dis(paths)
+
+
+    plot_field_year_num(pathObj)
 
