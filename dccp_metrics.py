@@ -672,7 +672,6 @@ def  stat_citation_dis(pathObj):
             field_doctype_num[subj]['ALL']+=1
 
 
-
         field_cn_dis['WOS_ALL'][_cn]+=1
         field_year_num['WOS_ALL'][_year]+=1
 
