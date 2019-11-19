@@ -499,7 +499,7 @@ def plot_field_year_num(pathObj):
 
 
     ## 各个领域的论文数量随时间的变化
-    field_year_num = defaultdict(lambda:defaultdict(list))
+    field_year_num = defaultdict(lambda:defaultdict(int))
     ## 各个领域的文献总量
     field_num = defaultdict(int)
     ## 每篇论文的field数量分布
