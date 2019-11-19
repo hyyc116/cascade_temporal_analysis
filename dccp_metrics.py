@@ -603,7 +603,7 @@ def plot_field_year_num(pathObj):
     print()
     logging.info('start to plot ..')
     plt.figure(figsize=(10,4))
-    width = 0.4
+    width = 0.05
     for i,subj in enumerate(sorted(field_doctype_num.keys())):
 
         ys = []
@@ -618,6 +618,7 @@ def plot_field_year_num(pathObj):
         plt.bar(xs,ys,label='{}'.format(subj))
 
     plt.xlabel('doctype')
+    plt.xticks(np.arange(len(top10_doctypes)),top10_doctypes)
 
     plt.ylabel('number of publications')
 
