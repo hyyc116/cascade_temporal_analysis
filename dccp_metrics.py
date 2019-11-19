@@ -613,7 +613,7 @@ def plot_field_year_num(pathObj):
 
             ys.append(num)
 
-        xs = np.arange(len(xs))+(j-3)*width
+        xs = np.arange(len(top10_doctypes))+(j-3)*width
 
         plt.bar(xs,ys,label='{}'.format(subj))
 
