@@ -251,9 +251,6 @@ def plot_dccps():
         for cc in sorted(field_cc_dccps[field].keys(),key=lambda x:int(x)):
 
 
-
-
-
             dccps  = field_cc_dccps[field][cc]
 
 
@@ -508,6 +505,29 @@ def plot_field_year_num(pathObj):
     ## 领域内的各文献类型分布
     field_doctype_num = defaultdict(lambda:defaultdict(int))
 
+    ## 各领域论文每年论文的平均被引用次数
+    field_year_refnums = defaultdict(lambda:defaultdict(list))
+
+
+    ## 统计论文的参考文献的数量
+    pid_cits_path = pathObj.pid_cits_path
+
+    logging.info("build cascade from {:} .".format(pid_cits_path))
+
+    pid_refnum = defaultdict(int)
+    progress = 0
+    for line in open(pid_cits_path):
+
+        progress+=1
+
+        if progress%10000000==0:
+            logging.info('reading %d citation relations....' % progress)
+
+        line = line.strip()
+        pid,citing_id = line.split("\t")
+
+        pid_refnum[citing_id]+=1
+
 
     for pid in _id_subjects.keys():
 
@@ -526,6 +546,8 @@ def plot_field_year_num(pathObj):
 
             field_year_num[subj][_year]+=1
 
+            field_year_refnums[subj][_year].append(pid_refnum[pid])
+
             field_num[subj]+=1
 
             field_doctype_num[subj][doctype]+=1
@@ -534,10 +556,47 @@ def plot_field_year_num(pathObj):
 
         field_year_num['WOS_ALL'][_year]+=1
 
+        field_year_refnums['WOS_ALL'][_year].append(pid_refnum[pid])
+
         field_doctype_num['WOS_ALL'][doctype]+=1
 
         if pid in sciento_ids:
             field_year_num['SCIENTOMETRICS'][_year]+=1
+
+            field_year_refnums['SCIENTOMETRICS'][_year].append(pid_refnum[pid])
+
+
+    ## 画出field_year_refnum
+
+    ## 画出上面的field_year_num,以及两个数据
+    logging.info('plotting field year ref num png ...')
+    plt.figure(figsize=(5,4))
+    for subj in sorted(field_year_refnums.keys()):
+
+        xs = []
+        ys = []
+        for year in sorted(field_year_refnums[subj].keys()):
+
+            if year >2016:
+                continue
+
+            xs.append(year)
+            ys.append(fnp.mean(ield_year_refnums[subj][year]))
+
+        plt.plot(xs,ys,label='{}'.format(subj))
+
+    plt.xlabel("year")
+    plt.ylabel('number of references')
+    # plt.yscale('log')
+
+    plt.legend(prop={'size':5})
+    plt.tight_layout()
+
+    plt.savefig('fig/field_year_refnum_dis.png',dpi=400)
+
+    logging.info('fig saved to fig/field_year_refnum_dis.png.')
+
+
 
 
     ## 画出上面的field_year_num,以及两个数据
@@ -711,6 +770,8 @@ def  stat_citation_dis(pathObj):
 
     plt.xscale('log')
     plt.yscale('log')
+
+    plt.title('CCDF')
 
     plt.legend()
 
