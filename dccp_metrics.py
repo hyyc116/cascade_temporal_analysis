@@ -581,7 +581,7 @@ def plot_field_year_num(pathObj):
                 continue
 
             xs.append(year)
-            ys.append(fnp.mean(ield_year_refnums[subj][year]))
+            ys.append(np.mean(field_year_refnums[subj][year]))
 
         plt.plot(xs,ys,label='{}'.format(subj))
 
@@ -672,7 +672,7 @@ def plot_field_year_num(pathObj):
 
             ys.append(num)
 
-        xs = np.arange(len(top10_doctypes))+(j-3)*width
+        xs = np.arange(len(top10_doctypes))+(i-3)*width
 
         plt.bar(xs,ys,width=width,label='{}'.format(subj))
 
