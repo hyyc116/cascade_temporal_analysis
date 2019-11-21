@@ -1840,8 +1840,8 @@ if __name__ == '__main__':
 
     # logging.info('Done')
 
-    # stat_citation_dis(paths)
+    stat_citation_dis(paths)
 
 
-    plot_field_year_num(paths)
+    # plot_field_year_num(paths)
 
