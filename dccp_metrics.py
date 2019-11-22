@@ -261,7 +261,7 @@ def plot_dccps():
             ys.append(p_of_dccp)
 
             if int(cc)==10 and field=='WOS_ALL':
-                logging.info('P(e>n|C=n) is {} when citation number is 10.'.format(p_of_dccp))
+                logging.info('P(e>n|C=n) is {}/{} = {} when citation number is 10.'.format(np.sum(dccps),float(len(dccps))p_of_dccp))
 
 
         ax.plot(xs,ys,label='{}'.format(field))
@@ -369,6 +369,9 @@ def plot_dccps():
 
             xs.append(int(cc))
             ys.append(p_of_dccp)
+
+            if field.startswith('Art') and labels[int(cc)]=='1000-inf':
+                logging.info('number of papers in 1000-inf in {} is {}'.format(field,len(dccps)))
 
         ax.plot(xs,ys,label='{}'.format(field))
         # ax.set_xscale('log')
@@ -1832,7 +1835,7 @@ if __name__ == '__main__':
     # dccp_of_paper(paths)
     # stat_dccp(paths)
     # boxplot()
-    # plot_dccps()
+    plot_dccps()
 
     # stat_subcascades(paths)
     # plot_subcascade_data()
@@ -1840,7 +1843,7 @@ if __name__ == '__main__':
 
     # logging.info('Done')
 
-    stat_citation_dis(paths)
+    # stat_citation_dis(paths)
 
 
     # plot_field_year_num(paths)
