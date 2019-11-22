@@ -252,9 +252,9 @@ def plot_temporal_data():
     for subj in subj_ids:
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(25,4))
+        fig,axes = plt.subplots(1,5,figsize=(25,5))
 
-        fig.subplots_adjust(top=0.9)
+        fig.subplots_adjust(top=0.8)
 
         for i,_id in enumerate(subj_ids[subj]):
 
