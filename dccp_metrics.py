@@ -235,10 +235,6 @@ def plot_dccps():
     field_doctype_dccps = json.loads(open('data/field_doctype_dccps.json').read())
     field_doctype_eins = json.loads(open('data/field_doctype_eins.json').read())
 
-
-
-
-
     logging.info('startting to plotting ....')
     fig,axes = plt.subplots(1,3,figsize=(20,5))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
@@ -359,7 +355,7 @@ def plot_dccps():
 
             dccps  = field_ccbin_eins[field][cc]
 
-            field_CLS_dccps[field][CLS].extend(dccps)
+            # field_CLS_dccps[field][CLS].extend(dccps)
 
 
             subj_eins[field].extend(dccps)
@@ -450,7 +446,7 @@ def plot_dccps():
 
 
 
-    return
+    # return
 
 
     ## eins的ccdf
