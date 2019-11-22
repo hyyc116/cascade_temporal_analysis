@@ -261,7 +261,7 @@ def plot_dccps():
             ys.append(p_of_dccp)
 
             if int(cc)==10 and field=='WOS_ALL':
-                logging.info('P(e>n|C=n) is {}/{} = {} when citation number is 10.'.format(np.sum(dccps),float(len(dccps))p_of_dccp))
+                logging.info('P(e>n|C=n) is {}/{} = {} when citation number is 10.'.format(np.sum(dccps),float(len(dccps)),p_of_dccp))
 
 
         ax.plot(xs,ys,label='{}'.format(field))
