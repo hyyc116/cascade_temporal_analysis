@@ -254,6 +254,8 @@ def plot_temporal_data():
         ## 每一个学科1张图
         fig,axes = plt.subplots(1,5,figsize=(25,4))
 
+        fig.subplots_adjust(top=0.9)
+
         for i,_id in enumerate(subj_ids[subj]):
 
             attrs = zip(*pid_attrs[_id])
@@ -356,7 +358,7 @@ def plot_temporal_data():
 
             # ax3.legend()
 
-
+        plt.suptitle(field,y=0.95,fontsize=12)
         plt.tight_layout()
 
         plt.savefig('fig/temporal_{}.png'.format(subj[:3]))
