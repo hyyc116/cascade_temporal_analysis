@@ -273,8 +273,8 @@ def plot_temporal_data():
             ax = axes[i]
 
             ax.plot(year_ixs,t_cit_nums,label='total')
-            ax.plot(year_ixs,le_nums,label='le')
-            ax.plot(year_ixs,ie_nums,label='ie')
+            ax.plot(year_ixs,t_le_nums,label='le')
+            ax.plot(year_ixs,t_ie_nums,label='ie')
 
             ax.set_xlabel('year')
             ax.set_ylabel('number')
