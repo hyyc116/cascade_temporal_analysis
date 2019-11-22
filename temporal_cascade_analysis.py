@@ -276,7 +276,7 @@ def plot_temporal_data():
             ax.plot(year_ixs,t_le_nums,label='le')
             ax.plot(year_ixs,t_ie_nums,label='ie')
 
-            ax.set_xlabel('year')
+            ax.set_xlabel('year index')
             ax.set_ylabel('number')
 
             ax.set_title(_id)
