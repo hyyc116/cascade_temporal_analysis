@@ -358,7 +358,7 @@ def plot_temporal_data():
 
             # ax3.legend()
 
-        plt.suptitle(field,y=0.95,fontsize=12)
+        plt.suptitle(subj,y=0.95,fontsize=12)
         plt.tight_layout()
 
         plt.savefig('fig/temporal_{}.png'.format(subj[:3]))
