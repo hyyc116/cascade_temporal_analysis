@@ -1162,9 +1162,9 @@ def plot_subcascade_data():
 
         # ax = axes[i,0]
         ## 每一年的distribution
-        for year in selected_years:
+        for j,year in enumerate(selected_years):
 
-            ax =axes[int(int(year)/2),int(int(year)%2)]
+            ax =axes[int(j/2),int(j%2)]
 
             year_l = year_label(int(year))
             xs = []
@@ -1202,9 +1202,9 @@ def plot_subcascade_data():
 
         # ax = axes[i,1]
         ## 每一年的distribution
-        for year in selected_years:
+        for j,year in enumerate(selected_years):
 
-            ax =axes[int(int(year)/2),int(int(year)%2)]
+            ax =axes[j/2,j%2]
 
             year_l = year_label(int(year))
             xs = []
