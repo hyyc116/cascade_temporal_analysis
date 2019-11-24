@@ -1148,7 +1148,7 @@ def plot_subcascade_data():
 
 
     ## 每一个subject两张图，分别对size和num随着doctype以及时间的变化进行描述
-    fig,axes = plt.subplots(4,3,figsize=(15,12))
+    fig,axes = plt.subplots(3,2,figsize=(10,9))
     for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
         year_size_dict = field_year_size_dict[subj]
@@ -1160,7 +1160,10 @@ def plot_subcascade_data():
         ## 每一年的distribution
         for j,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))):
 
-            ax =axes[int(int(year)/3),int(int(year)%3)]
+            if j%2==0:
+                continue
+
+            ax =axes[int(int(year)/2),int(int(year)%2)]
 
             year_l = year_label(int(year))
             xs = []
@@ -1189,7 +1192,7 @@ def plot_subcascade_data():
     logging.info('saved to fig/year_size_dis.png.')
 
 
-    fig,axes = plt.subplots(4,3,figsize=(15,12))
+    fig,axes = plt.subplots(3,2,figsize=(10,9))
     for i,subj in enumerate(sorted(field_year_num_dict.keys())):
 
         year_num_dict = field_year_num_dict[subj]
@@ -1197,7 +1200,11 @@ def plot_subcascade_data():
         # ax = axes[i,1]
         ## 每一年的distribution
         for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
-            ax =axes[int(int(year)/3),int(int(year)%3)]
+
+            if j%2==0:
+                continue
+
+            ax =axes[int(int(year)/2),int(int(year)%2)]
 
             year_l = year_label(int(year))
             xs = []
@@ -1259,6 +1266,7 @@ def plot_subcascade_data():
 
         fieldnum_xsys[subj]=[xs,ys]
 
+        ys = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
         plt.plot(xs,ys,label=subj)
 
@@ -1277,6 +1285,8 @@ def plot_subcascade_data():
     for field in sorted(fieldnum_xsys.keys()):
 
         xs,ys = fieldnum_xsys[field]
+
+        ys = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
         plt.plot(xs,ys,label='{}'.format(field))
 
@@ -1329,8 +1339,8 @@ def plot_subcascade_data():
             field_cc_num[field][int(cc)].append(np.mean(nums))
 
 
-            field_CLS_size[field][CLS].append(np.mean(y))
-            field_cc_size[field][int(cc)].append(np.mean(y))
+            field_CLS_size[field][CLS].extend(y)
+            field_cc_size[field][int(cc)].exntend(y)
 
     lines = ['Displines=Citation impact=Max=Avg=Median=Gini']
 
@@ -1481,12 +1491,14 @@ def plot_subcascade_data():
     plt.yscale('log')
     plt.xscale('log')
 
-    plt.legend(prop={'size':6})
+    # plt.legend(prop={'size':6})
+    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=2)
+
 
 
     plt.tight_layout()
 
-    plt.savefig('fig/field_cc_num_cas.png',dpi=300)
+    plt.savefig('fig/field_cc_num_cas.png',dpi=300,additional_artists=[lgd])
 
     logging.info('fig saved to fig/field_cc_num_cas.png.')
 
@@ -1831,10 +1843,10 @@ if __name__ == '__main__':
     # dccp_of_paper(paths)
     # stat_dccp(paths)
     # boxplot()
-    plot_dccps()
+    # plot_dccps()
 
     # stat_subcascades(paths)
-    # plot_subcascade_data()
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
