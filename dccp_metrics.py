@@ -1340,7 +1340,7 @@ def plot_subcascade_data():
 
 
             field_CLS_size[field][CLS].extend(y)
-            field_cc_size[field][int(cc)].exntend(y)
+            field_cc_size[field][int(cc)].extend(y)
 
     lines = ['Displines=Citation impact=Max=Avg=Median=Gini']
 
