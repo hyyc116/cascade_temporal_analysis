@@ -1147,7 +1147,7 @@ def plot_subcascade_data():
     field_doctype_num_dict = json.loads(open('data/field_doctype_num_dict_all.json').read())
 
 
-    selected_years = [year for j,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))) if j%2!=0]
+
 
     ## 每一个subject两张图，分别对size和num随着doctype以及时间的变化进行描述
     fig,axes = plt.subplots(3,2,figsize=(10,9))
@@ -1156,6 +1156,8 @@ def plot_subcascade_data():
         year_size_dict = field_year_size_dict[subj]
 
         # if subj=='SCIENTOMETRICS':
+
+        selected_years = [year for j,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))) if j%2!=0]
         #     continue
 
         # ax = axes[i,0]
@@ -1195,6 +1197,8 @@ def plot_subcascade_data():
     for i,subj in enumerate(sorted(field_year_num_dict.keys())):
 
         year_num_dict = field_year_num_dict[subj]
+
+        selected_years = [year for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))) if j%2!=0]
 
         # ax = axes[i,1]
         ## 每一年的distribution
