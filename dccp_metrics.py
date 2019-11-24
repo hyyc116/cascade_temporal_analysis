@@ -1099,8 +1099,8 @@ def plot_subcascade_data():
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.plot(xs,ys,label='{}'.format(subj))
 
-        ax.set_xlabel('size of subcascade')
-        ax.set_ylabel('number of subcascade')
+        ax.set_xlabel('size of subcascades')
+        ax.set_ylabel('number of subcascades')
 
         ax.set_xscale('log')
         ax.set_yscale('log')
