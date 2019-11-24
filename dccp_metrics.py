@@ -1268,6 +1268,8 @@ def plot_subcascade_data():
 
         ys = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
+        # print('moving average')
+
         plt.plot(xs,ys,label=subj)
 
     plt.xlabel('year')
@@ -1360,7 +1362,7 @@ def plot_subcascade_data():
             max_ = np.max(data)
             mean = np.mean(data)
             median = np.mean(data)
-            gini_score = gini(np.array(data))
+            gini_score = gini(np.array([float(d) for d in data]))
 
             line = '{}={}={}={}={}={}'.format(field,TAG,max_,mean,median,gini_score)
 
@@ -1477,7 +1479,7 @@ def plot_subcascade_data():
             xs.append(cc)
             ys.append(np.mean(field_cc_num[subj][cc]))
 
-        ys = [ np.mean(ys[:i+1]) for i in range(len(ys))]
+        # ys = [ np.mean(ys[:i+1]) for i in range(len(ys))]
 
         # print('length of data {}'.format(len(data)))
 
