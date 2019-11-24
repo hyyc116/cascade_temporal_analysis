@@ -880,6 +880,8 @@ def stat_subcascades(pathObj):
 
 
     field_cc_size_int = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
+    field_cc_nums = defaultdict(lambda:defaultdict(list))
+
 
     field_doctype_num_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
     field_year_num_dict = defaultdict(lambda:defaultdict(lambda:defaultdict(int)))
@@ -936,6 +938,8 @@ def stat_subcascades(pathObj):
 
                 all_ids.extend(ids)
 
+            field_cc_nums[subj][cc].append(num)
+
             for _cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
                     for sub_id in set(all_ids):
@@ -971,7 +975,11 @@ def stat_subcascades(pathObj):
             field_doctype_size_dict[subj][_doctype][size]+=len(ids)
             field_cc_size_int[subj][cc][size]+=len(ids)
 
+
             all_ids.extend(ids)
+
+        field_cc_nums[subj][cc].append(num)
+
 
         for _cc_ix,_cc_cl in enumerate(_cn_clas):
             if _cc_cl==1:
@@ -1005,7 +1013,11 @@ def stat_subcascades(pathObj):
                 field_cc_size_int[subj][cc][size]+=len(ids)
 
 
+
                 all_ids.extend(ids)
+
+            field_cc_nums[subj][cc].append(num)
+
 
             for _cc_ix,_cc_cl in enumerate(_cn_clas):
                 if _cc_cl==1:
@@ -1032,6 +1044,8 @@ def stat_subcascades(pathObj):
 
 
     open('data/field_cc_size_dict_all.json','w').write(json.dumps(field_cc_size_int))
+
+    open('data/field_cc_nums.json','w').write(json.dumps(field_cc_nums))
 
     open('data/field_doctype_size_dict_all.json','w').write(json.dumps(field_doctype_size_dict))
 
@@ -1306,6 +1320,8 @@ def plot_subcascade_data():
     ## field cc size int
     field_cc_size_int = json.loads(open('data/field_cc_size_dict_all.json').read())
 
+    field_cc_nums = json.loads(open('data/field_cc_nums.json').read())
+
     field_CLS_size = defaultdict(lambda:defaultdict(list))
 
     field_cc_size = defaultdict(lambda:defaultdict(list))
@@ -1330,12 +1346,14 @@ def plot_subcascade_data():
                 CLS = 2
 
             y = []
-            nums = []
+            # nums = []
             for size in field_cc_size_int[field][cc].keys():
 
                 y.extend([int(size)]*field_cc_size_int[field][cc][size])
 
-                nums.append(field_cc_size_int[field][cc][size])
+                # nums.append(field_cc_size_int[field][cc][size])
+
+            nums = field_cc_nums[field][cc]
 
             field_CLS_num[field][CLS].append(np.mean(nums))
             field_cc_num[field][int(cc)].append(np.mean(nums))
@@ -1847,7 +1865,7 @@ if __name__ == '__main__':
     # boxplot()
     # plot_dccps()
 
-    # stat_subcascades(paths)
+    stat_subcascades(paths)
     plot_subcascade_data()
     # output_motif_table()
 
