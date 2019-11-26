@@ -1379,7 +1379,7 @@ def plot_subcascade_data():
 
             max_ = np.max(data)
             mean = np.mean(data)
-            median = np.mean(data)
+            median = np.median(data)
             gini_score = gini(np.array([float(d) for d in data]))
 
             line = '{}={}={}={}={}={}'.format(field,TAG,max_,mean,median,gini_score)
@@ -1863,10 +1863,10 @@ if __name__ == '__main__':
     # dccp_of_paper(paths)
     # stat_dccp(paths)
     # boxplot()
-    plot_dccps()
+    # plot_dccps()
 
     # stat_subcascades(paths)
-    # plot_subcascade_data()
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
