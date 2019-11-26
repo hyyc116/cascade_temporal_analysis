@@ -50,8 +50,8 @@ def cal_data(pathObj):
 
         R_citings = []
         R_citeds = []
-        TR_citings = []
-        TR_citeds = []
+        TR_citings = 0
+        TR_citeds = 0
 
         all_citing_refs = []
         for citing_id in citing_ids:
@@ -67,8 +67,8 @@ def cal_data(pathObj):
             R_citings.append(R_citing)
             R_citeds.append(R_cited)
 
-        TR_citings = len(set(all_citing_refs)&set(citing_ids))
-        TR_citeds = len(set(all_citing_refs)&set(refs))
+            TR_citings +=R_citing
+            TR_citeds += R_cited
 
         cp_r_citing_e0 = len([r for r in R_citings if r==0])
         cp_r_citing_g0 = len([r for r in R_citings if r>0])
