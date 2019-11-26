@@ -89,7 +89,10 @@ def cal_data(pathObj):
 
         # lines.append(line)
 
-        subjects = _id_subjects[pid]
+        subjects = _id_subjects.get(pid,None)
+
+        if subjects is None:
+            continue
 
         for subj in subjects:
 
