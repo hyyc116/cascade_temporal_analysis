@@ -13,7 +13,7 @@ def cal_data(pathObj):
     ## 一篇论文的参考
     pid_refs = defaultdict(list)
     progress = 0
-    for line in open(pathObj.id_cits_path):
+    for line in open(pathObj.pid_cits_path):
 
         progress+=1
 
