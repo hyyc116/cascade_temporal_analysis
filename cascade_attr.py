@@ -68,7 +68,7 @@ def stat_basic_attr(pathObj):
             pid_cnum[pid] = citation_count
 
             ## DEPTH
-            depth=nx.dag_longest_path_length(diG)
+            depth=nx.dag_longest_path_length(dig)
 
             ## 根据出度以及入度对结点的角色进行分析
             node_count = 0
