@@ -33,12 +33,13 @@ def cal_data(pathObj):
     attr_subj_list = defaultdict(lambda:defaultdict(list))
 
     progress = 0
+    total = len(pid_citations.keys())
     for pid in pid_citations.keys():
 
         progress+=1
 
         if progress%10000000==0:
-            logging.info('stating data %d ....' % progress)
+            logging.info('stating data %d/%d ....' % (progress,total))
 
         citing_ids = pid_citations[pid]
         refs = pid_refs[pid]
@@ -132,6 +133,15 @@ def cal_data(pathObj):
 
 
     ##
+
+    logging.info('statting done.')
+    open('data/all_dd.json','w').write(json.dumps(attr_subj_list))
+
+def plot_dd():
+
+    attr_subj_list = json.loads(open('data/all_dd.json').read())
+
+
     cp_subj_list = attr_subj_list['cp']
     headline = 'attr=stats={}'.format('='.join(sorted(cp_subj_list.keys())))
     lines = [headline]
@@ -211,7 +221,7 @@ def plot_attr_cdf(subj_list,ax,xlabel):
         attr_list = subj_list[subj]
 
         means.append(np.mean(attr_list))
-        medians.append(np.medians(attr_list))
+        medians.append(np.median(attr_list))
 
         if subj=='WOS_ALL':
             continue
@@ -251,7 +261,7 @@ if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
     cal_data(paths)
-
+    plot_dd()
 
 
 
