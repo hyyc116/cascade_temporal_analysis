@@ -81,7 +81,8 @@ def stat_basic_attr(pathObj):
 
                 ## 出度为0的是owner
                 if od==0:
-                    owner_count+=1
+                    # owner_count+=1
+                    pass
                 else:
                     node_count+=1
                     ## 如果大于0，表示是endoser的一种
