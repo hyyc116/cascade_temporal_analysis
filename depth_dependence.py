@@ -29,7 +29,6 @@ def cal_data(pathObj):
 
     logging.info('stating all data ..')
     ## 计算文章的值
-    lines = []
     attr_subj_list = defaultdict(lambda:defaultdict(list))
 
     progress = 0
@@ -54,12 +53,10 @@ def cal_data(pathObj):
         TR_citings = 0
         TR_citeds = 0
 
-        all_citing_refs = []
         for citing_id in citing_ids:
 
-            c_refs = pid_citations[citing_id]
+            c_refs = pid_refs[citing_id]
 
-            all_citing_refs.extend(c_refs)
             ## R_citing是引证文献与其参考文献共引本文的篇数
             R_citing = len(set(c_refs)&set(citing_ids))
             ## R_cited 是本文与引证文献共同参考文献的数量
@@ -97,43 +94,41 @@ def cal_data(pathObj):
 
         for subj in subjects:
 
-            attr_subj_list['cp'][subj] = cp
-            attr_subj_list['cp_r_citing_e0'][subj] = cp_r_cited_e0
-            attr_subj_list['cp_r_citing_g0'][subj] = cp_r_cited_g0
-            attr_subj_list['cp_r_cited_e0'][subj] = cp_r_cited_e0
-            attr_subj_list['cp_r_cited_g0'][subj] = cp_r_cited_g0
-            attr_subj_list['TR_citings'][subj] = TR_citings
-            attr_subj_list['TR_citeds'][subj] = TR_citeds
+            attr_subj_list['cp'][subj].append(cp)
+            attr_subj_list['cp_r_citing_e0'][subj].append(cp_r_cited_e0)
+            attr_subj_list['cp_r_citing_g0'][subj].append(cp_r_cited_g0)
+            attr_subj_list['cp_r_cited_e0'][subj].append(cp_r_cited_e0)
+            attr_subj_list['cp_r_cited_g0'][subj].append(cp_r_cited_g0)
+            attr_subj_list['TR_citings'][subj].append(TR_citings)
+            attr_subj_list['TR_citeds'][subj].append(TR_citeds)
 
-            attr_subj_list['pcp_r_citing_e0'][subj] = pcp_r_cited_e0
-            attr_subj_list['pcp_r_citing_g0'][subj] = pcp_r_cited_g0
-            attr_subj_list['pcp_r_cited_e0'][subj] = pcp_r_cited_e0
-            attr_subj_list['pcp_r_cited_g0'][subj] = pcp_r_cited_g0
+            attr_subj_list['pcp_r_citing_e0'][subj].append(pcp_r_cited_e0)
+            attr_subj_list['pcp_r_citing_g0'][subj].append(pcp_r_cited_g0)
+            attr_subj_list['pcp_r_cited_e0'][subj].append(pcp_r_cited_e0)
+            attr_subj_list['pcp_r_cited_g0'][subj].append(pcp_r_cited_g0)
 
-            attr_subj_list['MR_citings'][subj] = MR_citings
-            attr_subj_list['MR_citeds'][subj] = MR_citeds
+            attr_subj_list['MR_citings'][subj].append(MR_citings)
+            attr_subj_list['MR_citeds'][subj].append(MR_citeds)
 
 
 
-        attr_subj_list['cp']['WOS_ALL'] = cp
-        attr_subj_list['cp_r_citing_e0']['WOS_ALL'] = cp_r_cited_e0
-        attr_subj_list['cp_r_citing_g0']['WOS_ALL'] = cp_r_cited_g0
-        attr_subj_list['cp_r_cited_e0']['WOS_ALL'] = cp_r_cited_e0
-        attr_subj_list['cp_r_cited_g0']['WOS_ALL'] = cp_r_cited_g0
-        attr_subj_list['TR_citings']['WOS_ALL'] = TR_citings
-        attr_subj_list['TR_citeds']['WOS_ALL'] = TR_citeds
+        attr_subj_list['cp']['WOS_ALL'].append(cp)
+        attr_subj_list['cp_r_citing_e0']['WOS_ALL'].append(cp_r_cited_e0)
+        attr_subj_list['cp_r_citing_g0']['WOS_ALL'].append(cp_r_cited_g0)
+        attr_subj_list['cp_r_cited_e0']['WOS_ALL'].append(cp_r_cited_e0)
+        attr_subj_list['cp_r_cited_g0']['WOS_ALL'].append(cp_r_cited_g0)
+        attr_subj_list['TR_citings']['WOS_ALL'].append(TR_citings)
+        attr_subj_list['TR_citeds']['WOS_ALL'].append(TR_citeds)
 
-        attr_subj_list['pcp_r_citing_e0']['WOS_ALL'] = pcp_r_cited_e0
-        attr_subj_list['pcp_r_citing_g0']['WOS_ALL'] = pcp_r_cited_g0
-        attr_subj_list['pcp_r_cited_e0']['WOS_ALL'] = pcp_r_cited_e0
-        attr_subj_list['pcp_r_cited_g0']['WOS_ALL'] = pcp_r_cited_g0
+        attr_subj_list['pcp_r_citing_e0']['WOS_ALL'].append(pcp_r_cited_e0)
+        attr_subj_list['pcp_r_citing_g0']['WOS_ALL'].append(pcp_r_cited_g0)
+        attr_subj_list['pcp_r_cited_e0']['WOS_ALL'].append(pcp_r_cited_e0)
+        attr_subj_list['pcp_r_cited_g0']['WOS_ALL'].append(pcp_r_cited_g0)
 
-        attr_subj_list['MR_citings']['WOS_ALL'] = MR_citings
-        attr_subj_list['MR_citeds']['WOS_ALL'] = MR_citeds
-
+        attr_subj_list['MR_citings']['WOS_ALL'].append(MR_citings)
+        attr_subj_list['MR_citeds']['WOS_ALL'].append(MR_citeds)
 
     ##
-
     logging.info('statting done.')
     open('data/all_dd.json','w').write(json.dumps(attr_subj_list))
 
