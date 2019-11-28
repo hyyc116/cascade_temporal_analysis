@@ -106,8 +106,10 @@ def stat_basic_attr(pathObj):
 
                         connector_ccs.append(_cn)
 
-
-            anlec = le_count/float(connector_count)
+            if connector_count==0:
+                anlec = 0
+            else:
+                anlec = le_count/float(connector_count)
 
             cc_of_connc = np.mean(connector_ccs) if len(connector_ccs)>0 else 0
 
