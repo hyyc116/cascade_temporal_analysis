@@ -63,9 +63,9 @@ def cal_data(pathObj):
             c_refs = pid_refs[citing_id]
 
             ## R_citing是引证文献与其参考文献共引本文的篇数
-            R_citing = len(c_refs&citing_set)
+            R_citing = len(c_refs&citing_ids)
             ## R_cited 是本文与引证文献共同参考文献的数量
-            R_cited = len(c_refs&ref_set)
+            R_cited = len(c_refs&refs)
 
             R_citings.append(R_citing)
             R_citeds.append(R_cited)
