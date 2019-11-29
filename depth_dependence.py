@@ -131,8 +131,10 @@ def cal_data(pathObj):
         attr_subj_list['MR_citeds']['WOS_ALL'].append(MR_citeds)
 
     ##
-    logging.info('statting done.')
     open('data/all_dd.json','w').write(json.dumps(attr_subj_list))
+
+    logging.info('statting done.')
+
 
 def plot_dd():
 
@@ -166,7 +168,7 @@ def plot_dd():
         subj_list = attr_subj_list[attr_name]
         xlabel = attr_labels[i]
 
-        mean_line,median_line = plot_attr_cdf(subj_list)
+        mean_line,median_line = plot_attr_cdf(subj_list,ax,xlabel)
 
         lines.append(mean_line)
         lines.append(median_line)
@@ -193,7 +195,7 @@ def plot_dd():
         subj_list = attr_subj_list[attr_name]
         xlabel = attr_labels[i]
 
-        mean_line,median_line = plot_attr_cdf(subj_list)
+        mean_line,median_line = plot_attr_cdf(subj_list,ax,xlabel)
 
         lines.append(mean_line)
         lines.append(median_line)
