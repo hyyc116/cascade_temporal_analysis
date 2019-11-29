@@ -49,7 +49,7 @@ def cal_data(pathObj):
         refs = pid_refs[pid]
 
         ## CP
-        cp = len(pid_citations)
+        cp = len(citing_ids)
 
         ## R(citing_pubs), R(cited pubs)
 
@@ -232,6 +232,9 @@ def plot_attr_cdf(subj_list,ax,xlabel):
 
     ax.set_xlabel('{}'.format(xlabel))
     ax.set_ylabel('CDF')
+
+    ax.set_xscale('log')
+    ax.set_yscale('log')
 
     ax.legend()
 
