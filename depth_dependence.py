@@ -280,6 +280,10 @@ def cdf(alist,isF =False):
     xs = []
     ys = []
     for a in sorted(a_counter.keys()):
+
+        if a==0:
+            continue
+
         xs.append(a)
         ys.append(a_counter[a])
 
