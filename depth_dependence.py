@@ -8,11 +8,15 @@ def cal_data(pathObj):
     logging.info('loading _id_subjects ...')
     _id_subjects = json.loads(open(pathObj.paper_id_topsubj).read())
 
+    logging.info('loading _id_pubyear ...')
+    _id_pubyear = json.loads(open(pathObj.paper_year_path).read())
+
     ## 一篇论文的被引
     pid_citations = defaultdict(set)
     ## 一篇论文的参考
     pid_refs = defaultdict(set)
     progress = 0
+
     for line in open(pathObj.pid_cits_path):
 
         progress+=1
@@ -22,6 +26,9 @@ def cal_data(pathObj):
 
         line = line.strip()
         pid,citing_id = line.split("\t")
+
+        if _id_pubyear.get(pid,9999)>2016 or _id_pubyear.get(citing_id,9999)>2016:
+            continue
 
         pid_citations[pid].add(citing_id)
 
@@ -248,7 +255,10 @@ def plot_attr_cdf(subj_list,ax,xlabel):
 
     return mean_line,median_line
 
-def cdf(alist):
+def cdf(alist,isF =False):
+
+    if isF:
+        alist = [ float('{:.4f}'.format(a)) for a in alist]
 
     a_counter = Counter(alist)
 

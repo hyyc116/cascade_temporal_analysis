@@ -121,6 +121,118 @@ def stat_basic_attr(pathObj):
 
     logging.info('all data saved to data/pid_all_attrs.json.')
 
+
+
+def plot_cascade_attr():
+
+    logging.info('loading _id_subjects ...')
+    _id_subjects = json.loads(open(pathObj.paper_id_topsubj).read())
+
+    logging.info('loading pid all pid_attrs ...')
+    pid_attrs = json.loads(open('data/pid_all_attrs.json').read())
+
+    logging.info('loading _id_pubyear ...')
+    _id_pubyear = json.loads(open(pathObj.paper_year_path).read())
+
+    logging.info('starting to stat ..')
+    subj_depth_dis = defaultdict(lambda:defaultdict(int))
+    subj_anlec_dis = defaultdict(lambda:defaultdict(int))
+    subj_cc_concc = defaultdict(lambda:defaultdict(list))
+
+    for pid in pid_attrs.keys():
+
+        _year = _id_pubyear.get(pid,9999)
+
+        if _year>2016:
+            continue
+
+        citation_count,num_of_edges,num_of_dccps,depth,anlec,cc_of_connc = pid_attrs[pid]
+
+        subjs = _id_subjects[_id]
+
+        for subj in subjs:
+            subj_depth_dis[subj][depth]+=1
+
+            subj_anlec_dis[subj][float('{:.4f}'.format(anlec))]+=1
+
+            subj_cc_concc[subj][cc].append(cc_of_connc)
+
+
+    ## 画出depth的图
+    logging.info('plotting depth...')
+
+    plt.figure(figsize=(5,4))
+    for subj in sorted(subj_depth_dis.keys()):
+
+        xs = []
+        ys = []
+
+        for depth in sorted(subj_depth_dis[subj].keys()):
+
+            xs.append(depth)
+            ys.append(subj_depth_dis[subj][depth])
+
+        ys = [np.sum(ys[i:])/float(np.sum(ys)) for i in range(len(ys))]
+
+        plt.plot(xs,ys,label=subj)
+
+
+    plt.legend()
+
+    plt.xlabel('depth')
+
+    plt.ylabel('probability')
+
+    plt.title('CCDF')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/cascade_depth_dis.png',dpi=400)
+
+    ##画出anlec的论文
+
+    logging.info('plotting anlec ..')
+
+    plt.figure(figsize=(5,4))
+    for subj in sorted(subj_anlec_dis.keys()):
+
+        xs = []
+        ys = []
+
+        for anlec in sorted(subj_anlec_dis[subj].keys()):
+
+            xs.append(anlec)
+            ys.append(subj_anlec_dis[subj][anlec])
+
+        ys = [np.sum(ys[i:])/float(np.sum(ys)) for i in range(len(ys))]
+
+        plt.plot(xs,ys,label=subj)
+
+
+    plt.legend()
+
+    plt.xlabel('ANLEC')
+
+    plt.ylabel('probability')
+
+    plt.title('CCDF')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/cascade_anlec_dis.png',dpi=400)
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
