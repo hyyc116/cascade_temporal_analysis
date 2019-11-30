@@ -251,7 +251,10 @@ def plot_attr_cdf(subj_list,ax,xlabel,isF=False):
     if xlabel=='CP':
         ax.set_yscale('log')
     else:
-        ax.set_xlim(1,1000)
+        if isF:
+            ax.set_xlim(0.001,100)
+        else:
+            ax.set_xlim(1,1000)
 
     ax.legend()
 
