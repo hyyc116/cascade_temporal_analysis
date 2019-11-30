@@ -161,7 +161,7 @@ def plot_cascade_attr(pathObj):
         if len(subjs)>0:
             progress+=1
 
-        if progress%10000==0:
+        if progress%1000000==0:
             logging.info('progress {}/{} ..'.format(progress,total))
 
         for subj in subjs:
@@ -216,6 +216,8 @@ def plot_cascade_attr(pathObj):
     plt.tight_layout()
 
     plt.savefig('fig/cascade_depth_dis.png',dpi=400)
+    logging.info('fig saved to fig/cascade_depth_dis.png.')
+
 
     ##画出anlec的论文
 
@@ -248,6 +250,8 @@ def plot_cascade_attr(pathObj):
     plt.tight_layout()
 
     plt.savefig('fig/cascade_anlec_dis.png',dpi=400)
+    logging.info('fig saved to fig/cascade_anlec_dis.png.')
+
 
 
     ## 置信区间 需要每一个领域画一张图
@@ -289,6 +293,7 @@ def plot_cascade_attr(pathObj):
     plt.tight_layout()
 
     plt.savefig('fig/cc_avgconcc.png',dpi=400)
+    logging.info('fig saved to fig/cc_avgconcc.png.')
 
 
 
