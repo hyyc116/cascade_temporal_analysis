@@ -203,7 +203,7 @@ def plot_dd():
         subj_list = attr_subj_list[attr_name]
         xlabel = attr_labels[i]
 
-        mean_line,median_line = plot_attr_cdf(subj_list,ax,xlabel)
+        mean_line,median_line = plot_attr_cdf(subj_list,ax,xlabel,True)
 
         lines.append(mean_line)
         lines.append(median_line)
@@ -222,7 +222,7 @@ def plot_dd():
 
 
 
-def plot_attr_cdf(subj_list,ax,xlabel):
+def plot_attr_cdf(subj_list,ax,xlabel,isF=False):
 
     means = []
     medians = []
@@ -231,14 +231,14 @@ def plot_attr_cdf(subj_list,ax,xlabel):
         attr_list = subj_list[subj]
 
         means.append(np.mean(attr_list))
-        # medians.append(np.median(attr_list))
-        medians.append(0)
+        medians.append(np.median(attr_list))
+        # medians.append(0)
 
 
         # if subj=='WOS_ALL':
         #     continue
 
-        xs,ys = cdf(attr_list)
+        xs,ys = cdf(attr_list,isF)
 
         ax.plot(xs,ys,label='{}'.format(subj))
 
@@ -263,10 +263,13 @@ def plot_attr_cdf(subj_list,ax,xlabel):
 
 def cdf(alist,isF =False):
 
-    if isF:
-        alist = [ float('{:.4f}'.format(a)) for a in alist]
+    a_counter = defaultdict(int)
 
-    a_counter = Counter(alist)
+    for a in alist:
+
+        if isF:
+            a = float('{:.4f}'.format(a))
+        a_counter[a]+=1
 
     xs = []
     ys = []
