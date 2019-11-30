@@ -27,8 +27,7 @@ def cal_data(pathObj):
         line = line.strip()
         pid,citing_id = line.split("\t")
 
-        if _id_pubyear.get(pid,9999)>2016 or _id_pubyear.get(citing_id,9999)>2016:
-            continue
+
 
         pid_citations[pid].add(citing_id)
 
@@ -46,6 +45,9 @@ def cal_data(pathObj):
 
         if progress%10000000==0:
             logging.info('stating data %d/%d ....' % (progress,total))
+
+        if _id_pubyear.get(pid,9999)>2016:
+            continue
 
         subjects = _id_subjects.get(pid,None)
 
