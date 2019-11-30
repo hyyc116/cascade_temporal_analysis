@@ -169,13 +169,13 @@ def plot_cascade_attr(pathObj):
 
             subj_anlec_dis[subj][float('{:.4f}'.format(anlec))]+=1
 
-            subj_cc_concc[subj][cc].append(cc_of_connc)
+            subj_cc_concc[subj][citation_count].append(cc_of_connc)
 
         subj_depth_dis['WOS_ALL'][depth]+=1
 
         subj_anlec_dis['WOS_ALL'][float('{:.4f}'.format(anlec))]+=1
 
-        subj_cc_concc['WOS_ALL'][cc].append(cc_of_connc)
+        subj_cc_concc['WOS_ALL'][citation_count].append(cc_of_connc)
 
         if pid in sciento_ids:
 
@@ -183,7 +183,7 @@ def plot_cascade_attr(pathObj):
 
             subj_anlec_dis['SCIENTOMETRICS'][float('{:.4f}'.format(anlec))]+=1
 
-            subj_cc_concc['SCIENTOMETRICS'][cc].append(cc_of_connc)
+            subj_cc_concc['SCIENTOMETRICS'][citation_count].append(cc_of_connc)
 
 
     ## 画出depth的图
