@@ -288,7 +288,7 @@ if __name__ == '__main__':
     paths = PATHS(field)
     # stat_basic_attr(paths)
 
-    plot_cascade_attr(pathObj)
+    plot_cascade_attr(paths)
 
 
 
