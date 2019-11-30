@@ -146,7 +146,7 @@ def plot_cascade_attr(pathObj):
 
         _year = _id_pubyear.get(pid,9999)
 
-        if _year>2016:
+        if int(_year)>2016:
             continue
 
         citation_count,num_of_edges,num_of_dccps,depth,anlec,cc_of_connc = pid_attrs[pid]
