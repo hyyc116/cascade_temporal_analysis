@@ -151,7 +151,7 @@ def plot_cascade_attr(pathObj):
 
         citation_count,num_of_edges,num_of_dccps,depth,anlec,cc_of_connc = pid_attrs[pid]
 
-        subjs = _id_subjects[_id]
+        subjs = _id_subjects[pid]
 
         for subj in subjs:
             subj_depth_dis[subj][depth]+=1
@@ -240,7 +240,7 @@ def plot_cascade_attr(pathObj):
 
 
     ## 置信区间 需要每一个领域画一张图
-    fig,axes = plt.subplots(4,2,figsize(10,16))
+    fig,axes = plt.subplots(4,2,figsize=(10,16))
     for i,subj in enumerate(sorted(subj_cc_concc.keys())):
 
         ax = axes[i/2,i%2]
