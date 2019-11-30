@@ -196,7 +196,7 @@ def plot_dd():
     fig,axes = plt.subplots(3,2,figsize=(15,12))
     for i,attr_name in enumerate(attr_names):
 
-        logging.info('attr_name')
+        logging.info(attr_name)
 
         ax =axes[i/2,i%2]
 
@@ -231,7 +231,9 @@ def plot_attr_cdf(subj_list,ax,xlabel):
         attr_list = subj_list[subj]
 
         means.append(np.mean(attr_list))
-        medians.append(np.median(attr_list))
+        # medians.append(np.median(attr_list))
+        medians.append(0)
+
 
         # if subj=='WOS_ALL':
         #     continue
