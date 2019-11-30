@@ -247,25 +247,37 @@ def plot_cascade_attr(pathObj):
         cc_connc = subj_cc_concc[subj]
         xs = []
         ys = []
+        up_ys = []
+        low_ys = []
         for cc in sorted(cc_connc):
 
             conns = cc_connc[cc]
 
             mean = np.mean(conns)
+            std = np.std(conns)
+
+            width = 1.96*(std/np.sqrt(len(conns)))
 
             xs.append(cc)
             ys.append(mean)
 
+            up_ys.append(mean+width)
+            low_ys.append(mean-width)
 
 
+        ax.plot(xs,ys,c='r')
 
+        ax.fill_bettwen(xs,up_ys,low_ys,alpha=0.6)
 
+        ax.title(subj)
+        ax.set_xlabel('number of citations')
+        ax.set_ylabel('average citation count of connectors')
 
+        ax.set_xscale('log')
 
+    plt.tight_layout()
 
-
-
-
+    plt.savefig('fig/cc_avgconcc.png',dpi=400)
 
 
 
@@ -274,7 +286,9 @@ def plot_cascade_attr(pathObj):
 if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
-    stat_basic_attr(paths)
+    # stat_basic_attr(paths)
+
+    plot_cascade_attr(pathObj)
 
 
 
