@@ -162,7 +162,6 @@ def plot_dd():
     logging.info('fig saved to fig/dd_cp_cdf_dis.png')
 
 
-
     attr_names= ['cp_r_citing_e0','cp_r_citing_g0','TR_citings','cp_r_cited_e0','cp_r_cited_g0','TR_citeds']
     attr_labels = ['CP(R[cting pub]=0)','CP(R[citing pub]>0)','TR citings','CP(R[cited pub]=0)','CP(R[cited pub]>0)','TR citeds']
 
@@ -197,6 +196,8 @@ def plot_dd():
     fig,axes = plt.subplots(3,2,figsize=(15,12))
     for i,attr_name in enumerate(attr_names):
 
+        logging.info('attr_name')
+
         ax =axes[i/2,i%2]
 
         subj_list = attr_subj_list[attr_name]
@@ -214,6 +215,9 @@ def plot_dd():
 
     open('data/pcp_data.txt','w').write('\n'.join(lines))
     logging.info('data saved to data/pcp_data.txt')
+
+    ## 首先画出一个平均值是如何变化的
+
 
 
 

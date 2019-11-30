@@ -123,7 +123,7 @@ def stat_basic_attr(pathObj):
 
 
 
-def plot_cascade_attr():
+def plot_cascade_attr(pathObj):
 
     logging.info('loading _id_subjects ...')
     _id_subjects = json.loads(open(pathObj.paper_id_topsubj).read())
@@ -133,6 +133,9 @@ def plot_cascade_attr():
 
     logging.info('loading _id_pubyear ...')
     _id_pubyear = json.loads(open(pathObj.paper_year_path).read())
+
+    sciento_ids = set([l.strip() for l in open(pathObj._scientometrics_path)])
+
 
     logging.info('starting to stat ..')
     subj_depth_dis = defaultdict(lambda:defaultdict(int))
@@ -156,6 +159,20 @@ def plot_cascade_attr():
             subj_anlec_dis[subj][float('{:.4f}'.format(anlec))]+=1
 
             subj_cc_concc[subj][cc].append(cc_of_connc)
+
+        subj_depth_dis['WOS_ALL'][depth]+=1
+
+        subj_anlec_dis['WOS_ALL'][float('{:.4f}'.format(anlec))]+=1
+
+        subj_cc_concc['WOS_ALL'][cc].append(cc_of_connc)
+
+        if pid in sciento_ids:
+
+            subj_depth_dis['SCIENTOMETRICS'][depth]+=1
+
+            subj_anlec_dis['SCIENTOMETRICS'][float('{:.4f}'.format(anlec))]+=1
+
+            subj_cc_concc['SCIENTOMETRICS'][cc].append(cc_of_connc)
 
 
     ## 画出depth的图
@@ -220,6 +237,27 @@ def plot_cascade_attr():
     plt.tight_layout()
 
     plt.savefig('fig/cascade_anlec_dis.png',dpi=400)
+
+
+    ## 置信区间 需要每一个领域画一张图
+    fig,axes = plt.subplots(4,2,figsize(10,16))
+    for i,subj in enumerate(sorted(subj_cc_concc.keys())):
+
+        ax = axes[i/2,i%2]
+        cc_connc = subj_cc_concc[subj]
+        xs = []
+        ys = []
+        for cc in sorted(cc_connc):
+
+            conns = cc_connc[cc]
+
+            mean = np.mean(conns)
+
+            xs.append(cc)
+            ys.append(mean)
+
+
+
 
 
 
