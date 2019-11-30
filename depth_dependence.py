@@ -268,7 +268,7 @@ def cdf(alist,isF =False):
     for a in alist:
 
         if isF:
-            a = float('{:.4f}'.format(a))
+            a = round(a,3)
         a_counter[a]+=1
 
     xs = []
