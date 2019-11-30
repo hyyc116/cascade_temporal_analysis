@@ -278,7 +278,7 @@ def plot_cascade_attr(pathObj):
 
         ax.plot(xs,ys,c='r')
 
-        ax.fill_bettwen(xs,up_ys,low_ys,alpha=0.6)
+        ax.fill_bettween(xs,up_ys,low_ys,alpha=0.6)
 
         ax.title(subj)
         ax.set_xlabel('number of citations')
