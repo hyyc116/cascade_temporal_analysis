@@ -161,7 +161,7 @@ def plot_cascade_attr(pathObj):
         if len(subjs)>0:
             progress+=1
 
-        if progress%10000:
+        if progress%10000==0:
             logging.info('progress {}/{} ..'.format(progress,total))
 
         for subj in subjs:
