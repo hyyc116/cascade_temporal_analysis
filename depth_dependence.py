@@ -222,8 +222,8 @@ def plot_attr_cdf(subj_list,ax,xlabel):
         means.append(np.mean(attr_list))
         medians.append(np.median(attr_list))
 
-        if subj=='WOS_ALL':
-            continue
+        # if subj=='WOS_ALL':
+        #     continue
 
         xs,ys = cdf(attr_list)
 
