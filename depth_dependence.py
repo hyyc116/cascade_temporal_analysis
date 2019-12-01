@@ -165,7 +165,7 @@ def plot_dd():
 
 
     attr_names= ['cp_r_citing_e0','cp_r_citing_g0','cp_r_cited_e0','cp_r_cited_g0','TR_citings','TR_citeds']
-    attr_labels = ['CP(R[cting pub]=0)','CP(R[citing pub]>0)','TR citings','CP(R[cited pub]=0)','CP(R[cited pub]>0)','TR citeds']
+    attr_labels = ['CP(R[cting pub]=0)','CP(R[citing pub]>0)','CP(R[cited pub]=0)','CP(R[cited pub]>0)','TR citings','TR citeds']
 
     ## 每一个属性画CDF
     fig,axes = plt.subplots(3,2,figsize=(15,12))
@@ -270,14 +270,10 @@ def plot_attr_cdf(subj_list,ax,xlabel,isF=False):
 
 def cdf(alist,isF =False):
 
-    a_counter = defaultdict(int)
+    alist = [round(a,3) for a in alist]
 
-    for a in alist:
+    a_counter = Counter(alist)
 
-        if isF:
-            a = round(a,4)
-
-        a_counter[a]+=1
 
     xs = []
     ys = []
