@@ -168,7 +168,7 @@ def plot_dd():
     attr_labels = ['CP(R[cting pub]=0)','CP(R[citing pub]>0)','CP(R[cited pub]=0)','CP(R[cited pub]>0)','TR citings','TR citeds']
 
     ## 每一个属性画CDF
-    fig,axes = plt.subplots(3,2,figsize=(15,12))
+    fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,attr_name in enumerate(attr_names):
 
         ax = axes[i/2,i%2]
