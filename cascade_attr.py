@@ -266,8 +266,7 @@ def plot_cascade_attr(pathObj):
         cc_connc = subj_cc_concc[subj]
         xs = []
         ys = []
-        up_ys = []
-        low_ys = []
+
         widths = []
         for cc in sorted(cc_connc):
 
@@ -285,8 +284,8 @@ def plot_cascade_attr(pathObj):
 
         zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
-        up_ys.append(np.array(zs)+np.array(widths))
-        low_ys.append(np.array(zs)-np.array(widths))
+        up_ys= p.array(zs)+np.array(widths)
+        low_ys=np.array(zs)-np.array(widths)
 
 
         ax.plot(xs,ys,c='r')
