@@ -151,7 +151,7 @@ def plot_dd():
 
 
     cp_subj_list = attr_subj_list['cp']
-    headline = 'attr=stats={}'.format('='.join(sorted(cp_subj_list.keys())))
+    headline = 'attr$stats${}'.format('$'.join(sorted(cp_subj_list.keys())))
     lines = [headline]
 
     fig,ax = plt.subplots(figsize=(5,4))
@@ -262,8 +262,8 @@ def plot_attr_cdf(subj_list,ax,xlabel,isF=False):
 
     ax.legend()
 
-    mean_line = '{}=mean={}'.format(xlabel,'='.join([str(a) for a in means]))
-    median_line = '{}=meidan={}'.format(xlabel,'='.join([str(a) for a in medians]))
+    mean_line = '{}$mean${}'.format(xlabel,'$'.join([str(a) for a in means]))
+    median_line = '{}$meidan${}'.format(xlabel,'$'.join([str(a) for a in medians]))
 
 
     return mean_line,median_line
