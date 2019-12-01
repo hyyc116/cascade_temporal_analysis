@@ -282,7 +282,8 @@ def plot_cascade_attr(pathObj):
             xs.append(cc)
             ys.append(mean)
 
-        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.005,it=1,is_sorted =True))[1]]
+        # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.005,it=1,is_sorted =True))[1]]
+        zs = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
         up_ys= np.array(zs)+np.array(widths)
         low_ys=np.array(zs)-np.array(widths)
