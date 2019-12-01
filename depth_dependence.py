@@ -178,7 +178,7 @@ def plot_dd():
 
         mean_line,median_line = plot_attr_cdf(subj_list,ax,xlabel)
 
-        ax.set_xlim(0.01,1000)
+        ax.set_xlim(0.9,1000)
 
         lines.append(mean_line)
         lines.append(median_line)
