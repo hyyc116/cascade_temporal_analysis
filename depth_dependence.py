@@ -191,8 +191,8 @@ def plot_dd():
 
     lines = [headline]
 
-    attr_names= ['pcp_r_citing_e0','pcp_r_citing_g0','MR_citings','pcp_r_cited_e0','pcp_r_cited_g0','MR_citeds']
-    attr_labels = ['PCP(R[cting pub]=0)','PCP(R[citing pub]>0)','MR citings','PCP(R[cited pub]=0)','PCP(R[cited pub]>0)','MR citeds']
+    attr_names= ['pcp_r_citing_e0','pcp_r_citing_g0','pcp_r_cited_e0','pcp_r_cited_g0','MR_citings','MR_citeds']
+    attr_labels = ['PCP(R[cting pub]=0)','PCP(R[citing pub]>0)','PCP(R[cited pub]=0)','PCP(R[cited pub]>0)','MR citings','MR citeds']
 
     ## 每一个属性画CDF
     fig,axes = plt.subplots(3,2,figsize=(15,12))
@@ -273,7 +273,7 @@ def cdf(alist,isF =False):
     for a in alist:
 
         if isF:
-            a = round(a,3)
+            a = round(a,2)
 
         a_counter[a]+=1
 

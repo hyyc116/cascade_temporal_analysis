@@ -207,6 +207,8 @@ def plot_cascade_attr(pathObj):
 
     plt.legend()
 
+    plt.xscale('log')
+
     plt.xlabel('depth')
 
     plt.ylabel('probability')
@@ -240,6 +242,8 @@ def plot_cascade_attr(pathObj):
 
 
     plt.legend()
+
+    plt.xscale('log')
 
     plt.xlabel('ANLEC')
 
