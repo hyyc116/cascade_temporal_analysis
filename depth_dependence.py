@@ -263,7 +263,7 @@ def plot_attr_cdf(subj_list,ax,xlabel,isF=False):
     ax.legend()
 
     mean_line = '{}=mean={}'.format(xlabel,'='.join([str(a) for a in means]))
-    median_line = '{}=mean={}'.format(xlabel,'='.join([str(a) for a in medians]))
+    median_line = '{}=meidan={}'.format(xlabel,'='.join([str(a) for a in medians]))
 
 
     return mean_line,median_line
