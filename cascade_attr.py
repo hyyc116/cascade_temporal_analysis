@@ -243,7 +243,7 @@ def plot_cascade_attr(pathObj):
 
     plt.legend()
 
-    plt.xscale('log')
+    # plt.xscale('log')
 
     plt.xlabel('ANLEC')
 
@@ -282,7 +282,7 @@ def plot_cascade_attr(pathObj):
             xs.append(cc)
             ys.append(mean)
 
-        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
+        zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.005,it=1,is_sorted =True))[1]]
 
         up_ys= np.array(zs)+np.array(widths)
         low_ys=np.array(zs)-np.array(widths)
