@@ -46,7 +46,7 @@ def cal_data(pathObj):
         if progress%10000000==0:
             logging.info('stating data %d/%d ....' % (progress,total))
 
-        if _id_pubyear.get(pid,9999)>2016:
+        if int(_id_pubyear.get(pid,9999))>2016:
             continue
 
         subjects = _id_subjects.get(pid,None)
@@ -295,8 +295,8 @@ if __name__ == '__main__':
 
     field = 'ALL'
     paths = PATHS(field)
-    # cal_data(paths)
-    plot_dd()
+    cal_data(paths)
+    # plot_dd()
 
 
 
