@@ -197,7 +197,7 @@ def plot_dd():
     attr_labels = ['PCP(R[cting pub]=0)','PCP(R[citing pub]>0)','PCP(R[cited pub]=0)','PCP(R[cited pub]>0)','MR citings','MR citeds']
 
     ## 每一个属性画CDF
-    fig,axes = plt.subplots(3,2,figsize=(15,12))
+    fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,attr_name in enumerate(attr_names):
 
         logging.info(attr_name)
