@@ -288,7 +288,7 @@ def plot_cascade_attr(pathObj):
         low_ys=np.array(zs)-np.array(widths)
 
 
-        ax.plot(xs,ys,c='r')
+        ax.plot(xs,zs,c='r')
 
         ax.fill_between(xs,up_ys,low_ys,alpha=0.6)
 
