@@ -384,7 +384,7 @@ def plot_cascade_matrix(pathObj):
 
     pid = selected_cascades.keys()[999]
 
-    print('number of citations:{}'.format(_id_cn[pid]))
+    logging.info('number of citations:{}'.format(_id_cn[pid]))
 
     edges = selected_cascades[pid]
 
@@ -405,9 +405,9 @@ def plot_cascade_matrix(pathObj):
 
         pos1,pos2 = node_id[citing],node_id[cited]
 
-        value = int(_id_year[pos1])
+        value = int(_id_year[cited])
 
-        data[pos2][pos1] = value
+        data[pos2][pos1] = value-1900
 
     ## 画出热力图
     import seaborn as sns
