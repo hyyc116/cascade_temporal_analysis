@@ -365,6 +365,64 @@ def plot_temporal_data():
 
         logging.info('{} fig saved.'.format(subj))
 
+
+## 级联矩阵
+def plot_cascade_matrix(pathObj):
+
+    logging.info('loading _id_cn ...')
+    _id_cn = json.loads(open(pathObj.paper_cit_num_path).read())
+
+    logging.info('loading _id_pubyear ...')
+    _id_year = json.loads(open(pathObj.paper_year_path).read())
+
+    ##高被引的cascade
+    selected_cascades = json.loads(open('data/selected_high_cascades.json').read())
+
+    ## 对于一个cascade
+
+    pid = selected_cascades.keys()[999]
+
+    print('number of citations:{}'.format(_id_cn[pid]))
+
+    edges = selected_cascades[pid]
+
+    dig = nx.DiGraph()
+    dig.add_edges_from(edges)
+
+    node_id = {}
+    node_num = {}
+    for i,node in enumerate(sorted(dig.nodes(),key= lambda x:int(_id_cn.get(x,0)))):
+
+        node_num[node]=int(_id_cn.get(node,0))
+        node_id[node]=i
+
+    num_of_node = len(node_id)
+    data = np.zeros((len(num_of_node)))
+
+    for citing,cited in edges:
+
+        pos1,pos2 = node_id[citing],node_id[cited]
+
+        value = int(_id_year[pos1])
+
+        data[pos2][pos1] = value
+
+    ## 画出热力图
+    import seaborn as sns
+
+    fig,ax = plt.subplots(figsize=(6,5))
+
+    sns.heatmap(data,ax = ax)
+
+    plt.tight_layout()
+
+    plt.savefig('fig/cascade_mat.png',dpi=400)
+    logging.info('fig saved to fig/cascade_mat.png')
+
+
+
+
+
 if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
@@ -378,7 +436,9 @@ if __name__ == '__main__':
 
     # plot_temporal_dccp(paths)
 
-    plot_temporal_data()
+    # plot_temporal_data()
+
+    plot_cascade_matrix(paths)
 
 
 
