@@ -376,6 +376,8 @@ def plot_cascade_matrix(pathObj):
     _id_year = json.loads(open(pathObj.paper_year_path).read())
 
     ##高被引的cascade
+    logging.info('loading data...')
+
     selected_cascades = json.loads(open('data/selected_high_cascades.json').read())
 
     ## 对于一个cascade
