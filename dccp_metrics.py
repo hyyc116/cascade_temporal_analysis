@@ -660,7 +660,7 @@ def plot_field_year_num(pathObj):
 
     print()
     logging.info('start to plot ..')
-    plt.figure(figsize=(10,4))
+    plt.figure(figsize=(10,6))
     width = 0.1
     for i,subj in enumerate(sorted(field_doctype_num.keys())):
 
