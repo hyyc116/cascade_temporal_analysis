@@ -399,7 +399,7 @@ def plot_cascade_matrix(pathObj):
         node_id[node]=i
 
     num_of_node = len(node_id)
-    data = np.zeros((len(num_of_node)))
+    data = np.zeros((num_of_node,num_of_node))
 
     for citing,cited in edges:
 
