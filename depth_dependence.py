@@ -88,11 +88,11 @@ def cal_data(pathObj):
         cp_r_cited_e0 = len([r for r in R_citeds if r==0])
         cp_r_cited_g0 = len([r for r in R_citeds if r>0])
 
-        pcp_r_citing_e0 = len([r for r in R_citings if r==0])/float(cp)
-        pcp_r_citing_g0 = len([r for r in R_citings if r>0])/float(cp)
+        pcp_r_citing_e0 = cp_r_citing_e0/float(cp)
+        pcp_r_citing_g0 = cp_r_citing_g0/float(cp)
 
-        pcp_r_cited_e0 = len([r for r in R_citeds if r==0])/float(cp)
-        pcp_r_cited_g0 = len([r for r in R_citeds if r>0])/float(cp)
+        pcp_r_cited_e0 = cp_r_cited_e0/float(cp)
+        pcp_r_cited_g0 = cp_r_cited_g0/float(cp)
 
         MR_citings = TR_citings/float(cp)
         MR_citeds = TR_citeds/float(cp)
@@ -106,15 +106,15 @@ def cal_data(pathObj):
         for subj in subjects:
 
             attr_subj_list['cp'][subj].append(cp)
-            attr_subj_list['cp_r_citing_e0'][subj].append(cp_r_cited_e0)
-            attr_subj_list['cp_r_citing_g0'][subj].append(cp_r_cited_g0)
+            attr_subj_list['cp_r_citing_e0'][subj].append(cp_r_citing_e0)
+            attr_subj_list['cp_r_citing_g0'][subj].append(cp_r_citing_g0)
             attr_subj_list['cp_r_cited_e0'][subj].append(cp_r_cited_e0)
             attr_subj_list['cp_r_cited_g0'][subj].append(cp_r_cited_g0)
             attr_subj_list['TR_citings'][subj].append(TR_citings)
             attr_subj_list['TR_citeds'][subj].append(TR_citeds)
 
-            attr_subj_list['pcp_r_citing_e0'][subj].append(pcp_r_cited_e0)
-            attr_subj_list['pcp_r_citing_g0'][subj].append(pcp_r_cited_g0)
+            attr_subj_list['pcp_r_citing_e0'][subj].append(pcp_r_citing_e0)
+            attr_subj_list['pcp_r_citing_g0'][subj].append(pcp_r_citing_g0)
             attr_subj_list['pcp_r_cited_e0'][subj].append(pcp_r_cited_e0)
             attr_subj_list['pcp_r_cited_g0'][subj].append(pcp_r_cited_g0)
 
@@ -124,15 +124,15 @@ def cal_data(pathObj):
 
 
         attr_subj_list['cp']['WOS_ALL'].append(cp)
-        attr_subj_list['cp_r_citing_e0']['WOS_ALL'].append(cp_r_cited_e0)
-        attr_subj_list['cp_r_citing_g0']['WOS_ALL'].append(cp_r_cited_g0)
+        attr_subj_list['cp_r_citing_e0']['WOS_ALL'].append(cp_r_citing_e0)
+        attr_subj_list['cp_r_citing_g0']['WOS_ALL'].append(cp_r_citing_g0)
         attr_subj_list['cp_r_cited_e0']['WOS_ALL'].append(cp_r_cited_e0)
         attr_subj_list['cp_r_cited_g0']['WOS_ALL'].append(cp_r_cited_g0)
         attr_subj_list['TR_citings']['WOS_ALL'].append(TR_citings)
         attr_subj_list['TR_citeds']['WOS_ALL'].append(TR_citeds)
 
-        attr_subj_list['pcp_r_citing_e0']['WOS_ALL'].append(pcp_r_cited_e0)
-        attr_subj_list['pcp_r_citing_g0']['WOS_ALL'].append(pcp_r_cited_g0)
+        attr_subj_list['pcp_r_citing_e0']['WOS_ALL'].append(pcp_r_citing_e0)
+        attr_subj_list['pcp_r_citing_g0']['WOS_ALL'].append(pcp_r_citing_g0)
         attr_subj_list['pcp_r_cited_e0']['WOS_ALL'].append(pcp_r_cited_e0)
         attr_subj_list['pcp_r_cited_g0']['WOS_ALL'].append(pcp_r_cited_g0)
 
