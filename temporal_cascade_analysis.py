@@ -115,6 +115,9 @@ def temporal_dccp(pathObj):
     _id_year = json.loads(open(pathObj.paper_year_path).read())
 
     pid_year_role = defaultdict(lambda:defaultdict(list))
+    pid_year_dccps = defaultdict(lambda:defaultdict(int))
+    pid_year_dcs= defaultdict(lambda:defaultdict(int))
+
 
     ## 这个
     progress = 0
@@ -130,9 +133,13 @@ def temporal_dccp(pathObj):
 
         edges = selected_cascades[pid]
 
+
         ## 创建graph
         dig  = nx.DiGraph()
         dig.add_edges_from(edges)
+
+        citation_count = len(dig.nodes())-1
+
 
         # if citation cascade is not acyclic graph
         # if not nx.is_directed_acyclic_graph(dig):
@@ -141,7 +148,15 @@ def temporal_dccp(pathObj):
         ## 出度进行计算
         for nid,od in dig.out_degree():
 
+            if nid == pid:
+                continue
+
             citing_year = int(_id_year[nid])
+
+            ## 每年的被引用次数
+            pid_year_dcs[pid][citing_year]+=1
+            ## 出度-1之和就是dccp的数量
+            pid_year_dccps[pid][citing_year]+=(od-1)
 
             if od!=0:
                 if od>1:
@@ -155,11 +170,18 @@ def temporal_dccp(pathObj):
 
     logging.info('data saved to data/selected_pid_year_role.json.')
 
+    open('data/selected_pid_year_dccps.json','w').write(json.dumps(pid_year_dccps))
+
+    open('data/selected_pid_year_dcs.json','w').write(json.dumps(pid_year_dcs))
+
 
 ## 每一个subject选取10篇，看出和year以及获得的citation数量之间的关系
 def plot_temporal_dccp(pathObj):
 
     selected_pid_year_role = json.loads(open('data/selected_pid_year_role.json').read())
+
+    selected_pid_year_dccps = json.loads(open('data/selected_pid_year_dccps.json').read())
+    selected_pid_year_dcs = json.loads(open('data/selected_pid_year_dcs.json').read())
 
     #首先把所有的进行一起刻画
 
@@ -190,7 +212,10 @@ def plot_temporal_dccp(pathObj):
 
             ie_num = len([r for r in roles if r=='ie'])
 
-            line = '{},{},{},{},{},{},{},{}'.format(pid,ix,year_ix,_year,cit_num,total_cit_num,le_num,ie_num)
+            num_of_dccps = pid_year_dccps[pid][year]
+            num_of_dcs = pid_year_dcs[pid][year]
+
+            line = '{},{},{},{},{},{},{},{},{},{}'.format(pid,ix,year_ix,_year,cit_num,total_cit_num,le_num,ie_num,num_of_dccps,num_of_dcs)
 
             lines.append(line)
 
@@ -204,6 +229,10 @@ def plot_temporal_data():
 
     top10subjids = json.loads(open('data/subject_id_cn_top1.json').read())
 
+    sciento_ids = set([l.strip() for l in open(pathObj._scientometrics_path)])
+
+    sciento_count = 0
+
     id_set = []
 
     subj_ids = defaultdict(list)
@@ -216,6 +245,11 @@ def plot_temporal_data():
 
         for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:5]:
 
+            if _id in sciento_ids:
+                sciento_count+=1
+
+                subj_ids['SCIENTOMETRICS'].append(_id)
+
             id_set.append(_id)
 
             subj_ids[subj].append(_id)
@@ -223,6 +257,8 @@ def plot_temporal_data():
     id_set = set(id_set)
 
     logging.info('size of id set {}'.format(len(id_set)))
+
+    logging.info('number of papers in sciento {}.'.format(sciento_count))
 
 
     pid_attrs = defaultdict(list)
@@ -249,10 +285,12 @@ def plot_temporal_data():
 
     ## 画出几个学科图
 
+    subj_xs_ys = {}
+
     for subj in subj_ids:
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(25,4))
+        fig,axes = plt.subplots(1,5,figsize=(28,4))
 
         fig.subplots_adjust(top=0.9)
 
@@ -272,13 +310,23 @@ def plot_temporal_data():
             ie_nums = attrs[6]
             t_ie_nums = [np.sum(ie_nums[:ix+1]) for ix in range(len(ie_nums))]
 
+            num_of_dccps = attrs[7]
+            t_n_dccps = [np.sum(num_of_dccps[:ix+1]) for ix in range(len(num_of_dccps))]
+            num_of_dcs = attrs[8]
+            t_n_dcs = [np.sum(num_of_dcs[:ix+1]) for ix in range(len(num_of_dcs))]
+
+            sums = np.array(t_n_dccps)+np.array(t_n_dcs)
+
+            subj_xs_ys[subj].append([_id,year_ixs,t_n_dccps,t_n_dcs,sums])
+
+
             ax = axes[i]
 
             ax.plot(year_ixs,t_cit_nums,label='total')
             ax.plot(year_ixs,t_le_nums,label='le')
             ax.plot(year_ixs,t_ie_nums,label='ie')
 
-            ax.set_xlabel('year index')
+            ax.set_xlabel('number of years after publication')
             ax.set_ylabel('number')
 
             ax.set_title(_id)
@@ -366,6 +414,39 @@ def plot_temporal_data():
         logging.info('{} fig saved.'.format(subj))
 
 
+    for subj in subj_xs_ys:
+
+        ## 每一个学科1张图
+        fig,axes = plt.subplots(1,5,figsize=(28,4))
+
+        fig.subplots_adjust(top=0.9)
+
+        for _id,year_ixs,t_n_dccps,t_n_dcs,sums in subj_xs_ys[subj]:
+
+            ax = axes[i]
+
+            ax.plot(year_ixs,t_n_dccps,label='DCCP')
+            ax.plot(year_ixs,t_n_dcs,label='DC')
+            ax.plot(year_ixs,sums,label='SUM')
+
+            ax.set_xlabel('number of years after publication')
+            ax.set_ylabel('number')
+
+            ax.set_title(_id)
+
+            ax.legend()
+
+        plt.suptitle(subj,y=0.98,fontsize=12)
+        # plt.tight_layout()
+
+        plt.savefig('fig/temporal_dccp_{}.png'.format(subj[:3]))
+
+        logging.info('{} DCCP TEMPORAL fig saved.'.format(subj))
+
+
+
+
+
 ## 级联矩阵
 def plot_cascade_matrix(pathObj):
 
@@ -433,12 +514,12 @@ if __name__ == '__main__':
 
     # get_top_cascade(paths)
 
-    # temporal_dccp(paths)
+    temporal_dccp(paths)
 
 
-    # plot_temporal_dccp(paths)
+    plot_temporal_dccp(paths)
 
-    # plot_temporal_data()
+    plot_temporal_data()
 
     # plot_cascade_matrix(paths)
 
