@@ -393,7 +393,7 @@ def plot_cascade_matrix(pathObj):
 
     node_id = {}
     node_num = {}
-    for i,node in enumerate(sorted(dig.nodes(),key= lambda x:int(_id_cn.get(x,0)))):
+    for i,node in enumerate(sorted(dig.nodes(),key= lambda x:int(_id_year.get(x,1900)))):
 
         node_num[node]=int(_id_cn.get(node,0))
         node_id[node]=i
@@ -405,9 +405,9 @@ def plot_cascade_matrix(pathObj):
 
         pos1,pos2 = node_id[citing],node_id[cited]
 
-        value = int(_id_year[cited])
+        value = int(_id_cn[cited])
 
-        data[pos2][pos1] = value-1900
+        data[pos2][pos1] = value
 
     ## 画出热力图
     import seaborn as sns
