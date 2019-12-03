@@ -1168,7 +1168,7 @@ def plot_subcascade_data():
 
 
     ## 每一个subject两张图，分别对size和num随着doctype以及时间的变化进行描述
-    fig,axes = plt.subplots(3,2,figsize=(10,9))
+    fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
         year_size_dict = field_year_size_dict[subj]
@@ -1212,7 +1212,7 @@ def plot_subcascade_data():
     logging.info('saved to fig/year_size_dis.png.')
 
 
-    fig,axes = plt.subplots(3,2,figsize=(10,9))
+    fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,subj in enumerate(sorted(field_year_num_dict.keys())):
 
         year_num_dict = field_year_num_dict[subj]
@@ -1529,7 +1529,7 @@ def plot_subcascade_data():
 
 
 
-    fig,axes = plt.subplots(2,3,figsize=(15,6))
+    fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,subj in enumerate(sorted(field_doctype_size_dict.keys())):
 
         doctype_size_dict = field_doctype_size_dict[subj]
@@ -1537,7 +1537,7 @@ def plot_subcascade_data():
         ## 每一年的distribution
         for j,doctype in enumerate(sorted(top10_doctypes)):
 
-            ax =axes[int(j/3),int(j%3)]
+            ax =axes[int(j/2),int(j%2)]
 
 
             xs = []
@@ -1564,12 +1564,12 @@ def plot_subcascade_data():
     logging.info('saved to fig/doctype_size_dis.png.')
 
 
-    fig,axes = plt.subplots(2,3,figsize=(15,6))
+    fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,subj in enumerate(sorted(field_doctype_num_dict.keys())):
         ## 每一年的distribution
         doctype_num_dict = field_doctype_num_dict[subj]
         for j,doctype in enumerate(sorted(top10_doctypes)):
-            ax =axes[int(j/3),int(j%3)]
+            ax =axes[int(j/2),int(j%2)]
 
             xs = []
             ys = []
