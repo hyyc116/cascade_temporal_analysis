@@ -856,7 +856,11 @@ def year_bin(year):
 
 # year_bins = ['1910','1920','1930','1940','1950','1960','19','1980','2000','2016']
 def year_label(i):
-    return '{:}-{:}'.format(1900+i*10,1900+(i+1)*10)
+    end = 1900+(i+1)*10
+
+    if end>2016:
+        end = 2016
+    return '{:}-{:}'.format(1900+i*10,end)
 
 def stat_subcascades(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
@@ -1201,6 +1205,7 @@ def plot_subcascade_data():
         # ax.text(0,0,'{}'.format(subj))
 
             ax.legend(prop={'size':6})
+
     plt.tight_layout()
 
     plt.savefig('fig/year_size_dis.png',dpi=400)
@@ -1866,7 +1871,7 @@ if __name__ == '__main__':
     # plot_dccps()
 
     # stat_subcascades(paths)
-    # plot_subcascade_data()
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
@@ -1874,5 +1879,5 @@ if __name__ == '__main__':
     # stat_citation_dis(paths)
 
 
-    plot_field_year_num(paths)
+    # plot_field_year_num(paths)
 
