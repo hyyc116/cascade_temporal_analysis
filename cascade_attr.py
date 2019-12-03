@@ -294,7 +294,7 @@ def plot_cascade_attr(pathObj):
         ax.fill_between(xs,up_ys,low_ys,alpha=0.6)
 
         ax.set_title(subj)
-        ax.set_xlabel('number of citations')
+        ax.set_xlabel('number of citations of owners')
         ax.set_ylabel('average citation count of connectors')
 
         ax.set_xscale('log')
