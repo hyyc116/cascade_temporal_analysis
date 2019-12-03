@@ -293,8 +293,8 @@ if __name__ == '__main__':
 
     field = 'ALL'
     paths = PATHS(field)
-    cal_data(paths)
-    # plot_dd()
+    # cal_data(paths)
+    plot_dd()
 
 
 
