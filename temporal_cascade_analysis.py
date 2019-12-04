@@ -285,7 +285,7 @@ def plot_temporal_data(pathObj):
 
     ## 画出几个学科图
 
-    subj_xs_ys = {}
+    subj_xs_ys = defaultdict(list)
 
     for subj in subj_ids:
 
@@ -517,7 +517,7 @@ if __name__ == '__main__':
     # temporal_dccp(paths)
 
 
-    plot_temporal_dccp(paths)
+    # plot_temporal_dccp(paths)
 
     plot_temporal_data(paths)
 
