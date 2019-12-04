@@ -212,8 +212,8 @@ def plot_temporal_dccp(pathObj):
 
             ie_num = len([r for r in roles if r=='ie'])
 
-            num_of_dccps = pid_year_dccps[pid][year]
-            num_of_dcs = pid_year_dcs[pid][year]
+            num_of_dccps = selected_pid_year_dccps[pid][year]
+            num_of_dcs = selected_pid_year_dcs[pid][year]
 
             line = '{},{},{},{},{},{},{},{},{},{}'.format(pid,ix,year_ix,_year,cit_num,total_cit_num,le_num,ie_num,num_of_dccps,num_of_dcs)
 
@@ -514,7 +514,7 @@ if __name__ == '__main__':
 
     # get_top_cascade(paths)
 
-    temporal_dccp(paths)
+    # temporal_dccp(paths)
 
 
     plot_temporal_dccp(paths)
