@@ -143,6 +143,7 @@ def plot_cascade_attr(pathObj):
     subj_cc_concc = defaultdict(lambda:defaultdict(list))
     progress = 0
 
+
     # logging.inf
     total = len(pid_attrs.keys())
     logging.info('total {} ...'.format(total))
@@ -155,6 +156,7 @@ def plot_cascade_attr(pathObj):
             continue
 
         citation_count,num_of_edges,num_of_dccps,depth,anlec,cc_of_connc = pid_attrs[pid]
+
 
         subjs = _id_subjects[pid]
 

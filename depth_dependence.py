@@ -167,6 +167,19 @@ def plot_dd():
     attr_names= ['cp_r_citing_e0','cp_r_citing_g0','cp_r_cited_e0','cp_r_cited_g0','TR_citings','TR_citeds']
     attr_labels = ['CP(R[cting pub]=0)','CP(R[citing pub]>0)','CP(R[cited pub]=0)','CP(R[cited pub]>0)','TR citings','TR citeds']
 
+
+    levels = attr_subj_list['cp']['WOS_ALL']
+    depths = attr_subj_list['MR_citings']['WOS_ALL']
+    dependence = attr_subj_list['MR_citeds']['WOS_ALL']
+
+    import scipy.stats.pearsonr as pearson
+    from scipy.stats import spearmanr
+    print 'level depth','level dependence','depth dependence'
+    print spearmanr(levels,depths)[0],spearmanr(levels,dependence)[0],spearmanr(depths,dependence)[0]
+    print pearson(levels,depths)[0],pearson(levels,dependence)[0],pearson(depths,dependence)[0]
+
+
+
     ## 每一个属性画CDF
     fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,attr_name in enumerate(attr_names):
