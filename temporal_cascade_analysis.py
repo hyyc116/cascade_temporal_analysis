@@ -243,7 +243,7 @@ def plot_temporal_data(pathObj):
         num = len(_id_cn)
         logging.info('subject {} has {} papers.'.format(subj,num))
 
-        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:5]:
+        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:1000]:
 
             if _id in sciento_ids:
                 sciento_count+=1
@@ -294,7 +294,7 @@ def plot_temporal_data(pathObj):
 
         fig.subplots_adjust(top=0.9)
 
-        for i,_id in enumerate(subj_ids[subj]):
+        for i,_id in enumerate(sorted(subj_ids[subj],key= lambda x:int(_id_cn[x]),reverse=True)[:5]):
 
             attrs = zip(*pid_attrs[_id])
 
