@@ -442,7 +442,7 @@ def plot_temporal_data(pathObj):
 
         fig.subplots_adjust(top=0.85)
 
-        for i,_id,year_ixs,t_n_dccps,t_n_dcs,sums in enumerate(subj_xs_ys[subj]):
+        for i,(_id,year_ixs,t_n_dccps,t_n_dcs,sums) in enumerate(subj_xs_ys[subj]):
 
             ax = axes[i]
 
