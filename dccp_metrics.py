@@ -1171,13 +1171,15 @@ def plot_subcascade_data():
     fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
-        print subj
 
         year_size_dict = field_year_size_dict[subj]
 
         # if subj=='SCIENTOMETRICS':
 
         selected_years = [year for jx,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))) if jx%2!=0]
+
+        print subj,selected_years
+
         #     continue
 
         # ax = axes[i,0]
@@ -1187,6 +1189,8 @@ def plot_subcascade_data():
             ax =axes[int(j/2),int(j%2)]
 
             year_l = year_label(int(year))
+
+
             xs = []
             ys = []
             for size in sorted(year_size_dict[year].keys(),key=lambda x:int(x)):
