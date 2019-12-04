@@ -1171,11 +1171,13 @@ def plot_subcascade_data():
     fig,axes = plt.subplots(3,2,figsize=(10,12))
     for i,subj in enumerate(sorted(field_year_size_dict.keys())):
 
+        print subj
+
         year_size_dict = field_year_size_dict[subj]
 
         # if subj=='SCIENTOMETRICS':
 
-        selected_years = [year for j,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))) if j%2!=0]
+        selected_years = [year for jx,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))) if jxa%2!=0]
         #     continue
 
         # ax = axes[i,0]
@@ -1217,7 +1219,7 @@ def plot_subcascade_data():
 
         year_num_dict = field_year_num_dict[subj]
 
-        selected_years = [year for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))) if j%2!=0]
+        selected_years = [year for jx,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))) if jx%2!=0]
 
         # ax = axes[i,1]
         ## 每一年的distribution
