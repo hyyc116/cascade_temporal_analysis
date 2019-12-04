@@ -289,6 +289,9 @@ def plot_temporal_data(pathObj):
 
     for subj in subj_ids:
 
+        _id_cn = top10subjids[subj]
+
+
         ## 每一个学科1张图
         fig,axes = plt.subplots(1,5,figsize=(28,4))
 
