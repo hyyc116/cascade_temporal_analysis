@@ -295,7 +295,7 @@ def plot_temporal_data(pathObj):
 
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(30,6))
+        fig,axes = plt.subplots(1,5,figsize=(30,5))
 
         fig.subplots_adjust(top=0.85)
 
@@ -422,7 +422,7 @@ def plot_temporal_data(pathObj):
     for subj in subj_xs_ys:
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(30,6))
+        fig,axes = plt.subplots(1,5,figsize=(30,5))
 
         fig.subplots_adjust(top=0.85)
 
