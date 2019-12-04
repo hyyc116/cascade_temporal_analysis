@@ -297,7 +297,7 @@ def plot_temporal_data(pathObj):
         ## 每一个学科1张图
         fig,axes = plt.subplots(1,5,figsize=(30,6))
 
-        fig.subplots_adjust(top=0.9)
+        fig.subplots_adjust(top=0.85)
 
         for i,_id in enumerate(sorted(subj_ids[subj],key= lambda x:int(all_id_cn[x]),reverse=True)[:5]):
 
@@ -424,7 +424,7 @@ def plot_temporal_data(pathObj):
         ## 每一个学科1张图
         fig,axes = plt.subplots(1,5,figsize=(30,6))
 
-        fig.subplots_adjust(top=0.9)
+        fig.subplots_adjust(top=0.85)
 
         for _id,year_ixs,t_n_dccps,t_n_dcs,sums in subj_xs_ys[subj]:
 
