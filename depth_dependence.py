@@ -172,12 +172,11 @@ def plot_dd():
     depths = attr_subj_list['MR_citings']['WOS_ALL']
     dependence = attr_subj_list['MR_citeds']['WOS_ALL']
 
-    import scipy.stats.pearsonr as pearson
-    import scipy.stats.spearmanr as spearmanr
+    import scipy
     print 'level depth','level dependence','depth dependence'
-    print spearmanr(levels,depths)[0],spearmanr(levels,dependence)[0],spearmanr(depths,dependence)[0]
+    print scipy.stats.spearmanr(levels,depths)[0],scipy.stats.spearmanr(levels,dependence)[0],scipy.stats.spearmanr(depths,dependence)[0]
 
-    print pearson(levels,depths)[0],pearson(levels,dependence)[0],pearson(depths,dependence)[0]
+    print scipy.stats.pearsonr(levels,depths)[0],scipy.stats.pearsonr(levels,dependence)[0],scipy.stats.pearsonr(depths,dependence)[0]
 
 
 
