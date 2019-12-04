@@ -295,7 +295,7 @@ def plot_temporal_data(pathObj):
 
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(28,4))
+        fig,axes = plt.subplots(1,5,figsize=(30,6))
 
         fig.subplots_adjust(top=0.9)
 
@@ -411,7 +411,7 @@ def plot_temporal_data(pathObj):
 
             # ax3.legend()
 
-        plt.suptitle(subj,y=0.98,fontsize=12)
+        plt.suptitle(subj,y=0.98,fontsize=20)
         # plt.tight_layout()
 
         plt.savefig('fig/temporal_{}.png'.format(subj[:3]))
@@ -422,7 +422,7 @@ def plot_temporal_data(pathObj):
     for subj in subj_xs_ys:
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(28,4))
+        fig,axes = plt.subplots(1,5,figsize=(30,6))
 
         fig.subplots_adjust(top=0.9)
 
@@ -441,7 +441,7 @@ def plot_temporal_data(pathObj):
 
             ax.legend()
 
-        plt.suptitle(subj,y=0.98,fontsize=12)
+        plt.suptitle(subj,y=0.98,fontsize=20)
         # plt.tight_layout()
 
         plt.savefig('fig/temporal_dccp_{}.png'.format(subj[:3]))
