@@ -235,10 +235,14 @@ def plot_temporal_data(pathObj):
 
     id_set = []
 
+    all_id_cn = {}
+
     subj_ids = defaultdict(list)
     for subj in top10subjids:
 
         _id_cn = top10subjids[subj]
+
+        all_id_cn.update(_id_cn)
 
         num = len(_id_cn)
         logging.info('subject {} has {} papers.'.format(subj,num))
@@ -289,15 +293,13 @@ def plot_temporal_data(pathObj):
 
     for subj in subj_ids:
 
-        _id_cn = top10subjids[subj]
-
 
         ## 每一个学科1张图
         fig,axes = plt.subplots(1,5,figsize=(28,4))
 
         fig.subplots_adjust(top=0.9)
 
-        for i,_id in enumerate(sorted(subj_ids[subj],key= lambda x:int(_id_cn[x]),reverse=True)[:5]):
+        for i,_id in enumerate(sorted(subj_ids[subj],key= lambda x:int(all_id_cn[x]),reverse=True)[:5]):
 
             attrs = zip(*pid_attrs[_id])
 
