@@ -158,12 +158,20 @@ def temporal_dccp(pathObj):
             ## 出度-1之和就是dccp的数量
             pid_year_dccps[pid][citing_year]+=(od-1)
 
-            if od!=0:
+            if od>0:
                 if od>1:
                     pid_year_role[pid][citing_year].append('le')
 
-                if od==1:
+                ind = dig.in_degree(nid)
+
+
+                if od==1 and ind==0:
                     pid_year_role[pid][citing_year].append('ie')
+
+                ind = dig.in_degree(nid)
+
+                if ind>0:
+                    pid_year_role[pid][citing_year].append('c')
 
 
     open('data/selected_pid_year_role.json','w').write(json.dumps(pid_year_role))
@@ -212,10 +220,12 @@ def plot_temporal_dccp(pathObj):
 
             ie_num = len([r for r in roles if r=='ie'])
 
+            c_num = len([r for r in roles if r=='c'])
+
             num_of_dccps = selected_pid_year_dccps[pid][year]
             num_of_dcs = selected_pid_year_dcs[pid][year]
 
-            line = '{},{},{},{},{},{},{},{},{},{}'.format(pid,ix,year_ix,_year,cit_num,total_cit_num,le_num,ie_num,num_of_dccps,num_of_dcs)
+            line = '{},{},{},{},{},{},{},{},{},{},{}'.format(pid,ix,year_ix,_year,cit_num,total_cit_num,le_num,ie_num,num_of_dccps,num_of_dcs,c_num)
 
             lines.append(line)
 
@@ -320,6 +330,11 @@ def plot_temporal_data(pathObj):
             num_of_dcs = attrs[8]
             t_n_dcs = [np.sum(num_of_dcs[:ix+1]) for ix in range(len(num_of_dcs))]
 
+            c_nums = attrs[9]
+
+            t_c_nums = [np.sum(c_nums[:ix+1]) for ix in range(len(c_nums))]
+
+
             sums = np.array(t_n_dccps)+np.array(t_n_dcs)
 
             subj_xs_ys[subj].append([_id,year_ixs,t_n_dccps,t_n_dcs,sums])
@@ -327,12 +342,13 @@ def plot_temporal_data(pathObj):
 
             ax = axes[i]
 
-            ax.plot(year_ixs,t_cit_nums,label='total')
-            ax.plot(year_ixs,t_le_nums,label='le')
-            ax.plot(year_ixs,t_ie_nums,label='ie')
+            ax.plot(year_ixs,np.array(t_le_nums)/np.array(t_cit_nums),label='p(le)')
+            ax.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='p(ie)')
+            ax.plot(year_ixs,np.array(t_c_nums)/np.array(t_cit_nums),label='p(c)')
+
 
             ax.set_xlabel('number of years after publication')
-            ax.set_ylabel('number')
+            ax.set_ylabel('percentage')
 
             ax.set_title(_id)
 
@@ -426,7 +442,7 @@ def plot_temporal_data(pathObj):
 
         fig.subplots_adjust(top=0.85)
 
-        for _id,year_ixs,t_n_dccps,t_n_dcs,sums in subj_xs_ys[subj]:
+        for i,_id,year_ixs,t_n_dccps,t_n_dcs,sums in enumerate(subj_xs_ys[subj]):
 
             ax = axes[i]
 
@@ -519,10 +535,10 @@ if __name__ == '__main__':
 
     # get_top_cascade(paths)
 
-    # temporal_dccp(paths)
+    temporal_dccp(paths)
 
 
-    # plot_temporal_dccp(paths)
+    plot_temporal_dccp(paths)
 
     plot_temporal_data(paths)
 
