@@ -1177,7 +1177,7 @@ def plot_subcascade_data():
 
         # if subj=='SCIENTOMETRICS':
 
-        selected_years = [year for jx,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))) if jxa%2!=0]
+        selected_years = [year for jx,year in enumerate(sorted(year_size_dict.keys(),key=lambda x:int(x))) if jx%2!=0]
         #     continue
 
         # ax = axes[i,0]
