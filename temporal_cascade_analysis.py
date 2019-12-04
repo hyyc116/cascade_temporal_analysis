@@ -243,7 +243,7 @@ def plot_temporal_data(pathObj):
         num = len(_id_cn)
         logging.info('subject {} has {} papers.'.format(subj,num))
 
-        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:1000]:
+        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:10000]:
 
             if _id in sciento_ids:
                 sciento_count+=1
