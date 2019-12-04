@@ -1176,7 +1176,7 @@ def plot_subcascade_data():
 
         # if subj=='SCIENTOMETRICS':
 
-        selected_years = [year for year in sorted(year_size_dict.keys(),key=lambda x:int(x)) if year%2!=0]
+        selected_years = [year for year in sorted(year_size_dict.keys(),key=lambda x:int(x)) if int(year)%2!=0]
 
         print subj,selected_years
 
@@ -1223,7 +1223,7 @@ def plot_subcascade_data():
 
         year_num_dict = field_year_num_dict[subj]
 
-        selected_years = [year for year in sorted(year_num_dict.keys(),key=lambda x:int(x)) if year%2!=0]
+        selected_years = [year for year in sorted(year_num_dict.keys(),key=lambda x:int(x)) if int(year)%2!=0]
 
         # ax = axes[i,1]
         ## 每一年的distribution
