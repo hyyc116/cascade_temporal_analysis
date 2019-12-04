@@ -225,7 +225,7 @@ def plot_temporal_dccp(pathObj):
 
 
 
-def plot_temporal_data():
+def plot_temporal_data(pathObj):
 
     top10subjids = json.loads(open('data/subject_id_cn_top1.json').read())
 
@@ -519,7 +519,7 @@ if __name__ == '__main__':
 
     plot_temporal_dccp(paths)
 
-    plot_temporal_data()
+    plot_temporal_data(paths)
 
     # plot_cascade_matrix(paths)
 
