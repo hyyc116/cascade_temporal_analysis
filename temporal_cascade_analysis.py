@@ -537,10 +537,10 @@ if __name__ == '__main__':
 
     # get_top_cascade(paths)
 
-    temporal_dccp(paths)
+    # temporal_dccp(paths)
 
 
-    plot_temporal_dccp(paths)
+    # plot_temporal_dccp(paths)
 
     plot_temporal_data(paths)
 
