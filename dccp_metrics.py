@@ -682,7 +682,7 @@ def plot_field_year_num(pathObj):
 
     plt.yscale('log')
 
-    plt.legend()
+    plt.legend(prop={'size':6})
 
 
     plt.tight_layout()
@@ -1877,7 +1877,7 @@ if __name__ == '__main__':
     # plot_dccps()
 
     # stat_subcascades(paths)
-    plot_subcascade_data()
+    # plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
@@ -1885,5 +1885,5 @@ if __name__ == '__main__':
     # stat_citation_dis(paths)
 
 
-    # plot_field_year_num(paths)
+    plot_field_year_num(paths)
 
