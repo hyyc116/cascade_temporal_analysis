@@ -453,7 +453,7 @@ def plot_temporal_data(pathObj):
             ax.set_xlabel('number of years after publication')
             ax.set_ylabel('number')
 
-            ax.ticklabel_format(axis='y',stype='sci')
+            ax.ticklabel_format(axis='y',style='sci')
 
             ax.set_title(_id)
 
