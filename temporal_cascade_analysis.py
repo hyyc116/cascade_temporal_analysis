@@ -455,6 +455,8 @@ def plot_temporal_data(pathObj):
 
             ax.ticklabel_format(axis='y',style='sci')
 
+            ax.yaxis.major.formatter.set_powerlimits((0,0))
+
             ax.set_title(_id)
 
             ax.legend()
