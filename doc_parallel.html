@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <style>
 text{
-    font-size:12px;
+    font-size:16px;
 }
 .mainBars rect{
   shape-rendering: auto;
@@ -20,7 +20,7 @@ text{
 }
 .header{
     text-anchor:middle;
-    font-size:16px;
+    font-size:20px;
 }
 line{
     stroke:grey;
@@ -38,20 +38,20 @@ line{
 <script src="js/data.js"></script>
 
 <script>
-var svg = d3.select("div#DOC").append("svg").attr("width", 1800).attr("height", 800);
+var svg = d3.select("div#DOC").append("svg").attr("width", 2400).attr("height", 800);
 
-svg.append("text").attr("x",250).attr("y",20)
+svg.append("text").attr("x",300).attr("y",20)
     .attr("class","header").text("Connector");
 
-svg.append("text").attr("x",800).attr("y",20)
+svg.append("text").attr("x",900).attr("y",20)
     .attr("class","header").text("Late Endorser");
 
-    svg.append("text").attr("x",1380).attr("y",20)
+    svg.append("text").attr("x",1500).attr("y",20)
     .attr("class","header").text("Isolate Endorser");
 
-var g =[svg.append("g").attr("transform","translate(150,50)")
-        ,svg.append("g").attr("transform","translate(700,50)")
-        ,svg.append("g").attr("transform","translate(1300,50)")];
+var g =[svg.append("g").attr("transform","translate(200,50)")
+        ,svg.append("g").attr("transform","translate(800,50)")
+        ,svg.append("g").attr("transform","translate(1400,50)")];
 
 var bp=[ viz.bP()
         .data(c_doc_data)
@@ -102,7 +102,7 @@ var bp=[ viz.bP()
         .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
 
     g[i].selectAll(".mainBars").append("text").attr("class","perc")
-        .attr("x",d=>(d.part=="primary"? -140: 140))
+        .attr("x",d=>(d.part=="primary"? -180: 180))
         .attr("y",d=>+6)
         .text(function(d){ return d3.format("0.00%")(d.percent)})
         .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));

@@ -305,11 +305,11 @@ def plot_temporal_data(pathObj):
 
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(30,5))
+        fig,axes = plt.subplots(3,2,figsize=(10,13))
 
         fig.subplots_adjust(top=0.85)
 
-        for i,_id in enumerate(sorted(subj_ids[subj],key= lambda x:int(all_id_cn[x]),reverse=True)[:5]):
+        for i,_id in enumerate(sorted(subj_ids[subj],key= lambda x:int(all_id_cn[x]),reverse=True)[:6]):
 
             attrs = zip(*pid_attrs[_id])
 
@@ -438,7 +438,7 @@ def plot_temporal_data(pathObj):
     for subj in subj_xs_ys:
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(1,5,figsize=(30,5))
+        fig,axes = plt.subplots(3,2,figsize=(10,13))
 
         fig.subplots_adjust(top=0.85)
 

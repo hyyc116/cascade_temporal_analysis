@@ -171,6 +171,9 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     # boxplot()
 
 def boxplot():
+
+    MAXMIN,MINMAX = minmax_maxmin()
+
     field_cc_eins = json.loads(open('data/field_cc_eins.json').read())
     field_CLS_dccps = defaultdict(lambda:defaultdict(list))
 
@@ -181,9 +184,9 @@ def boxplot():
         ys = []
         for cc in sorted(field_cc_eins[field].keys(),key=lambda x:int(x)):
 
-            if int(cc)<36:
+            if int(cc)<MAXMIN:
                 CLS = 0
-            elif int(cc)<120:
+            elif int(cc)<MINMAX:
                 CLS = 1
             else:
                 CLS = 2
@@ -206,7 +209,7 @@ def boxplot():
 
         ax = axes[i/4,i%4]
 
-        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+        ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
 
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('$e_{i-norm}$')
@@ -1341,7 +1344,7 @@ def plot_subcascade_data():
     field_CLS_num = defaultdict(lambda:defaultdict(list))
     field_cc_num = defaultdict(lambda:defaultdict(list))
     ##
-
+    MAXMIN,MINMAX = minmax_maxmin()
 
     for field in sorted(field_cc_size_int.keys()):
 
@@ -1349,9 +1352,9 @@ def plot_subcascade_data():
 
             # cc = int(cc)
 
-            if int(cc)<36:
+            if int(cc)<MAXMIN:
                 CLS = 0
-            elif int(cc)<120:
+            elif int(cc)<MINMAX:
                 CLS = 1
             else:
                 CLS = 2
@@ -1416,7 +1419,7 @@ def plot_subcascade_data():
 
         ax = axes[i/4,i%4]
 
-        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+        ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
 
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('size of components')
@@ -1442,7 +1445,7 @@ def plot_subcascade_data():
 
         ax = axes[i/4,i%4]
 
-        ax.boxplot(data,labels=['lowly-cited','medium-cited','highly-cited'],showfliers=True)
+        ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
 
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('number of components')
@@ -1862,6 +1865,26 @@ def output_motif_table():
 
 
 
+def minmax_maxmin():
+
+    id_num = json.loads(open('data/paper_cit_num_ALL.json').read())
+
+    total = len(id_num)
+    logging.info('number of papers {}.'.format(total))
+
+    citnums = sorted(id_num.values,reverse=True)
+
+    maxmin_index = int(total/2)
+
+    minmax_index = int(total*0.05)
+
+    maxmin = citnums[maxmin_index]
+    minmax = citnums[minmax_index]
+
+    logging.info('maxmin:{}, minmax:{}'.format(maxmin,minmax))
+
+    return maxmin,minmax
+
 
 
 
@@ -1873,11 +1896,11 @@ if __name__ == '__main__':
     # run_all(paths)
     # dccp_of_paper(paths)
     # stat_dccp(paths)
-    # boxplot()
+    boxplot()
     # plot_dccps()
 
     # stat_subcascades(paths)
-    # plot_subcascade_data()
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
@@ -1885,5 +1908,5 @@ if __name__ == '__main__':
     # stat_citation_dis(paths)
 
 
-    plot_field_year_num(paths)
+    # plot_field_year_num(paths)
 
