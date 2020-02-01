@@ -1872,7 +1872,7 @@ def minmax_maxmin():
     total = len(id_num)
     logging.info('number of papers {}.'.format(total))
 
-    citnums = sorted(id_num.values,reverse=True)
+    citnums = sorted(id_num.values(),reverse=True)
 
     maxmin_index = int(total/2)
 
