@@ -340,7 +340,7 @@ def plot_temporal_data(pathObj):
             subj_xs_ys[subj].append([_id,year_ixs,t_n_dccps,t_n_dcs,sums])
 
 
-            ax = axes[i]
+            ax = axes[i/3,i%3]
 
             ax.plot(year_ixs,np.array(t_le_nums)/np.array(t_cit_nums),label='p(le)')
             ax.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='p(ie)')
@@ -444,7 +444,7 @@ def plot_temporal_data(pathObj):
 
         for i,(_id,year_ixs,t_n_dccps,t_n_dcs,sums) in enumerate(subj_xs_ys[subj]):
 
-            ax = axes[i]
+            ax = axes[i/3,i%3]
 
             ax.plot(year_ixs,t_n_dccps,label='DCCP')
             ax.plot(year_ixs,t_n_dcs,label='DC')
