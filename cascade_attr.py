@@ -261,7 +261,7 @@ def plot_cascade_attr(pathObj):
 
 
     ## 置信区间 需要每一个领域画一张图
-    fig,axes = plt.subplots(4,2,figsize=(10,16))
+    fig,axes = plt.subplots(4,2,figsize=(10,20))
     for i,subj in enumerate(sorted(subj_cc_concc.keys())):
 
         ax = axes[i/2,i%2]

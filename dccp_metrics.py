@@ -196,7 +196,7 @@ def boxplot():
             field_CLS_dccps[field][CLS].extend(dccps)
 
     ## file CLs DCCPS box plots
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig,axes = plt.subplots(2,4,figsize=(26,8))
     for i,subj in enumerate(sorted(field_CLS_dccps.keys())):
         logging.info('field {} ...'.format(subj))
         data = []
@@ -1406,7 +1406,7 @@ def plot_subcascade_data():
 
     ## hua
 
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig,axes = plt.subplots(2,4,figsize=(26,8))
     for i,subj in enumerate(sorted(field_CLS_size.keys())):
         logging.info('field {} ...'.format(subj))
         data = []
@@ -1432,7 +1432,7 @@ def plot_subcascade_data():
 
     logging.info('fig saved to fig/boxplot_size_wos_all.png.')
 
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig,axes = plt.subplots(2,4,figsize=(26,8))
     for i,subj in enumerate(sorted(field_CLS_num.keys())):
         logging.info('field {} ...'.format(subj))
         data = []
