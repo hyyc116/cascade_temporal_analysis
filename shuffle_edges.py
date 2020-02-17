@@ -11,16 +11,16 @@ from numpy.random import shuffle
 ### pid_year edges
 def shuffle_edges(pathObj):
 
-	logging.info("loading paper year path ...")
-	paper_year = json.loads(open(pathObj.paper_year_path).read())
+    logging.info("loading paper year path ...")
+    paper_year = json.loads(open(pathObj.paper_year_path).read())
 
-	_ids_subjects = json.loads(open('data/_ids_subjects.json').read())
+    _ids_subjects = json.loads(open('data/_ids_subjects.json').read())
 
     logging.info('_id_subjects.json loaded ....')
 
-	## 根据年份将target list shuffle. 
+    ## 根据年份将target list shuffle. 
 
-	pid_cits_path = pathObj.pid_cits_path
+    pid_cits_path = pathObj.pid_cits_path
     logging.info("build cascade from {:} .".format(pid_cits_path))
 
     progress = 0
@@ -44,50 +44,50 @@ def shuffle_edges(pathObj):
         targ_year = paper_year.get(pid,None)
 
         if targ_year is None:
-        	continue
+            continue
 
         year_edges[targ_year].append([pid,citing_id])
 
 
-	logging.info('edges loaded, starting to shuffle.')
+    logging.info('edges loaded, starting to shuffle.')
 
-	f = open('data/shuffled_edges.txt',w)
+    f = open('data/shuffled_edges.txt',w)
 
-	for year in year_edges.keys():
+    for year in year_edges.keys():
 
-		edges = year_edges[year]
+        edges = year_edges[year]
 
-		targ,source = zip(*edges)
+        targ,source = zip(*edges)
 
-		num = len(edges)
+        num = len(edges)
 
-		logging.info('Year {}, Num of edges {}.'.format(year,len(edges)))
-
-
-		## 直接对num进行shuffle
-
-		num_index = range(num)
-		
-		shuffle(num_index)
-		targ_i = [targ[j] for j in num_index]
+        logging.info('Year {}, Num of edges {}.'.format(year,len(edges)))
 
 
-		edges = [source,targ_i]
+        ## 直接对num进行shuffle
 
-		logging.info('shuffled lines {}'.format(len(edges)))
+        num_index = range(num)
+        
+        shuffle(num_index)
+        targ_i = [targ[j] for j in num_index]
 
-		f.write('\n'.join(['\t'.join(e) for e in edges])+"\n")
+
+        edges = [source,targ_i]
+
+        logging.info('shuffled lines {}'.format(len(edges)))
+
+        f.write('\n'.join(['\t'.join(e) for e in edges])+"\n")
 
 
-	f.close()
-	logging.info("shuffled done!")
+    f.close()
+    logging.info("shuffled done!")
 
 if __name__ == '__main__':
-	
-	field = 'ALL'
+    
+    field = 'ALL'
     paths = PATHS(field)
 
-	shuffle_edges(paths)
+    shuffle_edges(paths)
 
 
 
