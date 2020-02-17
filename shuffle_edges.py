@@ -51,7 +51,7 @@ def shuffle_edges(pathObj):
 
     logging.info('edges loaded, starting to shuffle.')
 
-    f = open('data/shuffled_edges.txt',w)
+    f = open('data/shuffled_edges.txt','w')
 
     for year in year_edges.keys():
 
