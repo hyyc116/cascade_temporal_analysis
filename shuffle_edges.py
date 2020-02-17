@@ -41,7 +41,10 @@ def shuffle_edges(pathObj):
         if len(_ids_subjects.get(pid,[]))==0:
             continue
 
-        targ_year = paper_year.get(pid)
+        targ_year = paper_year.get(pid,None)
+
+        if targ_year is None:
+        	continue
 
         year_edges[targ_year].append([pid,citing_id])
 
@@ -64,18 +67,16 @@ def shuffle_edges(pathObj):
 		## 直接对num进行shuffle
 
 		num_index = range(num)
-		shuffled_list = [source,targ]
-		for i in range(10):
-			shuffle(num_index)
-			targ_i = [targ[j] for j in num_index]
+		
+		shuffle(num_index)
+		targ_i = [targ[j] for j in num_index]
 
-			shuffled_list.append(targ_i)
 
-		edges = zip(*shuffled_list)
+		edges = [source,targ_i]
 
 		logging.info('shuffled lines {}'.format(len(edges)))
 
-		f.write('\n'.join(['\t'.join(e) for e in edges]))
+		f.write('\n'.join(['\t'.join(e) for e in edges])+"\n")
 
 
 	f.close()
