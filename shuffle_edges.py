@@ -72,7 +72,7 @@ def shuffle_edges(pathObj):
         targ_i = [targ[j] for j in num_index]
 
 
-        edges = [source,targ_i]
+        edges = zip(source,targ_i)
 
         logging.info('shuffled lines {}'.format(len(edges)))
 
