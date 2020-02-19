@@ -59,7 +59,10 @@ def build_cascade_from_pid_cits(pathObj):
             logging.info('reading %d citation relations....' % progress)
 
         line = line.strip()
-        pid,citing_id = line.split("\t")
+        # pid,citing_id = line.split("\t")
+
+        citing_id,pid = line.split("\t")
+
 
         ## 如果不是wos的论文
         if len(_ids_subjects.get(pid,[]))==0:
@@ -177,14 +180,14 @@ def split_cascades_within_subjects(pathObj):
 
 
 if __name__ == '__main__':
-    field = 'ALL'
+    field = 'RND'
     paths = PATHS(field)
 
     ## 将数据库中的引用关系保存到本地
-    fetch_citing_relations(paths)
+    # fetch_citing_relations(paths)
 
     ## 获得论文的subject
-    fecth_subjects()
+    # fecth_subjects()
 
     ## 构建所有文章的cascade
     build_cascade_from_pid_cits(paths)
