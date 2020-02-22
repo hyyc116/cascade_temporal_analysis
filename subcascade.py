@@ -583,7 +583,7 @@ if __name__ == '__main__':
 
     else:
 
-        pathObj = PATHS('ALL')
+        pathObj = PATHS('RND')
 
     if op=='find_subcas':
 
