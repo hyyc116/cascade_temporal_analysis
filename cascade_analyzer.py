@@ -1009,15 +1009,15 @@ def plot_subcascade_data():
 
 if __name__ == '__main__':
 
-    field = 'ALL'
+    field = 'RND'
     paths = PATHS(field)
     # parse_args(paths)
     # run_all(paths)
-    # dccp_of_paper(paths)
-    plot_dccp(paths)
-    stat_subcascades(paths)
-    plot_subcascade_data()
-    logging.info('Done')
+    dccp_of_paper(paths)
+    # plot_dccp(paths)
+    # stat_subcascades(paths)
+    # plot_subcascade_data()
+    # logging.info('Done')
 
 
 
