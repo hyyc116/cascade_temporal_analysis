@@ -103,6 +103,10 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
     field_doctype_dccps = defaultdict(lambda:defaultdict(list))
     field_doctype_eins = defaultdict(lambda:defaultdict(list))
 
+    ## 加载shuffle之后的结果
+    pathss = PATHS('RND')
+    _id_dccp_rnd = json.loads(open(pathss.dccp_path).read())
+
     logging.info('startting to stat dccp ...')
     for _id in _id_dccp.keys():
         ## 获得这一篇论文的基础属性值
@@ -131,15 +135,25 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         field_doctype_dccps['WOS_ALL'][_doctype].append(_id_dccp[_id][0])
         field_doctype_eins['WOS_ALL'][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
+        field_doctype_dccps['RANDOMIZE'][_doctype].append(_id_dccp_rnd[_id][0])
+        field_doctype_eins['RANDOMIZE'][_doctype].append(_id_dccp_rnd[_id][1]/float(_cn))
+
         field_year_dccps['WOS_ALL'][_year].append(_id_dccp[_id][0])
         field_year_eins['WOS_ALL'][_year].append(_id_dccp[_id][1]/float(_cn))
+
+        field_year_dccps['RANDOMIZE'][_year].append(_id_dccp_rnd[_id][0])
+        field_year_eins['RANDOMIZE'][_year].append(_id_dccp_rnd[_id][1]/float(_cn))
 
         field_cc_dccps['WOS_ALL'][_cn].append(_id_dccp[_id][0])
         field_cc_eins['WOS_ALL'][_cn].append(_id_dccp[_id][1]/float(_cn))
 
+        field_cc_dccps['RANDOMIZE'][_cn].append(_id_dccp_rnd[_id][0])
+        field_cc_eins['RANDOMIZE'][_cn].append(_id_dccp_rnd[_id][1]/float(_cn))
+
         for cc_ix,_cc_cl in enumerate(_cn_clas):
             if _cc_cl==1:
                 field_ccbin_eins['WOS_ALL'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
+                field_ccbin_eins['RANDOMIZE'][cc_ix].append(_id_dccp_rnd[_id][1]/float(_cn))
 
         if _id in SCIENTO_IDS:
 
@@ -1895,12 +1909,12 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    # stat_dccp(paths)
-    boxplot()
+    stat_dccp(paths)
+    # boxplot()
     # plot_dccps()
 
     # stat_subcascades(paths)
-    plot_subcascade_data()
+    # plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
