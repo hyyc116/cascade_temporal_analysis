@@ -870,7 +870,7 @@ def stat_dccp(pathObj):
     # logging.info('loading paper subcascades  ...')
     # paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
     dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes,sciento_ids)
-    logging.info('plotting')
+    # logging.info('plotting')
 
 def year_bin(year):
     return int((year-1900)/10)
