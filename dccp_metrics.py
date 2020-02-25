@@ -140,24 +140,24 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         field_doctype_eins['WOS_ALL'][_doctype].append(_id_dccp[_id][1]/float(_cn))
 
         field_doctype_dccps['RANDOMIZE'][_doctype].append(_id_dccp_rnd[_id][0])
-        field_doctype_eins['RANDOMIZE'][_doctype].append(_id_dccp_rnd[_id][1]/float(_cn))
+        field_doctype_eins['RANDOMIZE'][_doctype].append(_id_dccp_rnd[_id][1])
 
         field_year_dccps['WOS_ALL'][_year].append(_id_dccp[_id][0])
         field_year_eins['WOS_ALL'][_year].append(_id_dccp[_id][1]/float(_cn))
 
         field_year_dccps['RANDOMIZE'][_year].append(_id_dccp_rnd[_id][0])
-        field_year_eins['RANDOMIZE'][_year].append(_id_dccp_rnd[_id][1]/float(_cn))
+        field_year_eins['RANDOMIZE'][_year].append(_id_dccp_rnd[_id][1])
 
         field_cc_dccps['WOS_ALL'][_cn].append(_id_dccp[_id][0])
         field_cc_eins['WOS_ALL'][_cn].append(_id_dccp[_id][1]/float(_cn))
 
         field_cc_dccps['RANDOMIZE'][_cn].append(_id_dccp_rnd[_id][0])
-        field_cc_eins['RANDOMIZE'][_cn].append(_id_dccp_rnd[_id][1]/float(_cn))
+        field_cc_eins['RANDOMIZE'][_cn].append(_id_dccp_rnd[_id][1])
 
         for cc_ix,_cc_cl in enumerate(_cn_clas):
             if _cc_cl==1:
                 field_ccbin_eins['WOS_ALL'][cc_ix].append(_id_dccp[_id][1]/float(_cn))
-                field_ccbin_eins['RANDOMIZE'][cc_ix].append(_id_dccp_rnd[_id][1]/float(_cn))
+                field_ccbin_eins['RANDOMIZE'][cc_ix].append(_id_dccp_rnd[_id][1])
 
         if _id in SCIENTO_IDS:
 
