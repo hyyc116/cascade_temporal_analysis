@@ -5,8 +5,15 @@
 
 '''
 
+'''画出带有随机数的图
 
-def 
+每一个领域画出95的置信区间
+'''
+def plot_dccp_figs_with_RND(pathObj):
+	
+
+	pass
+
 
 
 
