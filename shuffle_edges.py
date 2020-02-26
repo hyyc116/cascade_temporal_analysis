@@ -73,7 +73,7 @@ def shuffle_edges(pathObj):
             ## 直接对目标进行随机
             shuffle(targ)
             ## 新的edges
-            edges = zip(source,targ_i)
+            edges = zip(targ_i,source)
 
             logging.info('shuffled lines {}'.format(len(edges)))
 

@@ -61,7 +61,7 @@ def build_cascade_from_pid_cits(pathObj):
         line = line.strip()
         # pid,citing_id = line.split("\t")
 
-        citing_id,pid = line.split("\t")
+        pid,citing_id = line.split("\t")
 
 
         ## 如果不是wos的论文
