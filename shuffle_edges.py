@@ -25,7 +25,7 @@ def shuffle_edges(pathObj):
 
     progress = 0
 
-    year_edges = defaultdict(list)
+    year_edges = defaultdict(lambda:defaultdict(list))
 
     for line in open(pid_cits_path):
 
@@ -38,7 +38,9 @@ def shuffle_edges(pathObj):
         pid,citing_id = line.split("\t")
 
         ## 如果不是wos的论文
-        if len(_ids_subjects.get(pid,[]))==0:
+        subjs = _ids_subjects.get(pid,[])
+
+        if len(subjs)==0:
             continue
 
         targ_year = paper_year.get(pid,None)
@@ -46,7 +48,10 @@ def shuffle_edges(pathObj):
         if targ_year is None:
             continue
 
-        year_edges[targ_year].append([pid,citing_id])
+        ## 这里随机选择一个subj
+        subj = np.random.choice(subjs,size=1)[0]
+
+        year_edges[targ_year][subj].append([pid,citing_id])
 
 
     logging.info('edges loaded, starting to shuffle.')
@@ -55,28 +60,25 @@ def shuffle_edges(pathObj):
 
     for year in year_edges.keys():
 
-        edges = year_edges[year]
+        for subj in year_edges[year].keys():
 
-        targ,source = zip(*edges)
+            edges = year_edges[year][subj]
 
-        num = len(edges)
+            targ,source = zip(*edges)
 
-        logging.info('Year {}, Num of edges {}.'.format(year,len(edges)))
+            num = len(edges)
 
+            logging.info('Year {},Subj {}, Num of edges {}.'.format(year,subj,len(edges)))
 
-        ## 直接对num进行shuffle
+            ## 直接对目标进行随机
+            shuffle(targ)
+            ## 新的edges
+            edges = zip(source,targ_i)
 
-        num_index = range(num)
+            logging.info('shuffled lines {}'.format(len(edges)))
+
         
-        shuffle(num_index)
-        targ_i = [targ[j] for j in num_index]
-
-
-        edges = zip(source,targ_i)
-
-        logging.info('shuffled lines {}'.format(len(edges)))
-
-        f.write('\n'.join(['\t'.join(e) for e in edges])+"\n")
+            f.write('\n'.join(['\t'.join(e) for e in edges])+"\n")
 
 
     f.close()
