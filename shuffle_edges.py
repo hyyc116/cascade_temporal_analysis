@@ -70,8 +70,11 @@ def shuffle_edges(pathObj):
 
             logging.info('Year {},Subj {}, Num of edges {}.'.format(year,subj,len(edges)))
 
-            ## 直接对目标进行随机
-            shuffle(targ)
+            ## 直接对
+            num_index = range(num)
+            shuffle(num_index)
+
+            targ_i = [targ[ix] for ix in num_index]
             ## 新的edges
             edges = zip(targ_i,source)
 
