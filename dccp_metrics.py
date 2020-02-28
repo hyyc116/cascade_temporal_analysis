@@ -113,6 +113,9 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
         if _id_cn.get(_id,None) is None:
             continue
 
+        if _id_dccp_rnd.get(_id,None) is None:
+            continue
+
         ## 获得这一篇论文的基础属性值
         _cn = int(_id_cn[_id])
         _top_sujects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
