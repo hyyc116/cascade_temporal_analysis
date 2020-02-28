@@ -260,7 +260,7 @@ def plot_dccps():
     field_doctype_eins = json.loads(open('data/field_doctype_eins.json').read())
 
     logging.info('startting to plotting ....')
-    fig,axes = plt.subplots(1,3,figsize=(20,5))
+    fig,axes = plt.subplots(1,3,figsize=(20,7))
     ## 分不同的领域查看dccp随着citation count, doctype, 时间之间的变化
     for fi,field in enumerate(sorted(field_cc_dccps.keys())):
 
@@ -290,7 +290,7 @@ def plot_dccps():
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$P(e>n|C=n)$')
         ax.set_xlim(1,1000)
-        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=2)
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
 
 
@@ -310,7 +310,7 @@ def plot_dccps():
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$P(e>n|C=n)$')
 
-        lgd2 = ax2.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=2)
+        lgd2 = ax2.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
 
         ## dccp与doctype的关系
@@ -354,11 +354,12 @@ def plot_dccps():
     logging.info('fig saved to fig/dccp_total.png.')
 
 
-    fig,axes = plt.subplots(1,3,figsize=(18,5))
+    fig,axes = plt.subplots(1,3,figsize=(22,7))
     ## 分不同的领域查看ein随着citation count, doctype, 时间之间的变化
 
 
-
+    _95_subj_xys={}
+    _95_subj_year_xys = {}
 
     ## 统计不同学科的e_i-norm的list
     subj_eins = defaultdict(list)
@@ -368,6 +369,8 @@ def plot_dccps():
         ax = axes[0]
         xs = []
         ys = []
+        ys_up =[]
+        ys_down = []
         for cc in sorted(field_ccbin_eins[field].keys(),key=lambda x:int(x)):
 
             if int(cc)<36:
@@ -380,12 +383,18 @@ def plot_dccps():
             dccps  = field_ccbin_eins[field][cc]
 
             # field_CLS_dccps[field][CLS].extend(dccps)
-
-
-            subj_eins[field].extend(dccps)
-
+            
             ## dccp 在这个的比例
             p_of_dccp = np.mean(dccps)
+
+            length = len(dccps)
+
+            ite = np.std(dccps)/np.sqrt(length)*1.96
+
+            ys_down.append(p_of_dccp-ite)
+            ys_up.append(p_of_dccp+ite)
+
+            subj_eins[field].extend(dccps)
 
             xs.append(int(cc))
             ys.append(p_of_dccp)
@@ -393,6 +402,7 @@ def plot_dccps():
             if field.startswith('Art') and labels[int(cc)]=='1000-inf':
                 logging.info('number of papers in 1000-inf in {} is {}'.format(field,len(dccps)))
 
+        _95_subj_xys[field] = [xs,ys,ys_up,ys_down]
         ax.plot(xs,ys,label='{}'.format(field))
         # ax.set_xscale('log')
         ax.set_xticks(xs)
@@ -400,10 +410,7 @@ def plot_dccps():
 
         ax.set_xlabel('number of citations')
         ax.set_ylabel('$e_{i-norm}$')
-        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=2)
-
-
-
+        lgd = ax.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
 
         ## dccp与时间之间的关系
@@ -415,14 +422,23 @@ def plot_dccps():
             ## dccp 在这个的比例
             p_of_dccp = np.sum(dccps)/float(len(dccps))
 
+            length = len(dccps)
+
+            ite = np.std(dccps)/np.sqrt(length)*1.96
+
+            ys_down.append(p_of_dccp-ite)
+            ys_up.append(p_of_dccp+ite)
+
             xs.append(int(year))
             ys.append(p_of_dccp)
+
+        _95_subj_year_xys[field]=[xs,ys,ys_up,ys_down]
         ax2.plot(xs,ys,label='{}'.format(field))
 
         ax2.set_xlabel('Year')
         ax2.set_ylabel('$e_{i-norm}$')
 
-        lgd2 = ax2.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=2)
+        lgd2 = ax2.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=3)
 
 
         if field == 'SCIENTOMETRICS':
@@ -436,6 +452,8 @@ def plot_dccps():
             ## dccp 在这个的比例
             # p_of_dccp = np.mean(dccps)
             p_of_dccp = np.sum(dccps)/float(len(dccps))
+
+            
 
             xs.append(doctype)
             ys.append(p_of_dccp)
@@ -465,7 +483,59 @@ def plot_dccps():
     logging.info('fig saved to fig/eins_total.png.')
 
 
-    # logging.info('Done')
+    logging.info('plotting 95 confidence。。。')
+
+    fig,axes = plt.subplots(4,2,figsize=(10,15))
+
+    fig_index = 0
+    for field in _95_subj_xys.keys():
+
+        if field=='RANDOMIZE':
+            continue
+
+        xs,ys,ys_up,ys_down = _95_subj_xys[field]
+
+        ax = axes[fig_index/2,fig_index%2]
+
+        ax.plot(xs,ys)
+        ax.fill_between(xs,ys_down,ys_up,color='gray',alpha=0.5)
+        ax.set_title(field)
+        ax.set_xlabel('number of citations')
+
+        ax.set_xticks(xs)
+        ax.set_ylabel('$e_{i-norm}$')
+        ax.set_xticklabels(labels)
+
+        fig_index+=1
+
+    plt.tight_layout()
+
+    plt.savefig('fig/eins_ccbin_95.png',dpi=400)
+
+    ####
+    fig,axes = plt.subplots(4,2,figsize=(10,15))
+
+    fig_index = 0
+    for field in _95_subj_year_xys.keys():
+
+        if field=='RANDOMIZE':
+            continue
+
+        xs,ys,ys_up,ys_down = _95_subj_year_xys[field]
+
+        ax = axes[fig_index/2,fig_index%2]
+
+        ax.plot(xs,ys)
+        ax.fill_between(xs,ys_down,ys_up,color='gray',alpha=0.5)
+        ax.set_title(field)
+        ax.set_xlabel('Year')
+        ax.set_ylabel('$e_{i-norm}$')
+
+        fig_index+=1
+
+    plt.tight_layout()
+
+    plt.savefig('fig/eins_year_95.png',dpi=400)
 
 
 
