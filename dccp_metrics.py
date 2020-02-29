@@ -391,13 +391,14 @@ def plot_dccps():
 
             # logging.info('length:{} in field:{}'.format(length,field))
 
-            ite = np.std(dccps)/np.sqrt(length)*1.96
+            m,down,up = mean_confidence_interval(dccps)
 
-            logging.info('length:{} in field:{},cc:{},err:{}'.format(length,field,cc,ite))
+            ite = m-down
 
+            logging.info('length:{} in field:{}, cc:{},err:{}'.format(length,field,cc,ite))
 
-            ys_down.append(p_of_dccp-ite)
-            ys_up.append(p_of_dccp+ite)
+            ys_down.append(down)
+            ys_up.append(up)
 
             subj_eins[field].extend(dccps)
 
@@ -432,15 +433,13 @@ def plot_dccps():
 
             length = len(dccps)
 
+            m,down,up = mean_confidence_interval(dccps)
 
-
-            ite = np.std(dccps)/np.sqrt(length)*1.96
-
+            ite = m-down
             logging.info('length:{} in field:{}, year:{},err:{}'.format(length,field,year,ite))
 
-
-            ys_down.append(p_of_dccp-ite)
-            ys_up.append(p_of_dccp+ite)
+            ys_down.append(down)
+            ys_up.append(up)
 
             xs.append(int(year))
             ys.append(p_of_dccp)
@@ -944,6 +943,13 @@ def  stat_citation_dis(pathObj):
     open('data/field_doctype_num.csv','w').write('\n'.join(lines))
     logging.info('data saved to data/field_doctype_num.csv')
 
+
+def mean_confidence_interval(data, confidence=0.95):
+    a = 1.0 * np.array(data)
+    n = len(a)
+    m, se = np.mean(a), scipy.stats.sem(a)
+    h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
+    return m, m-h, m+h
 
 
 def stat_dccp(pathObj):
