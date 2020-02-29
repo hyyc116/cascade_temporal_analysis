@@ -494,12 +494,14 @@ def plot_dccps():
         if field=='RANDOMIZE':
             continue
 
-        xs,ys,ys_up,ys_down = _95_subj_xys[field]
+        xs1,ys1,ys_up1,ys_down1 = _95_subj_xys[field]
 
         ax = axes[fig_index/2,fig_index%2]
 
-        ax.plot(xs,ys)
-        ax.fill_between(xs,ys_down,ys_up,color='gray',alpha=0.5)
+        print(len(xs1),len(ys1),len(ys_up1),len(ys_down1))
+
+        ax.plot(xs1,ys1)
+        ax.fill_between(xs1,ys_up1,ys_down1,color='gray',alpha=0.5)
         ax.set_title(field)
         ax.set_xlabel('number of citations')
 
@@ -523,6 +525,8 @@ def plot_dccps():
             continue
 
         xs,ys,ys_up,ys_down = _95_subj_year_xys[field]
+
+        print(len(xs,len(ys),len(ys_down),len(ys_up)))
 
         ax = axes[fig_index/2,fig_index%2]
 
