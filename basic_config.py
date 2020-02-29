@@ -36,6 +36,7 @@ import psycopg2
 from cycler import cycler
 import statsmodels.api as sm
 lowess = sm.nonparametric.lowess
+import scipy
 
 # from gini import gini
 
