@@ -529,7 +529,7 @@ def plot_dccps():
 
         xs,ys,ys_up,ys_down = _95_subj_year_xys[field]
 
-        print(len(xs,len(ys),len(ys_down),len(ys_up)))
+        print(len(xs),len(ys),len(ys_down),len(ys_up))
 
         ax = axes[fig_index/2,fig_index%2]
 
