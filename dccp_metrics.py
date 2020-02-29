@@ -418,6 +418,8 @@ def plot_dccps():
         ax2 = axes[1]
         xs = []
         ys = []
+        ys_down = []
+        ys_up = []
         for year in sorted(field_year_eins[field].keys(),key=lambda x:int(x)):
             dccps = field_year_eins[field][year]
             ## dccp 在这个的比例
