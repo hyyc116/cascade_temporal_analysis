@@ -389,7 +389,12 @@ def plot_dccps():
 
             length = len(dccps)
 
+            # logging.info('length:{} in field:{}'.format(length,field))
+
             ite = np.std(dccps)/np.sqrt(length)*1.96
+
+            logging.info('length:{} in field:{},cc:{},err:{}'.format(length,field,cc,ite))
+
 
             ys_down.append(p_of_dccp-ite)
             ys_up.append(p_of_dccp+ite)
@@ -427,7 +432,12 @@ def plot_dccps():
 
             length = len(dccps)
 
+
+
             ite = np.std(dccps)/np.sqrt(length)*1.96
+
+            logging.info('length:{} in field:{}, year:{},err:{}'.format(length,field,year,ite))
+
 
             ys_down.append(p_of_dccp-ite)
             ys_up.append(p_of_dccp+ite)
@@ -488,7 +498,7 @@ def plot_dccps():
 
     logging.info('plotting 95 confidence。。。')
 
-    fig,axes = plt.subplots(4,2,figsize=(10,15))
+    fig,axes = plt.subplots(4,2,figsize=(15,15))
 
     fig_index = 0
     for field in _95_subj_xys.keys():
