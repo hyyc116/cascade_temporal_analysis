@@ -1586,6 +1586,7 @@ def plot_subcascade_data():
 
 
     ## hua
+    '''
 
     fig,axes = plt.subplots(2,4,figsize=(26,8))
     for i,subj in enumerate(sorted(field_CLS_size.keys())):
@@ -1638,6 +1639,7 @@ def plot_subcascade_data():
     plt.savefig('fig/boxplot_num_wos_all.png',dpi=300)
 
     logging.info('fig saved to fig/boxplot_num_wos_all.png.')
+    '''
 
     # fig,axes = plt.subplots(2,4,figsize=(20,8))
     plt.figure(figsize=(5,4))
