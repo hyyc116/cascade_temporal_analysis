@@ -507,9 +507,10 @@ def plot_dccps():
         ax.set_title(field)
         ax.set_xlabel('number of citations')
 
-        ax.set_xticks(xs)
-        ax.set_ylabel('$e_{i-norm}$')
+        ax.set_xticks(xs1)
         ax.set_xticklabels(labels)
+        ax.set_ylabel('$e_{i-norm}$')
+
 
         fig_index+=1
 
