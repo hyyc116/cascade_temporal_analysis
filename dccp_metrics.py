@@ -2076,12 +2076,12 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    stat_dccp(paths)
+    # stat_dccp(paths)
     # boxplot()
-    plot_dccps()
+    # plot_dccps()
 
-    stat_subcascades(paths)
-    # plot_subcascade_data()
+    # stat_subcascades(paths)
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
