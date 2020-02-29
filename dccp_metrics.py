@@ -989,6 +989,8 @@ def stat_subcascades(pathObj):
     logging.info('loading paper subcascades  ...')
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
 
+    paper_size_id_rnd = json.loads(open(PATHS('RND').paper_subcascades_path).read())
+
     ## scientometrics
     sciento_ids = set([l.strip() for l in open(pathObj._scientometrics_path)])
 
@@ -1156,6 +1158,60 @@ def stat_subcascades(pathObj):
 
             field_num_dict[subj][num]+=1
             field_year_num_dict[subj][_year_b][num]+=1
+
+    ## RANDOMIZE
+    #
+
+    progress =0
+    for _id in paper_size_id_rnd.keys():
+        _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
+
+        cc = _id_cn[_id]
+
+        _year_bin = year_bin(_year)
+        _year_b = year_bin(_year)
+        progress+=1
+
+        if progress%1000000==0:
+            logging.info('progress {}'.format(progress))
+
+        size_id = paper_size_id_rnd[_id]
+
+        subj = 'RANDOMIZE'
+        num = 0
+        all_ids = []
+        for size in size_id.keys():
+            ids = size_id[size]
+            num+=len(ids)
+            field_size_dict[subj][size]+=len(ids)
+            field_year_size_dict[subj][_year_b][size]+=len(ids)
+            field_yearb_size_dict[subj][_year][size]+=len(ids)
+
+            field_doctype_size_dict[subj][_doctype][size]+=len(ids)
+            field_cc_size_int[subj][cc][size]+=len(ids)
+
+
+            all_ids.extend(ids)
+
+        field_cc_nums[subj][cc].append(num)
+
+
+        for _cc_ix,_cc_cl in enumerate(_cn_clas):
+            if _cc_cl==1:
+                for sub_id in set(all_ids):
+
+                    if sub_id==-999:
+                        continue
+
+                    field_cnbin_subcascade[subj][_cc_ix][sub_id]+=1
+                    doctype_cnbin_subcascade[_doctype][_cc_ix][sub_id]+=1
+                    field_yearbin_subcascade[subj][_year_bin][sub_id]+=1
+                    # field_subcascade_df[subj][sub_id].append(_cc_ix)
+                    # field_ccbin_num[subj][_cc_ix]+=1
+
+        field_num_dict[subj][num]+=1
+        field_year_num_dict[subj][_year_b][num]+=1
+        field_doctype_num_dict[subj][_doctype][num]+=1
 
 
     open('data/field_num_dict_all.json','w').write(json.dumps(field_num_dict))
@@ -2012,9 +2068,9 @@ if __name__ == '__main__':
     # dccp_of_paper(paths)
     # stat_dccp(paths)
     # boxplot()
-    plot_dccps()
+    # plot_dccps()
 
-    # stat_subcascades(paths)
+    stat_subcascades(paths)
     # plot_subcascade_data()
     # output_motif_table()
 
