@@ -403,6 +403,7 @@ def plot_dccps():
                 logging.info('number of papers in 1000-inf in {} is {}'.format(field,len(dccps)))
 
         _95_subj_xys[field] = [xs,ys,ys_up,ys_down]
+        logging.info('length of xs:{},ys:{},ys_up:{},ys_down:{}.'.format(len(xs),len(ys),len(ys_up),len(ys_down)))
         ax.plot(xs,ys,label='{}'.format(field))
         # ax.set_xscale('log')
         ax.set_xticks(xs)
