@@ -958,7 +958,7 @@ def stat_dccp(pathObj):
 
     top10_doctypes = ['Article','Review','Proceedings Paper','Letter','Book Review','Editorial Material']
 
-    start_year = 1980
+    start_year = 1900
     end_year = 2016
     interval = 1
     logging.info('loading dccp data ...')
@@ -983,7 +983,7 @@ def year_label(i):
 def stat_subcascades(pathObj):
     _id_subjects,_id_cn,_id_doctype,_id_year,top10_doctypes = load_attrs(pathObj)
     start_year = 1900
-    end_year = 2015
+    end_year = 2016
     interval = 1
     # logging.info('loading dccp data ...')
     logging.info('loading paper subcascades  ...')
@@ -1028,9 +1028,14 @@ def stat_subcascades(pathObj):
     progress =0
 
     for _id in paper_size_id.keys():
+
+         cc = _id_cn.get(_id,None)
+
+        if cc is None:
+            continue
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
-        cc = _id_cn[_id]
+
 
         _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
@@ -1164,9 +1169,14 @@ def stat_subcascades(pathObj):
 
     progress =0
     for _id in paper_size_id_rnd.keys():
+
+         cc = _id_cn.get(_id,None)
+
+        if cc is None:
+            continue
+            
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
-        cc = _id_cn[_id]
 
         _year_bin = year_bin(_year)
         _year_b = year_bin(_year)
@@ -2066,9 +2076,9 @@ if __name__ == '__main__':
     # parse_args(paths)
     # run_all(paths)
     # dccp_of_paper(paths)
-    # stat_dccp(paths)
+    stat_dccp(paths)
     # boxplot()
-    # plot_dccps()
+    plot_dccps()
 
     stat_subcascades(paths)
     # plot_subcascade_data()
