@@ -1029,7 +1029,7 @@ def stat_subcascades(pathObj):
 
     for _id in paper_size_id.keys():
 
-         cc = _id_cn.get(_id,None)
+        cc = _id_cn.get(_id,None)
 
         if cc is None:
             continue
@@ -1170,11 +1170,11 @@ def stat_subcascades(pathObj):
     progress =0
     for _id in paper_size_id_rnd.keys():
 
-         cc = _id_cn.get(_id,None)
+        cc = _id_cn.get(_id,None)
 
         if cc is None:
             continue
-            
+
         _top_subjects,_cn_clas,_doctype,_year = stats_on_facets(_id,_id_subjects,_id_cn,_id_doctype,_id_year)
 
 
