@@ -625,12 +625,12 @@ def plot_role_data():
 
 
 if __name__ == '__main__':
-    field = 'ALL'
+    field = 'RND'
     paths = PATHS(field)
-    # cascade_role(paths)
+    cascade_role(paths)
 
     # general_node_role_dis(paths)
-    plot_node_dis()
+    # plot_node_dis()
 
     ## 平行链接数据
     # parallel_linking_data(paths)
