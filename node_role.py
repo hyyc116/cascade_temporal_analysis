@@ -307,11 +307,11 @@ def plot_node_dis():
 
 
     logging.info('start to plot subj year ps ...')
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig,axes = plt.subplots(3,3,figsize=(15,12))
     ## 分为八个字图，每个三条线随着时间的变化
     for i,subj in enumerate(sorted(subj_year_pcs.keys())):
 
-        ax = axes[i/4,i%4]
+        ax = axes[i/3,i%3]
 
         _year_pcs = subj_year_pcs[subj]
         _year_ples = subj_year_ples[subj]
@@ -340,9 +340,12 @@ def plot_node_dis():
     plt.savefig('fig/general_subj_year_ps.png',dpi=300)
     logging.info('fig saved to fig/general_subj_year_ps.png ...')
 
+    return
+
     doctype_pcs = json.loads(open('data/doctype_pcs.json').read())
     doctype_ples = json.loads(open('data/doctype_ples.json').read())
     doctype_pies = json.loads(open('data/doctype_pies.json').read())
+
 
     logging.info('start to plot doctype ps ...')
     ## 分为三个子图
