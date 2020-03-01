@@ -132,7 +132,7 @@ def general_node_role_dis(pathObj):
 
     for pid in pid_role_dict.keys():
 
-        if _id_cn.get(_id,None) is None:
+        if _id_cn.get(pid,None) is None:
             continue
 
         pc = pid_role_dict[pid]['pc']
@@ -178,7 +178,7 @@ def general_node_role_dis(pathObj):
 
     for pid in pid_role_dict_rnd.keys():
 
-        if _id_cn.get(_id,None) is None:
+        if _id_cn.get(pid,None) is None:
             continue
 
         pc = pid_role_dict[pid]['pc']
