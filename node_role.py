@@ -181,9 +181,9 @@ def general_node_role_dis(pathObj):
         if _id_cn.get(pid,None) is None:
             continue
 
-        pc = pid_role_dict[pid]['pc']
-        ple = pid_role_dict[pid]['ple']
-        pie = pid_role_dict[pid]['pie']
+        pc = pid_role_dict_rnd[pid]['pc']
+        ple = pid_role_dict_rnd[pid]['ple']
+        pie = pid_role_dict_rnd[pid]['pie']
 
         _cn = int(_id_cn[pid])
         _subjs = _id_subjects[pid]
