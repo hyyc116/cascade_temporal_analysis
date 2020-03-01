@@ -1814,6 +1814,9 @@ def plot_subcascade_data():
 
         xs,ys,errs = _517_95_xys[subj]
 
+        ys = np.array(ys)
+        errs = np.array(errs)
+
         ax.plot(xs,ys)
         ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
 
@@ -1841,6 +1844,8 @@ def plot_subcascade_data():
         ax = axes[fig_index/4,fig_index%4]
 
         xs,ys,errs = _518_95_xys[subj]
+        ys = np.array(ys)
+        errs = np.array(errs)
 
         ax.plot(xs,ys)
         ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
