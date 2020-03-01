@@ -1498,58 +1498,7 @@ def plot_subcascade_data():
     plt.savefig('fig/field_year_size_dis.png',dpi=400)
     logging.info('saved to fig/field_year_size_dis.png.')
 
-    ## 95置信度
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
-    fig_index = 0
-    for subj in _517_95_xys.keys():
-        if subj=='RANDOMIZE':
-            continue
-
-        ax = axes[fig_index/4,fig_index%4]
-
-        xs,ys,errs = _517_95_xys[subj]
-
-        ax.plot(xs,ys)
-        ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
-
-        ax.set_xlabel('number of citations')
-        ax.set_ylabel('number of components')
-        ax.set_xscale('log')
-        ax.set_yscale('log')
-        ax.set_title(subj)
-
-        fig_index+=1
-
-    plt.tight_layout()
-
-    plt.savefig('fig/517_95.png',dpi=400)
-    logging.info("fig saved to 517_95.png")
-
-
-    ## 95置信度
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
-    fig_index = 0
-    for subj in _518_95_xys.keys():
-        if subj=='RANDOMIZE':
-            continue
-
-        ax = axes[fig_index/4,fig_index%4]
-
-        xs,ys,errs = _518_95_xys[subj]
-
-        ax.plot(xs,ys)
-        ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
-
-        ax.set_xlabel('year')
-        ax.set_ylabel('number of components')
-        ax.set_title(subj)
-
-        fig_index+=1
-
-    plt.tight_layout()
-
-    plt.savefig('fig/518_95.png',dpi=400)
-    logging.info("fig saved to 518_95.png")
+    
 
 
 
@@ -1853,6 +1802,59 @@ def plot_subcascade_data():
     logging.info('saved to fig/doctype_num_dis.png.')
 
     # return
+    # 
+    ## 95置信度
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig_index = 0
+    for subj in _517_95_xys.keys():
+        if subj=='RANDOMIZE':
+            continue
+
+        ax = axes[fig_index/4,fig_index%4]
+
+        xs,ys,errs = _517_95_xys[subj]
+
+        ax.plot(xs,ys)
+        ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
+
+        ax.set_xlabel('number of citations')
+        ax.set_ylabel('number of components')
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_title(subj)
+
+        fig_index+=1
+
+    plt.tight_layout()
+
+    plt.savefig('fig/517_95.png',dpi=400)
+    logging.info("fig saved to 517_95.png")
+
+
+    ## 95置信度
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig_index = 0
+    for subj in _518_95_xys.keys():
+        if subj=='RANDOMIZE':
+            continue
+
+        ax = axes[fig_index/4,fig_index%4]
+
+        xs,ys,errs = _518_95_xys[subj]
+
+        ax.plot(xs,ys)
+        ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
+
+        ax.set_xlabel('year')
+        ax.set_ylabel('number of components')
+        ax.set_title(subj)
+
+        fig_index+=1
+
+    plt.tight_layout()
+
+    plt.savefig('fig/518_95.png',dpi=400)
+    logging.info("fig saved to 518_95.png")
 
 def output_motif_table():
     ## ===
