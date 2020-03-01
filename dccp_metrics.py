@@ -391,7 +391,7 @@ def plot_dccps():
 
             # logging.info('length:{} in field:{}'.format(length,field))
 
-            m,down,up = mean_confidence_interval(dccps)
+            m,down,up,err = mean_confidence_interval(dccps)
 
             ite = m-down
 
@@ -433,7 +433,7 @@ def plot_dccps():
 
             length = len(dccps)
 
-            m,down,up = mean_confidence_interval(dccps)
+            m,down,up,err = mean_confidence_interval(dccps)
 
             ite = m-down
             logging.info('length:{} in field:{}, year:{},err:{}'.format(length,field,year,ite))
@@ -949,7 +949,7 @@ def mean_confidence_interval(data, confidence=0.95):
     n = len(a)
     m, se = np.mean(a), scipy.stats.sem(a)
     h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
-    return m, m-h, m+h
+    return m, m-h, m+h, err
 
 
 def stat_dccp(pathObj):
@@ -1447,6 +1447,7 @@ def plot_subcascade_data():
     field_yearb_size_dict = json.loads(open('data/field_yearb_size_dict_all.json').read())
 
     fieldnum_xsys = {}
+    _518_95_xys = {}
 
     plt.figure(figsize=(5,4))
     for i,subj in enumerate(sorted(field_yearb_size_dict.keys())):
@@ -1458,6 +1459,8 @@ def plot_subcascade_data():
         xs = []
         ys = []
         num_ys = []
+        errs = []
+
         for j,year in enumerate(sorted(year_num_dict.keys(),key=lambda x:int(x))):
 
             xs.append(int(year))
@@ -1472,8 +1475,13 @@ def plot_subcascade_data():
             num_ys.append(num)
 
             ys.append(np.mean(y))
+            _,_,_,err = mean_confidence_interval(y)
+            errs.append(err)
+
+        ys = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
         fieldnum_xsys[subj]=[xs,ys]
+        _518_95_xys[subj]=[xs,ys,errs]
 
         ys = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
@@ -1490,6 +1498,60 @@ def plot_subcascade_data():
     plt.savefig('fig/field_year_size_dis.png',dpi=400)
     logging.info('saved to fig/field_year_size_dis.png.')
 
+    ## 95置信度
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig_index = 0
+    for subj in _517_95_xys.keys():
+        if subj=='RANDOMIZE':
+            continue
+
+        ax = axes[fig_index/4,fig_index%4]
+
+        xs,ys,errs = _517_95_xys[subj]
+
+        ax.plot(xs,ys)
+        ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
+
+        ax.set_xlabel('number of citations')
+        ax.set_ylabel('number of components')
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_title(subj)
+
+        fig_index+=1
+
+    plt.tight_layout()
+
+    plt.savefig('fig/517_95.png',dpi=400)
+    logging.info("fig saved to 517_95.png")
+
+
+    ## 95置信度
+    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig_index = 0
+    for subj in _518_95_xys.keys():
+        if subj=='RANDOMIZE':
+            continue
+
+        ax = axes[fig_index/4,fig_index%4]
+
+        xs,ys,errs = _518_95_xys[subj]
+
+        ax.plot(xs,ys)
+        ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
+
+        ax.set_xlabel('year')
+        ax.set_ylabel('number of components')
+        ax.set_title(subj)
+
+        fig_index+=1
+
+    plt.tight_layout()
+
+    plt.savefig('fig/518_95.png',dpi=400)
+    logging.info("fig saved to 518_95.png")
+
+
 
     plt.figure(figsize=(5,4))
 
@@ -1497,7 +1559,6 @@ def plot_subcascade_data():
 
         xs,ys = fieldnum_xsys[field]
 
-        ys = [np.mean(ys[:i+1]) for i in range(len(ys))]
 
         plt.plot(xs,ys,label='{}'.format(field))
 
@@ -1679,13 +1740,14 @@ def plot_subcascade_data():
 
     logging.info('fig saved to fig/field_cc_size.png.')
 
-
+    _517_95_xys = {}
     plt.figure(figsize=(5,4))
     for i,subj in enumerate(sorted(field_cc_num.keys())):
         logging.info('field {} ...'.format(subj))
         # data = []
         xs = []
         ys = []
+        errs = []
         for cc in sorted(field_cc_num[subj].keys()):
             # logging.info('cc:{}'.format(cc))
             # logging.info('num of dccps:{}'.format())
@@ -1693,8 +1755,12 @@ def plot_subcascade_data():
 
             xs.append(cc)
             ys.append(np.mean(field_cc_num[subj][cc]))
+            _,_,_,err = mean_confidence_interval(field_cc_num[subj][cc])
+            errs.append(err)
 
         ys = [ np.mean(ys[:i+1]) for i in range(len(ys))]
+
+        _517_95_xys[subj] = [xs,ys,errs]
 
         # print('length of data {}'.format(len(data)))
 
