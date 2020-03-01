@@ -108,6 +108,9 @@ def general_node_role_dis(pathObj):
 
     pid_role_dict = json.loads(open(pathObj._node_role_stat_path).read())
 
+    pid_role_dict_rnd = json.loads(open(PATHS('RND')._node_role_stat_path).read())
+
+
     sciento_ids = set([l.strip() for l in open('scientometrics.txt')])
 
     ## 不同的role随着citation count的变化
@@ -128,6 +131,9 @@ def general_node_role_dis(pathObj):
     logging.info('start to stating data ...')
 
     for pid in pid_role_dict.keys():
+
+        if _id_cn.get(_id,None) is None:
+            continue
 
         pc = pid_role_dict[pid]['pc']
         ple = pid_role_dict[pid]['ple']
@@ -169,6 +175,29 @@ def general_node_role_dis(pathObj):
             doctype_pcs[_doctype].append(pc)
             doctype_ples[_doctype].append(ple)
             doctype_pies[_doctype].append(pie)
+
+    for pid in pid_role_dict_rnd.keys():
+
+        if _id_cn.get(_id,None) is None:
+            continue
+
+        pc = pid_role_dict[pid]['pc']
+        ple = pid_role_dict[pid]['ple']
+        pie = pid_role_dict[pid]['pie']
+
+        _cn = int(_id_cn[pid])
+        _subjs = _id_subjects[pid]
+        _year = int(_id_year[pid])
+        _doctype = _id_doctype[pid]
+
+        subj_cn_pcs['RANDOMIZE'][_cn].append(pc)
+        subj_cn_ples['RANDOMIZE'][_cn].append(ple)
+        subj_cn_pies['RANDOMIZE'][_cn].append(pie)
+
+        subj_year_pcs['RANDOMIZE'][_year].append(pc)
+        subj_year_ples['RANDOMIZE'][_year].append(ple)
+        subj_year_pies['RANDOMIZE'][_year].append(pie)
+
 
 
     open('data/subj_cn_pcs.json','w').write(json.dumps(subj_cn_pcs))
@@ -625,11 +654,11 @@ def plot_role_data():
 
 
 if __name__ == '__main__':
-    field = 'RND'
+    field = 'ALL'
     paths = PATHS(field)
-    cascade_role(paths)
+    # cascade_role(paths)
 
-    # general_node_role_dis(paths)
+    general_node_role_dis(paths)
     # plot_node_dis()
 
     ## 平行链接数据
