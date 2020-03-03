@@ -222,17 +222,25 @@ def plot_node_dis():
     ## 画图 subj cn pc
     fig,axes = plt.subplots(1,3,figsize=(15,4))
     ax = axes[0]
+    _fid_95_xys = defaultdict(dict)
     for i,subj in enumerate(sorted(subj_cn_pcs.keys())):
         _cn_pcs = subj_cn_pcs[subj]
 
         xs = []
         ys = []
+        errs = []
         for _cn in sorted(_cn_pcs.keys(),key=lambda x:int(x)):
             xs.append(int(_cn))
             ys.append(np.mean(_cn_pcs[_cn]))
+            _,_,_,err = mean_confidence_interval(_cn_pcs[_cn])
+            errs.append(err)
+
 
         # zs = moving_average(ys,50)
         zs = [np.mean(ys[:i+1]) for i in range(len(ys))]
+
+        _fid_95_xys['526'][subj] = [xs,zs,errs]
+
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
@@ -251,13 +259,18 @@ def plot_node_dis():
 
         xs = []
         ys = []
+        errs = []
         for _cn in sorted(_cn_ples.keys(),key=lambda x:int(x)):
             xs.append(int(_cn))
             ys.append(np.mean(_cn_ples[_cn]))
+            _,_,_,err = mean_confidence_interval(_cn_pcs[_cn])
+            errs.append(err)
 
         # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
 
         zs = [np.mean(ys[:i+1]) for i in range(len(ys))]
+
+        _fid_95_xys['527'][subj]=[xs,zs,errs]
 
 
         ax.plot(xs,zs,label='{}'.format(subj))
@@ -278,13 +291,16 @@ def plot_node_dis():
 
         xs = []
         ys = []
+        errs = []
         for _cn in sorted(_cn_pies.keys(),key=lambda x:int(x)):
             xs.append(int(_cn))
             ys.append(np.mean(_cn_pies[_cn]))
+            errs.append(mean_confidence_interval(_cn_pies[_cn]))
 
         # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.01,it=1,is_sorted =True))[1]]
 
         zs = [np.mean(ys[:i+1]) for i in range(len(ys))]
+        _fid_95_xys['528'][subj] = [xs,zs,errs]
 
 
         ax.plot(xs,zs,label='{}'.format(subj))
@@ -297,6 +313,44 @@ def plot_node_dis():
     plt.tight_layout()
     plt.savefig('fig/general_subj_cc_ps.png',dpi=300)
     logging.info('fig saved to fig/general_subj_cc_ps.png ...')
+
+    ## starting to plotting 95 comfidence...
+    
+    for fid in _fid_95_xys.keys():
+        
+        if fid=='526':
+            ylabel='$p(c)$'
+        elif fid=='527':
+            ylabel = '$p(le)$'
+        elif fid=='528':
+            ylabel = '$p(ie)$'
+
+        fig_index = 0
+        fig,axes = plt.subplots(4,2,figsize=(10,16))
+        for subj in _fid_95_xys[fid]:
+
+            if subj=='RANDOMIZE':
+                continue
+
+            xs,zs,errs = _fid_95_xys[fid][subj]
+            ax = axes[fig_index/2,fig_index%2]
+
+            ax.plot(xs,zs)
+            up = np.array(xs)-np.array(errs)
+            down = np.array(xs)+np.array(errs)
+            ax.fill_between(xs,up,down,color='gray',alpha=0.5)
+
+            ax.set_xlabel('number of  citations')
+            ax.set_ylabel(ylabel)
+            ax.set_xscale('log')
+            ax.set_title(subj)
+
+        plt.tight_layout()
+
+        plt.savefig('fig/{}_95.png'.format(fid),dpi=400)
+        logging.info("fig saved to fig/{}_95.png".format(fid))
+
+    return
 
 
 
