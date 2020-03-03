@@ -264,7 +264,7 @@ def plot_node_dis():
         for _cn in sorted(_cn_ples.keys(),key=lambda x:int(x)):
             xs.append(int(_cn))
             ys.append(np.mean(_cn_ples[_cn]))
-            _,_,_,err = mean_confidence_interval(_cn_pcs[_cn])
+            _,_,_,err = mean_confidence_interval(_cn_ples[_cn])
             errs.append(err)
 
         # zs = [i for i in zip(*lowess(ys,np.log(xs),frac=0.05,it=1,is_sorted =True))[1]]
