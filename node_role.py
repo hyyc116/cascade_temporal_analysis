@@ -6,6 +6,7 @@
 from basic_config import *
 
 from dccp_metrics import load_attrs
+from dccp_metrics import mean_confidence_interval
 
 ## 根据cascade的出度入度对node的角色进行分析
 def cascade_role(pathObj):
