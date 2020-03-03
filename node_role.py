@@ -337,8 +337,8 @@ def plot_node_dis():
             ax = axes[fig_index/2,fig_index%2]
 
             ax.plot(xs,zs)
-            up = np.array(xs)-np.array(errs)
-            down = np.array(xs)+np.array(errs)
+            up = np.array(zs)-np.array(errs)
+            down = np.array(zs)+np.array(errs)
             ax.fill_between(xs,up,down,color='gray',alpha=0.5)
 
             ax.set_xlabel('number of  citations')
