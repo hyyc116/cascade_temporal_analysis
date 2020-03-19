@@ -528,7 +528,7 @@ def plot_dccps():
     plt.savefig('fig/eins_ccbin_95.png',dpi=400)
 
     ####
-    fig,axes = plt.subplots(4,2,figsize=(8,15))
+    fig,axes = plt.subplots(4,2,figsize=(10,15))
 
     fig_index = 0
     for i,field in enumerate(sorted(_95_subj_year_xys.keys())):
@@ -1300,8 +1300,8 @@ def plot_subcascade_data():
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.plot(xs,ys,label='{}'.format(subj))
 
-        ax.set_xlabel('probability')
-        ax.set_ylabel('number of components')
+        ax.set_xlabel('size of components')
+        ax.set_ylabel('probability')
 
         ax.set_xscale('log')
         ax.set_yscale('log')
@@ -1441,7 +1441,7 @@ def plot_subcascade_data():
             ax.plot(xs,ys,label=subj)
 
             ax.set_xlabel('number of components')
-            ax.set_ylabel('percentage')
+            ax.set_ylabel('probability')
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(year_l))
@@ -1462,7 +1462,7 @@ def plot_subcascade_data():
     fieldnum_xsys = {}
     _518_95_xys = {}
 
-    plt.figure(figsize=(5,4))
+    plt.figure(figsize=(7,5))
     for i,subj in enumerate(sorted(field_yearb_size_dict.keys())):
 
         year_num_dict = field_yearb_size_dict[subj]
@@ -1518,7 +1518,7 @@ def plot_subcascade_data():
 
 
 
-    plt.figure(figsize=(6,5))
+    plt.figure(figsize=(7,5))
 
     for field in sorted(fieldnum_xsys.keys()):
 
@@ -1708,7 +1708,7 @@ def plot_subcascade_data():
     logging.info('fig saved to fig/field_cc_size.png.')
 
     _517_95_xys = {}
-    plt.figure(figsize=(5,5))
+    plt.figure(figsize=(6,4))
     for i,subj in enumerate(sorted(field_cc_num.keys())):
         logging.info('field {} ...'.format(subj))
         # data = []
@@ -1822,7 +1822,7 @@ def plot_subcascade_data():
     # return
     # 
     ## 95置信度
-    fig,axes = plt.subplots(4,2,figsize=(8,16))
+    fig,axes = plt.subplots(4,2,figsize=(10,16))
     fig_index = 0
     for i,subj in enumerate(sorted(_517_95_xys.keys())):
         if subj=='RANDOMIZE':
