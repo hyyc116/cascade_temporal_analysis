@@ -344,7 +344,7 @@ def plot_dccps():
         ax1.set_ylabel('$P(e>n|C=n)$')
 
 
-        ax1.legend(prop={'size':3})
+        ax1.legend(prop={'size':5})
 
         # ax2.legend()
 
@@ -589,21 +589,18 @@ def plot_dccps():
 
     plt.xlabel('$e_{i-norm}$')
     plt.ylabel('$P(X>e_{i-norm})$')
-    # plt.legend()
-
-    plt.axes([0.7,0.7,1,1])
-    for i, subj in enumerate(sorted(subj_xys.keys())):
-        xs,ys = subj_xys[subj]
-        plt.plot(xs,ys,c=color_sequence[i])
-
-
-
-    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
     plt.xscale('log')
 
+    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
 
+    # plt.legend()
+
+    ax = plt.axes([0.7,0.7,0.2,0.2])
+    for i, subj in enumerate(sorted(subj_xys.keys())):
+        xs,ys = subj_xys[subj]
+        ax.plot(xs,ys,c=color_sequence[i])
 
     plt.tight_layout()
 
