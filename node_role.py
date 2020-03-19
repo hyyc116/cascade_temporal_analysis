@@ -245,7 +245,7 @@ def plot_node_dis():
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
-    ax.legend(prop={'size':6})
+    ax.legend(prop={'size':4})
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$P(c)$')
     ax.set_xscale('log')
@@ -276,7 +276,7 @@ def plot_node_dis():
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
-    ax.legend(prop={'size':6})
+    ax.legend(prop={'size':4})
     ax.set_xlabel('number of citations')
     ax.set_ylabel('$p(le)$')
     ax.set_xscale('log')
@@ -307,7 +307,7 @@ def plot_node_dis():
 
         ax.plot(xs,zs,label='{}'.format(subj))
 
-    ax.legend(prop={'size':6})
+    ax.legend(prop={'size':4})
     ax.set_xscale('log')
 
     ax.set_xlabel('number of citations')

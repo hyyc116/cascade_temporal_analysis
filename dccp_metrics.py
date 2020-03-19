@@ -307,7 +307,7 @@ def plot_dccps():
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field))
 
-        ax2.set_xlabel('Year')
+        ax2.set_xlabel('year')
         ax2.set_ylabel('$P(e>n|C=n)$')
 
         lgd2 = ax2.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
@@ -340,11 +340,11 @@ def plot_dccps():
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes,rotation=-90)
-        ax1.set_xlabel('Doctype')
+        ax1.set_xlabel('doctype')
         ax1.set_ylabel('$P(e>n|C=n)$')
 
 
-        ax1.legend()
+        ax1.legend(prop={'size':3})
 
         # ax2.legend()
 
@@ -447,7 +447,7 @@ def plot_dccps():
         _95_subj_year_xys[field]=[xs,ys,ys_up,ys_down]
         ax2.plot(xs,ys,label='{}'.format(field))
 
-        ax2.set_xlabel('Year')
+        ax2.set_xlabel('year')
         ax2.set_ylabel('$e_{i-norm}$')
 
         lgd2 = ax2.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=3)
@@ -481,11 +481,11 @@ def plot_dccps():
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes,rotation=-90)
-        ax1.set_xlabel('Doctype')
+        ax1.set_xlabel('doctype')
         ax1.set_ylabel('$e_{i-norm}$')
 
 
-        ax1.legend()
+        ax1.legend(prop={'size':4})
 
         # ax2.legend()
 
@@ -497,10 +497,10 @@ def plot_dccps():
 
     logging.info('plotting 95 confidence。。。')
 
-    fig,axes = plt.subplots(4,2,figsize=(15,15))
+    fig,axes = plt.subplots(4,2,figsize=(8,15))
 
     fig_index = 0
-    for field in _95_subj_xys.keys():
+    for i,field in enumerate(sorted(_95_subj_xys.keys())):
 
         if field=='RANDOMIZE':
             continue
@@ -511,13 +511,13 @@ def plot_dccps():
 
         print(len(xs1),len(ys1),len(ys_up1),len(ys_down1))
 
-        ax.plot(xs1,ys1)
+        ax.plot(xs1,ys1,c=color_sequence[i])
         ax.fill_between(xs1,ys_up1,ys_down1,color='gray',alpha=0.5)
         ax.set_title(field)
         ax.set_xlabel('number of citations')
 
         ax.set_xticks(xs1)
-        ax.set_xticklabels(labels)
+        ax.set_xticklabels(labels,rotation=-90)
         ax.set_ylabel('$e_{i-norm}$')
 
 
@@ -528,10 +528,10 @@ def plot_dccps():
     plt.savefig('fig/eins_ccbin_95.png',dpi=400)
 
     ####
-    fig,axes = plt.subplots(4,2,figsize=(10,15))
+    fig,axes = plt.subplots(4,2,figsize=(8,15))
 
     fig_index = 0
-    for field in _95_subj_year_xys.keys():
+    for i,field in enumerate(sorted(_95_subj_year_xys.keys())):
 
         if field=='RANDOMIZE':
             continue
@@ -542,10 +542,10 @@ def plot_dccps():
 
         ax = axes[fig_index/2,fig_index%2]
 
-        ax.plot(xs,ys)
+        ax.plot(xs,ys,c=color_sequence[i])
         ax.fill_between(xs,ys_down,ys_up,color='gray',alpha=0.5)
         ax.set_title(field)
-        ax.set_xlabel('Year')
+        ax.set_xlabel('year')
         ax.set_ylabel('$e_{i-norm}$')
 
         fig_index+=1
@@ -562,6 +562,8 @@ def plot_dccps():
 
     ## eins的ccdf
     plt.figure(figsize=(5,4))
+
+    subj_xys = {}
     for subj in sorted(subj_eins.keys()):
 
 
@@ -583,15 +585,29 @@ def plot_dccps():
 
         plt.plot(xs,ys,label='{}'.format(subj))
 
+        subj_xys[subj] = [xs,ys]
+
     plt.xlabel('$e_{i-norm}$')
     plt.ylabel('$P(X>e_{i-norm})$')
-    plt.legend(prop={'size':6})
+    # plt.legend()
+
+    plt.axes([0.7,0.7,1,1])
+    for i, subj in enumerate(sorted(subj_xys.keys())):
+        xs,ys = subj_xys[subj]
+        plt.plot(xs,ys,c=color_sequence[i])
+
+
+
+    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
     plt.xscale('log')
 
+
+
+
     plt.tight_layout()
 
-    plt.savefig('fig/eins-ccdf.png',dpi=300)
+    plt.savefig('fig/eins-ccdf.png',dpi=300,additional_artists=[lgd])
     logging.info('e_i-norm ccdf saved to fig/eins-ccdf.png.')
 
 
@@ -1287,8 +1303,8 @@ def plot_subcascade_data():
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.plot(xs,ys,label='{}'.format(subj))
 
-        ax.set_xlabel('size of subcascades')
-        ax.set_ylabel('number of subcascades')
+        ax.set_xlabel('probability')
+        ax.set_ylabel('number of components')
 
         ax.set_xscale('log')
         ax.set_yscale('log')
@@ -1325,7 +1341,7 @@ def plot_subcascade_data():
         ax.plot(xs,ys,label='{}'.format(subj))
         # logging.info('subj {},xs:{},ys:{}'.format(subj,xs,ys))
         ax.set_xlabel('number of components')
-        ax.set_ylabel('number of papers')
+        ax.set_ylabel('probability')
 
         ax.set_xscale('log')
         ax.set_yscale('log')
@@ -1386,8 +1402,8 @@ def plot_subcascade_data():
 
             ax.plot(xs,ys,label=subj)
 
-            ax.set_xlabel('size of subcascade')
-            ax.set_ylabel('percentage')
+            ax.set_xlabel('size of components')
+            ax.set_ylabel('probability')
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(year_l))
@@ -1491,18 +1507,21 @@ def plot_subcascade_data():
 
     plt.xlabel('year')
     plt.ylabel('size of components')
-    plt.legend(prop={'size':6})
+    # plt.legend(prop={'size':6})
+
+    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=3)
+
 
     plt.tight_layout()
 
-    plt.savefig('fig/field_year_size_dis.png',dpi=400)
+    plt.savefig('fig/field_year_size_dis.png',dpi=400,additional_artists=[lgd])
     logging.info('saved to fig/field_year_size_dis.png.')
 
     
 
 
 
-    plt.figure(figsize=(5,4))
+    plt.figure(figsize=(6,5))
 
     for field in sorted(fieldnum_xsys.keys()):
 
@@ -1513,11 +1532,13 @@ def plot_subcascade_data():
 
     plt.xlabel('year')
     plt.ylabel('number of components')
-    plt.legend(prop={'size':6})
+    # plt.legend(prop={'size':6})
+    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=3)
+
 
     plt.tight_layout()
 
-    plt.savefig('fig/field_year_num_cas_dis.png',dpi=400)
+    plt.savefig('fig/field_year_num_cas_dis.png',dpi=400,additional_artists=[lgd])
     logging.info('saved to fig/field_year_num_cas_dis.png.')
 
 
@@ -1690,7 +1711,7 @@ def plot_subcascade_data():
     logging.info('fig saved to fig/field_cc_size.png.')
 
     _517_95_xys = {}
-    plt.figure(figsize=(5,4))
+    plt.figure(figsize=(5,5))
     for i,subj in enumerate(sorted(field_cc_num.keys())):
         logging.info('field {} ...'.format(subj))
         # data = []
@@ -1724,7 +1745,7 @@ def plot_subcascade_data():
     plt.xscale('log')
 
     # plt.legend(prop={'size':6})
-    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.15), ncol=2)
+    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
 
 
@@ -1758,8 +1779,8 @@ def plot_subcascade_data():
 
             ax.plot(xs,ys,label=subj)
 
-            ax.set_xlabel('size of subcascade')
-            ax.set_ylabel('percentage')
+            ax.set_xlabel('size of components')
+            ax.set_ylabel('probability')
             ax.set_xscale('log')
             ax.set_yscale('log')
             ax.set_title('{}'.format(doctype))
@@ -1804,20 +1825,20 @@ def plot_subcascade_data():
     # return
     # 
     ## 95置信度
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig,axes = plt.subplots(4,2,figsize=(8,16))
     fig_index = 0
-    for subj in _517_95_xys.keys():
+    for i,subj in enumerate(sorted(_517_95_xys.keys())):
         if subj=='RANDOMIZE':
             continue
 
-        ax = axes[fig_index/4,fig_index%4]
+        ax = axes[fig_index/2,fig_index%2]
 
         xs,ys,errs = _517_95_xys[subj]
 
         ys = np.array(ys)
         errs = np.array(errs)
 
-        ax.plot(xs,ys)
+        ax.plot(xs,ys,c=color_sequence[i])
         ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
 
         ax.set_xlabel('number of citations')
@@ -1835,19 +1856,19 @@ def plot_subcascade_data():
 
 
     ## 95置信度
-    fig,axes = plt.subplots(2,4,figsize=(20,8))
+    fig,axes = plt.subplots(4,2,figsize=(10,16))
     fig_index = 0
-    for subj in _518_95_xys.keys():
+    for i,subj in enumerate(sorted(_518_95_xys.keys())):
         if subj=='RANDOMIZE':
             continue
 
-        ax = axes[fig_index/4,fig_index%4]
+        ax = axes[fig_index/2,fig_index%2]
 
         xs,ys,errs = _518_95_xys[subj]
         ys = np.array(ys)
         errs = np.array(errs)
 
-        ax.plot(xs,ys)
+        ax.plot(xs,ys,c=color_sequence[i])
         ax.fill_between(xs,ys+errs,ys-errs,color='gray',alpha=0.5)
 
         ax.set_xlabel('year')
@@ -2153,7 +2174,7 @@ if __name__ == '__main__':
     # dccp_of_paper(paths)
     # stat_dccp(paths)
     # boxplot()
-    # plot_dccps()
+    plot_dccps()
 
     # stat_subcascades(paths)
     plot_subcascade_data()

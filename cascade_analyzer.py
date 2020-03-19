@@ -241,7 +241,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
 
-        ax2.set_xlabel('Year')
+        ax2.set_xlabel('year')
         ax2.set_ylabel('$P$')
 
         # ax2.legend()
@@ -293,11 +293,11 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
 
         ax1.set_xticks(range(len(top10_doctypes)))
         ax1.set_xticklabels(top10_doctypes,rotation=-90)
-        ax1.set_xlabel('Doctype')
+        ax1.set_xlabel('doctype')
         ax1.set_ylabel('$e_{i-norm}$')
 
 
-        # ax1.legend()
+        ax1.legend(prop={'size':4})
 
         ## dccp与时间之间的关系
         ax2 = axes[2]
@@ -318,7 +318,7 @@ def dccp_depits(_id_dccp,start_year,end_year,_id_subjects,_id_cn,_id_doctype,_id
             ys.append(p_of_dccp)
         ax2.plot(xs,ys,label='{}'.format(field),marker=markers[fi])
 
-        ax2.set_xlabel('Year')
+        ax2.set_xlabel('year')
         ax2.set_ylabel('$e_{i-norm}$')
 
         # ax2.legend()
