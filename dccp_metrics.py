@@ -561,7 +561,7 @@ def plot_dccps():
 
 
     ## eins的ccdf
-    plt.figure(figsize=(5,4))
+    fig,ax = plt.subplots(figsize=(6,4))
 
     subj_xys = {}
     for subj in sorted(subj_eins.keys()):
@@ -594,13 +594,18 @@ def plot_dccps():
 
     lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
 
+    from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+
 
     # plt.legend()
+    axins = inset_axes(ax, width="30%", height="30%")
 
-    ax = plt.axes([0.7,0.7,0.2,0.2])
+    # ax = plt.axes([0.7,0.7,0.2,0.2])
     for i, subj in enumerate(sorted(subj_xys.keys())):
         xs,ys = subj_xys[subj]
-        ax.plot(xs,ys,c=color_sequence[i])
+        axins.plot(xs,ys,c=color_sequence[i])
+
+    axins.tick_params(labelleft=False, labelbottom=False)
 
     plt.tight_layout()
 
@@ -1708,7 +1713,7 @@ def plot_subcascade_data():
     logging.info('fig saved to fig/field_cc_size.png.')
 
     _517_95_xys = {}
-    plt.figure(figsize=(6,4))
+    plt.figure(figsize=(7,5))
     for i,subj in enumerate(sorted(field_cc_num.keys())):
         logging.info('field {} ...'.format(subj))
         # data = []
@@ -2174,7 +2179,7 @@ if __name__ == '__main__':
     plot_dccps()
 
     # stat_subcascades(paths)
-    plot_subcascade_data()
+    # plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')

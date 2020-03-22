@@ -38,25 +38,25 @@ def top_1_percent_papers(pathObj):
 
     logging.info('stating top subject ...')
     ## 并保留各个
-    _subj_id_dict = defaultdict(lambda:defaultdict(int))
-    for _subj in _subj_id_cn.keys():
+    # _subj_id_dict = defaultdict(lambda:defaultdict(int))
+    # for _subj in _subj_id_cn.keys():
 
-        num = int(_subj_num[_subj]/10)
+    #     num = int(_subj_num[_subj]/2)
 
-        _id_cn = _subj_id_cn[_subj]
+    #     _id_cn = _subj_id_cn[_subj]
 
-        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num]:
+    #     for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num]:
 
-            # pass
-            _subj_id_dict[_subj][_id] = _id_cn[_id]
+    #         # pass
+    #         _subj_id_dict[_subj][_id] = _id_cn[_id]
 
 
-    open('data/subject_id_cn_top1.json','w').write(json.dumps(_subj_id_dict))
+    open('data/subject_id_cn_top1.json','w').write(json.dumps(_subj_id_cn))
 
     logging.info('data saved to data/subject_id_cn_top1.json.')
 
 
-def get_top_cascade(pathObj):
+def get_top_cascade(pathObj,_p=0.01):
 
     top10subjids = json.loads(open('data/subject_id_cn_top1.json').read())
 
@@ -66,10 +66,10 @@ def get_top_cascade(pathObj):
 
         _id_cn = top10subjids[subj]
 
-        num = len(_id_cn)
+        num = int(len(_id_cn)*_p)
         logging.info('subject {} has {} papers.'.format(subj,num))
 
-        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num/10]:
+        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num]:
 
             id_set.append(_id)
 

@@ -352,7 +352,7 @@ def plot_node_dis():
         plt.savefig('fig/{}_95.png'.format(fid),dpi=400)
         logging.info("fig saved to fig/{}_95.png".format(fid))
 
-    return
+    # return
 
 
 
@@ -363,6 +363,8 @@ def plot_node_dis():
 
 
     logging.info('start to plot subj year ps ...')
+
+    _subj_95_year_xys = {}
     fig,axes = plt.subplots(3,3,figsize=(15,12))
     ## 分为八个字图，每个三条线随着时间的变化
     for i,subj in enumerate(sorted(subj_year_pcs.keys())):
@@ -377,15 +379,31 @@ def plot_node_dis():
         pcs = []
         ples = []
         pies = []
+
+        pc_errs = []
+        ple_errs = []
+        pie_errs = []
         for _year in sorted(_year_pcs.keys(),key=lambda x:int(x)):
             xs.append(int(_year))
             pcs.append(np.mean(_year_pcs[_year]))
             ples.append(np.mean(_year_ples[_year]))
             pies.append(np.mean(_year_pies[_year]))
 
+            _,_,_,pc_err = mean_confidence_interval(_year_pcs[_year])
+            _,_,_,ple_err = mean_confidence_interval(_year_ples[_year])
+            _,_,_,pie_err = mean_confidence_interval(_year_pies[_year])
+
+            pc_errs.append(pc_err)
+            ple_errs.append(ple_err)
+            pie_errs.append(pie_err)
+
         ax.plot(xs,pcs,label='p(c)')
         ax.plot(xs,ples,label='p(le)')
         ax.plot(xs,pies,label='p(ie)')
+
+        _subj_95_year_xys[subj]['p(c)']=[xs,pcs,pc_errs]
+        _subj_95_year_xys[subj]['p(le)']=[xs,ples,ple_errs]
+        _subj_95_year_xys[subj]['p(ie)']=[xs,pies,pie_errs]
 
         ax.legend()
         ax.set_xlabel('publication year')
@@ -395,6 +413,9 @@ def plot_node_dis():
     plt.tight_layout()
     plt.savefig('fig/general_subj_year_ps.png',dpi=300)
     logging.info('fig saved to fig/general_subj_year_ps.png ...')
+
+    ### 这个95的置信区间似乎没办法画
+
 
     return
 
