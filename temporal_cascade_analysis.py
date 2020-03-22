@@ -15,6 +15,8 @@ def top_1_percent_papers(pathObj):
     logging.info('loading _id_cn ...')
     _id_cn = json.loads(open(pathObj.paper_cit_num_path).read())
 
+    sciento_ids = set([l.strip() for l in open(pathObj._scientometrics_path)])
+
     ## 从各个领域选取引用次数最高的1%的论文，大部分有6000万 1%也就是60万数据
     _subj_id_cn = defaultdict(lambda:defaultdict(int))
     _subj_num = defaultdict(int)
@@ -30,48 +32,62 @@ def top_1_percent_papers(pathObj):
 
         _cn = int(_id_cn[_id])
 
+        if _cn <=2:
+            continue
+
         for _subj in _subjs:
 
             _subj_id_cn[_subj][_id] = _cn
 
             _subj_num[_subj]+=1
 
+        if _id in sciento_ids:
+
+            _subj_id_cn["SCIENTOMETRICS"][_id] = _cn
+
     logging.info('stating top subject ...')
     ## 并保留各个
-    # _subj_id_dict = defaultdict(lambda:defaultdict(int))
-    # for _subj in _subj_id_cn.keys():
+    _subj_id_dict = defaultdict(lambda:defaultdict(dict))
 
-    #     num = int(_subj_num[_subj]/2)
+    _id_list = []
+    for _subj in _subj_id_cn.keys():
 
-    #     _id_cn = _subj_id_cn[_subj]
+        _id_cn = _subj_id_cn[_subj]
 
-    #     for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num]:
+        sorted_ids = sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)
 
-    #         # pass
-    #         _subj_id_dict[_subj][_id] = _id_cn[_id]
+        num = len(sorted_ids)
 
+        for p in [0.01,0.05,0.5]:
+            ## 每一个范围随机选择6个
 
-    open('data/subject_id_cn_top1.json','w').write(json.dumps(_subj_id_cn))
+            selected_ids = np.random.choice(sorted_ids[:int(num*p)],6,replace=False)
+
+            for _id in selected_ids:
+
+                _subj_id_dict[_subj][p][_id] = _id_cn[_id]
+
+                _id_list.append(_id)
+
+    open('data/subject_id_cn_top1.json','w').write(json.dumps(_subj_id_dict))
 
     logging.info('data saved to data/subject_id_cn_top1.json.')
 
+    _id_list = list(set(_id_list))
 
-def get_top_cascade(pathObj,_p=0.01):
+    open('data/selected_id_list.txt','w').write('\n'.join(_id_list))
+    logging.info('id list saved to data/selected_id_list.txt.')
 
-    top10subjids = json.loads(open('data/subject_id_cn_top1.json').read())
+
+def get_top_cascade(pathObj):
+
 
     id_set = []
 
-    for subj in top10subjids:
+    for line in open("data/selected_id_list.txt"):
+        line = line.strip()
 
-        _id_cn = top10subjids[subj]
-
-        num = int(len(_id_cn)*_p)
-        logging.info('subject {} has {} papers.'.format(subj,num))
-
-        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:num]:
-
-            id_set.append(_id)
+        id_set.append(line)
 
     id_set = set(id_set)
 
@@ -239,41 +255,11 @@ def plot_temporal_data(pathObj):
 
     top10subjids = json.loads(open('data/subject_id_cn_top1.json').read())
 
-    sciento_ids = set([l.strip() for l in open(pathObj._scientometrics_path)])
-
-    sciento_count = 0
-
-    id_set = []
-
-    all_id_cn = {}
-
-    subj_ids = defaultdict(list)
-    for subj in top10subjids:
-
-        _id_cn = top10subjids[subj]
-
-        all_id_cn.update(_id_cn)
-
-        num = len(_id_cn)
-        logging.info('subject {} has {} papers.'.format(subj,num))
-
-        for _id in sorted(_id_cn.keys(),key = lambda x:_id_cn[x],reverse=True)[:10000]:
-
-            if _id in sciento_ids:
-                sciento_count+=1
-
-                subj_ids['SCIENTOMETRICS'].append(_id)
-
-            id_set.append(_id)
-
-            subj_ids[subj].append(_id)
-
-    id_set = set(id_set)
+    id_set = set([line.strip() for line in open('data/selected_id_list.txt')])
 
     logging.info('size of id set {}'.format(len(id_set)))
 
     logging.info('number of papers in sciento {}.'.format(sciento_count))
-
 
     pid_attrs = defaultdict(list)
     ## 加载数据
@@ -299,174 +285,180 @@ def plot_temporal_data(pathObj):
 
     ## 画出几个学科图
 
-    subj_xs_ys = defaultdict(list)
+    subj_xs_ys = defaultdict(lambda:defaultdict(list))
 
-    for subj in subj_ids:
+    ## 每一个subj 画三张图
+    for subj in top10subjids.keys():
 
+        for _p in top10subjids[subj][_p]:
 
-        ## 每一个学科1张图
-        fig,axes = plt.subplots(3,2,figsize=(10,13))
+            _id_cn = top10subjids[subj][_p]
 
-        fig.subplots_adjust(top=0.85)
+            logging.info('length {},{},{}'.format(subj,_p,len(_id_cn)))
 
-        for i,_id in enumerate(sorted(subj_ids[subj],key= lambda x:int(all_id_cn[x]),reverse=True)[:6]):
+            ## 每一个学科1张图
+            fig,axes = plt.subplots(3,2,figsize=(10,13))
 
-            attrs = zip(*pid_attrs[_id])
+            fig.subplots_adjust(top=0.85)
 
-            # logging.info('{}'.format(len(attrs)))
+            for i,_id in _id_cn.keys()[:6]:
 
-            year_ixs = attrs[1]
+                attrs = zip(*pid_attrs[_id])
 
-            p_cit_nums = attrs[3]
-            t_cit_nums = attrs[4]
+                year_ixs = attrs[1]
 
-            le_nums = attrs[5]
-            t_le_nums = [np.sum(le_nums[:ix+1]) for ix in range(len(le_nums))]
-            ie_nums = attrs[6]
-            t_ie_nums = [np.sum(ie_nums[:ix+1]) for ix in range(len(ie_nums))]
+                p_cit_nums = attrs[3]
+                t_cit_nums = attrs[4]
 
-            num_of_dccps = attrs[7]
-            t_n_dccps = [np.sum(num_of_dccps[:ix+1]) for ix in range(len(num_of_dccps))]
-            num_of_dcs = attrs[8]
-            t_n_dcs = [np.sum(num_of_dcs[:ix+1]) for ix in range(len(num_of_dcs))]
+                le_nums = attrs[5]
+                t_le_nums = [np.sum(le_nums[:ix+1]) for ix in range(len(le_nums))]
+                ie_nums = attrs[6]
+                t_ie_nums = [np.sum(ie_nums[:ix+1]) for ix in range(len(ie_nums))]
 
-            c_nums = attrs[9]
+                num_of_dccps = attrs[7]
+                t_n_dccps = [np.sum(num_of_dccps[:ix+1]) for ix in range(len(num_of_dccps))]
+                num_of_dcs = attrs[8]
+                t_n_dcs = [np.sum(num_of_dcs[:ix+1]) for ix in range(len(num_of_dcs))]
 
-            t_c_nums = [np.sum(c_nums[:ix+1]) for ix in range(len(c_nums))]
+                c_nums = attrs[9]
 
-
-            sums = np.array(t_n_dccps)+np.array(t_n_dcs)
-
-            subj_xs_ys[subj].append([_id,year_ixs,t_n_dccps,t_n_dcs,sums])
-
-
-            ax = axes[i/2,i%2]
-
-            ax.plot(year_ixs,np.array(t_le_nums)/np.array(t_cit_nums),label='p(le)')
-            ax.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='p(ie)')
-            ax.plot(year_ixs,np.array(t_c_nums)/np.array(t_cit_nums),label='p(c)')
+                t_c_nums = [np.sum(c_nums[:ix+1]) for ix in range(len(c_nums))]
 
 
-            ax.set_xlabel('number of years after publication')
-            ax.set_ylabel('percentage')
+                sums = np.array(t_n_dccps)+np.array(t_n_dcs)
 
-            ax.set_title(_id)
-
-            ax.legend()
+                subj_xs_ys[subj][_p].append([_id,year_ixs,t_n_dccps,t_n_dcs,sums])
 
 
+                ax = axes[i/2,i%2]
 
-            ## 每一篇论文四个子图
-            ## 第一个子图随着时间citation数量 le ie的数量变化
-            # ax0 = axes[i,0]
-
-            # ax0.plot(year_ixs,p_cit_nums,label='total citation')
-            # ax0.plot(year_ixs,ie_nums,label='direct citation')
-            # ax0.plot(year_ixs,le_nums,label='indirect citation')
-
-            # ax0.set_xlabel('publication year')
-            # ax0.set_ylabel('number of citations per year')
-
-            # ax0.set_title('Number distribution')
-
-            # ax0.legend()
-
-            # ax1 = axes[i,1]
-
-            # # ax1.plot(year_ixs,t_cit_nums,label='citation per year')
-            # ax1.plot(year_ixs,np.array(ie_nums)/np.array(p_cit_nums),label='direct citation')
-            # ax1.plot(year_ixs,np.array(le_nums)/np.array(p_cit_nums),label='indirect citation')
-
-            # ax1.set_xlabel('publication year')
-            # ax1.set_ylabel('number of citations')
-
-            # ax1.set_title('year percentage')
+                ax.plot(year_ixs,np.array(t_le_nums)/np.array(t_cit_nums),label='p(le)')
+                ax.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='p(ie)')
+                ax.plot(year_ixs,np.array(t_c_nums)/np.array(t_cit_nums),label='p(c)')
 
 
-            # ax1.legend()
+                ax.set_xlabel('number of years after publication')
+                ax.set_ylabel('percentage')
 
+                ax.set_title(_id)
 
-            # ax1 = axes[i,2]
-
-            # # ax1.plot(year_ixs,t_cit_nums,label='citation per year')
-            # ax1.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='direct citation')
-            # ax1.plot(year_ixs,np.array(t_le_nums)/np.array(t_cit_nums),label='indirect citation')
-
-            # ax1.set_xlabel('publication year')
-            # ax1.set_ylabel('number of citations')
-
-            # ax1.set_title('total percentage')
-
-
-            # ax1.legend()
+                ax.legend()
 
 
 
-            # ax2 = axes[i,3]
-            # ax2.plot(t_cit_nums,np.array(le_nums)/np.array(p_cit_nums),label='indirect citation')
-            # ax2.plot(t_cit_nums,np.array(ie_nums)/np.array(p_cit_nums),label='direct citation')
+                ## 每一篇论文四个子图
+                ## 第一个子图随着时间citation数量 le ie的数量变化
+                # ax0 = axes[i,0]
 
-            # ax2.set_xlabel('publication year')
-            # ax2.set_ylabel('number of citations per year')
+                # ax0.plot(year_ixs,p_cit_nums,label='total citation')
+                # ax0.plot(year_ixs,ie_nums,label='direct citation')
+                # ax0.plot(year_ixs,le_nums,label='indirect citation')
 
-            # ax2.set_title('year percentage')
+                # ax0.set_xlabel('publication year')
+                # ax0.set_ylabel('number of citations per year')
+
+                # ax0.set_title('Number distribution')
+
+                # ax0.legend()
+
+                # ax1 = axes[i,1]
+
+                # # ax1.plot(year_ixs,t_cit_nums,label='citation per year')
+                # ax1.plot(year_ixs,np.array(ie_nums)/np.array(p_cit_nums),label='direct citation')
+                # ax1.plot(year_ixs,np.array(le_nums)/np.array(p_cit_nums),label='indirect citation')
+
+                # ax1.set_xlabel('publication year')
+                # ax1.set_ylabel('number of citations')
+
+                # ax1.set_title('year percentage')
 
 
-            # ax2.legend()
+                # ax1.legend()
 
 
-            # ax3 = axes[i,4]
-            # ax3.plot(t_cit_nums,np.array(t_ie_nums)/np.array(t_cit_nums),label='citation per year')
-            # ax3.plot(t_cit_nums,np.array(t_le_nums)/np.array(t_cit_nums),label='direct citation')
+                # ax1 = axes[i,2]
 
-            # ax3.set_xlabel('publication year')
-            # ax3.set_ylabel('number of citations')
+                # # ax1.plot(year_ixs,t_cit_nums,label='citation per year')
+                # ax1.plot(year_ixs,np.array(t_ie_nums)/np.array(t_cit_nums),label='direct citation')
+                # ax1.plot(year_ixs,np.array(t_le_nums)/np.array(t_cit_nums),label='indirect citation')
 
-            # ax2.set_title('total percentage')
+                # ax1.set_xlabel('publication year')
+                # ax1.set_ylabel('number of citations')
+
+                # ax1.set_title('total percentage')
 
 
-            # ax3.legend()
+                # ax1.legend()
 
-        plt.suptitle(subj,y=0.98,fontsize=20)
-        # plt.tight_layout()
 
-        plt.savefig('fig/temporal_{}.png'.format(subj[:3]))
 
-        logging.info('{} fig saved.'.format(subj))
+                # ax2 = axes[i,3]
+                # ax2.plot(t_cit_nums,np.array(le_nums)/np.array(p_cit_nums),label='indirect citation')
+                # ax2.plot(t_cit_nums,np.array(ie_nums)/np.array(p_cit_nums),label='direct citation')
+
+                # ax2.set_xlabel('publication year')
+                # ax2.set_ylabel('number of citations per year')
+
+                # ax2.set_title('year percentage')
+
+
+                # ax2.legend()
+
+
+                # ax3 = axes[i,4]
+                # ax3.plot(t_cit_nums,np.array(t_ie_nums)/np.array(t_cit_nums),label='citation per year')
+                # ax3.plot(t_cit_nums,np.array(t_le_nums)/np.array(t_cit_nums),label='direct citation')
+
+                # ax3.set_xlabel('publication year')
+                # ax3.set_ylabel('number of citations')
+
+                # ax2.set_title('total percentage')
+
+
+                # ax3.legend()
+
+            plt.suptitle('{} - {}'.format(subj,_p),y=0.98,fontsize=20)
+            # plt.tight_layout()
+
+            plt.savefig('fig/temporal_{}_{}.png'.format(subj[:3],_p))
+
+            logging.info('{} fig saved.'.format(subj))
 
 
     for subj in subj_xs_ys:
 
         ## 每一个学科1张图
-        fig,axes = plt.subplots(3,2,figsize=(10,13))
+        for _p in subj_xs_ys[subj].keys():
 
-        fig.subplots_adjust(top=0.85)
+            fig,axes = plt.subplots(3,2,figsize=(10,13))
 
-        for i,(_id,year_ixs,t_n_dccps,t_n_dcs,sums) in enumerate(subj_xs_ys[subj]):
+            fig.subplots_adjust(top=0.85)
 
-            ax = axes[i/2,i%2]
+            for i,(_id,year_ixs,t_n_dccps,t_n_dcs,sums) in enumerate(subj_xs_ys[subj][_p]):
 
-            ax.plot(year_ixs,t_n_dccps,label='DCCP')
-            ax.plot(year_ixs,t_n_dcs,label='DC')
-            ax.plot(year_ixs,sums,label='SUM')
+                ax = axes[i/2,i%2]
 
-            ax.set_xlabel('number of years after publication')
-            ax.set_ylabel('number')
+                ax.plot(year_ixs,t_n_dccps,label='DCCP')
+                ax.plot(year_ixs,t_n_dcs,label='DC')
+                # ax.plot(year_ixs,sums,label='SUM')
 
-            ax.ticklabel_format(axis='y',style='sci')
+                ax.set_xlabel('number of years after publication')
+                ax.set_ylabel('number')
 
-            ax.yaxis.major.formatter.set_powerlimits((0,0))
+                ax.ticklabel_format(axis='y',style='sci')
 
-            ax.set_title(_id)
+                ax.yaxis.major.formatter.set_powerlimits((0,0))
 
-            ax.legend()
+                ax.set_title(_id)
 
-        plt.suptitle(subj,y=0.98,fontsize=20)
-        # plt.tight_layout()
+                ax.legend()
 
-        plt.savefig('fig/temporal_dccp_{}.png'.format(subj[:3]))
+            plt.suptitle('{} - {}'.format(subj,_p),y=0.98,fontsize=20)
+            # plt.tight_layout()
 
-        logging.info('{} DCCP TEMPORAL fig saved.'.format(subj))
+            plt.savefig('fig/temporal_dccp_{}_{}.png'.format(subj[:3],_p))
+
+            logging.info('{} DCCP TEMPORAL fig saved.'.format(subj))
 
 
 
@@ -535,14 +527,14 @@ if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
 
-    # top_1_percent_papers(paths)
+    top_1_percent_papers(paths)
 
-    # get_top_cascade(paths)
+    get_top_cascade(paths)
 
-    # temporal_dccp(paths)
+    temporal_dccp(paths)
 
 
-    # plot_temporal_dccp(paths)
+    plot_temporal_dccp(paths)
 
     plot_temporal_data(paths)
 
