@@ -296,7 +296,7 @@ def plot_temporal_data(pathObj):
             logging.info('length {},{},{}'.format(subj,_p,len(_id_cn)))
 
             ## 每一个学科1张图
-            fig,axes = plt.subplots(3,2,figsize=(12,17))
+            fig,axes = plt.subplots(3,2,figsize=(14,17))
 
             fig.subplots_adjust(top=0.92)
 
@@ -419,7 +419,7 @@ def plot_temporal_data(pathObj):
             plt.suptitle('{} - {}'.format(subj,_p),y=0.98,fontsize=20)
             # plt.tight_layout()
 
-            plt.savefig('fig/temporal_{}_{}.png'.format(subj[:3],_p),dpi=300)
+            plt.savefig('fig/temporal_{}_{}.png'.format(subj[:3],_p),dpi=200)
 
             logging.info('fig/temporal_{}_{}.png saved'.format(subj[:3],_p))
 
@@ -429,7 +429,7 @@ def plot_temporal_data(pathObj):
         ## 每一个学科1张图
         for _p in subj_xs_ys[subj].keys():
 
-            fig,axes = plt.subplots(3,2,figsize=(12,17))
+            fig,axes = plt.subplots(3,2,figsize=(14,17))
 
             fig.subplots_adjust(top=0.92)
 
@@ -455,7 +455,7 @@ def plot_temporal_data(pathObj):
             plt.suptitle('{} - {}'.format(subj,_p),y=0.98,fontsize=20)
             # plt.tight_layout()
 
-            plt.savefig('fig/temporal_dccp_{}_{}.png'.format(subj[:3],_p),dpi=300)
+            plt.savefig('fig/temporal_dccp_{}_{}.png'.format(subj[:3],_p),dpi=200)
 
             logging.info('{} DCCP TEMPORAL fig saved.'.format(subj))
 
