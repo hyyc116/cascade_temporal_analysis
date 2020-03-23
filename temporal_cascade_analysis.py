@@ -296,7 +296,7 @@ def plot_temporal_data(pathObj):
             logging.info('length {},{},{}'.format(subj,_p,len(_id_cn)))
 
             ## 每一个学科1张图
-            fig,axes = plt.subplots(3,2,figsize=(14,17))
+            fig,axes = plt.subplots(3,2,figsize=(14,20))
 
             fig.subplots_adjust(top=0.92)
 
@@ -429,7 +429,7 @@ def plot_temporal_data(pathObj):
         ## 每一个学科1张图
         for _p in subj_xs_ys[subj].keys():
 
-            fig,axes = plt.subplots(3,2,figsize=(14,17))
+            fig,axes = plt.subplots(3,2,figsize=(14,20))
 
             fig.subplots_adjust(top=0.92)
 
