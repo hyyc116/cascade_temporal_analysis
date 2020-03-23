@@ -289,7 +289,7 @@ def plot_temporal_data(pathObj):
     ## 每一个subj 画三张图
     for subj in top10subjids.keys():
 
-        for _p in top10subjids[subj][_p]:
+        for _p in top10subjids[subj]:
 
             _id_cn = top10subjids[subj][_p]
 
