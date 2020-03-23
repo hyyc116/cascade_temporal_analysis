@@ -561,7 +561,7 @@ def plot_dccps():
 
 
     ## eins的ccdf
-    fig,ax = plt.subplots(figsize=(6,4))
+    fig,ax = plt.subplots(figsize=(5,5))
 
     subj_xys = {}
     for subj in sorted(subj_eins.keys()):
@@ -592,7 +592,7 @@ def plot_dccps():
 
     plt.xscale('log')
 
-    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3)
+    lgd = plt.legend(loc=9,bbox_to_anchor=(0.5, -0.2), ncol=3,prop={'size':6})
 
     from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
