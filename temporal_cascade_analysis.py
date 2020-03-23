@@ -419,9 +419,9 @@ def plot_temporal_data(pathObj):
             plt.suptitle('{} - {}'.format(subj,_p),y=0.98,fontsize=20)
             # plt.tight_layout()
 
-            plt.savefig('fig/temporal_{}_{}.png'.format(subj[:3],_p))
+            plt.savefig('fig/temporal_{}_{}.png'.format(subj[:3],_p),dpi=300)
 
-            logging.info('{} fig saved.'.format(subj))
+            logging.info('fig/temporal_{}_{}.png saved'.format(subj[:3],_p))
 
 
     for subj in subj_xs_ys:
@@ -455,7 +455,7 @@ def plot_temporal_data(pathObj):
             plt.suptitle('{} - {}'.format(subj,_p),y=0.98,fontsize=20)
             # plt.tight_layout()
 
-            plt.savefig('fig/temporal_dccp_{}_{}.png'.format(subj[:3],_p))
+            plt.savefig('fig/temporal_dccp_{}_{}.png'.format(subj[:3],_p),dpi=300)
 
             logging.info('{} DCCP TEMPORAL fig saved.'.format(subj))
 
