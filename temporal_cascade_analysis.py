@@ -300,7 +300,7 @@ def plot_temporal_data(pathObj):
 
             fig.subplots_adjust(top=0.85)
 
-            for i,_id in _id_cn.keys()[:6]:
+            for i,_id in enumerate(_id_cn.keys()[:6]):
 
                 attrs = zip(*pid_attrs[_id])
 
