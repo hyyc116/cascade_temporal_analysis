@@ -259,7 +259,6 @@ def plot_temporal_data(pathObj):
 
     logging.info('size of id set {}'.format(len(id_set)))
 
-    logging.info('number of papers in sciento {}.'.format(sciento_count))
 
     pid_attrs = defaultdict(list)
     ## 加载数据
@@ -527,11 +526,11 @@ if __name__ == '__main__':
     field = 'ALL'
     paths = PATHS(field)
 
-    top_1_percent_papers(paths)
+    # top_1_percent_papers(paths)
 
-    get_top_cascade(paths)
+    # get_top_cascade(paths)
 
-    temporal_dccp(paths)
+    # temporal_dccp(paths)
 
 
     plot_temporal_dccp(paths)
