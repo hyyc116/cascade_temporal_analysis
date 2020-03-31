@@ -1526,9 +1526,6 @@ def plot_subcascade_data():
     plt.savefig('fig/field_year_size_dis.png',dpi=400,additional_artists=[lgd])
     logging.info('saved to fig/field_year_size_dis.png.')
 
-    
-
-
 
     plt.figure(figsize=(7,5))
 
@@ -2193,7 +2190,7 @@ if __name__ == '__main__':
     plot_dccps()
 
     # stat_subcascades(paths)
-    # plot_subcascade_data()
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
