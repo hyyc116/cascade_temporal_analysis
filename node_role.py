@@ -408,6 +408,7 @@ def plot_node_dis():
         ax.legend()
         ax.set_xlabel('publication year')
         ax.set_ylabel('$p$')
+        ax.set_ylim(0,1)
         ax.set_title('{}'.format(subj))
 
     plt.tight_layout()

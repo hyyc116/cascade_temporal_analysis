@@ -234,6 +234,8 @@ def boxplot():
 
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('$e_{i-norm}$')
+
+        ax.set_ylim(0.005,50)
         ax.set_yscale('log')
         ax.set_title('{}'.format(subj))
 
@@ -520,6 +522,8 @@ def plot_dccps():
         ax.set_xticklabels(labels,rotation=-90)
         ax.set_ylabel('$e_{i-norm}$')
 
+        ax.set_ylim(0,5)
+
 
         fig_index+=1
 
@@ -547,6 +551,7 @@ def plot_dccps():
         ax.set_title(field)
         ax.set_xlabel('year')
         ax.set_ylabel('$e_{i-norm}$')
+        ax.set_ylim(0,1.2)
 
         fig_index+=1
 
@@ -1408,6 +1413,7 @@ def plot_subcascade_data():
             ax.set_ylabel('probability')
             ax.set_xscale('log')
             ax.set_yscale('log')
+            ax.set_ylim(0.0000001,1)
             ax.set_title('{}'.format(year_l))
 
         # ax.text(0,0,'{}'.format(subj))
@@ -1449,6 +1455,7 @@ def plot_subcascade_data():
             ax.set_ylabel('probability')
             ax.set_xscale('log')
             ax.set_yscale('log')
+            ax.set_ylim(0.0000001,1)
             ax.set_title('{}'.format(year_l))
             ax.legend(prop={'size':6})
 
@@ -1619,7 +1626,7 @@ def plot_subcascade_data():
 
 
     ## hua
-    '''
+    # '''
 
     fig,axes = plt.subplots(2,4,figsize=(26,8))
     for i,subj in enumerate(sorted(field_CLS_size.keys())):
@@ -1639,6 +1646,8 @@ def plot_subcascade_data():
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('size of components')
         ax.set_yscale('log')
+
+        ax.set_ylim(1,10000)
         ax.set_title('{}'.format(subj))
 
     plt.tight_layout()
@@ -1646,6 +1655,7 @@ def plot_subcascade_data():
     plt.savefig('fig/boxplot_size_wos_all.png',dpi=300)
 
     logging.info('fig saved to fig/boxplot_size_wos_all.png.')
+    # '''
 
     fig,axes = plt.subplots(2,4,figsize=(26,8))
     for i,subj in enumerate(sorted(field_CLS_num.keys())):
@@ -1665,6 +1675,7 @@ def plot_subcascade_data():
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('number of components')
         ax.set_yscale('log')
+        ax.set_ylim(0,1000)
         ax.set_title('{}'.format(subj))
 
     plt.tight_layout()
@@ -1672,7 +1683,7 @@ def plot_subcascade_data():
     plt.savefig('fig/boxplot_num_wos_all.png',dpi=300)
 
     logging.info('fig saved to fig/boxplot_num_wos_all.png.')
-    '''
+    
 
     # fig,axes = plt.subplots(2,4,figsize=(20,8))
     plt.figure(figsize=(5,4))
@@ -1785,6 +1796,7 @@ def plot_subcascade_data():
             ax.set_ylabel('probability')
             ax.set_xscale('log')
             ax.set_yscale('log')
+            # ax.set_ylim(0.0000001,1)
             ax.set_title('{}'.format(doctype))
             ax.legend(prop={'size':6})
 
@@ -1847,6 +1859,7 @@ def plot_subcascade_data():
         ax.set_ylabel('number of components')
         ax.set_xscale('log')
         ax.set_yscale('log')
+        ax.set_ylim(1,25)
         ax.set_title(subj)
 
         fig_index+=1
@@ -1876,6 +1889,7 @@ def plot_subcascade_data():
         ax.set_xlabel('year')
         ax.set_ylabel('number of components')
         ax.set_title(subj)
+        ax.set_ylim(0,25)
 
         fig_index+=1
 

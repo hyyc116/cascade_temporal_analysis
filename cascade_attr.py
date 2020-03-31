@@ -261,7 +261,7 @@ def plot_cascade_attr(pathObj):
 
 
     ## 置信区间 需要每一个领域画一张图
-    fig,axes = plt.subplots(4,2,figsize=(10,20))
+    fig,axes = plt.subplots(4,2,figsize=(12,20))
     for i,subj in enumerate(sorted(subj_cc_concc.keys())):
 
         ax = axes[i/2,i%2]
@@ -298,6 +298,7 @@ def plot_cascade_attr(pathObj):
         ax.set_title(subj)
         ax.set_xlabel('number of citations of owners')
         ax.set_ylabel('average citation count of connectors')
+        ax.set_ylim(0,90)
 
         ax.set_xscale('log')
 
