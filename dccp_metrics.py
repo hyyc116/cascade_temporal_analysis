@@ -1628,7 +1628,7 @@ def plot_subcascade_data():
     # '''
 
     fig,axes = plt.subplots(4,2,figsize=(13,16))
-    for i,subj in enumerate(sorted([for subj_ in field_CLS_size.keys() if not subj_=='RANDOMIZE'])):
+    for i,subj in enumerate(sorted([subj_ for subj_ in field_CLS_size.keys() if not subj_=='RANDOMIZE'])):
         logging.info('field {} ...'.format(subj))
 
 
@@ -1659,7 +1659,7 @@ def plot_subcascade_data():
     # '''
 
     fig,axes = plt.subplots(4,2,figsize=(13,16))
-    for i,subj in enumerate(sorted([for subj_ in field_CLS_num.keys() if not subj_=='RANDOMIZE'])):
+    for i,subj in enumerate(sorted([subj_ for subj_ in field_CLS_num.keys() if not subj_=='RANDOMIZE'])):
         logging.info('field {} ...'.format(subj))
         data = []
         for CLS in sorted(field_CLS_num[subj].keys()):
