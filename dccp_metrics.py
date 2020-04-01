@@ -2191,7 +2191,7 @@ if __name__ == '__main__':
     # dccp_of_paper(paths)
     # stat_dccp(paths)
     # boxplot()
-    plot_dccps()
+    # plot_dccps()
 
     # stat_subcascades(paths)
     plot_subcascade_data()
