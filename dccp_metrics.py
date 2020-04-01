@@ -217,18 +217,18 @@ def boxplot():
             field_CLS_dccps[field][CLS].extend(dccps)
 
     ## file CLs DCCPS box plots
-    fig,axes = plt.subplots(2,4,figsize=(26,8))
-    for i,subj in enumerate(sorted(field_CLS_dccps.keys())):
+    fig,axes = plt.subplots(4,2,figsize=(13,16))
+    for i,subj in enumerate(sorted([subj_ for subj_ in field_CLS_dccps.keys() if not subj_=='RANDOMIZE'])):
         logging.info('field {} ...'.format(subj))
         data = []
         for CLS in sorted(field_CLS_dccps[subj].keys()):
             logging.info('CLS:{}'.format(CLS))
             # logging.info('num of dccps:{}'.format())
-            data.append(field_CLS_dccps[subj][CLS])
+            # data.append(field_CLS_dccps[subj][CLS])
 
         print('length of data {}'.format(len(data)))
 
-        ax = axes[i/4,i%4]
+        # ax = axes[i/2,i%2]
 
         ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
 
@@ -2190,11 +2190,11 @@ if __name__ == '__main__':
     # run_all(paths)
     # dccp_of_paper(paths)
     # stat_dccp(paths)
-    # boxplot()
+    boxplot()
     # plot_dccps()
 
     # stat_subcascades(paths)
-    plot_subcascade_data()
+    # plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')

@@ -365,9 +365,9 @@ def plot_node_dis():
     logging.info('start to plot subj year ps ...')
 
     _subj_95_year_xys = {}
-    fig,axes = plt.subplots(3,3,figsize=(15,12))
+    fig,axes = plt.subplots(4,2,figsize=(10,16))
     ## 分为八个字图，每个三条线随着时间的变化
-    for i,subj in enumerate(sorted(subj_year_pcs.keys())):
+    for i,subj in enumerate(sorted([subj_ for subj_ in subj_year_pcs.keys() if not subj_=='RANDOMIZE'])):
 
         ax = axes[i/3,i%3]
 
