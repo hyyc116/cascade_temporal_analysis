@@ -369,7 +369,7 @@ def plot_node_dis():
     ## 分为八个字图，每个三条线随着时间的变化
     for i,subj in enumerate(sorted([subj_ for subj_ in subj_year_pcs.keys() if not subj_=='RANDOMIZE'])):
 
-        ax = axes[i/3,i%3]
+        ax = axes[i/2,i%2]
 
         _year_pcs = subj_year_pcs[subj]
         _year_ples = subj_year_ples[subj]
