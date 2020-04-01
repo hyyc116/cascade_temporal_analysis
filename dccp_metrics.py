@@ -228,7 +228,7 @@ def boxplot():
 
         print('length of data {}'.format(len(data)))
 
-        # ax = axes[i/2,i%2]
+        ax = axes[i/2,i%2]
 
         ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
 
