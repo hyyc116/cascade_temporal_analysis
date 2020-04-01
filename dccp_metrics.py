@@ -1598,6 +1598,8 @@ def plot_subcascade_data():
 
     for field in sorted(field_CLS_size.keys()):
 
+
+
         for CLS in sorted(field_CLS_size[field].keys()):
 
             data = field_CLS_size[field][CLS]
@@ -1625,9 +1627,11 @@ def plot_subcascade_data():
     ## hua
     # '''
 
-    fig,axes = plt.subplots(2,4,figsize=(26,8))
-    for i,subj in enumerate(sorted(field_CLS_size.keys())):
+    fig,axes = plt.subplots(4,2,figsize=(13,16))
+    for i,subj in enumerate(sorted([for subj_ in field_CLS_size.keys() if not subj_=='RANDOMIZE'])):
         logging.info('field {} ...'.format(subj))
+
+
         data = []
         for CLS in sorted(field_CLS_size[subj].keys()):
             logging.info('CLS:{}'.format(CLS))
@@ -1636,7 +1640,7 @@ def plot_subcascade_data():
 
         print('length of data {}'.format(len(data)))
 
-        ax = axes[i/4,i%4]
+        ax = axes[i/2,i%2]
 
         ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
 
@@ -1654,8 +1658,8 @@ def plot_subcascade_data():
     logging.info('fig saved to fig/boxplot_size_wos_all.png.')
     # '''
 
-    fig,axes = plt.subplots(2,4,figsize=(26,8))
-    for i,subj in enumerate(sorted(field_CLS_num.keys())):
+    fig,axes = plt.subplots(4,2,figsize=(13,16))
+    for i,subj in enumerate(sorted([for subj_ in field_CLS_num.keys() if not subj_=='RANDOMIZE'])):
         logging.info('field {} ...'.format(subj))
         data = []
         for CLS in sorted(field_CLS_num[subj].keys()):

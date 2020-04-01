@@ -401,9 +401,9 @@ def plot_node_dis():
         ax.plot(xs,ples,label='p(le)')
         ax.plot(xs,pies,label='p(ie)')
 
-        _subj_95_year_xys[subj]['p(c)']=[xs,pcs,pc_errs]
-        _subj_95_year_xys[subj]['p(le)']=[xs,ples,ple_errs]
-        _subj_95_year_xys[subj]['p(ie)']=[xs,pies,pie_errs]
+        # _subj_95_year_xys[subj]['p(c)']=[xs,pcs,pc_errs]
+        # _subj_95_year_xys[subj]['p(le)']=[xs,ples,ple_errs]
+        # _subj_95_year_xys[subj]['p(ie)']=[xs,pies,pie_errs]
 
         ax.legend()
         ax.set_xlabel('publication year')
@@ -418,7 +418,7 @@ def plot_node_dis():
     ### 这个95的置信区间似乎没办法画
 
 
-    return
+    # return
 
     doctype_pcs = json.loads(open('data/doctype_pcs.json').read())
     doctype_ples = json.loads(open('data/doctype_ples.json').read())
