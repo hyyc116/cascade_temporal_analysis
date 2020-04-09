@@ -1,7 +1,7 @@
 #coding:utf-8
 from basic_config import *
 def read_keywords():
-	query_op = dbop()
+    query_op = dbop()
     sql = 'select id,keyword_id,keyword from wos_core.wos_keywords'
     progress=0
     pid_keywords = defaultdict(list)
@@ -9,12 +9,12 @@ def read_keywords():
     keywords = []
     os.remove(saved_path) if os.path.exists(saved_path) else None
     for _id,keyword_id,keyword in query_op.query_database(sql):
-    	progress+=1
-    	pid_keywords[_id].append(keyword)
-    	keywords.append(keyword)
+        progress+=1
+        pid_keywords[_id].append(keyword)
+        keywords.append(keyword)
 
-    	if progress%1000000==0:
-    		logging.info('progress:{} ...'.format(progress))
+        if progress%1000000==0:
+            logging.info('progress:{} ...'.format(progress))
 
 
     keywords = list(set(keywords))
@@ -31,5 +31,5 @@ def read_keywords():
 
 
 if __name__ == '__main__':
-	read_keywords()
+    read_keywords()
 
