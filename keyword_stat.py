@@ -69,7 +69,7 @@ def read_year():
     sql = 'select id,sortdate from wos_core.wos_summary'
     progress=0
     pid_date = {}
-    saved_path = 'data/pid_keywords_plus.json'
+    saved_path = 'data/pid_date.json'
     os.remove(saved_path) if os.path.exists(saved_path) else None
     for _id,date in query_op.query_database(sql):
         progress+=1
@@ -90,6 +90,6 @@ def read_year():
 
 if __name__ == '__main__':
     # read_keywords()
-    # read_keywords_plus()
+    read_keywords_plus()
     read_year()
 
