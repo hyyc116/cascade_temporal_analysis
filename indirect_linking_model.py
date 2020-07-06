@@ -24,9 +24,8 @@ def get_high_year_citnum():
 
         selected_pid_year_total[pid] = year_total
 
-    open("data/selected_high_pid_year_total.json",'w').write(selected_pid_year_total)
-
-
+    open("data/selected_high_pid_year_total.json",'w').write(json.dumps(selected_pid_year_total))
+    logging.info('data saved to data/selected_high_pid_year_total.json.')
 
 
 def paper_year_total_citnum(year_citnum):
@@ -47,8 +46,6 @@ def paper_year_total_citnum(year_citnum):
         total+= year_citnum.get(str(y),0)
         year_total[int(y)]=total
     return year_total
-
-
 
 
 def random_selecting_linking_edges():
