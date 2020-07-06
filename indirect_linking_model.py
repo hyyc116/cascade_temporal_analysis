@@ -18,11 +18,24 @@ def get_high_year_citnum():
 
     selected_pid_year_total = {}
 
+    id_list = []
+
     for pid in selected_cascades.keys():
+
+        id_list.append(pid)
+
+        for citing_pid,cited_pid in selected_cascades[pid]:
+            id_list.append(citing_pid)
+            id_list.append(cited_pid)
+
+    id_list = list(set(id_list))
+
+    for pid in id_list:
 
         year_total = paper_year_total_citnum(pid_year_citnum[pid])
 
         selected_pid_year_total[pid] = year_total
+
 
     open("data/selected_high_pid_year_total.json",'w').write(json.dumps(selected_pid_year_total))
     logging.info('data saved to data/selected_high_pid_year_total.json.')
