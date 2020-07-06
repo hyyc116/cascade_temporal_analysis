@@ -32,6 +32,9 @@ def get_high_year_citnum():
 
     for pid in id_list:
 
+        if pid_year_citnum.get(pid,None) is None:
+            continue
+            
         year_total = paper_year_total_citnum(pid_year_citnum[pid])
 
         selected_pid_year_total[pid] = year_total
