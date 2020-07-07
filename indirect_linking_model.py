@@ -123,6 +123,8 @@ def cit_by_impact(cited_pids,pid_year_total,year):
 
     props = [preyear_cit(pid_year_total,pid,year) for pid in cited_pids]
 
+    print(props)
+
     props = np.array(props)/float(np.sum(props))
 
     N = np.random.randint(1,len(props)+1)
