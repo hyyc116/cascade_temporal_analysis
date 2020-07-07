@@ -130,7 +130,7 @@ def cit_by_impact(cited_pids,pid_year_total,year):
 
     selected_pids = np.random.choice(cited_pids,size=N,replace=False,p=props)
 
-    return pids
+    return selected_pids
 
 def preyear_cit(pid_year_total,pid,year):
 
