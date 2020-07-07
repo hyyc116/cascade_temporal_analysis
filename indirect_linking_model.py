@@ -7,6 +7,49 @@
 '''
 from basic_config import *
 
+def get_top_cascade():
+
+
+    logging.info('loading _id_cn ...')
+    _id_cn = json.loads(open('data/_id_cn.json').read())
+
+    id_set = []
+
+    for _id in _id_cn.keys():
+
+        if int(_id_cn[_id])>1000:
+            id_set.append(_id)
+
+    id_set = set(id_set)
+
+    logging.info('Number of ids is {}.'.format(len(id_set)))
+
+    cc_path = pathObj.cascade_path
+    progress = 0
+
+    selected_cascades = {}
+
+    for line in open(cc_path):
+
+        line = line.strip()
+
+        citation_cascade = json.loads(line)
+
+        for pid in citation_cascade.keys():
+
+            progress+=1
+
+            if progress%1000000==0:
+                logging.info('progress report {:}, selected cascades size {} ...'.format(progress,len(selected_cascades)))
+
+            if pid in id_set:
+
+                selected_cascades[pid] = citation_cascade[pid]
+
+    open('data/selected_high_cascades.json','w').write(json.dumps(selected_cascades))
+
+    logging.info('data saved to data/selected_high_cascades.json')
+
 
 def get_high_year_citnum():
 
@@ -52,7 +95,7 @@ def paper_year_total_citnum(year_citnum):
     maxY = np.max(years)
 
     mY = maxY
-    if maxY+1<2018:
+    if maxY+1<2019:
         mY=2018
 
 
@@ -141,14 +184,49 @@ def preyear_cit(pid_year_total,pid,year):
 
     return pid_year_total[pid].get(str(int(year)-1),0.1)
 
+def plot_changing_along_time():
+
+    new_cascade = json.loads(open('new_randomized_cascade.json').read())
+
+    for i,pid in enumerate(new_cascade.keys()):
+
+        plt.figure(figsize=(5,4))
+
+        xs = []
+        ys = []
+        for year in sorted(new_cascade[pid].keys(),key=lambda x:int(x)):
+
+            direct = 0
+            total = 0
+            for citing_pid in new_cascade[pid][year].keys():
+
+                total+=1
+                connectors = new_cascade[pid][year][citing_pid]
+                if len(connectors)==1 and pid==connectors[0]:
+                    direct+=1
+
+            percent = direct/float(total)
+
+            xs.append(int(year))
+            ys.append(percent)
 
 
+        plt.plot(xs,ys)
+
+        plt.xlabel('year')
+        plt.ylabel('percentage of direct citations')
+
+        plt.tight_layout()
+
+        plt.savefig('fig/cascade_{}.png'.format(i),dpi=300)
 
 
 
 if __name__ == '__main__':
-    # get_high_year_citnum()
+    get_top_cascade()
+    get_high_year_citnum()
     random_selecting_linking_edges()
+    plot_changing_along_time()
 
 
 
