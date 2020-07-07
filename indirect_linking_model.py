@@ -66,7 +66,6 @@ def paper_year_total_citnum(year_citnum):
 
 def random_selecting_linking_edges():
     ## 各个学科里面分别从50% 5% 1%随机选取了6篇论文
-    logging.info('loading _id_pubyear ...')
     selected_cascades = json.loads(open('data/selected_high_cascades.json').read())
 
     pid_year_total = json.loads(open('data/selected_high_pid_year_total.json').read())
@@ -123,7 +122,7 @@ def cit_by_impact(cited_pids,pid_year_total,year):
 
     props = [preyear_cit(pid_year_total,pid,year) for pid in cited_pids]
 
-    print(props)
+    # print(props)
 
     props = np.array(props)/float(np.sum(props))
 
@@ -136,11 +135,11 @@ def cit_by_impact(cited_pids,pid_year_total,year):
 def preyear_cit(pid_year_total,pid,year):
 
     if pid_year_total.get(pid,None) is None:
-        return 0
+        return 0.1
 
     # if pid_year_total[pid].get(str(int(year)-1),None)
 
-    return pid_year_total[pid].get(str(int(year)-1),0)
+    return pid_year_total[pid].get(str(int(year)-1),0.1)
 
 
 
