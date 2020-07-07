@@ -138,7 +138,7 @@ def preyear_cit(pid_year_total,pid,year):
 
     # if pid_year_total[pid].get(str(int(year)-1),None)
 
-    return id_year_total[pid].get(str(int(year)-1),0)
+    return pid_year_total[pid].get(str(int(year)-1),0)
 
 
 
