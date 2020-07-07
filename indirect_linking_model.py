@@ -125,7 +125,7 @@ def cit_by_impact(cited_pids,pid_year_total,year):
 
     props = np.array(props)/float(np.sum(props))
 
-    N = np.random.randomint(1,len(props))
+    N = np.random.randint(1,len(props))
 
     selected_pids = np.random.choice(cited_pids,size=N,replace=False,p=props)
 
@@ -146,7 +146,7 @@ def preyear_cit(pid_year_total,pid,year):
 
 
 if __name__ == '__main__':
-    get_high_year_citnum()
+    # get_high_year_citnum()
     random_selecting_linking_edges()
 
 
