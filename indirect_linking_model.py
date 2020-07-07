@@ -24,7 +24,7 @@ def get_top_cascade():
 
     logging.info('Number of ids is {}.'.format(len(id_set)))
 
-    cc_path = pathObj.cascade_path
+    cc_path = 'data/cascade_ALL.txt'
     progress = 0
 
     selected_cascades = {}
