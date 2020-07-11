@@ -33,7 +33,7 @@ def fetch_citing_relations(pathObj):
             pfile.write('\n'.join(pid_cits)+'\n')
             pid_cits = []
 
-        pid_cits.append('{:}\t{:}'.format(ref_id,pid))
+        pid_cits.append('{:}\t{:}'.format( ,pid))
 
     query_op.close_db()
     pfile.write('\n'.join(pid_cits)+'\n')

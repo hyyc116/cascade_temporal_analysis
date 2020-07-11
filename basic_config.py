@@ -45,11 +45,10 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',level=log
 mpl.rcParams['agg.path.chunksize'] = 10000
 
 color_sequence = ['#1f77b4',   '#ffbb78', '#2ca02c',
-                  '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5',
-                  '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f',
-                  '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf','#ff7f0e', '#aec7e8','#9edae5']
+                   '#d62728', '#ff9896', '#9467bd',
+                  '#8c564b', '#e377c2', '#7f7f7f',
+                   '#bcbd22', '#dbdb8d', '#17becf','#ff7f0e', '#aec7e8','#9edae5','#98df8a', '#c5b0d5', '#c49c94', '#f7b6d2','#c7c7c7']
 mpl.rcParams['axes.prop_cycle'] = cycler('color', color_sequence)
-
 # color = plt.cm.viridis(np.linspace(0.01,0.99,6)) # This returns RGBA; convert:
 # hexcolor = map(lambda rgb:'#%02x%02x%02x' % (rgb[0]*255,rgb[1]*255,rgb[2]*255),
 #                tuple(color[:,0:-1]))

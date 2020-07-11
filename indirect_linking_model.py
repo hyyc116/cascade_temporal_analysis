@@ -11,7 +11,7 @@ def get_top_cascade():
 
 
     logging.info('loading _id_cn ...')
-    _id_cn = json.loads(open('data/_id_cn.json').read())
+    _id_cn = json.loads(open('../WOS_data_processing/data/pid_cn.json').read())
 
     id_set = []
 
@@ -57,7 +57,7 @@ def get_high_year_citnum():
     selected_cascades = json.loads(open('data/selected_high_cascades.json').read())
 
     logging.info('loading pid year citnum ...')
-    pid_year_citnum = json.loads(open('data/pid_year_citnum.json').read())
+    pid_year_citnum = json.loads(open('../WOS_data_processing/data/pid_year_citnum.json').read())
 
     selected_pid_year_total = {}
 
@@ -145,16 +145,11 @@ def random_selecting_linking_edges():
 
             for citing_pid in year_citing_cited[year].keys():
 
-                cited_pids = [p for p in  year_citing_cited[year][citing_pid] if p!=pid]
-
-                if len(cited_pids)==0:
-                    new_pid_year_citing_cited[pid][year][citing_pid].append(pid)
-
-                else:
-                    ## 根据前一年的被引论文的总次数进行概率计算
-                    for indirect_pid in cit_by_impact(cited_pids,pid_year_total,year):
-
-                        new_pid_year_citing_cited[pid][year][citing_pid].append(indirect_pid)
+                cited_pids = year_citing_cited[year][citing_pid].keys()
+                
+                ## 根据前一年的被引论文的总次数进行概率计算,每一年随机50次
+                for _ in range(50):
+                    new_pid_year_citing_cited[pid][year][citing_pid].append(cit_by_impact(cited_pids,pid_year_total,year))
 
     ## 将新的保存
     open('data/new_randomized_cascade.json','w').write(json.dumps(new_pid_year_citing_cited))
@@ -165,13 +160,9 @@ def cit_by_impact(cited_pids,pid_year_total,year):
 
     props = [preyear_cit(pid_year_total,pid,year) for pid in cited_pids]
 
-    # print(props)
-
     props = np.array(props)/float(np.sum(props))
 
-    N = np.random.randint(1,len(props)+1)
-
-    selected_pids = np.random.choice(cited_pids,size=N,replace=False,p=props)
+    selected_pids = np.random.choice(cited_pids,size=len(props),replace=False,p=props)
 
     return selected_pids
 
@@ -202,7 +193,10 @@ def plot_changing_along_time():
 
                 total+=1
                 connectors = new_cascade[pid][year][citing_pid]
-                if len(connectors)==1 and pid==connectors[0]:
+                # if len(connectors)==1 and pid==connectors[0]:
+                #     direct+=1
+
+                if pid in connectors:
                     direct+=1
 
             percent = direct/float(total)
@@ -225,8 +219,8 @@ def plot_changing_along_time():
 if __name__ == '__main__':
     get_top_cascade()
     get_high_year_citnum()
-    random_selecting_linking_edges()
-    plot_changing_along_time()
+    # random_selecting_linking_edges()
+    # plot_changing_along_time()
 
 
 

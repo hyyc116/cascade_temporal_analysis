@@ -1015,7 +1015,7 @@ if __name__ == '__main__':
     # run_all(paths)
     dccp_of_paper(paths)
     # plot_dccp(paths)
-    # stat_subcascades(paths)
+    stat_subcascades(paths)
     # plot_subcascade_data()
     # logging.info('Done')
 
