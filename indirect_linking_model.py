@@ -115,7 +115,7 @@ def random_selecting_linking_edges():
 
     ## 加载时间
     logging.info('loading _id_pubyear ...')
-    _id_year = json.loads(open('data/pubyear_ALL.json').read())
+    _id_year = json.loads(open('../WOS_data_processing/data/pid_pubyear.json').read())
 
     pid_year_citing_cited = defaultdict(lambda:defaultdict(lambda:defaultdict(list)))
 
