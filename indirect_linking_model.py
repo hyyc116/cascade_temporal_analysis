@@ -141,9 +141,26 @@ def random_selecting_linking_edges():
     logging.info('old cascade saved to data/old_cascade.json')
 
 
+def random_new_cascade():
+
+    logging.info("loading high cascade ...")
+    pid_year_citing_cited = json.loads(open('data/old_cascade.json').read())
+
+    pid_year_total = json.loads(open('data/selected_high_pid_year_total.json').read())
+
+    logging.info('{} papers loaded.'.format(len(pid_year_citing_cited.keys())))
+
+    numT = len(pid_year_citing_cited.keys())
+
     ##对每一个cascade的构建过程按照链入顺序重新安排
+    progress = 0
     new_pid_year_citing_cited = defaultdict(lambda:defaultdict(lambda:defaultdict(list)))
     for pid in pid_year_citing_cited.keys():
+
+        progress+=1
+
+        if progress%100==0:
+            logging.info('progress {}/{}..'.format(progress,numT))
 
         year_citing_cited = pid_year_citing_cited[pid]
 
