@@ -107,7 +107,7 @@ def paper_year_total_citnum(year_citnum):
     return year_total
 
 
-def random_selecting_linking_edges():
+def old_edges():
     ## 各个学科里面分别从50% 5% 1%随机选取了6篇论文
     logging.info('loading selected high impact cascade ..')
     selected_cascades = json.loads(open('data/selected_high_cascades.json').read())
@@ -242,7 +242,8 @@ def plot_changing_along_time():
 if __name__ == '__main__':
     # get_top_cascade()
     # get_high_year_citnum()
-    random_selecting_linking_edges()
+    # random_selecting_linking_edges()
+    random_new_cascade()
     # plot_changing_along_time()
 
 
