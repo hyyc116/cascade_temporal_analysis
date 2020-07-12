@@ -109,13 +109,19 @@ def paper_year_total_citnum(year_citnum):
 
 def random_selecting_linking_edges():
     ## 各个学科里面分别从50% 5% 1%随机选取了6篇论文
+    logging.info('loading selected high impact cascade ..')
     selected_cascades = json.loads(open('data/selected_high_cascades.json').read())
+
+    logging.info('{} papers are selected..'.format(len(selected_cascades.keys())))
 
     pid_year_total = json.loads(open('data/selected_high_pid_year_total.json').read())
 
     ## 加载时间
     logging.info('loading _id_pubyear ...')
     _id_year = json.loads(open('../WOS_data_processing/data/pid_pubyear.json').read())
+
+
+    logging.info('start to stat cascade....')
 
     pid_year_citing_cited = defaultdict(lambda:defaultdict(lambda:defaultdict(list)))
 
@@ -217,9 +223,9 @@ def plot_changing_along_time():
 
 
 if __name__ == '__main__':
-    get_top_cascade()
-    get_high_year_citnum()
-    # random_selecting_linking_edges()
+    # get_top_cascade()
+    # get_high_year_citnum()
+    random_selecting_linking_edges()
     # plot_changing_along_time()
 
 
