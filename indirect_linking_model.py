@@ -159,7 +159,7 @@ def random_new_cascade():
 
         progress+=1
 
-        if progress%100==0:
+        if progress%1==0:
             logging.info('progress {}/{}..'.format(progress,numT))
 
         year_citing_cited = pid_year_citing_cited[pid]
