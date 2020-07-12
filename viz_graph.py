@@ -58,9 +58,9 @@ def subcascade():
     p.edge('I','G',style='dashed')
     p.edge('K','J',style='dashed')
     p.edge('L','J',style='dashed')
-    p.render('subcascade')
+    p.render('subcascade1')
 
-    p = gv.Digraph(format='pdf')
+    p = gv.Digraph(format='jpg')
     p.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
     p.attr('edge',arrowhead='open')
     p.attr('graph',rankdir = 'BT')
@@ -73,7 +73,7 @@ def subcascade():
     p.edge('L','J',style='dashed')
     p.render('subcascade2')
 
-    p = gv.Digraph(format='pdf')
+    p = gv.Digraph(format='jpg')
     p.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
     p.attr('edge',arrowhead='open')
     p.attr('graph',rankdir = 'BT')
@@ -119,8 +119,95 @@ def depth():
     p.edge('J','I',style='dashed')
     p.render('depth')
 
+def indirect_linking():
+    # graph = gv.Digraph(format='jpg')
+    # graph.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
+    # graph.attr('edge',arrowhead='open')
+    # graph.attr('graph',rankdir = 'RL')
+    # graph.edge('B','A')
+    # graph.edge('C','A')
+    # graph.edge('D','A')
+    # graph.edge('E','A') 
+    # graph.edge('F','A')
+    # graph.edge('G','A')
+    # graph.render('citation_count')
+
+    p = Digraph(format='pdf')
+    p.attr('graph',rankdir = 'RL')
+    p.attr('edge',arrowhead='open')
+    p.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
+    p.edge('B','A')
+    p.edge('C','A')
+    p.edge('D','A',style='dashed')
+    p.edge('D','B',style='dashed')
+    p.edge('D','C',style='dashed')
+
+    # p.subgraph(graph)
+
+    p.render('example/indirect_linking1')
+
+
+    p = Digraph(format='pdf')
+    p.attr('graph',rankdir = 'RL')
+    p.attr('edge',arrowhead='open')
+    p.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
+    p.edge('B','A')
+    p.edge('C','A')
+    # p.edge('D','A')
+    p.edge('D','B',style='dashed')
+    # p.edge('D','C',style='dashed')
+
+    # p.subgraph(graph)
+
+    p.render('example/indirect_linking2')
+
+    p = Digraph(format='pdf')
+    p.attr('graph',rankdir = 'RL')
+    p.attr('edge',arrowhead='open')
+    p.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
+    p.edge('B','A')
+    p.edge('C','A')
+    p.edge('D','A',style='dashed')
+    # p.edge('D','B',style='dashed')
+    # p.edge('D','C',style='dashed')
+
+    # p.subgraph(graph)
+
+    p.render('example/indirect_linking3')
+
+    p = Digraph(format='pdf')
+    p.attr('graph',rankdir = 'RL')
+    p.attr('edge',arrowhead='open')
+    p.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
+    p.edge('B','A')
+    p.edge('C','A')
+    # p.edge('D','A')
+    # p.edge('D','B',style='dashed')
+    p.edge('D','C',style='dashed')
+
+    # p.subgraph(graph)
+
+    p.render('example/indirect_linking4')
+
+
+    p = Digraph(format='pdf')
+    p.attr('graph',rankdir = 'RL')
+    p.attr('edge',arrowhead='open')
+    p.attr('node', shape='circle',width='0.2',height='0.2',fixedwith='true')
+    p.edge('B','A')
+    p.edge('C','A')
+    # p.edge('D','A')
+    p.edge('D','B',style='dashed')
+    p.edge('D','C',style='dashed')
+
+    # p.subgraph(graph)
+
+    p.render('example/indirect_linking5')
+
 
 if __name__ == '__main__':
     # viz()
-    subcascade()
+    # subcascade()
     # depth()
+
+    indirect_linking()

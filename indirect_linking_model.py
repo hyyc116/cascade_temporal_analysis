@@ -151,7 +151,7 @@ def random_selecting_linking_edges():
 
             for citing_pid in year_citing_cited[year].keys():
 
-                cited_pids = year_citing_cited[year][citing_pid].keys()
+                cited_pids = year_citing_cited[year][citing_pid]
                 
                 ## 根据前一年的被引论文的总次数进行概率计算,每一年随机50次
                 for _ in range(50):

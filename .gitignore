@@ -9,6 +9,7 @@ logs/
 data/
 fig/
 subcascade/data/
+example/
 # Distribution / packaging
 .Python
 env/
