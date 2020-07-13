@@ -159,7 +159,7 @@ def random_new_cascade():
 
         progress+=1
 
-        if progress%1==0:
+        if progress%10==0:
             logging.info('progress {}/{}..'.format(progress,numT))
 
         year_citing_cited = pid_year_citing_cited[pid]
@@ -171,11 +171,12 @@ def random_new_cascade():
                 cited_pids = year_citing_cited[year][citing_pid]
                 
                 ## 根据前一年的被引论文的总次数进行概率计算,每一年随机50次
-                for _ in range(50):
 
-                    props = [preyear_cit(pid_year_total,pid,year) for pid in cited_pids]
+                props = [preyear_cit(pid_year_total,cited_id,year) for cited_id in cited_pids]
 
-                    props = np.array(props)/float(np.sum(props))
+                props = np.array(props)/float(np.sum(props))
+
+                for _ in range(20):
 
                     selected_pids = np.random.choice(cited_pids,size=len(props),replace=False,p=props)
 
@@ -189,11 +190,11 @@ def random_new_cascade():
 def preyear_cit(pid_year_total,pid,year):
 
     if pid_year_total.get(pid,None) is None:
-        return 0.1
+        return 0.01
 
     # if pid_year_total[pid].get(str(int(year)-1),None)
 
-    return pid_year_total[pid].get(str(int(year)-1),0.1)
+    return pid_year_total[pid].get(str(int(year)-1),0.01)
 
 def plot_changing_along_time():
 
