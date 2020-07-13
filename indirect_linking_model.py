@@ -172,22 +172,19 @@ def random_new_cascade():
                 
                 ## 根据前一年的被引论文的总次数进行概率计算,每一年随机50次
                 for _ in range(50):
-                    new_pid_year_citing_cited[pid][year][citing_pid].append(cit_by_impact(cited_pids,pid_year_total,year))
+
+                    props = [preyear_cit(pid_year_total,pid,year) for pid in cited_pids]
+
+                    props = np.array(props)/float(np.sum(props))
+
+                    selected_pids = np.random.choice(cited_pids,size=len(props),replace=False,p=props)
+
+                    new_pid_year_citing_cited[pid][year][citing_pid].append(selected_pids)
 
     ## 将新的保存
     open('data/new_randomized_cascade.json','w').write(json.dumps(new_pid_year_citing_cited))
     logging.info('new cascade saved to data/new_randomized_cascade.json')
 
-
-def cit_by_impact(cited_pids,pid_year_total,year):
-
-    props = [preyear_cit(pid_year_total,pid,year) for pid in cited_pids]
-
-    props = np.array(props)/float(np.sum(props))
-
-    selected_pids = np.random.choice(cited_pids,size=len(props),replace=False,p=props)
-
-    return selected_pids
 
 def preyear_cit(pid_year_total,pid,year):
 
