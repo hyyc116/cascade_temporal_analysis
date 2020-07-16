@@ -182,7 +182,7 @@ def random_new_cascade():
 
                     selected_pids = np.random.choice(cited_pids,size=len(props),replace=False,p=props)
 
-                    new_pid_year_citing_cited[pid][year][citing_pid].append(selected_pids)
+                    new_pid_year_citing_cited[pid][year][citing_pid].append(selected_pids.tolist())
 
         if len(new_pid_year_citing_cited)>=100:
             new_f.write(json.dumps(new_pid_year_citing_cited)+'\n')
