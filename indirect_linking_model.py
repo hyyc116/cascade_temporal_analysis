@@ -152,6 +152,8 @@ def random_new_cascade():
 
     numT = len(pid_year_citing_cited.keys())
 
+    new_f = open('data/new_randomized_cascade.json','w')
+
     ##对每一个cascade的构建过程按照链入顺序重新安排
     progress = 0
     new_pid_year_citing_cited = defaultdict(lambda:defaultdict(lambda:defaultdict(list)))
@@ -182,8 +184,12 @@ def random_new_cascade():
 
                     new_pid_year_citing_cited[pid][year][citing_pid].append(selected_pids)
 
+        if len(new_pid_year_citing_cited)>=100:
+            new_f.write(json.dumps(new_pid_year_citing_cited)+'\n')
+            new_pid_year_citing_cited = defaultdict(lambda:defaultdict(lambda:defaultdict(list)))
+
     ## 将新的保存
-    open('data/new_randomized_cascade.json','w').write(json.dumps(new_pid_year_citing_cited))
+    new_f.write(json.dumps(new_pid_year_citing_cited)+'\n')
     logging.info('new cascade saved to data/new_randomized_cascade.json')
 
 
