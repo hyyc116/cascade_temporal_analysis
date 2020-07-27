@@ -260,7 +260,7 @@ def plot_changing_along_time():
             ys.append(percent)
 
 
-        plt.set_title('{}:{}'.format(pid,cn))
+        plt.title('{}:{}'.format(pid,cn))
 
         plt.plot(xs,ys)
 
