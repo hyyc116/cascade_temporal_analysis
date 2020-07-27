@@ -215,7 +215,7 @@ def plot_changing_along_time():
         pubyear  = int(pid_pubyear[pid])
 
 
-        if pubyear>2005 or pubyear<1980:
+        if pubyear>2005 or pubyear<1990:
             continue
 
 
