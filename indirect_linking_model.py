@@ -239,7 +239,7 @@ def plot_changing_along_time():
                     else:
                         cnects.append(1)
 
-                undirect_prop = np.sum(cnects)/float(np.len(cnects))
+                undirect_prop = np.sum(cnects)/float(len(cnects))
 
                 ps.append(undirect_prop)
 
