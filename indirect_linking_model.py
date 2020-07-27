@@ -257,12 +257,13 @@ def plot_changing_along_time():
 
         plt.tight_layout()
 
-        plt.savefig('fig/cascade_{}.png'.format(i),dpi=300)
+        plt.savefig('fig/cascade_{}.png'.format(i),dpi=200)
         logging.info('fig saved to fig/cascade_{}.png'.format(i))
 
 
 
 def isDirect(cits,pid):
+
 
     connectors = []
     for cit in cits:
@@ -272,6 +273,8 @@ def isDirect(cits,pid):
 
         connectors.append(cit)
 
+    print(cits,pid,connectors)
+    
 
     return connectors
     
