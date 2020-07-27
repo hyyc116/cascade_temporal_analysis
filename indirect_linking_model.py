@@ -204,7 +204,7 @@ def preyear_cit(pid_year_total,pid,year):
 
 def plot_changing_along_time():
 
-    # pid_cn = json.loads(open('../WOS_data_processing/data/pid_cn.json').read())
+    pid_cn = json.loads(open('../WOS_data_processing/data/pid_cn.json').read())
 
     new_cascade = json.loads(open('data/new_randomized_cascade.json').readline())
 
@@ -212,7 +212,7 @@ def plot_changing_along_time():
 
     for i,pid in enumerate(new_cascade.keys()):
 
-        # cn  = int(pid_cn[pid])
+        cn  = int(pid_cn[pid])
 
         # if cn<2000:
             # continue
