@@ -214,8 +214,8 @@ def plot_changing_along_time():
 
         cn  = int(pid_cn[pid])
 
-        if cn>5000:
-            continue
+        # if cn<2000:
+            # continue
 
         plt.figure(figsize=(5,4))
 
@@ -243,15 +243,17 @@ def plot_changing_along_time():
 
                 for connectors in connectors_list:
 
-                    if len(isDirect(connectors,pid))==0:
+                    # if len(isDirect(connectors,pid))==0:
 
-                        cnects.append(0)
-                    else:
-                        cnects.append(1)
+                    #     cnects.append(0)
+                    # else:
+                    #     cnects.append(1)
 
-                undirect_prop = np.sum(cnects)/float(len(cnects))
+                    cnects.append(len(isDirect(connectors,pid)))
 
-                ps.append(undirect_prop)
+                # undirect_prop = np.sum(cnects)/float(len(cnects))
+
+                ps.append(np.mean(cnects))
 
 
             percent = np.mean(ps)
@@ -265,7 +267,7 @@ def plot_changing_along_time():
         plt.plot(xs,ys)
 
         plt.xlabel('year')
-        plt.ylabel('percentage of direct citations')
+        plt.ylabel('number of connectors')
 
         plt.tight_layout()
 
