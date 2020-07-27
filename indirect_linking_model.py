@@ -204,7 +204,7 @@ def preyear_cit(pid_year_total,pid,year):
 
 def plot_changing_along_time():
 
-    new_cascade = json.loads(open('new_randomized_cascade.json').readline())
+    new_cascade = json.loads(open('data/new_randomized_cascade.json').readline())
 
     logging.info('reading line 1, {} simulated cascades loaded.'.format(len(new_cascade.keys())))
 
@@ -229,6 +229,9 @@ def plot_changing_along_time():
 
                 # if pid in connectors:
                 #     direct+=1
+
+                # print(connectors_list)
+
                 cnects = []
 
                 for connectors in connectors_list:
@@ -273,8 +276,8 @@ def isDirect(cits,pid):
 
         connectors.append(cit)
 
-    print(cits,pid,connectors)
-    
+    # print(cits,pid,connectors)
+
 
     return connectors
     
