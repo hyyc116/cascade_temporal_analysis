@@ -204,7 +204,9 @@ def preyear_cit(pid_year_total,pid,year):
 
 def plot_changing_along_time():
 
-    new_cascade = json.loads(open('new_randomized_cascade.json').read())
+    new_cascade = json.loads(open('new_randomized_cascade.json').readline())
+
+    logging.info('reading line 1, {} simulated cascades loaded.'.format(len(new_cascade.keys())))
 
     for i,pid in enumerate(new_cascade.keys()):
 
@@ -216,17 +218,33 @@ def plot_changing_along_time():
 
             direct = 0
             total = 0
+
+            ps = []
             for citing_pid in new_cascade[pid][year].keys():
 
                 total+=1
-                connectors = new_cascade[pid][year][citing_pid]
+                connectors_list = new_cascade[pid][year][citing_pid]
                 # if len(connectors)==1 and pid==connectors[0]:
                 #     direct+=1
 
-                if pid in connectors:
-                    direct+=1
+                # if pid in connectors:
+                #     direct+=1
+                cnects = []
 
-            percent = direct/float(total)
+                for connectors in connectors_list:
+
+                    if len(isDirect(connectors,pid))==0:
+
+                        cnects.append(0)
+                    else:
+                        cnects.append(1)
+
+                undirect_prop = np.sum(cnects)/float(np.len(cnects))
+
+                ps.append(undirect_prop)
+
+
+            percent = np.mean(ps)
 
             xs.append(int(year))
             ys.append(percent)
@@ -240,15 +258,31 @@ def plot_changing_along_time():
         plt.tight_layout()
 
         plt.savefig('fig/cascade_{}.png'.format(i),dpi=300)
+        logging.info('fig saved to fig/cascade_{}.png'.format(i))
 
+
+
+def isDirect(cits,pid):
+
+    connectors = []
+    for cit in cits:
+
+        if pid == cit:
+            break
+
+        connectors.append(cit)
+
+
+    return connectors
+    
 
 
 if __name__ == '__main__':
     # get_top_cascade()
     # get_high_year_citnum()
     # random_selecting_linking_edges()
-    random_new_cascade()
-    # plot_changing_along_time()
+    # random_new_cascade()
+    plot_changing_along_time()
 
 
 
