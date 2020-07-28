@@ -277,7 +277,7 @@ def plot_changing_along_time():
 
         plt.plot(xs,smooth(ys,5),'--')
 
-        plt.plot(xs[5:],pd.rolling_mean(ys,5),'-.')
+        # plt.plot(xs[5:],pd.rolling_mean(ys,5),'-.')
 
         plt.xlabel('year')
         plt.ylabel('number of connectors')
