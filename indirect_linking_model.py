@@ -263,6 +263,8 @@ def plot_changing_along_time():
 
             percent = np.mean(ps)
 
+            percent = smooth(percent,5)
+
             xs.append(int(year))
             ys.append(percent)
 
@@ -279,6 +281,17 @@ def plot_changing_along_time():
         plt.savefig('fig/cascade_{}.png'.format(i),dpi=200)
         logging.info('fig saved to fig/cascade_{}.png'.format(i))
 
+
+def smooth(a,WSZ):
+  # a:原始数据，NumPy 1-D array containing the data to be smoothed
+  # 必须是1-D的，如果不是，请使用 np.ravel()或者np.squeeze()转化 
+  # WSZ: smoothing window size needs, which must be odd number,
+  # as in the original MATLAB implementation
+  out0 = np.convolve(a,np.ones(WSZ,dtype=int),'valid')/WSZ
+  r = np.arange(1,WSZ-1,2)
+  start = np.cumsum(a[:WSZ-1])[::2]/r
+  stop = (np.cumsum(a[:-WSZ:-1])[::2]/r)[::-1]
+  return np.concatenate(( start , out0, stop ))
 
 
 def isDirect(cits,pid):
