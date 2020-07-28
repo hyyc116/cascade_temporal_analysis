@@ -7,6 +7,8 @@
 '''
 from basic_config import *
 
+import pandas as pd
+
 def get_top_cascade():
 
 
@@ -263,7 +265,7 @@ def plot_changing_along_time():
 
             percent = np.mean(ps)
 
-            percent = smooth(percent,5)
+            # percent = smooth(percent,5)
 
             xs.append(int(year))
             ys.append(percent)
@@ -272,6 +274,10 @@ def plot_changing_along_time():
         plt.title('{}:{}'.format(pid,pubyear))
 
         plt.plot(xs,ys)
+
+        plt.plot(xs,smooth(ys,5),'--')
+
+        plt.plot(xs[5:],pd.rolling_mean(ys,5),'-.')
 
         plt.xlabel('year')
         plt.ylabel('number of connectors')
