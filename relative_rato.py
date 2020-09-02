@@ -99,7 +99,8 @@ def plot_rr_figure():
     plt.savefig('fig/field_year_rrs.png',dpi=300)
     logging.info('data saved to fig/field_year_rrs.png')
 
-
+    MAXMIN,MINMAX = minmax_maxmin()
+    field_cls_rrs = defaultdict(lambda:defaultdict(list))
     # 不同field随year的变化
     field_cn_rrs = json.loads(open('data/field_cn_rrs.json').read())
     plt.figure(figsize=(6,4))
@@ -107,6 +108,17 @@ def plot_rr_figure():
         xs = []
         ys = []
         for cn in sorted(field_cn_rrs[subj].keys(),key=lambda x:int(x)):
+
+            if cn<MINMAX:
+                CLS = 0
+
+            elif int(cc)<MINMAX:
+                CLS = 1
+            else:
+                CLS = 2
+
+            field_cls_rrs[subj][0].extend(field_cn_rrs[subj][cn])
+
             xs.append(int(cn))
             ys.append(np.mean(field_cn_rrs[subj][cn]))
 
@@ -120,14 +132,56 @@ def plot_rr_figure():
 
     plt.xscale('log')
     plt.yscale('log')
-    
+
 
     plt.tight_layout()
 
     plt.savefig('fig/field_cn_rrs.png',dpi=300)
     logging.info('data saved to fig/field_cn_rrs.png')
 
+    fig,axes = plt.subplots(3,2,figsize=(12,8))
+    for i,subj in sorted(field_cls_rrs.keys()):
+        data = []
 
+        for CLS in sorted(field_cls_rrs[subj].keys()):
+
+        data.append(field_cls_rrs[subj][CLS])
+
+        ax = axes[i/2,i%2]
+
+        ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
+
+        ax.set_xlabel('Paper Impact Level')
+        ax.set_ylabel('relative ratio')
+
+        # ax.set_ylabel()
+        ax.set_title('{}'.format(subj))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/rr_boxplot.png',dpi=400)
+    logging.info('fig saved to fig/rr_boxplot.png')
+
+
+def minmax_maxmin():
+
+    id_num = json.loads(open('data/paper_cit_num_ALL.json').read())
+
+    total = len(id_num)
+    logging.info('number of papers {}.'.format(total))
+
+    citnums = sorted(id_num.values(),reverse=True)
+
+    maxmin_index = int(total/2)
+
+    minmax_index = int(total*0.05)
+
+    maxmin = citnums[maxmin_index]
+    minmax = citnums[minmax_index]
+
+    logging.info('maxmin:{}, minmax:{}'.format(maxmin,minmax))
+
+    return maxmin,minmax
 
 def cdf(data):
 
