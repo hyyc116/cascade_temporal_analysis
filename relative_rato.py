@@ -147,7 +147,7 @@ def plot_rr_figure():
 
             data.append(field_cls_rrs[subj][CLS])
 
-        print(len(data))
+        print(subj,len(data))
 
         ax = axes[int(i/2)][int(i%2)]
 
