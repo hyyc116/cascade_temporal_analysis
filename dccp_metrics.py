@@ -2190,11 +2190,11 @@ if __name__ == '__main__':
     # run_all(paths)
     # dccp_of_paper(paths)
     # stat_dccp(paths)
-    boxplot()
+    # boxplot()
     # plot_dccps()
 
-    # stat_subcascades(paths)
-    # plot_subcascade_data()
+    stat_subcascades(paths)
+    plot_subcascade_data()
     # output_motif_table()
 
     # logging.info('Done')
