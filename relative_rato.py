@@ -109,10 +109,10 @@ def plot_rr_figure():
         ys = []
         for cn in sorted(field_cn_rrs[subj].keys(),key=lambda x:int(x)):
 
-            if int(cn)<MINMAX:
+            if int(cn)<MAXMIN:
                 CLS = 0
 
-            elif int(cn)<MAXMIN:
+            elif int(cn)<MINMAX:
                 CLS = 1
             else:
                 CLS = 2
