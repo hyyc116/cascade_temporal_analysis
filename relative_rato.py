@@ -140,7 +140,7 @@ def plot_rr_figure():
     logging.info('data saved to fig/field_cn_rrs.png')
 
     fig,axes = plt.subplots(3,2,figsize=(12,8))
-    for i,subj in sorted(field_cls_rrs.keys()):
+    for i,subj in enumerate(sorted(field_cls_rrs.keys())):
         data = []
 
         for CLS in sorted(field_cls_rrs[subj].keys()):
