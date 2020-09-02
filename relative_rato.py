@@ -145,7 +145,7 @@ def plot_rr_figure():
 
         for CLS in sorted(field_cls_rrs[subj].keys()):
 
-        data.append(field_cls_rrs[subj][CLS])
+            data.append(field_cls_rrs[subj][CLS])
 
         ax = axes[i/2,i%2]
 
