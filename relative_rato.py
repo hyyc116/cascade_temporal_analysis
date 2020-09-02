@@ -140,7 +140,7 @@ def plot_rr_figure():
     logging.info('data saved to fig/field_cn_rrs.png')
 
     fig,axes = plt.subplots(3,2,figsize=(12,12))
-    for i,subj in enumerate(sorted(field_cls_rrs.keys())):
+    for i,subj in enumerate(list(sorted(field_cls_rrs.keys()))):
         data = []
 
         for CLS in sorted(field_cls_rrs[subj].keys()):
@@ -148,7 +148,8 @@ def plot_rr_figure():
             data.append(field_cls_rrs[subj][CLS])
 
         print(i)
-
+        print(axes.__type__)
+        print(axes.shape)
         ax = axes[i/2,i%2]
 
         ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
