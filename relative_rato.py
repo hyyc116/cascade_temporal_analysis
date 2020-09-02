@@ -23,9 +23,9 @@ def plot_rr_figure_data():
 
     field_rrs = defaultdict(list)
 
-    field_year_rrs = defaultdict(list)
+    field_year_rrs = defaultdict(lambda:defaultdict(list))
 
-    field_cn_rrs = defaultdict(list)
+    field_cn_rrs = defaultdict(lambda:defaultdict(list))
 
 
     for pid in pid_rr.keys():
