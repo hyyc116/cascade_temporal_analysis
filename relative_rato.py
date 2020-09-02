@@ -51,6 +51,99 @@ def plot_rr_figure_data():
     logging.info('data saved to data/field_cn_rrs.json')
 
 
+def plot_rr_figure():
+    logging.info('start to cal field_rrs ...')
+    field_rrs = json.laods(open('data/field_rrs.json').read())
+
+    plt.figure(figsize=(6,4))
+
+    for subj in sorted(field_rrs.keys()):
+        xs,ccdf = cdf(field_rrs[subj])
+
+        plt.plot(xs,ccdf,label=subj)
+
+    plt.legend(prop={'size':6})
+
+    plt.xlabel('relative ratio')
+    plt.ylabel('probability')
+
+    plt.xscale('log')
+    plt.yscale('log')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/rr_ccdf.png',dpi=300)
+    logging.info('data saved to fig/rr_ccdf.png')
+
+    # 不同field随year的变化
+    field_year_rrs = json.loads(open('field_year_rrs').read())
+    plt.figure(figsize=(6,4))
+    for subj in sorted(field_year_rrs.keys()):
+        xs = []
+        ys = []
+        for year in sorted(field_year_rrs[subj].keys(),key=lambda x:int(x)):
+            xs.append(int(year))
+            ys.append(np.mean(field_year_rrs[subj][year]))
+
+        plt.plot(xs,ys,label=subj)
+
+    plt.legend(prop={'size':6})
+
+    plt.xlabel('year')
+    plt.ylabel('relative ratio')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_year_rrs.png',dpi=300)
+    logging.info('data saved to fig/field_year_rrs.png')
+
+
+    # 不同field随year的变化
+    field_cn_rrs = json.loads(open('field_cn_rrs').read())
+    plt.figure(figsize=(6,4))
+    for subj in sorted(field_cn_rrs.keys()):
+        xs = []
+        ys = []
+        for cn in sorted(field_cn_rrs[subj].keys(),key=lambda x:int(x)):
+            xs.append(int(cn))
+            ys.append(np.mean(field_cn_rrs[subj][cn]))
+
+        plt.plot(xs,ys,label=subj)
+
+    plt.legend(prop={'size':6})
+
+    plt.xlabel('number of citations')
+
+    plt.ylabel('relative ratio')
+
+    plt.xscale('log')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/field_cn_rrs.png',dpi=300)
+    logging.info('data saved to fig/field_cn_rrs.png')
+
+
+
+def cdf(data):
+
+    v_counter = Counter(data)
+
+    length = len(data)
+    xs = []
+    ys = []
+    for x in sorted(v_counter):
+        xs.append(x)
+        ys.append(v_counter[x])
+
+    ccdf = []
+    for i,x in enumerate(xs):
+        ccdf.append(np.sum(ys[i:])/float(length))
+
+    return xs,ccdf
+
+
+
 
 def stat_relative_ratio():
     # 加载基本数据
@@ -186,4 +279,6 @@ def load_basic_data(attrs=['year','subj','topsubj','teamsize','doctype','cn'],is
 if __name__ == '__main__':
     # stat_relative_ratio()
 
-    plot_rr_figure_data()
+    # plot_rr_figure_data()
+
+    plot_rr_figure()
