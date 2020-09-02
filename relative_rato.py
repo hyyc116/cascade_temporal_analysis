@@ -156,6 +156,8 @@ def plot_rr_figure():
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('relative ratio')
 
+        ax.set_yscale('log')
+
         # ax.set_ylabel()
         ax.set_title('{}'.format(subj))
 
