@@ -12,6 +12,46 @@ from basic_config import *
 
 '''
 
+
+def plot_rr_figure_data():
+
+
+    pid_topsubjs,pid_pubyear,pid_cn = load_basic_data(['topsubj','year','cn'])
+
+    pid_rr = json.loads(open('data/pid_relative_ratio.json').read())
+
+
+    field_rrs = defaultdict(list)
+
+    field_year_rrs = defaultdict(list)
+
+    field_cn_rrs = defaultdict(list)
+
+
+    for pid in pid_rr.keys():
+
+        rr = pid_rr[pid]
+
+        for topsubj in pid_topsubjs[pid]:
+
+            field_rrs[topsubj].append(rr)
+
+            field_year_rrs[topsubj][pid_pubyear[pid]].append(rr)
+
+            field_cn_rrs[topsubj][pid_cn[pid]].append(rr)
+
+
+    open('data/field_rrs.json','w').write(json.dumps(field_rrs))
+    logging.info('data saved to data/field_rrs.json.')
+
+    open('data/field_year_rrs.json','w').write(json.dumps(field_year_rrs))
+    logging.info('data saved to data/field_year_rrs.json')
+
+    open('data/field_cn_rrs.json','w').write(json.dumps(field_cn_rrs))
+    logging.info('data saved to data/field_cn_rrs.json')
+
+
+
 def stat_relative_ratio():
     # 加载基本数据
     pid_topsubjs,pid_pubyear,pid_cn = load_basic_data(['topsubj','year','cn'])
@@ -144,4 +184,6 @@ def load_basic_data(attrs=['year','subj','topsubj','teamsize','doctype','cn'],is
 
 
 if __name__ == '__main__':
-    stat_relative_ratio()
+    # stat_relative_ratio()
+
+    plot_rr_figure_data()
