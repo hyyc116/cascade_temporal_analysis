@@ -117,7 +117,7 @@ def plot_rr_figure():
             else:
                 CLS = 2
 
-            field_cls_rrs[subj][0].extend(field_cn_rrs[subj][cn])
+            field_cls_rrs[subj][CLS].extend(field_cn_rrs[subj][cn])
 
             xs.append(int(cn))
             ys.append(np.mean(field_cn_rrs[subj][cn]))
@@ -139,13 +139,15 @@ def plot_rr_figure():
     plt.savefig('fig/field_cn_rrs.png',dpi=300)
     logging.info('data saved to fig/field_cn_rrs.png')
 
-    fig,axes = plt.subplots(3,2,figsize=(12,8))
+    fig,axes = plt.subplots(3,2,figsize=(12,12))
     for i,subj in enumerate(sorted(field_cls_rrs.keys())):
         data = []
 
         for CLS in sorted(field_cls_rrs[subj].keys()):
 
             data.append(field_cls_rrs[subj][CLS])
+
+        print(i)
 
         ax = axes[i/2,i%2]
 
