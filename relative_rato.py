@@ -14,7 +14,7 @@ from basic_config import *
 
 def stat_relative_ratio():
     # 加载基本数据
-    pid_topsubjs,pid_year,pid_cn = load_basic_data(['topsubj','year','cn'])
+    pid_topsubjs,pid_pubyear,pid_cn = load_basic_data(['topsubj','year','cn'])
 
 
     ref_citations = defaultdict(list)
