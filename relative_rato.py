@@ -53,7 +53,7 @@ def plot_rr_figure_data():
 
 def plot_rr_figure():
     logging.info('start to cal field_rrs ...')
-    field_rrs = json.laods(open('data/field_rrs.json').read())
+    field_rrs = json.loads(open('data/field_rrs.json').read())
 
     plt.figure(figsize=(6,4))
 
