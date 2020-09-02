@@ -91,6 +91,8 @@ def plot_rr_figure():
 
     plt.xlabel('year')
     plt.ylabel('relative ratio')
+    plt.yscale('log')
+
 
     plt.tight_layout()
 
@@ -117,6 +119,8 @@ def plot_rr_figure():
     plt.ylabel('relative ratio')
 
     plt.xscale('log')
+    plt.yscale('log')
+    
 
     plt.tight_layout()
 
