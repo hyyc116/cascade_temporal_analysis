@@ -147,10 +147,8 @@ def plot_rr_figure():
 
             data.append(field_cls_rrs[subj][CLS])
 
-        print(i)
-        print(axes.__type__)
-        print(axes.shape)
-        ax = axes[i/2,i%2]
+
+        ax = axes[i/2][i%2]
 
         ax.boxplot(data,labels=['lowly cited','medium cited','highly cited'],showfliers=True)
 
