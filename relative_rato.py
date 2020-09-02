@@ -112,7 +112,7 @@ def plot_rr_figure():
             if int(cn)<MINMAX:
                 CLS = 0
 
-            elif int(cn)<MINMAX:
+            elif int(cn)<MAXMIN:
                 CLS = 1
             else:
                 CLS = 2
@@ -135,7 +135,7 @@ def plot_rr_figure():
 
 
     plt.tight_layout()
-
+# 
     plt.savefig('fig/field_cn_rrs.png',dpi=300)
     logging.info('data saved to fig/field_cn_rrs.png')
 
