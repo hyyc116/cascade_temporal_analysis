@@ -76,7 +76,7 @@ def plot_rr_figure():
     logging.info('data saved to fig/rr_ccdf.png')
 
     # 不同field随year的变化
-    field_year_rrs = json.loads(open('field_year_rrs.json').read())
+    field_year_rrs = json.loads(open('data/field_year_rrs.json').read())
     plt.figure(figsize=(6,4))
     for subj in sorted(field_year_rrs.keys()):
         xs = []
@@ -99,7 +99,7 @@ def plot_rr_figure():
 
 
     # 不同field随year的变化
-    field_cn_rrs = json.loads(open('field_cn_rrs.json').read())
+    field_cn_rrs = json.loads(open('data/field_cn_rrs.json').read())
     plt.figure(figsize=(6,4))
     for subj in sorted(field_cn_rrs.keys()):
         xs = []
