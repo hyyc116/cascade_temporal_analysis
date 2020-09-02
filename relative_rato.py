@@ -117,7 +117,7 @@ def plot_rr_figure():
             else:
                 CLS = 2
 
-            field_cls_rrs[subj][CLS].extend(field_cn_rrs[subj][cn])
+            field_cls_rrs[subj][CLS].append(np.mean(field_cn_rrs[subj][cn]))
 
             xs.append(int(cn))
             ys.append(np.mean(field_cn_rrs[subj][cn]))
@@ -147,6 +147,7 @@ def plot_rr_figure():
 
             data.append(field_cls_rrs[subj][CLS])
 
+        print(len(data))
 
         ax = axes[int(i/2)][int(i%2)]
 
