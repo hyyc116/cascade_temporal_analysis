@@ -115,7 +115,7 @@ def plot_rr_figure():
     plt.ylabel('probability')
 
     plt.xscale('log')
-    plt.yscale('log')
+    # plt.yscale('log')
 
     plt.tight_layout()
 
@@ -138,7 +138,7 @@ def plot_rr_figure():
 
     plt.xlabel('year')
     plt.ylabel('relative ratio')
-    plt.yscale('log')
+    # plt.yscale('log')
 
 
     plt.tight_layout()
@@ -169,16 +169,24 @@ def plot_rr_figure():
             xs.append(int(cn))
             ys.append(np.mean(field_cn_rrs[subj][cn]))
 
+
+        start = i-5 if i-5>0 else 0
+        end = i+5 if i+5<=len(ys) else len(ys)
+
+        ys = [np.mean[start:end] for i in range(len(ys))]
+
         plt.plot(xs,ys,label=subj)
 
     plt.legend(prop={'size':6})
 
     plt.xlabel('number of citations')
 
+
+
     plt.ylabel('relative ratio')
 
     plt.xscale('log')
-    plt.yscale('log')
+    # plt.yscale('log')
 
 
     plt.tight_layout()
@@ -203,7 +211,7 @@ def plot_rr_figure():
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('relative ratio')
 
-        ax.set_yscale('log')
+        # ax.set_yscale('log')
 
         # ax.set_ylabel()
         ax.set_title('{}'.format(subj))
@@ -386,10 +394,10 @@ def load_basic_data(attrs=['year','subj','topsubj','teamsize','doctype','cn'],is
 
 
 if __name__ == '__main__':
-    stat_relative_ratio()
+    # stat_relative_ratio()
 
-    plot_rr_figure_data()
+    # plot_rr_figure_data()
 
     plot_rr_figure()
 
-    cal_correlation()
+    # cal_correlation()
