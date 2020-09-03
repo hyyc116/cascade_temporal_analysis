@@ -114,7 +114,7 @@ def plot_rr_figure():
     plt.xlabel('relative ratio')
     plt.ylabel('probability')
 
-    # plt.xscale('log')
+    plt.xscale('log')
     plt.yscale('log')
 
     plt.tight_layout()
@@ -138,7 +138,7 @@ def plot_rr_figure():
 
     plt.xlabel('year')
     plt.ylabel('relative ratio')
-    # plt.yscale('log')
+    plt.yscale('log')
 
 
     plt.tight_layout()
@@ -178,7 +178,7 @@ def plot_rr_figure():
     plt.ylabel('relative ratio')
 
     plt.xscale('log')
-    # plt.yscale('log')
+    plt.yscale('log')
 
 
     plt.tight_layout()
@@ -203,7 +203,7 @@ def plot_rr_figure():
         ax.set_xlabel('Paper Impact Level')
         ax.set_ylabel('relative ratio')
 
-        # ax.set_yscale('log')
+        ax.set_yscale('log')
 
         # ax.set_ylabel()
         ax.set_title('{}'.format(subj))
