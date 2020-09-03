@@ -22,7 +22,7 @@ def cal_correlation():
     logging.info('loading paper subcascades  ...')
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
 
-    logging.ingo('loading paper relative_ratio ...')
+    logging.info('loading paper relative_ratio ...')
     pid_rr = json.loads(open('data/pid_relative_ratio.json').read())
 
     nums = []
