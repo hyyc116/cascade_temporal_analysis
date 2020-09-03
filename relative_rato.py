@@ -287,7 +287,7 @@ def stat_relative_ratio():
 
         focal_num = len([1 for subjs in ref_citations[ref] if len(topsubjs&set(subjs))>=0])
 
-        relative_ratio = focal_num/float(len(ref_citations))
+        relative_ratio = focal_num/float(len(ref_citations[ref]))
 
         pid_rr[ref] = relative_ratio
 
@@ -386,10 +386,10 @@ def load_basic_data(attrs=['year','subj','topsubj','teamsize','doctype','cn'],is
 
 
 if __name__ == '__main__':
-    # stat_relative_ratio()
+    stat_relative_ratio()
 
-    # plot_rr_figure_data()
+    plot_rr_figure_data()
 
-    # plot_rr_figure()
+    plot_rr_figure()
 
     cal_correlation()
