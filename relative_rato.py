@@ -9,8 +9,53 @@ from basic_config import *
     4. 随着citation count的变化的变化曲线
     5. 随时间的变化曲线
 
+    6 计算与size_of_component，num_of_component
+
 
 '''
+
+def cal_correlation():
+
+
+    logging.info('loading paper subcascades  ...')
+    paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
+
+    logging.ingo('loading paper relative_ratio ...')
+    pid_rr = json.loads(open('data/pid_relative_ratio.json').read())
+
+    nums = []
+    rrs = []
+    sizes = []
+
+    for pid in paper_size_id.keys():
+
+        rr = pid_rr.get(pid,None)
+
+        if rr is None:
+            continue
+
+        num = 0
+        ss = []
+        for size in paper_size_id[pid].keys():
+            num+=len(paper_size_id[pid][size])
+            ss.extend([size]*paper_size_id[pid][size])
+
+        avgSize = np.mean(ss)
+
+
+        rrs.append(rr)
+        nums.append(num)
+        sizes.append(avgSize)
+
+    r,p = scipy.stats.spearmanr(rrs,nums)
+    logging.info(f'rr vs num:{r},{p}')
+
+    r,p = scipy.stats.spearmanr(rrs,sizes)
+    logging.info(f'rr vs size:{r},{p}')
+
+    r,p=scipy.stats.spearmanr(sizes,nums)
+    logging.info(f'size vs num:{r},{p}')
+
 
 
 def plot_rr_figure_data():
@@ -343,4 +388,6 @@ if __name__ == '__main__':
 
     # plot_rr_figure_data()
 
-    plot_rr_figure()
+    # plot_rr_figure()
+
+    cal_correlation()
