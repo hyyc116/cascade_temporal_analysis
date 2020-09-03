@@ -16,6 +16,8 @@ from basic_config import *
 
 def cal_correlation():
 
+    field = 'ALL'
+    pathObj = PATHS(field)
 
     logging.info('loading paper subcascades  ...')
     paper_size_id=json.loads(open(pathObj.paper_subcascades_path).read())
