@@ -170,12 +170,17 @@ def plot_rr_figure():
             ys.append(np.mean(field_cn_rrs[subj][cn]))
 
 
-        start = i-5 if i-5>0 else 0
-        end = i+5 if i+5<=len(ys) else len(ys)
+        
 
-        ys = [np.mean[start:end] for i in range(len(ys))]
+        new_ys = []
 
-        plt.plot(xs,ys,label=subj)
+        for i in range(len(ys)):
+            start = i-5 if i-5>0 else 0
+            end = i+5 if i+5<=len(ys) else len(ys)
+
+            new_ys.append(np.mean(ys[start:end]))
+
+        plt.plot(xs,new_ys,label=subj)
 
     plt.legend(prop={'size':6})
 
