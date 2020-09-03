@@ -40,7 +40,7 @@ def cal_correlation():
         ss = []
         for size in paper_size_id[pid].keys():
             num+=len(paper_size_id[pid][size])
-            ss.extend([size]*len(paper_size_id[pid][size]))
+            ss.extend([int(size)]*len(paper_size_id[pid][size]))
 
         avgSize = np.mean(ss)
 
