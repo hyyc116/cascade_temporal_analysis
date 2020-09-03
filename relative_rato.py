@@ -206,7 +206,7 @@ def plot_rr_figure():
 
         #     new_ys.append(np.mean(ys[start:end]))
 
-        xs,new_ys  = lowess(xs,ys)
+        xs,new_ys,_,_  = lowess(xs,ys)
         plt.plot(xs,new_ys,label=subj)
 
     plt.legend(prop={'size':6})
