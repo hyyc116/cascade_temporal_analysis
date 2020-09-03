@@ -1,5 +1,7 @@
 #coding:utf-8
 from basic_config import *
+from skmisc.loess import loess
+
 
 '''
     
@@ -98,6 +100,32 @@ def plot_rr_figure_data():
     logging.info('data saved to data/field_cn_rrs.json')
 
 
+## use local weighted regression to fit data
+def loess_data(xs,ys):
+
+    ixes = range(len(xs))
+
+    sorted_xs = []
+    sorted_ys = []
+
+    for ix in sorted(ixes,key=lambda x:xs[x]):
+
+        sorted_xs.append(xs[ix])
+        sorted_ys.append(ys[ix])
+
+    l = loess(sorted_xs,sorted_ys)
+    l.fit()
+
+    pred_x = sorted(list(set(sorted_xs)))
+    pred = l.predict(pred_x, stderror=True)
+    conf = pred.confidence()
+
+    lowess = pred.values
+    ll = conf.lower
+    ul = conf.upper
+
+    return pred_x,lowess,ll,ul
+
 def plot_rr_figure():
     logging.info('start to cal field_rrs ...')
     field_rrs = json.loads(open('data/field_rrs.json').read())
@@ -114,7 +142,7 @@ def plot_rr_figure():
     plt.xlabel('relative ratio')
     plt.ylabel('probability')
 
-    plt.xscale('log')
+    # plt.xscale('log')
     # plt.yscale('log')
 
     plt.tight_layout()
@@ -168,18 +196,17 @@ def plot_rr_figure():
 
             xs.append(int(cn))
             ys.append(np.mean(field_cn_rrs[subj][cn]))
-
-
         
 
-        new_ys = []
+        # new_ys = []
 
-        for i in range(len(ys)):
-            start = i-5 if i-5>0 else 0
-            end = i+5 if i+5<=len(ys) else len(ys)
+        # for i in range(len(ys)):
+        #     start = i-100 if i-100>0 else 0
+        #     end = i+5 if i+5<=len(ys) else len(ys)
 
-            new_ys.append(np.mean(ys[start:end]))
+        #     new_ys.append(np.mean(ys[start:end]))
 
+        xs,new_ys  = lowess(xs,ys)
         plt.plot(xs,new_ys,label=subj)
 
     plt.legend(prop={'size':6})
