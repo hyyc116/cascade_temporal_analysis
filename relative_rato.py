@@ -285,7 +285,7 @@ def stat_relative_ratio():
 
         topsubjs = set(pid_topsubjs[ref])
 
-        focal_num = len([1 for subjs in ref_citations[ref] if len(topsubjs&set(subjs))>0])
+        focal_num = len([1 for subjs in ref_citations[ref] if len(topsubjs&set(subjs))>0]) 
 
         relative_ratio = focal_num/float(len(ref_citations[ref]))
 
