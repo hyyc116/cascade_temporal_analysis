@@ -207,7 +207,7 @@ def plot_rr_figure():
         #     new_ys.append(np.mean(ys[start:end]))
 
         xs,new_ys,_,_  = loess_data(xs,ys)
-        plt.plot(xs,new_ys,label=subj)
+        plt.plot(xs,[ y if y<1 else 1  for y in new_ys],label=subj)
 
     plt.legend(prop={'size':6})
 
